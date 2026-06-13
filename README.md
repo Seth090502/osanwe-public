@@ -1,28 +1,25 @@
+<h1 align="center">osanwe-public</h1>
+
+<p align="center">
+  <b>A financial-assistant framework built on compounding knowledge</b><br />
+  the public-safe engine of a personal Obsidian + Claude Code vault.
+</p>
+
+<p align="center">
+  <a href="https://github.com/Seth090502/osanwe-public/actions/workflows/vault-prevention.yml"><img src="https://github.com/Seth090502/osanwe-public/actions/workflows/vault-prevention.yml/badge.svg" alt="CI" /></a>
+  <img src="https://img.shields.io/badge/vault--audit-95%2F100-brightgreen" alt="vault-audit 95 of 100" />
+  <img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License" />
+  <img src="https://img.shields.io/badge/built%20for-Claude%20Code-8A63D2" alt="Built for Claude Code" />
+</p>
+
 ---
-categories: [meta]
-type: readme
-status: active
-created: 2026-05-11
-updated: 2026-06-11
-tags:
-  - topic/architecture
-  - topic/prevention-architecture
-aliases: []
-related: []
----
 
-# osanwe-public
-
-![Vault Prevention](https://github.com/Seth090502/osanwe-public/actions/workflows/vault-prevention.yml/badge.svg)
-
-A public-safe variant of a personal Obsidian + Claude Code vault: a
-**financial-assistant framework built on compounding knowledge**. The
-architecture is the artifact -- the personal layer (holdings, identity, risk
-ceilings, medical context) lives in gitignored files you create yourself; what
+The architecture is the artifact. The personal layer -- holdings, identity, risk
+ceilings, medical context -- lives in gitignored files you create yourself; what
 ships here is the engine, the patterns, and the discipline, plus a small
 fictional DEMO seed so the repo's own quality gates run green out of the box.
 
-Five things distinguish this framework from a folder of prompts:
+## Five things that distinguish this from a folder of prompts
 
 **1. Dual-topology orchestration.** The heavy skills (`/invest`, `/spark`)
 carry two execution spines: a deterministic fan-out layer
@@ -97,7 +94,7 @@ passing on this public tree** -- and CI enforces the floor on every push.
   shipped so you can run the same discipline on a fork. See
   `.audit/README.md`, including the denylist paradox and the
   fresh-root-export rule.
-- **A fictional DEMO seed** -- `[[thesis-orbital-compute]]` (orbital data
+- **A fictional DEMO seed** -- an `orbital-compute` demo thesis (orbital data
   centers; deliberately fictional), three `-DEMO` ticker entities, one demo
   analysis, a calibration-monitor schema seed, a 9-section daily note, and a
   schema-valid `wiki/hot.md`. Every demo figure is synthetic. The seed exists

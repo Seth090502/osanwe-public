@@ -83,6 +83,7 @@ FRONTMATTER_EXCLUDES = {
 # These are institutional-history docs and tool documentation that intentionally
 # lack vault frontmatter (they're not queryable notes; they're orientation/handoff/tool docs).
 FRONTMATTER_EXEMPT_PATHS = {
+    "README.md",
     "CLAUDE.md",
     "CLAUDE.local.md",
     "AGENTS.md",
@@ -101,6 +102,7 @@ FRONTMATTER_EXEMPT_PATHS = {
 # By-design exempt orphans (specific paths). These are root-level config/docs/tool-output
 # that are not vault entities and are not expected to have inbound wikilinks.
 ORPHAN_EXEMPT_PATHS = {
+    "README.md",
     "CLAUDE.local.md",
     "AGENTS.md",
     "AGENTS.override.md",
