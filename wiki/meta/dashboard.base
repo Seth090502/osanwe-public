@@ -1,0 +1,70 @@
+# wiki/meta/dashboard.base
+# HOME.md dashboard views + weekly-review template views
+
+views:
+  # HOME.md: Recent Activity (12 most recently updated, excluding MOCs/templates/HOME)
+  - type: table
+    name: recent-activity
+    filters:
+      - type != "moc"
+      - !file.path.startsWith("_templates/")
+      - !file.path.startsWith("Atlas/_MOCs/")
+      - file.name != "HOME"
+    order: [file.name, file.folder, type, updated]
+    sort:
+      - column: updated
+        direction: DESC
+    limit: 12
+
+  # HOME.md: Stale Reference Docs (type=reference AND (status stale/stub OR >30d since updated))
+  - type: table
+    name: stale-refs
+    filters:
+      - file.inFolder("Atlas/sources")
+      - type == "reference"
+      - or:
+          - status == "stale"
+          - status == "stub"
+          - updated < now() - "30d"
+    order: [file.name, file.folder, status, updated]
+    sort:
+      - column: updated
+        direction: ASC
+
+  # HOME.md: Reference Docs (all type=reference in Atlas/sources)
+  - type: table
+    name: ref-docs
+    filters:
+      - file.inFolder("Atlas/sources")
+      - type == "reference"
+    order: [file.name, file.folder, status, confidence, updated]
+    sort:
+      - column: file.folder
+        direction: ASC
+      - column: file.name
+        direction: ASC
+
+  # weekly-review template: Stale Reference Docs (>30d only, no status check)
+  - type: table
+    name: weekly-stale
+    filters:
+      - file.inFolder("Atlas/sources")
+      - type == "reference"
+      - updated < now() - "30d"
+    order: [file.name, file.folder, updated]
+    sort:
+      - column: updated
+        direction: ASC
+
+  # weekly-review template: Recent Activity (last 7d, excluding MOCs/templates)
+  - type: table
+    name: weekly-recent
+    filters:
+      - type != "moc"
+      - !file.path.startsWith("_templates/")
+      - updated >= now() - "7d"
+    order: [file.name, file.folder, type, updated]
+    sort:
+      - column: updated
+        direction: DESC
+    limit: 15

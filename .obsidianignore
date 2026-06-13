@@ -1,0 +1,47 @@
+# Obsidian Ignore -- Project Palantir Vault
+# Keeps tooling, runtimes, build output, and frozen state invisible in Obsidian
+# while preserving knowledge/, skills, CLAUDE.md, and operational state as visible vault content
+
+# Git
+.git/
+
+# Claude Code runtime
+.claude/
+
+# Frozen OpenClaw runtime state
+.openclaw/
+
+# Stale checkpoints (pre-migration)
+.checkpoints/
+
+# Config directory (GGUF model files, orchestrator scripts, modelfiles)
+config/
+
+# Career-ops engine internals (node_modules, .git, scripts)
+career-ops/node_modules/
+career-ops/.git/
+career-ops/batch/
+career-ops/output/
+career-ops/templates/
+career-ops/generate-pdf.mjs
+career-ops/merge-tracker.mjs
+career-ops/cv-sync-check.mjs
+career-ops/verify-pipeline.mjs
+career-ops/normalize-statuses.mjs
+career-ops/dedup-tracker.mjs
+
+# Empty directories
+archive/
+state/
+supplements/
+
+# Build artifacts and logs
+*.log
+*.lock
+*.7z
+
+# Data files (CSV, not knowledge content)
+data/
+
+# Templates (visible in Obsidian but excluded from graph clutter)
+# templates/

@@ -1,0 +1,69 @@
+# DENYLIST EXAMPLE -- template for your personal PII denylist
+# Format: CATEGORY: <name> followed by one regex per line (Python re syntax,
+# IGNORECASE + MULTILINE). Consumed by check-pii.py.
+#
+# IMPORTANT -- the denylist paradox: a real denylist IS a list of your
+# secrets (your figures, your employer, your location anchor the patterns).
+# NEVER commit your real denylist to a public repo. Keep it gitignored
+# (this repo's .gitignore excludes .audit/denylist-v*.txt) and ship only
+# this structural example.
+#
+# Replace every <PLACEHOLDER> with your own values in a local copy named
+# denylist-v1.txt (gitignored).
+
+CATEGORY: PERSONAL_PORTFOLIO_HOLDINGS
+\b[0-9]+\.[0-9]{4,}\s*(shares|sh)\b
+total\s+value\s*[:=~]?\s*\$
+portfolio\s+impact\s+[-+]?\$
+
+CATEGORY: PERSONAL_PORTFOLIO_VALUE_ANCHORED
+portfolio\s+(total|value)\s*[:=]?\s*\$[0-9,]+
+position\s+size\s*[:=]?\s*\$[0-9,]+
+net\s+worth\s*[:=]?\s*\$[0-9,]+
+cost\s+basis\s*[:=]?\s*\$[0-9,]+
+account\s+balance\s*[:=]?\s*\$[0-9,]+
+
+CATEGORY: PERSONAL_TICKER_POSITION
+# Anchor to YOUR held tickers, e.g.: \b(TICK1|TICK2)\s*(@|at)\s*\$\s*[0-9][0-9.,]*
+\b(<TICKER1>|<TICKER2>)\s*(@|at|-)\s*\$\s*[0-9][0-9.,]*
+
+CATEGORY: FINANCIAL_WAGE_ACCOUNT
+# Your real wage figure, e.g.: \$NN\.NN\s*/?\s*hr
+\$<HOURLY_WAGE>\s*/?\s*hr
+
+CATEGORY: BIOMETRIC_NUMERIC
+\btestosterone\s*[=:]?\s*[0-9]{2,4}\b
+\bHbA1c\s*[=:]?\s*[0-9.]+
+\bweight\s*[=:]?\s*[0-9]{2,3}\s*(lb|kg)
+\bBMI\s*[=:]?\s*[0-9.]+
+
+CATEGORY: MEDICAL_HISTORY
+# Your specific medications / conditions / protocol names
+\b<MEDICATION_NAME>\b
+\bbloodwork\s+[0-9]{4}-[0-9]
+
+CATEGORY: USER_IDENTITY
+\b<FIRST_NAME>\s+<LAST_NAME>\b
+\b<EMAIL_HANDLE>\b
+\b<GITHUB_HANDLE>\b
+
+CATEGORY: LOCATION
+\b<CITY>\b
+\b<ZIP_CODE>\b
+
+CATEGORY: EMPLOYER_CURRENT
+\b<EMPLOYER_NAME>\b
+
+CATEGORY: FILES_FORBIDDEN
+@CLAUDE\.local
+\bprivate/(holdings-taxable|holdings-ira|health-baseline|medical-context)\.md.*[0-9]
+
+CATEGORY: DOB_AGE_PRECISION
+\bborn\s+(19|20)[0-9]{2}\b
+\bDOB\s*[=:]\s*[0-9]
+\bage\s+<AGE>\b
+
+CATEGORY: FINANCIAL_FIGURE_COLLISION
+# One literal pattern per real portfolio figure, e.g.: \$12,345\b
+\$<REAL_FIGURE_1>\b
+\$<REAL_FIGURE_2>\b

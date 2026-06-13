@@ -1,0 +1,3 @@
+# Stage 2 (indexing) and Stage 2b (cluster generation) use Python stdlib only.
+# No external dependencies required for the Claude-Code-only pipeline.
+# This file is kept as a placeholder; pip install is a no-op.

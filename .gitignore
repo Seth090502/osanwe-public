@@ -1,0 +1,77 @@
+# Personal layers
+private/
+.raw/
+finance/
+credentials/
+*.local.md
+HOME.md
+USER.md
+
+# State / transcripts
+.claude/state/
+.claude/transcripts/
+.claude/worktrees/
+.claude/command-log.txt
+.claude/*.bak.*
+.claude/logs/
+.claude/session.pid
+
+# Obsidian / IDE state
+.obsidian/workspace*
+.obsidian/
+.checkpoints/
+.smart-env/
+
+# Personal-domain top-level dirs (defense-in-depth -- not in mirror but blocks future drift)
+# Leading slash anchors to repo root so nested dirs of the same name (Atlas/sources/golf/,
+# .claude/skills/golf/, Atlas/concepts/career/) are NOT excluded.
+/career-ops/
+/data/
+/golf/
+/health/
+/personal/
+/plans/
+/reviews/
+
+# Audit runtime artifacts (keep the static toolchain + fixtures + manifest)
+.audit/sanitize-log.jsonl
+.audit/pii-check-*.log
+.audit/entity-strip-log.jsonl
+.audit/mission-telemetry.jsonl
+
+# Python / OS / tooling
+__pycache__/
+*.pyc
+.venv/
+.cache/
+*.log
+*.lock
+*.7z
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Public-Ship remediation 2026-05-11 -- docs/audit residual leaks
+docs/project-osanwe-claude-code-state.md
+docs/VAULT-HANDOFF-V16.md
+docs/PROJECT-OSANWE-PACKET.md
+docs/fs-watcher.md
+docs/gpg-recovery-setup.md
+.audit/MISSION-PROMPT.md
+.audit/PRESTAGE-MANIFEST.md
+
+# v2 secrets-map / mission-internal (local-only, never publish; see .audit/README.md)
+.audit/STATUS-v2.md
+.audit/SCRUB-SPEC-v2.md
+.audit/PUBLISH-CHECKLIST.md
+.audit/denylist-v*.txt
+.audit/denylist-tuning.md
+.audit/remediation-*.md
+.audit/broken-links.md
+.audit/path-rewrites.md
+.audit/pre-tree.txt
+.audit/post-tree.txt
+.audit/source-vault-*.txt
+.audit/capability-baseline-*.json
+.audit/test-fixture-pii.md
+.audit/transform_invest_skill.py

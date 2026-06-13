@@ -1,0 +1,11 @@
+{
+  "name": "vault-substrate",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Osanwe Phase 3 semantic substrate: HNSW index over the vault using bge-base-en-v1.5 embeddings. Out-of-vault, never pushed.",
+  "license": "MIT",
+  "dependencies": {
+    "agentdb": "^3.0.0-alpha.14",
+    "ruvector": "^0.2.26"
+  }
+}

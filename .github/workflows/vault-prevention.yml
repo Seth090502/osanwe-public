@@ -1,0 +1,42 @@
+name: Vault Prevention Architecture
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-harness:
+    name: T1-T38 harness + audit floor + exclusion assertions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install tool dependencies
+        run: pip install yfinance watchdog tzdata
+
+      - name: Run prevention-architecture harness (T1-T38)
+        run: bash tools/test-prevention-arch.sh
+
+      - name: Vault audit (assert score >= 95-floor, GATE clean)
+        run: |
+          python tools/vault-audit.py --json | python -c "
+          import sys, json
+          d = json.load(sys.stdin)
+          score = d['score']
+          gate = d.get('tiers', {}).get('gate', {}).get('count', 0)
+          broken = len(d.get('broken_wikilinks', []))
+          assert gate == 0, f'GATE breach: {gate} findings; tree must be GATE-clean'
+          assert broken == 0, f'{broken} broken wikilinks'
+          assert score >= 95, f'Score {score} below the 95-floor invariant'
+          print(f'Vault audit PASS: score {score}/100, GATE clean, broken wikilinks 0')
+          "
+
+      - name: Structural exclusion assertions
+        run: python .audit/assert-exclusions-v2.py

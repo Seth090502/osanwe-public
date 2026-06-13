@@ -1,0 +1,32 @@
+# wiki/meta/analyses-by-ticker.base -- DEMO seed
+# Entity ## Analyses section embeds ![[wiki/meta/analyses-by-ticker.base#<TKR>]]
+# View name = bare ticker symbol (matches canary convention).
+# Add one view block per ticker you analyze; the three below cover the demo
+# entities. /invest can extend this file as new entities accumulate.
+
+filters:
+  - file.inFolder("wiki/investing/analyses")
+  - type == "analysis"
+
+views:
+  - type: table
+    name: ORBC-DEMO
+    filters: [file.tags.contains("ticker/ORBC-DEMO")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: LNCH-DEMO
+    filters: [file.tags.contains("ticker/LNCH-DEMO")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: OPTL-DEMO
+    filters: [file.tags.contains("ticker/OPTL-DEMO")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
