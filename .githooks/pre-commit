@@ -1,0 +1,5 @@
+#!/bin/sh
+# OSANWE-V2 harness-neutral pre-commit cage. Delegates every decision to
+# tools/precommit.py so the checker is testable standalone (tools/test-precommit.py).
+python tools/precommit.py
+exit $?

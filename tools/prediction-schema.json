@@ -1,0 +1,184 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "osanwe:prediction-object:v1",
+  "title": "Osanwe structured prediction object (v1)",
+  "description": "The machine-readable contract every quantitative prediction MUST satisfy before it may be recorded, backtested, or acted on. Replaces vague BUY/SELL labels: a prediction is a full return DISTRIBUTION against a named benchmark over a stated horizon, with explicit uncertainty, costs, capacity, and invalidation terms. Consumers: tools/backtest-prediction.py, tools/calibrate-confidence.py (confidence-map.json bins), tools/pretrade_gate.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "instrument_id",
+    "prediction_timestamp",
+    "information_cutoff",
+    "horizon_days",
+    "target_variable",
+    "benchmark_id",
+    "expected_return",
+    "return_distribution",
+    "probability_positive_excess",
+    "expected_volatility",
+    "expected_max_drawdown_pct",
+    "var_95_daily",
+    "confidence_interval",
+    "calibration_bin",
+    "signal_components",
+    "model_version",
+    "dataset_version",
+    "invalidation_conditions",
+    "expiration_timestamp",
+    "recommended_action_range",
+    "assumed_cost_bps",
+    "capacity_estimate_usd",
+    "liquidity_score"
+  ],
+  "properties": {
+    "instrument_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9._^-]{1,12}$",
+      "description": "Ticker of the instrument the prediction is about, upper-case canonical form (e.g. AAPL, BRK.B)."
+    },
+    "prediction_timestamp": {
+      "$ref": "#/definitions/timestamp",
+      "description": "ISO 8601 timestamp WITH timezone offset when the prediction was issued."
+    },
+    "information_cutoff": {
+      "$ref": "#/definitions/timestamp",
+      "description": "Last timestamp of data actually used to produce this prediction. MUST NOT be later than prediction_timestamp; anything after it is lookahead leakage."
+    },
+    "horizon_days": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1260,
+      "description": "Trading-day horizon of the prediction (e.g. 21 = one month, 63 = one quarter)."
+    },
+    "target_variable": {
+      "type": "string",
+      "const": "excess_return_vs_benchmark",
+      "description": "What is being predicted. v1 fixes this to annualized excess total return vs benchmark_id."
+    },
+    "benchmark_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9._^-]{1,12}$",
+      "description": "Benchmark ticker excess return is measured against (e.g. SPY)."
+    },
+    "expected_return": {
+      "type": "number",
+      "minimum": -2.0,
+      "maximum": 2.0,
+      "description": "Point estimate of ANNUALIZED expected excess return over the horizon, as a decimal fraction (-2.0 .. +2.0 i.e. -200%..+200%)."
+    },
+    "return_distribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["p10", "p25", "median", "p75", "p90", "skew", "kurtosis"],
+      "properties": {
+        "p10": { "type": "number", "description": "10th percentile of annualized excess return (decimal)." },
+        "p25": { "type": "number", "description": "25th percentile of annualized excess return (decimal)." },
+        "median": { "type": "number", "description": "Median annualized excess return (decimal)." },
+        "p75": { "type": "number", "description": "75th percentile of annualized excess return (decimal)." },
+        "p90": { "type": "number", "description": "90th percentile of annualized excess return (decimal)." },
+        "skew": { "type": "number", "minimum": -10, "maximum": 10, "description": "Skewness of the predicted excess-return distribution." },
+        "kurtosis": { "type": "number", "minimum": -10, "maximum": 100, "description": "Excess kurtosis of the predicted excess-return distribution." }
+      }
+    },
+    "probability_positive_excess": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Model probability that realized excess return over the horizon is > 0."
+    },
+    "expected_volatility": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 5.0,
+      "description": "Annualized expected volatility of EXCESS returns (decimal; 0.30 = 30%)."
+    },
+    "expected_max_drawdown_pct": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 100.0,
+      "description": "Expected maximum drawdown of the position over the horizon, in PERCENT (positive number, e.g. 18.5)."
+    },
+    "var_95_daily": {
+      "type": "number",
+      "exclusiveMinimum": 0.0,
+      "description": "95% one-day Value at Risk in DOLLARS for the intended position size. Positive number; loss magnitude."
+    },
+    "confidence_interval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lower", "upper", "level"],
+      "properties": {
+        "lower": { "type": "number", "description": "Lower bound of annualized excess return (decimal)." },
+        "upper": { "type": "number", "description": "Upper bound of annualized excess return (decimal); must be >= lower." },
+        "level": { "type": "number", "exclusiveMinimum": 0.0, "exclusiveMaximum": 1.0, "description": "Coverage level, e.g. 0.8 for an 80% interval." }
+      }
+    },
+    "calibration_bin": {
+      "type": "string",
+      "pattern": "^[0-9]{2}-[0-9]{2}$",
+      "description": "Stated-confidence bin this prediction's probability_positive_excess maps to in wiki/maintenance/calibration/confidence-map.json (e.g. '70-79'). Downstream graders read the CALIBRATED value from the map, not the raw number."
+    },
+    "signal_components": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "pattern": "^[a-z][a-z0-9_-]*$" },
+      "additionalProperties": { "type": "number", "minimum": -10.0, "maximum": 10.0 },
+      "description": "Named factor contributions, each a z-like score in [-10, 10], e.g. {\"momentum\": 1.4, \"quality\": -0.3}. At least one component required so attribution is possible."
+    },
+    "model_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "Version identifier of the generating model/process (e.g. 'invest-v2.3')."
+    },
+    "dataset_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "Version/snapshot id of the input dataset used (must be reproducible from registry)."
+    },
+    "invalidation_conditions": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 8 },
+      "description": "Concrete, checkable events that void the prediction before expiration (e.g. 'guidance cut > 5%', 'benchmark regime flip to backwardation'). At least one required."
+    },
+    "expiration_timestamp": {
+      "$ref": "#/definitions/timestamp",
+      "description": "ISO 8601 timestamp WITH timezone offset after which the prediction is dead regardless of outcome. Must be strictly after prediction_timestamp."
+    },
+    "recommended_action_range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["min_action", "max_action"],
+      "properties": {
+        "min_action": { "type": "number", "minimum": -100.0, "maximum": 100.0, "description": "Lower bound of recommended action, PERCENT of current position to change (-100 = exit long, +100 = double). Negative = trim/short." },
+        "max_action": { "type": "number", "minimum": -100.0, "maximum": 100.0, "description": "Upper bound of recommended action, same units. Must be >= min_action. A RANGE, never a single point." }
+      }
+    },
+    "assumed_cost_bps": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 500.0,
+      "description": "Round-trip transaction cost assumed in basis points when forming net expectations."
+    },
+    "capacity_estimate_usd": {
+      "type": "number",
+      "exclusiveMinimum": 0.0,
+      "description": "Estimated capital capacity for the trade in USD before market impact degrades the edge beyond assumed_cost_bps."
+    },
+    "liquidity_score": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Subjective 1-10 liquidity score of the instrument (10 = deepest)."
+    }
+  },
+  "definitions": {
+    "timestamp": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$",
+      "description": "ISO 8601 with explicit timezone offset (Z or +HH:MM). Naive timestamps are invalid."
+    }
+  }
+}

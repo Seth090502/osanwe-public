@@ -1,0 +1,285 @@
+{
+ "brief-P1": {
+  "skill": "brief",
+  "kind": "P",
+  "activated_of_3": 1,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "brief-P2": {
+  "skill": "brief",
+  "kind": "P",
+  "activated_of_3": 3,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "brief-P3": {
+  "skill": "brief",
+  "kind": "P",
+  "activated_of_3": 3,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "brief-N1": {
+  "skill": "brief",
+  "kind": "N",
+  "activated_of_3": 0,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "brief-N2": {
+  "skill": "brief",
+  "kind": "N",
+  "activated_of_3": 0,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "invest-P1": {
+  "skill": "invest",
+  "kind": "P",
+  "activated_of_3": 0,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "invest-P2": {
+  "skill": "invest",
+  "kind": "P",
+  "activated_of_3": 3,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "invest-P3": {
+  "skill": "invest",
+  "kind": "P",
+  "activated_of_3": 3,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "invest-N1": {
+  "skill": "invest",
+  "kind": "N",
+  "activated_of_3": 0,
+  "other_activations": {
+   "networth": 3
+  },
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "invest-N2": {
+  "skill": "invest",
+  "kind": "N",
+  "activated_of_3": 0,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "spark-P1": {
+  "skill": "spark",
+  "kind": "P",
+  "activated_of_3": 3,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "spark-P2": {
+  "skill": "spark",
+  "kind": "P",
+  "activated_of_3": 3,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "spark-P3": {
+  "skill": "spark",
+  "kind": "P",
+  "activated_of_3": 3,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "spark-N1": {
+  "skill": "spark",
+  "kind": "N",
+  "activated_of_3": 0,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "spark-N2": {
+  "skill": "spark",
+  "kind": "N",
+  "activated_of_3": 0,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "retro-P1": {
+  "skill": "retro",
+  "kind": "P",
+  "activated_of_3": 0,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "retro-P2": {
+  "skill": "retro",
+  "kind": "P",
+  "activated_of_3": 3,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "retro-P3": {
+  "skill": "retro",
+  "kind": "P",
+  "activated_of_3": 3,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "retro-N1": {
+  "skill": "retro",
+  "kind": "N",
+  "activated_of_3": 0,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "retro-N2": {
+  "skill": "retro",
+  "kind": "N",
+  "activated_of_3": 0,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "vault-P1": {
+  "skill": "vault",
+  "kind": "P",
+  "activated_of_3": 0,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "vault-P2": {
+  "skill": "vault",
+  "kind": "P",
+  "activated_of_3": 0,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "vault-P3": {
+  "skill": "vault",
+  "kind": "P",
+  "activated_of_3": 3,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "vault-N1": {
+  "skill": "vault",
+  "kind": "N",
+  "activated_of_3": 0,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "vault-N2": {
+  "skill": "vault",
+  "kind": "N",
+  "activated_of_3": 0,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "CP1": {
+  "skill": "decide",
+  "kind": "CP-not-challenge",
+  "activated_of_3": 2,
+  "other_activations": {
+   "gate": 1
+  },
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "CP2": {
+  "skill": "challenge",
+  "kind": "CP-not-decide",
+  "activated_of_3": 3,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "CP3": {
+  "skill": "enrich",
+  "kind": "CP-not-ingest",
+  "activated_of_3": 0,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "CP4": {
+  "skill": "ingest",
+  "kind": "CP-not-enrich",
+  "activated_of_3": 0,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "CP5": {
+  "skill": "spark",
+  "kind": "CP-not-consolidate",
+  "activated_of_3": 3,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ },
+ "CP6": {
+  "skill": "consolidate",
+  "kind": "CP-not-spark",
+  "activated_of_3": 0,
+  "other_activations": {},
+  "statuses": {
+   "ok": 3
+  }
+ }
+}

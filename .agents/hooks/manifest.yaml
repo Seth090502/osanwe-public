@@ -1,0 +1,192 @@
+# Hook manifest -- cross-harness migration D6 (2026-08-10, S4).
+# 28 surfaces accounted post-disarm: 25 live hook scripts (26 settings entries;
+# the gen-codex-skill-adapters PostToolUse entry was DEREGISTERED at S2 disarm)
+# + 3 gate CLIs. Tier 1 = full entries (schema + decision logic + reference
+# implementation + cold porting brief in briefs/ + per-harness recipes + executable
+# test). Tier 2 = schema-complete stubs (no recipes). Tier 3 = INVENTORY.md rows.
+# Event mapping (abstract lifecycle -> each harness's native events): README.md.
+# checkall.py enforces: every logic: path resolves; every test: exits 0.
+# Test-before-brief discipline: every Tier-1 test: below was authored from the
+# phase1-hooks-gates audit BEFORE its porting brief existed (briefs by a separate
+# opus session; one deliberately-vague CONTROL brief documents the discriminator).
+
+hooks:
+  # ---------------- Tier 1: full entries ----------------
+  - id: precommit-cage
+    tier: 1
+    intent: Harness-neutral git-layer cage -- block commits violating protected paths, ledger append-only, Atlas freeze (while .githooks/STRICT), ASCII added-lines, domain bans, canonical frontmatter on new vault md (OSANWE-V2 B0.5/ADR-04)
+    criticality: safety-critical
+    lifecycle: pre-commit (blocking, all harnesses via core.hooksPath=.githooks)
+    logic: tools/precommit.py
+    decision_logic: staged-diff inspection; exit 1 blocks the commit; --tree mode adds whole-tree structural checks for checkall; STRICT flag gates the Atlas rule and is removed at mission P5
+    portable: yes (pure git + stdlib python; no harness coupling)
+    test: python tools/test-precommit.py
+    brief: recipes/hermes/pretool-guard.md (cold-port brief doubles as the Hermes pre_tool_call recipe)
+    degradation: without core.hooksPath support, harnesses run `python tools/precommit.py --tree` manually or via checkall (precommit-tree step)
+    carriers: [git-precommit, hermes-pretool-recipe, checkall-tree]
+
+  - id: guard-paths
+    tier: 1
+    intent: Block agent writes to protected layers (.raw/ private/ finance/ credentials/) and gate the config-class surface (X26 armed-edit flow, D11 extension)
+    criticality: safety-critical
+    lifecycle: pre-tool-use (blocking)
+    logic: .claude/hooks/guard-paths.sh
+    decision_logic: stdin JSON -> file_path; hard-block 4 protected trees; config-guard globs (settings/hooks/routers/named tools + .agents/mcp|scripts|hooks + .mcp.json + opencode.json + .codex/config.toml) block unless .claude/state/config-edit-armed exists; flag consumed per write; allows logged
+    portable: yes (tool_input shape is the only harness coupling)
+    known_residual: Bash-layer writes bypass pre-tool interception in every harness (X30)
+    test: bash tools/test-prevention-arch.sh T41 >/dev/null 2>&1
+    brief: briefs/guard-paths.md
+    degradation: without a native blocking hook, AGENTS.md Writes section + BOOTSTRAP HARD BLOCKS carry the rule by instruction
+
+  - id: session-branch
+    tier: 1
+    intent: Allow ordinary writes on main and named feature branches; refuse detached-HEAD writes without moving HEAD
+    criticality: safety-critical
+    lifecycle: pre-tool-use (blocking)
+    logic: .claude/hooks/session-branch.sh
+    decision_logic: resolve repository relative to script location; exit 0 outside a repository or on any symbolic branch; exit 2 on detached/unreadable HEAD with recovery guidance; never create/switch branches or commit
+    portable: yes
+    test: python -B tools/test-router-contract.py BranchPolicy
+    test_note: disposable repositories verify main/feature allow, detached refusal, unchanged HEAD/refs/index, and retired auto-commit no-op; no production hooks are invoked
+    brief: briefs/session-branch.md
+    degradation: without native blocking hooks, check symbolic HEAD before writes and follow AGENTS.md validated milestone-commit discipline; session-start-only checking cannot catch a later detach
+
+  - id: stop-pr-and-audit
+    tier: 1
+    intent: On session end, run the vault-audit gate and open a PR for the session branch (inert while no remote)
+    criticality: safety-critical
+    lifecycle: session-end
+    logic: .claude/hooks/stop-pr-and-audit.sh
+    decision_logic: vault-audit gate first (emits continue=true JSON on GATE breach so the stop is never wedged); gh pr create --fill --base main when commits are ahead of origin
+    portable: yes (script body); the Stop-event auto-trigger is harness-specific
+    test: bash tools/test-prevention-arch.sh T13 >/dev/null 2>&1
+    brief: briefs/stop-pr-and-audit.md
+    degradation: Tier-B sessions run the audit + PR step manually at session close (AGENTS.md session-end list)
+
+  - id: pretrade-token-gate
+    tier: 1
+    intent: Second stair of the T11 execution staircase -- no equity order without EXECUTE ORDER phrase + HMAC gate pass + TTL/anti-replay + order-hash match
+    criticality: safety-critical (highest)
+    lifecycle: pre-tool-use (blocking, fail-closed)
+    logic: .claude/hooks/pretrade-token-gate.py
+    decision_logic: 4 conditions ALL required (genuine-user-turn confirm phrase, signed PASS artifact, TTL+not-consumed, anti-TOCTOU order hash); option/mutator tools blocked outright (matcher widened to mcp__robinhood-trading__.* 2026-08-10 so these branches are reachable)
+    portable: NO -- the "latest genuine human turn" primitive parses Claude transcript internals as a prompt-injection defense; an approximated port would LOOK enforced while injection-bypassable (strictly worse than nothing)
+    mitigation: categorical -- no non-Claude harness receives Robinhood order tools at all (registry default-refuse, .agents/mcp/servers.json)
+    test: bash tools/test-prevention-arch.sh T39 >/dev/null 2>&1 && bash tools/test-prevention-arch.sh T40 >/dev/null 2>&1
+    brief: briefs/pretrade-token-gate.md
+    degradation: none needed -- the guarded surface itself is absent outside Claude
+
+  - id: gate-eval-cli
+    tier: 1
+    intent: Deterministic judgment-gate verdicts (GATE-F/T/B) -- the model never judges
+    criticality: safety-critical (decision integrity)
+    lifecycle: on-demand CLI (before consequential actions; all tiers)
+    logic: .agents/scripts/gates/gate-eval.py
+    decision_logic: fills from sheet markers + tools/gate-rules.json; verdicts DISCIPLINED/FOMO-SUSPECT/BLOCKED, FIRED/NOT-FIRED/INSUFFICIENT-EVIDENCE, BUILD-JUSTIFIED/SHIP-FIRST/DECLINE with mandates
+    portable: yes (VAULT_ROOT-parameterized wrapper; proven by controls)
+    test: python .agents/scripts/gates/test-gates.py >/dev/null 2>&1
+    brief: briefs/gate-eval-cli.md
+    degradation: none -- identical in every harness
+
+  - id: pretrade-gate-cli
+    tier: 1
+    intent: T11 first stair -- staged-order evaluation (ceilings, R/R hurdle, reserve rules) issuing HMAC-signed passes
+    criticality: safety-critical
+    lifecycle: on-demand CLI
+    logic: .agents/scripts/gates/pretrade-gate.py
+    decision_logic: PASS/BLOCK on the staged order vs doctrine ceilings + kernel bands; only a clean PASS issues a signed token consumed by pretrade-token-gate
+    portable: yes as ANALYSIS tooling; the enforcement pairing (token consumption) is Claude-only by design
+    test: python .agents/scripts/gates/test-gates.py >/dev/null 2>&1
+    brief: briefs/pretrade-gate-cli.md
+    degradation: Tier-B = dry-run analysis only (no order tools exist there)
+
+  - id: doctrine-lint-cli
+    tier: 1
+    intent: Fail-closed doctrine-tamper detection (ref-note fingerprints vs ratified values)
+    criticality: safety-critical (doctrine integrity)
+    lifecycle: on-demand CLI (before doctrine-dependent decisions)
+    logic: .agents/scripts/gates/doctrine-lint.py
+    decision_logic: schema-validates both doctrine blocks, checks prose agreement + fingerprint ratification; any mismatch = findings + nonzero exit
+    portable: yes (VAULT_ROOT-parameterized; negative control proves it fails loud on a missing doctrine tree)
+    test: python .agents/scripts/gates/test-gates.py >/dev/null 2>&1
+    brief: briefs/doctrine-lint-cli.md
+    degradation: none -- identical in every harness
+
+  # ---------------- Tier 2: quality stubs (schema-complete, no recipes) ----------------
+  - id: append-only-check
+    tier: 2
+    intent: Blocks any tool-layer write to the 4 append-only ledgers unless existing bytes survive as a strict PREFIX
+    criticality: integrity
+    lifecycle: pre-tool-use (blocking)
+    logic: tools/append-only-check.py
+    test: python tools/test-append-only.py >/dev/null 2>&1
+    test_note: 7 cases -- append via Write/Edit ALLOW, truncating rewrite + prior-line edit BLOCK, unguarded path ALLOW, logged bypass ALLOW (test-suite-tagged), EOD in-place status flip BLOCK
+    degradation: instruction-only (AGENTS.md names the 4 ledgers append-only); no other harness enforces it
+    known_residual: Bash-layer writes bypass PreToolUse entirely (X30) -- `echo x >> log.md` is unaffected
+
+  - id: pre-write-validator
+    tier: 2
+    intent: Only before-disk quality gate -- simulates post-write content, blocks GATE findings before mutation
+    criticality: quality
+    lifecycle: pre-tool-use (blocking)
+    logic: tools/pre-write-validator.py
+    test: bash tools/test-prevention-arch.sh T1 >/dev/null 2>&1
+    degradation: Tier-B runs vault-audit --scope after writes instead (post-hoc, weaker)
+
+  - id: wikilink-check
+    tier: 2
+    intent: Post-write broken-wikilink block (vestigial pre-CAT-1 layer behind pre-write-validator)
+    criticality: quality
+    lifecycle: post-tool-use (blocking)
+    logic: tools/wikilink-check.py
+    test: bash tools/test-prevention-arch.sh T7 >/dev/null 2>&1
+    degradation: covered by pre-write-validator upstream; Tier-B relies on vault-audit
+
+  - id: frontmatter-check
+    tier: 2
+    intent: Canonical frontmatter schema enforcement on vault writes
+    criticality: quality
+    lifecycle: post-tool-use (blocking)
+    logic: tools/frontmatter-check.py
+    test: bash tools/test-prevention-arch.sh T8 >/dev/null 2>&1
+    degradation: Tier-B validates via vault-audit before commit
+
+  - id: orphan-check
+    tier: 2
+    intent: Block new orphan files (no inbound wikilink)
+    criticality: quality
+    lifecycle: post-tool-use (blocking, soft)
+    logic: tools/orphan-check.py
+    test: python -c "import ast; ast.parse(open('tools/orphan-check.py').read())"
+    test_note: T9 fixture is the SANCTIONED pre-existing FAIL (BACKLOG) -- the live hook blocks real orphans (observed 2026-08-10) but the harness fixture is dead; syntax-only here until T9 is fixed
+    degradation: vault-audit orphan classifier catches accumulation post-hoc
+
+  - id: hot-md-check
+    tier: 2
+    intent: hot.md schema integrity (field whitelist, section lifecycle caps, staleness windows)
+    criticality: quality
+    lifecycle: post-tool-use (blocking on GATE findings)
+    logic: tools/hot-md-check.py
+    test: python tools/hot-md-check.py wiki/hot.md --quiet
+    test_note: happy-path only (runs against the live, currently-clean hot.md; no negative control -- an always-exit-0 breakage would pass; declared per redteam M3)
+    degradation: schema drift surfaces at the next Claude session or vault-audit run
+
+  - id: session-integrity-check
+    tier: 2
+    intent: Session-start tripwires (shim shape, settings sha256 snapshot, subagent-model env, router-check --quick, dirty count)
+    criticality: quality
+    lifecycle: session-start (warn-only, X77)
+    logic: .claude/hooks/session-integrity-check.sh
+    test: bash -n .claude/hooks/session-integrity-check.sh
+    test_note: syntax-only (warn-only hook; no behavioral fixture -- declared per redteam M3)
+    degradation: Tier-B runs python tools/router-check.py manually (BOOTSTRAP does not include it; acceptable loss)
+
+  - id: auto-count-sync
+    tier: 2
+    intent: Count-claim drift detection (router/MOC counts vs filesystem)
+    criticality: quality
+    lifecycle: post-tool-use (warn+log)
+    logic: .claude/hooks/auto-count-sync.py
+    test: python -c "import ast; ast.parse(open('.claude/hooks/auto-count-sync.py').read())"
+    test_note: syntax-only (warn+log hook; no behavioral fixture -- declared per redteam M3)
+    degradation: drift lands in vault-audit X3/X5 classifiers instead

@@ -1,0 +1,11 @@
+Micron Technology (MU) Financials -- fixture page (hermetic; not live data)
+Quarterly Income Statement (FY2026 Q3, ended 2026-05-28)
+Revenue: $8,050 million, up 12% sequentially.
+Gross margin: 41.5% (GAAP).
+Operating income: $1,940 million.
+Diluted EPS: $1.62.
+Cash and investments: $9,200 million.
+Inventory: $8,400 million, days inventory 142.
+Guidance (FY2026 Q4): revenue $8,600 million +/- $200 million.
+Datacenter DRAM revenue mix reached 55% of total revenue.
+HBM revenue more than doubled year over year.

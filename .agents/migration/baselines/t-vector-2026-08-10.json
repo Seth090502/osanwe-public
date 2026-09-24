@@ -1,0 +1,214 @@
+{
+ "baseline_date": "2026-08-10",
+ "suite": "tools/test-prevention-arch.sh",
+ "checkpoint_sha": "227c857",
+ "passed": 37,
+ "failed": 1,
+ "suite_exit": 1,
+ "vector": {
+  "T1": "PASS",
+  "T2": "PASS",
+  "T3": "PASS",
+  "T4": "PASS",
+  "T5": "PASS",
+  "T6": "PASS",
+  "T7": "PASS",
+  "T8": "PASS",
+  "T9": "FAIL",
+  "T10": "PASS",
+  "T11": "PASS",
+  "T12": "PASS",
+  "T13": "PASS",
+  "T14": "PASS",
+  "T15": "PASS",
+  "T16": "PASS",
+  "T17": "PASS",
+  "T18": "PASS",
+  "T19": "PASS",
+  "T20": "PASS",
+  "T21": "PASS",
+  "T22": "PASS",
+  "T23": "PASS",
+  "T24": "PASS",
+  "T25": "PASS",
+  "T26": "PASS",
+  "T27": "PASS",
+  "T28": "PASS",
+  "T29": "PASS",
+  "T30": "PASS",
+  "T31": "PASS",
+  "T32": "PASS",
+  "T33": "PASS",
+  "T34": "PASS",
+  "T35": "PASS",
+  "T36": "PASS",
+  "T37": "PASS",
+  "T38": "PASS"
+ },
+ "details": {
+  "T1": {
+   "status": "PASS",
+   "detail": "exit=0  pre-write-validator: clean Write"
+  },
+  "T2": {
+   "status": "PASS",
+   "detail": "exit=2  pre-write-validator: broken-wikilink Write"
+  },
+  "T3": {
+   "status": "PASS",
+   "detail": "exit=2  pre-write-validator: Edit injecting broken wikilink"
+  },
+  "T4": {
+   "status": "PASS",
+   "detail": "exit=2  pre-write-validator: MultiEdit injecting broken wikilink"
+  },
+  "T5": {
+   "status": "PASS",
+   "detail": "exit=0  pre-write-validator: EXEMPT_PATHS CLAUDE.md (broken edit allowed)"
+  },
+  "T6": {
+   "status": "PASS",
+   "detail": "exit=0  pre-write-validator: CLAUDE_VAULT_BYPASS_VALIDATOR=1 bypass"
+  },
+  "T7": {
+   "status": "PASS",
+   "detail": "exit=2  wikilink-check: PostToolUse on broken file"
+  },
+  "T8": {
+   "status": "PASS",
+   "detail": "exit=2  frontmatter-check: forbidden domain field"
+  },
+  "T9": {
+   "status": "FAIL",
+   "detail": "expected=2 got=0  orphan-check: PostToolUse on new orphan file"
+  },
+  "T10": {
+   "status": "PASS",
+   "detail": "exit=0  vault-audit.py --json: baseline (GATE clean + score >= 95)"
+  },
+  "T11": {
+   "status": "PASS",
+   "detail": "exit=0  vault-audit.py --json: 1 broken wikilink -> 90 (gate breach)"
+  },
+  "T12": {
+   "status": "PASS",
+   "detail": "exit=0  vault-audit.py --json: 5 orphans -> 95 (hard-drift cap)"
+  },
+  "T13": {
+   "status": "PASS",
+   "detail": "exit=0  stop-pr-and-audit.sh: emits continue=true on GATE breach"
+  },
+  "T14": {
+   "status": "PASS",
+   "detail": "exit=0  vault-score-check.py: surfaces bypass-log entries (regex-counted)"
+  },
+  "T15": {
+   "status": "PASS",
+   "detail": "exit=2  skill-precheck.py: broken wikilink batch -> exit 2"
+  },
+  "T16": {
+   "status": "PASS",
+   "detail": "exit=0  pre-write-validator: real-target wikilinks NOT blocked (C1 regression)"
+  },
+  "T17": {
+   "status": "PASS",
+   "detail": "exit=0  vault-audit.py X1: session-artifact-gaps classifier emits valid schema"
+  },
+  "T18": {
+   "status": "PASS",
+   "detail": "exit=0  vault-audit.py X2: skill-body-length classifier emits valid schema"
+  },
+  "T20": {
+   "status": "PASS",
+   "detail": "exit=0  vault-audit.py X3: CLAUDE.md count-drift classifier emits valid schema"
+  },
+  "T21": {
+   "status": "PASS",
+   "detail": "exit=0  vault-audit.py X5: knowledge-moc count-drift classifier emits valid schema"
+  },
+  "T22": {
+   "status": "PASS",
+   "detail": "exit=0  pre-write-validator: Calendar/decisions/ EXEMPT_PATH_PREFIXES extension (SD-PV1)"
+  },
+  "T19": {
+   "status": "PASS",
+   "detail": "exit=0  vault-audit --scope: orphan classifier respects global index (C2 regression)"
+  },
+  "T23": {
+   "status": "PASS",
+   "detail": "exit=0  vault-audit.py X6: investment-analysis-quality classifier emits valid schema"
+  },
+  "T24": {
+   "status": "PASS",
+   "detail": "exit=0  vault-audit.py X7: stale-commitments classifier emits valid SOFT-tier schema"
+  },
+  "T25": {
+   "status": "PASS",
+   "detail": "exit=2  hot-md-check: 4 ## Last Session blocks (>3 invariant)"
+  },
+  "T26": {
+   "status": "PASS",
+   "detail": "exit=0  vault-audit X7: synthetic stale-commitment fixture detected SOFT zero-score"
+  },
+  "T27": {
+   "status": "PASS",
+   "detail": "exit=0  seed-commitment: default decision_date+1d AND BACKFILL_MODE today+1d routing"
+  },
+  "T28": {
+   "status": "PASS",
+   "detail": "exit=0  fetch-prices.py T1-T11 (extended-hours diffusion suite)"
+  },
+  "T29": {
+   "status": "PASS",
+   "detail": "exit=0  post-compact-reinject: smart-emit surfaces Active Context + clean fallback"
+  },
+  "T30": {
+   "status": "PASS",
+   "detail": "exit=0  pre-compact.py: archives transcript + hot snapshot, exit 0 (never throws)"
+  },
+  "T31": {
+   "status": "PASS",
+   "detail": "exit=0  log-prompt.sh: CR collapsed (single line) + [[ escaped in daily Log (F2 floor guard)"
+  },
+  "T32": {
+   "status": "PASS",
+   "detail": "exit=0  auto-commit.sh GATE backstop: refuse gate>0 fixture, commit clean (Trap-B gate-count)"
+  },
+  "T33": {
+   "status": "PASS",
+   "detail": "exit=0  vault-audit X8 provenance: post-cutoff prov-less claim flagged once; pre-cutoff twin clean"
+  },
+  "T34": {
+   "status": "PASS",
+   "detail": "exit=0  invest-research.js parses in Workflow-harness dialect (AsyncFunction, parse-only)"
+  },
+  "T35": {
+   "status": "PASS",
+   "detail": "exit=0  invest-verify.js parses in Workflow-harness dialect (AsyncFunction, parse-only)"
+  },
+  "T36": {
+   "status": "PASS",
+   "detail": "exit=0  score-outcomes fixture Brier lock: pooled 0.223/0.173125, stratified, realized=6, no backfill"
+  },
+  "T37": {
+   "status": "PASS",
+   "detail": "exit=0  spark-sweep.js parses in Workflow-harness dialect (AsyncFunction, parse-only)"
+  },
+  "T38": {
+   "status": "PASS",
+   "detail": "exit=0  spark-verify.js parses in Workflow-harness dialect (AsyncFunction, parse-only)"
+  }
+ },
+ "sanctioned_failures": {
+  "T9": "Pre-existing (BACKLOG.md:38): orphan-check exits 0 on the harness fixture, expected 2. The LIVE hook works (it blocked a real orphan-on-create write on 2026-08-10 in this very session); the TEST fixture is what is broken. T9 must remain FAIL in comparisons; T9 flipping to PASS is ALSO a delta requiring triage."
+ },
+ "comparison_rule": "Phase-4 DoD item 2: the post-migration vector must equal this vector CELL-FOR-CELL. Any cell change (either direction, including T9) blocks until triaged. Count-matching is forbidden.",
+ "neutral_suites_baseline": {
+  "test-sizing-eval": "68/68 exit 0",
+  "test-gate-eval": "22/22 exit 0",
+  "test-score-ledger": "OK exit 0",
+  "test-technicals": "OK exit 0",
+  "test-consolidator": "13 passed 0 failed exit 0",
+  "test-fetch-prices": "OK exit 0"
+ }
+}

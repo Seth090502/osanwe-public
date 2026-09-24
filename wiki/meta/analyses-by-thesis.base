@@ -1,0 +1,43 @@
+# wiki/meta/analyses-by-thesis.base
+# Thesis file ## Related Analyses section embeds ![[wiki/meta/analyses-by-thesis.base#<THESIS_ID>]]
+
+filters:
+  - file.inFolder("wiki/investing/analyses")
+  - type == "analysis"
+
+views:
+  - type: table
+    name: theme-alpha
+    filters: [thesis.contains("theme-alpha")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: theme-beta
+    filters: [thesis.contains("theme-beta")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: theme-gamma
+    filters: [thesis.contains("theme-gamma")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: theme-delta
+    filters: [thesis.contains("theme-delta")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: theme-epsilon
+    filters: [thesis.contains("theme-epsilon")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC

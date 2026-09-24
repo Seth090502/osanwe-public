@@ -1,0 +1,17 @@
+{
+ "_doc": "Scheduled relay-worker manifest (W11, GATE-B gate-b-local-orchestration-program-2026-08-17). Consumed by tools/relay-batch.py --manifest via tools/run-local-worker.cmd (CLAUDE_LANE_TRIGGER=scheduled-idle -- LOAD-BEARING: unattended legs NEVER count toward promotion). Mission specs under config/scheduled/ are FROZEN relay missions (composed + validated by relay-mission.py); ticker/seed lists inside them are OPERATOR-EDITED (the worker never reads finance/). Overrides may only LOWER budgets and force plan_checkpoint OFF (pre-approved by construction at manifest-add time). consistency: true runs the leg twice and mechanically diffs claim sets (F-10: diff computes only when BOTH arms complete). Verdicts: divergence = >=1 CONTRADICTION (same entity+metric, non-overlapping values -- the F-9 auto-demotion signal, 2 consecutive nights per wiki/research/parity-eval-rule-2026-08-17.md); coverage-variance = arms sampled different rows beyond consistency_diff_threshold (live-data noise, reported as color, never demotes); agree = neither. Escalations PARK and surface next session via .claude/state/scheduled-worker-pending.json + the open-loops digest.",
+ "consistency_diff_threshold": 0.25,
+ "missions": [
+  {"id": "nightly-insider-sweep",
+   "leg": "research:insider-sweep",
+   "mission": "config/scheduled/nightly-insider-sweep.json",
+   "enabled": true,
+   "consistency": true,
+   "overrides": {"max_escalations_per_leg": 1, "plan_checkpoint": false}},
+  {"id": "nightly-url-harvest-news",
+   "leg": "research:url-harvest",
+   "mission": "config/scheduled/nightly-url-harvest-news.json",
+   "enabled": true,
+   "overrides": {"max_escalations_per_leg": 1, "plan_checkpoint": false}}
+ ]
+}

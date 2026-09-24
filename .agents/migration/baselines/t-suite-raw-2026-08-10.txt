@@ -1,0 +1,44 @@
+
+==================== RESULTS ====================
+PASS  T1  exit=0  pre-write-validator: clean Write
+PASS  T2  exit=2  pre-write-validator: broken-wikilink Write
+PASS  T3  exit=2  pre-write-validator: Edit injecting broken wikilink
+PASS  T4  exit=2  pre-write-validator: MultiEdit injecting broken wikilink
+PASS  T5  exit=0  pre-write-validator: EXEMPT_PATHS CLAUDE.md (broken edit allowed)
+PASS  T6  exit=0  pre-write-validator: CLAUDE_VAULT_BYPASS_VALIDATOR=1 bypass
+PASS  T7  exit=2  wikilink-check: PostToolUse on broken file
+PASS  T8  exit=2  frontmatter-check: forbidden domain field
+FAIL  T9  expected=2 got=0  orphan-check: PostToolUse on new orphan file
+PASS  T10  exit=0  vault-audit.py --json: baseline (GATE clean + score >= 95)
+PASS  T11  exit=0  vault-audit.py --json: 1 broken wikilink -> 90 (gate breach)
+PASS  T12  exit=0  vault-audit.py --json: 5 orphans -> 95 (hard-drift cap)
+PASS  T13  exit=0  stop-pr-and-audit.sh: emits continue=true on GATE breach
+PASS  T14  exit=0  vault-score-check.py: surfaces bypass-log entries (regex-counted)
+PASS  T15  exit=2  skill-precheck.py: broken wikilink batch -> exit 2
+PASS  T16  exit=0  pre-write-validator: real-target wikilinks NOT blocked (C1 regression)
+PASS  T17  exit=0  vault-audit.py X1: session-artifact-gaps classifier emits valid schema
+PASS  T18  exit=0  vault-audit.py X2: skill-body-length classifier emits valid schema
+PASS  T20  exit=0  vault-audit.py X3: CLAUDE.md count-drift classifier emits valid schema
+PASS  T21  exit=0  vault-audit.py X5: knowledge-moc count-drift classifier emits valid schema
+PASS  T22  exit=0  pre-write-validator: Calendar/decisions/ EXEMPT_PATH_PREFIXES extension (SD-PV1)
+PASS  T19  exit=0  vault-audit --scope: orphan classifier respects global index (C2 regression)
+PASS  T23  exit=0  vault-audit.py X6: investment-analysis-quality classifier emits valid schema
+PASS  T24  exit=0  vault-audit.py X7: stale-commitments classifier emits valid SOFT-tier schema
+PASS  T25  exit=2  hot-md-check: 4 ## Last Session blocks (>3 invariant)
+PASS  T26  exit=0  vault-audit X7: synthetic stale-commitment fixture detected SOFT zero-score
+PASS  T27  exit=0  seed-commitment: default decision_date+1d AND BACKFILL_MODE today+1d routing
+PASS  T28  exit=0  fetch-prices.py T1-T11 (extended-hours diffusion suite)
+PASS  T29  exit=0  post-compact-reinject: smart-emit surfaces Active Context + clean fallback
+PASS  T30  exit=0  pre-compact.py: archives transcript + hot snapshot, exit 0 (never throws)
+PASS  T31  exit=0  log-prompt.sh: CR collapsed (single line) + [[ escaped in daily Log (F2 floor guard)
+PASS  T32  exit=0  auto-commit.sh GATE backstop: refuse gate>0 fixture, commit clean (Trap-B gate-count)
+PASS  T33  exit=0  vault-audit X8 provenance: post-cutoff prov-less claim flagged once; pre-cutoff twin clean
+PASS  T34  exit=0  invest-research.js parses in Workflow-harness dialect (AsyncFunction, parse-only)
+PASS  T35  exit=0  invest-verify.js parses in Workflow-harness dialect (AsyncFunction, parse-only)
+PASS  T36  exit=0  score-outcomes fixture Brier lock: pooled 0.223/0.173125, stratified, realized=6, no backfill
+PASS  T37  exit=0  spark-sweep.js parses in Workflow-harness dialect (AsyncFunction, parse-only)
+PASS  T38  exit=0  spark-verify.js parses in Workflow-harness dialect (AsyncFunction, parse-only)
+=================================================
+PASSED: 37   FAILED: 1
+=================================================
+SUITE_EXIT=1

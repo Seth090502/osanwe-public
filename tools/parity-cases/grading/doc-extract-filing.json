@@ -1,0 +1,9 @@
+{
+ "answer_key": "tools/parity-cases/fixtures/answer-keys/doc-extract-filing.json",
+ "extras_audit_k": 5,
+ "note": "hermetic fixture; both arms graded vs key",
+ "reference": "answer-key",
+ "task": "doc-extract-filing",
+ "type": "claims_coverage",
+ "value_tol_rel": 0.005
+}

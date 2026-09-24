@@ -1,0 +1,11 @@
+# Osanwe vault python dependencies (tools/ + .claude/hooks/)
+# Created tenfold-t1 2026-07-03 (X50: yfinance/pandas were undeclared).
+# Stdlib-only scripts are the norm; these are the only third-party imports in-tree.
+yfinance
+pandas
+numpy
+scipy>=1.14,<2
+PyYAML
+
+# Optional / on-demand (not imported by standing scripts):
+# git-filter-repo   -- required once, by the staged history-purge runbook

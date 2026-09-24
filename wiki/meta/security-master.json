@@ -1,0 +1,5027 @@
+{
+ "schema_version": "1.0",
+ "generated": "2026-08-25",
+ "generator": "Efforts/osanwe-v2-overhaul/_work/build-security-master.py",
+ "purpose": "Security master for every instrument in the factor store (factors.db bars table). Offline build from vault entity notes, EDGAR-derived filing captures, and CIK references in wiki analyses.",
+ "constraints": [
+  "ASCII-only output",
+  "no network",
+  "no reads of .raw/, private/, finance/, credentials/, *.local.md"
+ ],
+ "source_db": "Efforts/osanwe-v2-overhaul/_work/factors.db",
+ "bar_window": {
+  "store_min": "2021-08-24",
+  "store_max": "2026-08-24"
+ },
+ "counts": {
+  "total": 125,
+  "by_asset_class": {
+   "equity": 88,
+   "adr": 7,
+   "crypto": 9,
+   "etf": 20,
+   "commodity_trust": 1
+  },
+  "by_listing_type": {
+   "domestic": 87,
+   "adr_otc": 3,
+   "crypto_pair": 9,
+   "adr_exchange": 5,
+   "fund": 21
+  },
+  "by_gics_sector": {
+   "Information Technology": 56,
+   "Industrials": 25,
+   "Utilities": 11,
+   "n/a": 9,
+   "Consumer Discretionary": 4,
+   "Financials": 2,
+   "Real Estate": 4,
+   "Communication Services": 3,
+   "Health Care": 2,
+   "Multi-sector": 1,
+   "Materials": 2,
+   "Multi-sector (Nasdaq-100)": 1,
+   "Multi-sector (S&P 500)": 2,
+   "Energy": 2,
+   "Consumer Staples": 1
+  }
+ },
+ "identifier_completeness": {
+  "isin_documented": 1,
+  "cusip_documented": 0,
+  "cik_documented": 15,
+  "note": "CUSIP/ISIN fields are null unless verbatim in vault sources; no network lookups were permitted. This is the dominant gap."
+ },
+ "records": [
+  {
+   "ticker": "AAOI",
+   "name": "Applied Optoelectronics Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Communications Equipment / optical transceivers",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/AAOI.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "ABBNY",
+   "name": "ABB Ltd ADR",
+   "asset_class": "adr",
+   "subclass": "otc_adr_unsponsored_or_sponsored_pink",
+   "gics_sector": "Industrials",
+   "industry_hint": "Electrical Equipment (grid equipment + robotics)",
+   "listing": {
+    "venue": "OTC Markets (Pink)",
+    "us_listed": true,
+    "listing_type": "adr_otc",
+    "domicile": "CH"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": null,
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "maps-to-entity-note-keyed-ABB",
+    "not-robinhood-tradable-as-of-2026-06-04",
+    "adr-ratio-risk",
+    "no-edgar-xbrl-layer-20f-filer"
+   ]
+  },
+  {
+   "ticker": "ACLS",
+   "name": "Axcelis Technologies Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductor Equipment (ion implant)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/ACLS.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance",
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "dual-src-seam"
+   ]
+  },
+  {
+   "ticker": "AEIS",
+   "name": "Advanced Energy Industries Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductor Equipment (power delivery)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/AEIS.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "AEP",
+   "name": "American Electric Power Company Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Utilities",
+   "industry_hint": "Regulated Electric Utility",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/AEP.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "ALAB",
+   "name": "Astera Labs Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductors (CXL/PCIe connectivity)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/ALAB.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 609,
+    "first_bar": "2024-03-20",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "short-history-IPO-2024"
+   ]
+  },
+  {
+   "ticker": "ALGO-USD",
+   "name": "Algorand",
+   "asset_class": "crypto",
+   "subclass": "spot_crypto_usd_pair",
+   "gics_sector": null,
+   "industry_hint": "Smart-contract Layer-1",
+   "listing": {
+    "venue": "crypto exchanges (aggregate spot feed via yfinance)",
+    "us_listed": false,
+    "listing_type": "crypto_pair",
+    "domicile": "n/a"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {
+    "isin": "crypto assets carry no ISIN/CUSIP"
+   },
+   "entity_note": "wiki/entities/tickers/ALGO.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1827,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "bar-keyed-ALGO-USD-note-keyed-ALGO",
+    "note-keyed-ALGO-bars-keyed-ALGO-USD",
+    "note-exists-under-base-symbol"
+   ]
+  },
+  {
+   "ticker": "AMAT",
+   "name": "Applied Materials Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductor Equipment",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/AMAT.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "AMBA",
+   "name": "Ambarella Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductors (edge-AI vision SoC)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/AMBA.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "AMD",
+   "name": "Advanced Micro Devices Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductors",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": "2488"
+   },
+   "identifier_provenance": {
+    "cik": "vault-analysis-reference"
+   },
+   "entity_note": "wiki/entities/tickers/AMD.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "13F-HR",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "AMKR",
+   "name": "Amkor Technology Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "OSAT advanced packaging/test",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/AMKR.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "AMZN",
+   "name": "Amazon.com Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Consumer Discretionary",
+   "industry_hint": "E-commerce / AWS cloud",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": "1018724"
+   },
+   "identifier_provenance": {
+    "cik": "vault-analysis-reference"
+   },
+   "entity_note": "wiki/entities/tickers/AMZN.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "13F-HR",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "ANET",
+   "name": "Arista Networks Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Networking Equipment",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/ANET.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "APH",
+   "name": "Amphenol Corporation",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Electronic Components (connectors)",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/APH.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "ARM",
+   "name": "Arm Holdings plc ADR",
+   "asset_class": "adr",
+   "subclass": "exchange_listed_ads",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductors (CPU IP licensor)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "adr_exchange",
+    "domicile": "GB"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/ARM.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "4",
+     "SC 13G"
+    ],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 738,
+    "first_bar": "2023-09-14",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "ads-ratio-risk",
+    "foreign-private-issuer-20f"
+   ]
+  },
+  {
+   "ticker": "ASMIY",
+   "name": "ASM International N.V. ADR",
+   "asset_class": "adr",
+   "subclass": "otc_adr_unsponsored_or_sponsored_pink",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductor Equipment (ALD deposition)",
+   "listing": {
+    "venue": "OTC Markets (Pink)",
+    "us_listed": true,
+    "listing_type": "adr_otc",
+    "domicile": "NL"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/ASMIY.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "maps-to-separate-entity-note-ASMIY-distinct-from-ASX",
+    "adr-illiquidity-documented",
+    "no-edgar-xbrl-layer-20f-filer"
+   ]
+  },
+  {
+   "ticker": "ASML",
+   "name": "ASML Holding N.V. ADR",
+   "asset_class": "adr",
+   "subclass": "exchange_listed_ads",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductor Equipment (EUV lithography)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "adr_exchange",
+    "domicile": "NL"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": "937966"
+   },
+   "identifier_provenance": {
+    "cik": "vault-analysis-reference"
+   },
+   "entity_note": "wiki/entities/tickers/ASML.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "SC 13D",
+     "SC 13G"
+    ],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "ny-registry-shares-nasdaq-listing",
+    "files-6k-ciK-documented"
+   ]
+  },
+  {
+   "ticker": "ASX",
+   "name": "ASE Technology Holding Co. Ltd ADR",
+   "asset_class": "adr",
+   "subclass": "exchange_listed_ads",
+   "gics_sector": "Information Technology",
+   "industry_hint": "OSAT advanced packaging/test",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "adr_exchange",
+    "domicile": "TW"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/ASX.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance",
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "ticker-collision-australian-securities-exchange",
+    "adr-tw-dividend-withholding",
+    "dual-src-seam"
+   ]
+  },
+  {
+   "ticker": "ATEYY",
+   "name": "Advantest Corporation ADR",
+   "asset_class": "adr",
+   "subclass": "otc_adr_unsponsored_or_sponsored_pink",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductor Equipment (ATE test)",
+   "listing": {
+    "venue": "OTC Markets (Pink)",
+    "us_listed": true,
+    "listing_type": "adr_otc",
+    "domicile": "JP"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/ATEYY.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "SC 13G"
+    ],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "adr-illiquidity-documented",
+    "no-edgar-xbrl-layer-20f-filer"
+   ]
+  },
+  {
+   "ticker": "AVAV",
+   "name": "AeroVironment Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Industrials",
+   "industry_hint": "Aerospace & Defense (unmanned systems)",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/AVAV.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q/A",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "AVGO",
+   "name": "Broadcom Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductors (networking/custom silicon)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": "1730168"
+   },
+   "identifier_provenance": {
+    "cik": "vault-analysis-reference"
+   },
+   "entity_note": "wiki/entities/tickers/AVGO.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "BAH",
+   "name": "Booz Allen Hamilton Holding Corp",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Industrials",
+   "industry_hint": "Professional Services (federal consulting)",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/BAH.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "BE",
+   "name": "Bloom Energy Corporation",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Industrials",
+   "industry_hint": "Electrical Equipment (solid-oxide fuel cells)",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/BE.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "10-Q/A",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "BTC-USD",
+   "name": "Bitcoin",
+   "asset_class": "crypto",
+   "subclass": "spot_crypto_usd_pair",
+   "gics_sector": null,
+   "industry_hint": "Store-of-value / reserve asset",
+   "listing": {
+    "venue": "crypto exchanges (aggregate spot feed via yfinance)",
+    "us_listed": false,
+    "listing_type": "crypto_pair",
+    "domicile": "n/a"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {
+    "isin": "crypto assets carry no ISIN/CUSIP"
+   },
+   "entity_note": "wiki/entities/tickers/BTC.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1827,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "bar-keyed-BTC-USD-note-keyed-BTC",
+    "note-keyed-BTC-bars-keyed-BTC-USD",
+    "note-exists-under-base-symbol"
+   ]
+  },
+  {
+   "ticker": "BWXT",
+   "name": "BWX Technologies Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Industrials",
+   "industry_hint": "Aerospace & Defense (naval nuclear)",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/BWXT.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "10-Q/A",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "CDNS",
+   "name": "Cadence Design Systems Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Application Software (EDA)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/CDNS.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "CEG",
+   "name": "Constellation Energy Corporation",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Utilities",
+   "industry_hint": "Independent Power Producers (nuclear fleet)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/CEG.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1153,
+    "first_bar": "2022-01-19",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "spinoff-from-EXC-2022-in-window"
+   ]
+  },
+  {
+   "ticker": "COHR",
+   "name": "Coherent Corporation",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Electronic Components (photonics/optical)",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/COHR.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "former-II-VI-merger-entity"
+   ]
+  },
+  {
+   "ticker": "COHU",
+   "name": "Cohu Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductor Equipment (test handlers)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/COHU.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance",
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "dual-src-seam"
+   ]
+  },
+  {
+   "ticker": "COIN",
+   "name": "Coinbase Global Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Financials",
+   "industry_hint": "Financial Exchanges & Data (crypto exchange)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/COIN.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "CRDO",
+   "name": "Credo Technology Group Holding Ltd",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductors (SerDes/AEC connectivity)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "KY"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/CRDO.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1147,
+    "first_bar": "2022-01-27",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "foreign-incorporated-us-listed"
+   ]
+  },
+  {
+   "ticker": "CRWV",
+   "name": "CoreWeave Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Internet Cloud (GPU-as-a-service neocloud)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/CRWV.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 353,
+    "first_bar": "2025-03-28",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "short-history-IPO-2025"
+   ]
+  },
+  {
+   "ticker": "CSCO",
+   "name": "Cisco Systems Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Communications Equipment",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/CSCO.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "13F-HR",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "DELL",
+   "name": "Dell Technologies Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Computer Hardware (AI server OEM)",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/DELL.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "DLR",
+   "name": "Digital Realty Trust Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Real Estate",
+   "industry_hint": "Data Center REIT",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/DLR.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "DTCR",
+   "name": "Global X Data Center & Digital Infrastructure ETF",
+   "asset_class": "etf",
+   "subclass": "sector_or_index_etf",
+   "gics_sector": "Real Estate",
+   "industry_hint": "Data-center/Digital-infrastructure ETF | tracks: Data centers + digital infrastructure (active tilt, ~24pct pure DC REIT per vault analysis) | issuer: Global X",
+   "listing": {
+    "venue": "NYSE Arca",
+    "us_listed": true,
+    "listing_type": "fund",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/DTCR.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "issuer-documented-in-analysis"
+   ]
+  },
+  {
+   "ticker": "DUK",
+   "name": "Duke Energy Corporation",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Utilities",
+   "industry_hint": "Regulated Multi-Utility",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/DUK.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "ENTG",
+   "name": "Entegris Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductor Materials & Contamination Control",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/ENTG.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance",
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "dual-src-seam"
+   ]
+  },
+  {
+   "ticker": "EQIX",
+   "name": "Equinix Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Real Estate",
+   "industry_hint": "Data Center REIT",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/EQIX.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "ETN",
+   "name": "Eaton Corporation plc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Industrials",
+   "industry_hint": "Electrical Equipment",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "IE"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/ETN.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "irish-domiciled-us-operating"
+   ]
+  },
+  {
+   "ticker": "FLNC",
+   "name": "Fluence Energy Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Industrials",
+   "industry_hint": "Electrical Equipment (BESS grid storage)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/FLNC.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1209,
+    "first_bar": "2021-10-28",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "siemens-jv-origin"
+   ]
+  },
+  {
+   "ticker": "FN",
+   "name": "Fabrinet",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "EMS / Optical Contract Manufacturing",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "KY"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/FN.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "foreign-incorporated-us-listed-thailand-hq"
+   ]
+  },
+  {
+   "ticker": "GD",
+   "name": "General Dynamics Corporation",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Industrials",
+   "industry_hint": "Aerospace & Defense",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/GD.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "GEV",
+   "name": "GE Vernova Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Industrials",
+   "industry_hint": "Electrical Equipment (grid + power generation)",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/GEV.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 604,
+    "first_bar": "2024-03-27",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "short-history-spinoff-2024"
+   ]
+  },
+  {
+   "ticker": "GFS",
+   "name": "GlobalFoundries Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductor Foundry (specialty/trailing-edge)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "KY"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/GFS.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "4"
+    ],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1209,
+    "first_bar": "2021-10-28",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "foreign-incorporated-us-listed"
+   ]
+  },
+  {
+   "ticker": "GLW",
+   "name": "Corning Incorporated",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Electronic Components (optical fiber)",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/GLW.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance",
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "dual-src-seam"
+   ]
+  },
+  {
+   "ticker": "GOOGL",
+   "name": "Alphabet Inc (Class A)",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Communication Services",
+   "industry_hint": "Interactive Media / Search + Cloud",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": "1652044"
+   },
+   "identifier_provenance": {
+    "cik": "vault-analysis-reference"
+   },
+   "entity_note": "wiki/entities/tickers/GOOGL.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "13F-HR",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "dual-class-share-structure"
+   ]
+  },
+  {
+   "ticker": "HBAR-USD",
+   "name": "Hedera Hashgraph",
+   "asset_class": "crypto",
+   "subclass": "spot_crypto_usd_pair",
+   "gics_sector": null,
+   "industry_hint": "Enterprise DLT / hashgraph L1",
+   "listing": {
+    "venue": "crypto exchanges (aggregate spot feed via yfinance)",
+    "us_listed": false,
+    "listing_type": "crypto_pair",
+    "domicile": "n/a"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {
+    "isin": "crypto assets carry no ISIN/CUSIP"
+   },
+   "entity_note": "wiki/entities/tickers/HBAR.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1827,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "bar-keyed-HBAR-USD-note-keyed-HBAR",
+    "note-keyed-HBAR-bars-keyed-HBAR-USD",
+    "note-exists-under-base-symbol"
+   ]
+  },
+  {
+   "ticker": "HII",
+   "name": "Huntington Ingalls Industries Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Industrials",
+   "industry_hint": "Aerospace & Defense (naval shipbuilding)",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/HII.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "HIMS",
+   "name": "Hims & Hers Health Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Health Care",
+   "industry_hint": "Health Care Providers (telehealth)",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/HIMS.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "HPE",
+   "name": "Hewlett Packard Enterprise Company",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Computer Hardware (servers/HPC)",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/HPE.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "HUBB",
+   "name": "Hubbell Incorporated",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Industrials",
+   "industry_hint": "Electrical Equipment (grid components)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/HUBB.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "IAU",
+   "name": "iShares Gold Trust",
+   "asset_class": "commodity_trust",
+   "subclass": "gold_bullion_grantor_trust",
+   "gics_sector": "Multi-sector",
+   "industry_hint": "ETF | tracks: Gold bullion (grantor trust, not 1940-Act fund) | issuer: BlackRock/iShares",
+   "listing": {
+    "venue": "NYSE Arca",
+    "us_listed": true,
+    "listing_type": "fund",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/IAU.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "8-K",
+     "SC 13G"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "commodity-trust-classified-separately"
+   ]
+  },
+  {
+   "ticker": "INTC",
+   "name": "Intel Corporation",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductors (IDM + foundry)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/INTC.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "13F-HR",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "ITA",
+   "name": "iShares U.S. Aerospace & Defense ETF",
+   "asset_class": "etf",
+   "subclass": "sector_or_index_etf",
+   "gics_sector": "Industrials",
+   "industry_hint": "Defense/Aerospace ETF | tracks: Dow Jones U.S. Select Aerospace & Defense Index | issuer: BlackRock/iShares",
+   "listing": {
+    "venue": "NYSE Arca",
+    "us_listed": true,
+    "listing_type": "fund",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/ITA.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "KLAC",
+   "name": "KLA Corporation",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductor Equipment (process control)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/KLAC.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "KTOS",
+   "name": "Kratos Defense & Security Solutions Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Industrials",
+   "industry_hint": "Aerospace & Defense (drones/hypersonics)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/KTOS.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "LHX",
+   "name": "L3Harris Technologies Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Industrials",
+   "industry_hint": "Aerospace & Defense",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/LHX.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "LINK-USD",
+   "name": "Chainlink",
+   "asset_class": "crypto",
+   "subclass": "spot_crypto_usd_pair",
+   "gics_sector": null,
+   "industry_hint": "Oracle network / interoperability",
+   "listing": {
+    "venue": "crypto exchanges (aggregate spot feed via yfinance)",
+    "us_listed": false,
+    "listing_type": "crypto_pair",
+    "domicile": "n/a"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {
+    "isin": "crypto assets carry no ISIN/CUSIP"
+   },
+   "entity_note": "wiki/entities/tickers/LINK.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1827,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "bar-keyed-LINK-USD-note-keyed-LINK",
+    "note-keyed-LINK-bars-keyed-LINK-USD",
+    "note-exists-under-base-symbol"
+   ]
+  },
+  {
+   "ticker": "LITE",
+   "name": "Lumentum Holdings Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Electronic Components (optical/laser)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/LITE.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "LMT",
+   "name": "Lockheed Martin Corporation",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Industrials",
+   "industry_hint": "Aerospace & Defense",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/LMT.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "LRCX",
+   "name": "Lam Research Corporation",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductor Equipment (etch/deposition)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/LRCX.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "MBLY",
+   "name": "Mobileye Global Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Consumer Discretionary",
+   "industry_hint": "Automotive Parts (ADAS/autonomous driving)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "IL-HQ"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/MBLY.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 959,
+    "first_bar": "2022-10-26",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "us-incorporated-israel-hq",
+    "intel-majority-owner"
+   ]
+  },
+  {
+   "ticker": "META",
+   "name": "Meta Platforms Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Communication Services",
+   "industry_hint": "Interactive Media / Social",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": "1326801"
+   },
+   "identifier_provenance": {
+    "cik": "vault-analysis-reference"
+   },
+   "entity_note": "wiki/entities/tickers/META.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "cik-conflict-two-references"
+   ]
+  },
+  {
+   "ticker": "MKSI",
+   "name": "MKS Instruments Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductor Equipment (subsystems)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/MKSI.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "MP",
+   "name": "MP Materials Corp",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Materials",
+   "industry_hint": "Metals & Mining (rare earth mine-to-magnet)",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/MP.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "MPWR",
+   "name": "Monolithic Power Systems Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductors (power management)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/MPWR.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance",
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "dual-src-seam"
+   ]
+  },
+  {
+   "ticker": "MRAM",
+   "name": "Everspin Technologies Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductors (magnetic RAM)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/MRAM.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "ticker-equals-tech-acronym"
+   ]
+  },
+  {
+   "ticker": "MRVL",
+   "name": "Marvell Technology Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductors (custom silicon/networking)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/MRVL.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "MSFT",
+   "name": "Microsoft Corporation",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Software (cloud/platform)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": "789019"
+   },
+   "identifier_provenance": {
+    "cik": "vault-analysis-reference"
+   },
+   "entity_note": "wiki/entities/tickers/MSFT.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "MU",
+   "name": "Micron Technology Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductors (memory/HBM)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": "723125"
+   },
+   "identifier_provenance": {
+    "cik": "vault-analysis-reference"
+   },
+   "entity_note": "wiki/entities/tickers/MU.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "NBIS",
+   "name": "Nebius Group N.V.",
+   "asset_class": "equity",
+   "subclass": "foreign_issuer_shares_us_listed",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Internet Cloud (AI-native neocloud)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "adr_exchange",
+    "domicile": "NL"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": "NL0009805522",
+    "cik": "1513845"
+   },
+   "identifier_provenance": {
+    "isin": "wiki/entities/tickers/NBIS.md line 52 (verbatim)",
+    "cik": "nbis-analysis-2026-06-18.md"
+   },
+   "entity_note": "wiki/entities/tickers/NBIS.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "4",
+     "SC 13D",
+     "SC 13G"
+    ],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 461,
+    "first_bar": "2024-10-21",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "adr-equity-shares-not-adr-technically-dutch-nv-direct-listing",
+    "ex-yandex-restructuring-renamed-2024",
+    "foreign-private-issuer-20f-filer",
+    "no-edgar-xbrl-layer-in-vault"
+   ]
+  },
+  {
+   "ticker": "NEE",
+   "name": "NextEra Energy Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Utilities",
+   "industry_hint": "Regulated Electric + Renewables IPP",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/NEE.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "NOC",
+   "name": "Northrop Grumman Corporation",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Industrials",
+   "industry_hint": "Aerospace & Defense",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/NOC.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "NOW",
+   "name": "ServiceNow Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Application Software",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/NOW.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "NRG",
+   "name": "NRG Energy Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Utilities",
+   "industry_hint": "Independent Power Producers + Retail Energy",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/NRG.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "NVDA",
+   "name": "NVIDIA Corporation",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductors (AI accelerators)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/NVDA.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "13F-HR",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "OKLO",
+   "name": "Oklo Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Utilities",
+   "industry_hint": "Advanced Fission (microreactor developer, pre-revenue)",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": "1849056"
+   },
+   "identifier_provenance": {
+    "cik": "vault-analysis-reference"
+   },
+   "entity_note": "wiki/entities/tickers/OKLO.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "10-Q/A",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "de-spac-artifacts-early-bars",
+    "pre-revenue"
+   ]
+  },
+  {
+   "ticker": "ONDO-USD",
+   "name": "Ondo Finance",
+   "asset_class": "crypto",
+   "subclass": "spot_crypto_usd_pair",
+   "gics_sector": null,
+   "industry_hint": "RWA / tokenized treasuries",
+   "listing": {
+    "venue": "crypto exchanges (aggregate spot feed via yfinance)",
+    "us_listed": false,
+    "listing_type": "crypto_pair",
+    "domicile": "n/a"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {
+    "isin": "crypto assets carry no ISIN/CUSIP"
+   },
+   "entity_note": "wiki/entities/tickers/ONDO.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 950,
+    "first_bar": "2024-01-18",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "bar-keyed-ONDO-USD-note-keyed-ONDO",
+    "note-keyed-ONDO-bars-keyed-ONDO-USD",
+    "note-exists-under-base-symbol"
+   ]
+  },
+  {
+   "ticker": "ONTO",
+   "name": "Onto Innovation Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductor Equipment (metrology/inspection)",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/ONTO.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "ORCL",
+   "name": "Oracle Corporation",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Software + Cloud Infrastructure",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/ORCL.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "PLTR",
+   "name": "Palantir Technologies Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Application Software (AI platforms)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/PLTR.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "PPA",
+   "name": "Invesco Aerospace & Defense ETF",
+   "asset_class": "etf",
+   "subclass": "sector_or_index_etf",
+   "gics_sector": "Industrials",
+   "industry_hint": "Defense/Aerospace ETF | tracks: SPADE Defense Index | issuer: Invesco",
+   "listing": {
+    "venue": "Nasdaq",
+    "us_listed": true,
+    "listing_type": "fund",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/PPA.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "PPL",
+   "name": "PPL Corporation",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Utilities",
+   "industry_hint": "Regulated Electric Utility",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/PPL.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "QCOM",
+   "name": "QUALCOMM Incorporated",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductors (mobile/edge silicon)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/QCOM.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "QNT-USD",
+   "name": "Quant Network",
+   "asset_class": "crypto",
+   "subclass": "spot_crypto_usd_pair",
+   "gics_sector": null,
+   "industry_hint": "Enterprise interoperability (Overledger)",
+   "listing": {
+    "venue": "crypto exchanges (aggregate spot feed via yfinance)",
+    "us_listed": false,
+    "listing_type": "crypto_pair",
+    "domicile": "n/a"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {
+    "isin": "crypto assets carry no ISIN/CUSIP"
+   },
+   "entity_note": "wiki/entities/tickers/QNT.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1827,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "bar-keyed-QNT-USD-note-keyed-QNT",
+    "note-keyed-QNT-bars-keyed-QNT-USD",
+    "note-exists-under-base-symbol"
+   ]
+  },
+  {
+   "ticker": "QQQ",
+   "name": "Invesco QQQ Trust",
+   "asset_class": "etf",
+   "subclass": "sector_or_index_etf",
+   "gics_sector": "Multi-sector (Nasdaq-100)",
+   "industry_hint": "Broad-index Nasdaq-100 ETF | tracks: Nasdaq-100 Index | issuer: Invesco",
+   "listing": {
+    "venue": "Nasdaq",
+    "us_listed": true,
+    "listing_type": "fund",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/QQQ.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "8-K",
+     "SC 13G"
+    ],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "spcx-added-to-ndx-2026-07-07-per-note"
+   ]
+  },
+  {
+   "ticker": "RKLB",
+   "name": "Rocket Lab USA Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Industrials",
+   "industry_hint": "Aerospace & Defense (space launch/systems)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": "1819994"
+   },
+   "identifier_provenance": {
+    "cik": "vault-analysis-reference"
+   },
+   "entity_note": "wiki/entities/tickers/RKLB.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "RTX",
+   "name": "RTX Corporation",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Industrials",
+   "industry_hint": "Aerospace & Defense",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/RTX.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "SMCI",
+   "name": "Super Micro Computer Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Computer Hardware (AI server OEM)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/SMCI.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "late-filing-history-2024"
+   ]
+  },
+  {
+   "ticker": "SMH",
+   "name": "VanEck Semiconductor ETF",
+   "asset_class": "etf",
+   "subclass": "sector_or_index_etf",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Technology/Semiconductor ETF | tracks: MVIS US Listed Semiconductor 25 Index | issuer: VanEck",
+   "listing": {
+    "venue": "Nasdaq",
+    "us_listed": true,
+    "listing_type": "fund",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/SMH.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "van-eck-etf-trust-ciK-documented"
+   ]
+  },
+  {
+   "ticker": "SMR",
+   "name": "NuScale Power Corporation",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Industrials",
+   "industry_hint": "Electrical Equipment (SMR developer, pre-revenue)",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": "1822966"
+   },
+   "identifier_provenance": {
+    "cik": "vault-analysis-reference"
+   },
+   "entity_note": "wiki/entities/tickers/SMR.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1125,
+    "first_bar": "2022-03-01",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "ticker-collision-generic-SMR-term",
+    "de-spac-artifacts-early-bars",
+    "pre-revenue"
+   ]
+  },
+  {
+   "ticker": "SNDK",
+   "name": "Sandisk Corporation",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Technology Hardware Storage (NAND)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/SNDK.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 383,
+    "first_bar": "2025-02-13",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "spun-off-from-WDC-2025-02-short-history"
+   ]
+  },
+  {
+   "ticker": "SNPS",
+   "name": "Synopsys Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Application Software (EDA)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/SNPS.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "SO",
+   "name": "The Southern Company",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Utilities",
+   "industry_hint": "Regulated Electric Utility (Vogtle nuclear)",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/SO.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "SOL-USD",
+   "name": "Solana",
+   "asset_class": "crypto",
+   "subclass": "spot_crypto_usd_pair",
+   "gics_sector": null,
+   "industry_hint": "High-throughput smart-contract L1",
+   "listing": {
+    "venue": "crypto exchanges (aggregate spot feed via yfinance)",
+    "us_listed": false,
+    "listing_type": "crypto_pair",
+    "domicile": "n/a"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {
+    "isin": "crypto assets carry no ISIN/CUSIP"
+   },
+   "entity_note": "wiki/entities/tickers/SOL.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1827,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "bar-keyed-SOL-USD-note-keyed-SOL",
+    "note-keyed-SOL-bars-keyed-SOL-USD",
+    "note-exists-under-base-symbol"
+   ]
+  },
+  {
+   "ticker": "SOXX",
+   "name": "iShares Semiconductor ETF",
+   "asset_class": "etf",
+   "subclass": "sector_or_index_etf",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Technology/Semiconductor ETF | tracks: ICE Semiconductor Index | issuer: BlackRock/iShares",
+   "listing": {
+    "venue": "Nasdaq",
+    "us_listed": true,
+    "listing_type": "fund",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/SOXX.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "SPCX",
+   "name": "Space Exploration Technologies Corp (SpaceX)",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Industrials",
+   "industry_hint": "Aerospace & Defense (launch + satellite broadband + xAI)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": "1181412"
+   },
+   "identifier_provenance": {
+    "cik": "vault-analysis-reference"
+   },
+   "entity_note": "wiki/entities/tickers/SPCX.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 50,
+    "first_bar": "2026-06-12",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "ticker-reuse-former-Tuttle-SPAC-ETF-moved-to-SPCK",
+    "short-history-IPO-2026-06-12",
+    "robinhood-not-tradable-per-note"
+   ]
+  },
+  {
+   "ticker": "SPY",
+   "name": "SPDR S&P 500 ETF Trust",
+   "asset_class": "etf",
+   "subclass": "sector_or_index_etf",
+   "gics_sector": "Multi-sector (S&P 500)",
+   "industry_hint": "Broad-index S&P 500 ETF | tracks: S&P 500 Index | issuer: State Street",
+   "listing": {
+    "venue": "NYSE Arca",
+    "us_listed": true,
+    "listing_type": "fund",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": null,
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "primary-benchmark-of-store"
+   ]
+  },
+  {
+   "ticker": "TEL",
+   "name": "TE Connectivity plc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Electronic Components (connectors/sensors)",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "CH"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/TEL.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance",
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "ticker-disambiguation-Tokyo-Electron-8035T",
+    "swiss-domiciled-us-listed",
+    "dual-src-seam"
+   ]
+  },
+  {
+   "ticker": "TER",
+   "name": "Teradyne Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductor Equipment (ATE)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/TER.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance",
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "dual-src-seam"
+   ]
+  },
+  {
+   "ticker": "TLN",
+   "name": "Talen Energy Corporation",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Utilities",
+   "industry_hint": "Independent Power Producers (Susquehanna nuclear)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/TLN.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 809,
+    "first_bar": "2023-06-02",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "emerged-bankruptcy-2023-relisting"
+   ]
+  },
+  {
+   "ticker": "TSLA",
+   "name": "Tesla Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Consumer Discretionary",
+   "industry_hint": "Automobiles / EV + Energy",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/TSLA.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-K/A",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "TSM",
+   "name": "Taiwan Semiconductor Manufacturing Co. ADR",
+   "asset_class": "adr",
+   "subclass": "exchange_listed_ads",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductor Foundry (leading edge)",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "adr_exchange",
+    "domicile": "TW"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": "1046179"
+   },
+   "identifier_provenance": {
+    "cik": "vault-analysis-reference"
+   },
+   "entity_note": "wiki/entities/tickers/TSM.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "4"
+    ],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "adr-vs-local-basis-price-wedge-~10pct-documented",
+    "adr-ratio-5-common-per-adr-documented",
+    "20f-filer-no-xbrl-layer"
+   ]
+  },
+  {
+   "ticker": "UCTT",
+   "name": "Ultra Clean Holdings Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Semiconductor Equipment (subsystems/modules)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "KY"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/UCTT.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance",
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "foreign-incorporated-us-listed",
+    "dual-src-seam"
+   ]
+  },
+  {
+   "ticker": "USAR",
+   "name": "USA Rare Earth Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Materials",
+   "industry_hint": "Metals & Mining (rare earth mine-to-magnet)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/USAR.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 780,
+    "first_bar": "2023-07-17",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "de-spac-2025-short-history"
+   ]
+  },
+  {
+   "ticker": "VDE",
+   "name": "Vanguard Energy ETF",
+   "asset_class": "etf",
+   "subclass": "sector_or_index_etf",
+   "gics_sector": "Energy",
+   "industry_hint": "Energy sector ETF | tracks: MSCI US IMI Energy 25/50 | issuer: Vanguard",
+   "listing": {
+    "venue": "NYSE Arca",
+    "us_listed": true,
+    "listing_type": "fund",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/VDE.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "VGT",
+   "name": "Vanguard Information Technology ETF",
+   "asset_class": "etf",
+   "subclass": "sector_or_index_etf",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Technology/Semiconductor ETF | tracks: MSCI US IMI Information Technology 25/50 | issuer: Vanguard",
+   "listing": {
+    "venue": "NYSE Arca",
+    "us_listed": true,
+    "listing_type": "fund",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/VGT.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "VOLT",
+   "name": "Tema grid-equipment ETF",
+   "asset_class": "etf",
+   "subclass": "sector_or_index_etf",
+   "gics_sector": "Industrials",
+   "industry_hint": "Grid-equipment thematic ETF | tracks: Active supply-side grid-equipment basket (~33-34 holdings, PM Chris Semenuk) | issuer: Tema",
+   "listing": {
+    "venue": "Nasdaq",
+    "us_listed": true,
+    "listing_type": "fund",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/VOLT.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 429,
+    "first_bar": "2024-12-05",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "actively-managed-per-vault-analysis",
+    "issuer-documented-in-analysis"
+   ]
+  },
+  {
+   "ticker": "VOO",
+   "name": "Vanguard S&P 500 ETF",
+   "asset_class": "etf",
+   "subclass": "sector_or_index_etf",
+   "gics_sector": "Multi-sector (S&P 500)",
+   "industry_hint": "Broad-index S&P 500 ETF | tracks: S&P 500 Index | issuer: Vanguard",
+   "listing": {
+    "venue": "NYSE Arca",
+    "us_listed": true,
+    "listing_type": "fund",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/VOO.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "nport-ciK-documented"
+   ]
+  },
+  {
+   "ticker": "VRT",
+   "name": "Vertiv Holdings Co",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Industrials",
+   "industry_hint": "Electrical Equipment (data center power/cooling)",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/VRT.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "VST",
+   "name": "Vistra Corp",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Utilities",
+   "industry_hint": "Independent Power Producers",
+   "listing": {
+    "venue": "NYSE",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/VST.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "WBD",
+   "name": "Warner Bros. Discovery Inc",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Communication Services",
+   "industry_hint": "Media/Entertainment",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": "1437107"
+   },
+   "identifier_provenance": {
+    "cik": "vault-analysis-reference"
+   },
+   "entity_note": "wiki/entities/tickers/WBD.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-Q",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "netflix-termination-fee-q1-2026-event"
+   ]
+  },
+  {
+   "ticker": "WDC",
+   "name": "Western Digital Corporation",
+   "asset_class": "equity",
+   "subclass": "common_stock",
+   "gics_sector": "Information Technology",
+   "industry_hint": "Technology Hardware Storage (HDD)",
+   "listing": {
+    "venue": "NASDAQ",
+    "us_listed": true,
+    "listing_type": "domestic",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/WDC.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "4",
+     "8-K"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "sndk-spinoff-2025-02-unadjusted-bars-HIGH-flag"
+   ]
+  },
+  {
+   "ticker": "XAR",
+   "name": "SPDR S&P Aerospace & Defense ETF",
+   "asset_class": "etf",
+   "subclass": "sector_or_index_etf",
+   "gics_sector": "Industrials",
+   "industry_hint": "Defense/Aerospace ETF | tracks: S&P Aerospace & Defense Select (equal-weighted) | issuer: State Street",
+   "listing": {
+    "venue": "NYSE Arca",
+    "us_listed": true,
+    "listing_type": "fund",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/XAR.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "XLE",
+   "name": "Energy Select Sector SPDR Fund",
+   "asset_class": "etf",
+   "subclass": "sector_or_index_etf",
+   "gics_sector": "Energy",
+   "industry_hint": "Energy sector ETF | tracks: S&P 500 Energy sector | issuer: State Street",
+   "listing": {
+    "venue": "NYSE Arca",
+    "us_listed": true,
+    "listing_type": "fund",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/XLE.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "XLF",
+   "name": "Financials Select Sector SPDR Fund",
+   "asset_class": "etf",
+   "subclass": "sector_or_index_etf",
+   "gics_sector": "Financials",
+   "industry_hint": "Select Sector SPDR (sector ETF) | tracks: S&P 500 Financials sector | issuer: State Street",
+   "listing": {
+    "venue": "NYSE Arca",
+    "us_listed": true,
+    "listing_type": "fund",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/XLF.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "XLI",
+   "name": "Industrial Select Sector SPDR Fund",
+   "asset_class": "etf",
+   "subclass": "sector_or_index_etf",
+   "gics_sector": "Industrials",
+   "industry_hint": "Select Sector SPDR (sector ETF) | tracks: S&P 500 Industrials sector | issuer: State Street",
+   "listing": {
+    "venue": "NYSE Arca",
+    "us_listed": true,
+    "listing_type": "fund",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/XLI.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "XLM-USD",
+   "name": "Stellar Lumens",
+   "asset_class": "crypto",
+   "subclass": "spot_crypto_usd_pair",
+   "gics_sector": null,
+   "industry_hint": "Payments / settlement network",
+   "listing": {
+    "venue": "crypto exchanges (aggregate spot feed via yfinance)",
+    "us_listed": false,
+    "listing_type": "crypto_pair",
+    "domicile": "n/a"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {
+    "isin": "crypto assets carry no ISIN/CUSIP"
+   },
+   "entity_note": "wiki/entities/tickers/XLM.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1827,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "bar-keyed-XLM-USD-note-keyed-XLM",
+    "note-keyed-XLM-bars-keyed-XLM-USD",
+    "note-exists-under-base-symbol"
+   ]
+  },
+  {
+   "ticker": "XLP",
+   "name": "Consumer Staples Select Sector SPDR Fund",
+   "asset_class": "etf",
+   "subclass": "sector_or_index_etf",
+   "gics_sector": "Consumer Staples",
+   "industry_hint": "Select Sector SPDR (sector ETF) | tracks: S&P 500 Staples sector | issuer: State Street",
+   "listing": {
+    "venue": "NYSE Arca",
+    "us_listed": true,
+    "listing_type": "fund",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/XLP.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "XLRE",
+   "name": "Real Estate Select Sector SPDR Fund",
+   "asset_class": "etf",
+   "subclass": "sector_or_index_etf",
+   "gics_sector": "Real Estate",
+   "industry_hint": "Select Sector SPDR (sector ETF) | tracks: S&P 500 Real Estate sector | issuer: State Street",
+   "listing": {
+    "venue": "NYSE Arca",
+    "us_listed": true,
+    "listing_type": "fund",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/XLRE.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "XLU",
+   "name": "Utilities Select Sector SPDR Fund",
+   "asset_class": "etf",
+   "subclass": "sector_or_index_etf",
+   "gics_sector": "Utilities",
+   "industry_hint": "Select Sector SPDR (sector ETF) | tracks: S&P 500 Utilities sector | issuer: State Street",
+   "listing": {
+    "venue": "NYSE Arca",
+    "us_listed": true,
+    "listing_type": "fund",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/XLU.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "XLV",
+   "name": "Health Care Select Sector SPDR Fund",
+   "asset_class": "etf",
+   "subclass": "sector_or_index_etf",
+   "gics_sector": "Health Care",
+   "industry_hint": "Select Sector SPDR (sector ETF) | tracks: S&P 500 Health Care sector | issuer: State Street",
+   "listing": {
+    "venue": "NYSE Arca",
+    "us_listed": true,
+    "listing_type": "fund",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/XLV.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "XLY",
+   "name": "Consumer Discretionary Select Sector SPDR Fund",
+   "asset_class": "etf",
+   "subclass": "sector_or_index_etf",
+   "gics_sector": "Consumer Discretionary",
+   "industry_hint": "Select Sector SPDR (sector ETF) | tracks: S&P 500 Discretionary sector | issuer: State Street",
+   "listing": {
+    "venue": "NYSE Arca",
+    "us_listed": true,
+    "listing_type": "fund",
+    "domicile": "US"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {},
+   "entity_note": "wiki/entities/tickers/XLY.md",
+   "edgar": {
+    "filings_dir_in_vault": false,
+    "forms_captured": [],
+    "xbrl_in_vault": false
+   },
+   "bars": {
+    "n_bars": 1255,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": []
+  },
+  {
+   "ticker": "XRP-USD",
+   "name": "XRP (Ripple ledger)",
+   "asset_class": "crypto",
+   "subclass": "spot_crypto_usd_pair",
+   "gics_sector": null,
+   "industry_hint": "Payments / settlement network",
+   "listing": {
+    "venue": "crypto exchanges (aggregate spot feed via yfinance)",
+    "us_listed": false,
+    "listing_type": "crypto_pair",
+    "domicile": "n/a"
+   },
+   "identifiers": {
+    "cusip": null,
+    "isin": null,
+    "cik": null
+   },
+   "identifier_provenance": {
+    "isin": "crypto assets carry no ISIN/CUSIP"
+   },
+   "entity_note": "wiki/entities/tickers/XRP.md",
+   "edgar": {
+    "filings_dir_in_vault": true,
+    "forms_captured": [
+     "10-K",
+     "10-Q"
+    ],
+    "xbrl_in_vault": true
+   },
+   "bars": {
+    "n_bars": 1827,
+    "first_bar": "2021-08-24",
+    "last_bar": "2026-08-24",
+    "src_segments": [
+     "yfinance-5y"
+    ]
+   },
+   "flags": [
+    "bar-keyed-XRP-USD-note-keyed-XRP",
+    "note-keyed-XRP-bars-keyed-XRP-USD",
+    "note-exists-under-base-symbol"
+   ]
+  }
+ ]
+}

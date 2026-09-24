@@ -1,0 +1,440 @@
+{
+  "schema": "osanwe.scheduled-jobs/2",
+  "timezone": "US/Eastern",
+  "_comment": "Desired actions and observed registered actions are separate. Observation timestamps expire; this file does not attest to live execution. The legacy register-jobs.ps1 new-only applier will not silently migrate these tasks.",
+  "monitoring": {
+    "owner": "Codex thread heartbeat",
+    "schedule": "daily 08:00 US/Eastern",
+    "sunday": "full offline audit",
+    "command": "python tools/runtime-health.py run --scheduled",
+    "notifications": "meaningful incident/recovery transitions only; attempted and confirmed delivery remain separate",
+    "operational_pilot": "seven actual scheduled cycles including Sunday; rolling 30-day history",
+    "scheduled_frontier_research": false,
+    "personal_account_polling": false
+  },
+  "jobs": [
+    {
+      "name": "osanwe-monthly-usage-ledger",
+      "schedule": "monthly 1st 06:00 ET",
+      "command": "python tools/usage-ledger.py",
+      "owner": "windows-task-scheduler",
+      "expected_output": "wiki/maintenance/usage/usage-<YYYY-MM>.json and .md; no resident-surface artifact is claimed by this registered action",
+      "freshness": "file month == current month",
+      "cost_note": "free",
+      "status": "keep",
+      "registration": "registered",
+      "registered_action": {
+        "execute": "/path/to/python\\pythonw.exe",
+        "arguments": "\"/path/to/vault\\tools\\usage-ledger.py\"",
+        "cwd": "/path/to/vault"
+      },
+      "observed_settings": {
+        "start_when_available": false,
+        "wake_to_run": false,
+        "multiple_instances": 2,
+        "timeout": "PT72H",
+        "run_only_if_idle": false
+      },
+      "observed_at": "2026-09-13T06:20:31Z",
+      "output_contract": {
+        "glob": "wiki/maintenance/usage/usage-*.json",
+        "min_bytes": 10,
+        "max_age_seconds": 3024000
+      },
+      "observed_last_result": 0,
+      "observed_missed_runs": 0,
+      "schedule_contract": [
+        {
+          "type": "MSFT_TaskTrigger",
+          "start": "2026-08-24T06:00:00",
+          "enabled": true,
+          "days_of_week": null,
+          "days_interval": null,
+          "weeks_interval": null,
+          "repetition": null,
+          "repetition_duration": null
+        }
+      ],
+      "executable_identity": {
+        "resolved_path": "/path/to/python\\pythonw.exe",
+        "sha256": "e3889c5020644b9ecfd9e678f95372b1e127e29e6c02b1129ed88c38381d0972"
+      },
+      "monthly_contract": [
+        {
+          "type": 4,
+          "days_of_month": 1,
+          "months_of_year": 4095,
+          "last_day": false
+        }
+      ]
+    },
+    {
+      "name": "osanwe-morning-brief",
+      "schedule": "MON-FRI 08:10 ET",
+      "command": "claude -p --model opus '/brief --quick' (headless, existing task; MODEL PINNED to opus per operator directive -- never fable 5)",
+      "owner": "windows-task-scheduler",
+      "expected_output": "Calendar/decisions/briefings/briefing-<today>.md",
+      "freshness": "briefing dated today by 09:00 ET else STALE flag in gen-hot output",
+      "cost_note": "est $11-47/run per C2; cheaper-path PROPOSAL pending (brief core protected)",
+      "status": "keep",
+      "registration": "registered",
+      "registered_action": {
+        "execute": "/path/to/vault\\tools\\run-morning-brief.cmd",
+        "arguments": null,
+        "cwd": null
+      },
+      "observed_settings": {
+        "start_when_available": true,
+        "wake_to_run": false,
+        "multiple_instances": 2,
+        "timeout": "PT45M",
+        "run_only_if_idle": false
+      },
+      "observed_at": "2026-09-13T06:20:31Z",
+      "output_contract": {
+        "glob": "Calendar/decisions/briefings/briefing-*.md",
+        "min_bytes": 100,
+        "max_age_seconds": 345600
+      },
+      "observed_last_result": 0,
+      "observed_missed_runs": 0,
+      "schedule_contract": [
+        {
+          "type": "MSFT_TaskWeeklyTrigger",
+          "start": "2026-07-04T08:10:00-04:00",
+          "enabled": true,
+          "days_of_week": 62,
+          "days_interval": null,
+          "weeks_interval": 1,
+          "repetition": null,
+          "repetition_duration": null
+        }
+      ],
+      "executable_identity": {
+        "resolved_path": "/path/to/vault\\tools\\run-morning-brief.cmd",
+        "sha256": "b2346ed03db055dd8a27683cefab0880839920ea0cbb3b3963e5a3df4aa9003c"
+      }
+    },
+    {
+      "name": "osanwe-nightly-health",
+      "schedule": "daily 03:30 ET",
+      "command": "/path/to/python/pythonw.exe tools/scheduled-job.py nightly-health",
+      "owner": "windows-task-scheduler",
+      "expected_output": ".agents/state/scheduled-jobs/nightly-health/<run-id>/receipt.json plus validation.json",
+      "freshness": "Receipt and underlying validation must pass and be <=25 hours old; missing artifacts fail.",
+      "cost_note": "deterministic local Python; no research inference",
+      "status": "keep",
+      "registration": "registered",
+      "registered_action": {
+        "execute": "/path/to/python\\pythonw.exe",
+        "arguments": "\"/path/to/vault\\tools\\scheduled-job.py\" nightly-health",
+        "cwd": "/path/to/vault"
+      },
+      "observed_settings": {
+        "start_when_available": true,
+        "wake_to_run": false,
+        "multiple_instances": 2,
+        "timeout": "PT10M",
+        "run_only_if_idle": false
+      },
+      "observed_at": "2026-09-13T06:20:31Z",
+      "output_contract": {
+        "glob": ".agents/state/scheduled-jobs/nightly-health/*/receipt.json",
+        "min_bytes": 100,
+        "max_age_seconds": 90000,
+        "schema": "osanwe.scheduled-job/1"
+      },
+      "desired_action": {
+        "execute": "/path/to/python\\pythonw.exe",
+        "arguments": "\"/path/to/vault\\tools\\scheduled-job.py\" nightly-health",
+        "cwd": "/path/to/vault"
+      },
+      "desired_settings": {
+        "start_when_available": true,
+        "multiple_instances": 2,
+        "timeout": "PT10M",
+        "wake_to_run": false
+      },
+      "migration": "applied; exact action/settings and preserved triggers/principals verified; real Task Scheduler run and fresh artifacts passed",
+      "observed_last_result": 0,
+      "observed_missed_runs": 0,
+      "schedule_contract": [
+        {
+          "type": "MSFT_TaskDailyTrigger",
+          "start": "2026-08-24T03:30:00",
+          "enabled": true,
+          "days_of_week": null,
+          "days_interval": 1,
+          "weeks_interval": null,
+          "repetition": null,
+          "repetition_duration": null
+        }
+      ],
+      "executable_identity": {
+        "resolved_path": "/path/to/python\\pythonw.exe",
+        "sha256": "e3889c5020644b9ecfd9e678f95372b1e127e29e6c02b1129ed88c38381d0972"
+      }
+    },
+    {
+      "name": "osanwe-sunday-scorer",
+      "schedule": "SUN 08:17 ET",
+      "command": "existing scorer task",
+      "owner": "windows-task-scheduler",
+      "expected_output": ".claude/state/score-outcomes-runs.log; typed terminal completion plus current producer SHA256 marker immediately before it",
+      "freshness": "Typed completion and current producer identity; log <=8 days. Legacy logs remain unavailable for changed code until a new genuine scheduled run. Financial interpretation is not certified.",
+      "cost_note": "local compute",
+      "status": "keep",
+      "registration": "registered",
+      "registered_action": {
+        "execute": "/path/to/vault\\tools\\run-score-outcomes.cmd",
+        "arguments": null,
+        "cwd": null
+      },
+      "observed_settings": {
+        "start_when_available": true,
+        "wake_to_run": false,
+        "multiple_instances": 2,
+        "timeout": "PT72H",
+        "run_only_if_idle": false
+      },
+      "observed_at": "2026-09-13T06:20:31Z",
+      "observed_last_result": 0,
+      "observed_missed_runs": 0,
+      "schedule_contract": [
+        {
+          "type": "MSFT_TaskWeeklyTrigger",
+          "start": "2026-07-04T08:17:00-04:00",
+          "enabled": true,
+          "days_of_week": 1,
+          "days_interval": null,
+          "weeks_interval": 1,
+          "repetition": null,
+          "repetition_duration": null
+        }
+      ],
+      "executable_identity": {
+        "resolved_path": "/path/to/vault\\tools\\run-score-outcomes.cmd",
+        "sha256": "4cb6a20dc524653069cd193fb2d3d72a7ce563e4d7fde26737c6e3940c845a2e"
+      },
+      "output_contract": {
+        "glob": ".claude/state/score-outcomes-runs.log",
+        "min_bytes": 40,
+        "max_age_seconds": 691200,
+        "completion_contract": "score-outcomes-summary/1",
+        "producer_identity_contract": "tools/score-outcomes.py SHA256 in adjacent Runtime marker, enforced by tools/runtime-health.py"
+      }
+    },
+    {
+      "name": "osanwe-vault-reindex",
+      "schedule": "every 2 minutes US/Eastern",
+      "registration": "registered",
+      "owner": "windows-task-scheduler",
+      "status": "keep",
+      "registered_action": {
+        "execute": "/path/to/python\\pythonw.exe",
+        "arguments": "\"/path/to/vault\\tools\\scheduled-job.py\" vault-reindex",
+        "cwd": "/path/to/vault"
+      },
+      "observed_settings": {
+        "start_when_available": true,
+        "wake_to_run": false,
+        "multiple_instances": 2,
+        "timeout": "PT1H5M",
+        "run_only_if_idle": false
+      },
+      "observed_at": "2026-09-13T06:20:31Z",
+      "output_contract": {
+        "glob": ".agents/state/scheduled-jobs/vault-reindex/*/receipt.json",
+        "min_bytes": 100,
+        "max_age_seconds": 600,
+        "schema": "osanwe.scheduled-job/1"
+      },
+      "command": "/path/to/python/pythonw.exe tools/scheduled-job.py vault-reindex",
+      "expected_output": "Waiting wrapper receipt; pending marker requires both external index artifacts to be fresh. No-op observations do not claim a rebuild.",
+      "freshness": "Observation receipt <=10 minutes old; existing fire-and-forget launcher alone is insufficient.",
+      "cost_note": "existing indexer compute only; no new inference lane",
+      "desired_action": {
+        "execute": "/path/to/python\\pythonw.exe",
+        "arguments": "\"/path/to/vault\\tools\\scheduled-job.py\" vault-reindex",
+        "cwd": "/path/to/vault"
+      },
+      "desired_settings": {
+        "start_when_available": true,
+        "multiple_instances": 2,
+        "timeout": "PT1H5M",
+        "wake_to_run": false,
+        "run_only_if_idle": false
+      },
+      "migration": "applied; safe-scope build/recovery verified; original triggers/principals preserved; subsequent automatic triggers passed current-code receipt verification",
+      "observed_last_result": 0,
+      "observed_missed_runs": 0,
+      "indexer_scope_approval": {
+        "indexer_sha256": "99ff0299904284e6088d7ff7183c6fa5d2a30ad4ca517800fa1a2a51d499a7ee",
+        "scope_module_sha256": "c6d42e639b444db127116a6a53364fa350094ae2ead0584ffe8d32a6c0fea799",
+        "reviewed_at": "2026-09-13T19:33:41.136060+00:00",
+        "scope": "Explicitly admitted PUBLIC/SYNTHETIC passages only; exact source versions, immutable generations and privacy gates.",
+        "validation": "29 generation, 16 scope, 13 adapter and 35 runtime controls; native cached BGE and synthetic admission-to-MCP checks. No financial-quality improvement established.",
+        "retrieval_core_sha256": "111c2bc50b43efce2ca267e0e663a89c93b7a332cccbf9f2f1dd092ee038f6a2",
+        "provider_sha256": "5172f276ddcecf6ed2c40a4197152bccbfb6a04fe415c32b92ef96bfc96d0484",
+        "runner_sha256": "f0b36258c0873e5ee2724c4782a138d4ba3215552939346dbe08b359c2319fd6"
+      },
+      "schedule_contract": [
+        {
+          "type": "MSFT_TaskTimeTrigger",
+          "start": "2026-05-26T18:52:22-04:00",
+          "enabled": true,
+          "days_of_week": null,
+          "days_interval": null,
+          "weeks_interval": null,
+          "repetition": "PT2M",
+          "repetition_duration": "P3650D"
+        }
+      ],
+      "executable_identity": {
+        "resolved_path": "/path/to/python\\pythonw.exe",
+        "sha256": "e3889c5020644b9ecfd9e678f95372b1e127e29e6c02b1129ed88c38381d0972"
+      },
+      "runtime_budget": {
+        "computation_seconds": 3600,
+        "registered_timeout_seconds": 3900,
+        "reason": "Observed first safe build exceeded 900 seconds on 2630 approved Markdown files; preserve failed attempt and expose scope-only progress for actual fit.",
+        "historical_failed_attempt": "runtime/reindex-safe-build/vault-reindex/9de3a17f0f6b4312b107d1bdccb918d8/receipt.json"
+      },
+      "historical_missed_observation": {
+        "count": 201,
+        "observed_at": "2026-09-13T06:05:52Z",
+        "evidence": ".checkpoints/institutional-quality-20260912/runtime/reindex-registration-observation.json",
+        "note": "Windows counter decreased after the next run; previous missed observations remain preserved."
+      }
+    },
+    {
+      "name": "osanwe-weekly-calibration",
+      "schedule": "SUN 07:30 ET",
+      "command": "/path/to/python/pythonw.exe tools/scheduled-job.py weekly-calibration",
+      "owner": "windows-task-scheduler",
+      "expected_output": ".agents/state/scheduled-jobs/weekly-calibration/<run-id>/receipt.json plus versioned prices, outcomes, coverage and diagnostic reports",
+      "freshness": "Receipt <=8 days old, each required stage/artifact passed; full-corpus coverage reported separately.",
+      "cost_note": "public-price fetches plus deterministic local Python; no model research",
+      "status": "keep",
+      "registration": "registered",
+      "registered_action": {
+        "execute": "/path/to/python\\pythonw.exe",
+        "arguments": "\"/path/to/vault\\tools\\scheduled-job.py\" weekly-calibration",
+        "cwd": "/path/to/vault"
+      },
+      "observed_settings": {
+        "start_when_available": true,
+        "wake_to_run": false,
+        "multiple_instances": 2,
+        "timeout": "PT35M",
+        "run_only_if_idle": false
+      },
+      "observed_at": "2026-09-13T06:20:31Z",
+      "output_contract": {
+        "glob": ".agents/state/scheduled-jobs/weekly-calibration/*/receipt.json",
+        "min_bytes": 100,
+        "max_age_seconds": 691200,
+        "schema": "osanwe.scheduled-job/1"
+      },
+      "desired_action": {
+        "execute": "/path/to/python\\pythonw.exe",
+        "arguments": "\"/path/to/vault\\tools\\scheduled-job.py\" weekly-calibration",
+        "cwd": "/path/to/vault"
+      },
+      "desired_settings": {
+        "start_when_available": true,
+        "multiple_instances": 2,
+        "timeout": "PT35M",
+        "wake_to_run": false
+      },
+      "migration": "applied; exact action/settings and preserved triggers/principals verified; real Task Scheduler run and fresh artifacts passed",
+      "observed_last_result": 0,
+      "observed_missed_runs": 0,
+      "schedule_contract": [
+        {
+          "type": "MSFT_TaskWeeklyTrigger",
+          "start": "2026-08-24T07:30:00",
+          "enabled": true,
+          "days_of_week": 1,
+          "days_interval": null,
+          "weeks_interval": 1,
+          "repetition": null,
+          "repetition_duration": null
+        }
+      ],
+      "executable_identity": {
+        "resolved_path": "/path/to/python\\pythonw.exe",
+        "sha256": "e3889c5020644b9ecfd9e678f95372b1e127e29e6c02b1129ed88c38381d0972"
+      }
+    },
+    {
+      "name": "osanwe-weekly-synthesis",
+      "schedule": "SAT 07:00 ET alternating",
+      "command": "python tools/insight-candidates.py",
+      "owner": "windows-task-scheduler",
+      "expected_output": "wiki/maintenance/insight-candidates-<date>.md",
+      "freshness": "Latest nonempty candidate artifact <=8 days old; candidates are not authored playbooks",
+      "cost_note": "deterministic local mining; no frontier research",
+      "status": "keep",
+      "registration": "registered",
+      "registered_action": {
+        "execute": "/path/to/python\\pythonw.exe",
+        "arguments": "\"/path/to/vault\\tools\\insight-candidates.py\"",
+        "cwd": "/path/to/vault"
+      },
+      "observed_settings": {
+        "start_when_available": false,
+        "wake_to_run": false,
+        "multiple_instances": 2,
+        "timeout": "PT72H",
+        "run_only_if_idle": false
+      },
+      "observed_at": "2026-09-13T06:20:31Z",
+      "output_contract": {
+        "glob": "wiki/maintenance/insight-candidates-*.md",
+        "min_bytes": 100,
+        "max_age_seconds": 691200
+      },
+      "observed_last_result": 0,
+      "observed_missed_runs": 0,
+      "schedule_contract": [
+        {
+          "type": "MSFT_TaskWeeklyTrigger",
+          "start": "2026-08-24T07:00:00",
+          "enabled": true,
+          "days_of_week": 64,
+          "days_interval": null,
+          "weeks_interval": 1,
+          "repetition": null,
+          "repetition_duration": null
+        }
+      ],
+      "executable_identity": {
+        "resolved_path": "/path/to/python\\pythonw.exe",
+        "sha256": "e3889c5020644b9ecfd9e678f95372b1e127e29e6c02b1129ed88c38381d0972"
+      }
+    },
+    {
+      "name": "osanwe-t3-harddate-scorer",
+      "schedule": "one-shot EXPIRED 2026-07-06",
+      "command": "-",
+      "owner": "operator-decision",
+      "expected_output": "-",
+      "freshness": "-",
+      "cost_note": "-",
+      "status": "retired",
+      "registration": "not-registered"
+    },
+    {
+      "name": "osanwe-local-worker",
+      "schedule": "daily 03:30 ET STAGED never registered",
+      "command": "run-local-worker.cmd (relay lane idle worker)",
+      "owner": "operator-decision",
+      "expected_output": ".claude/state/relay/ activity",
+      "freshness": "-",
+      "cost_note": "local GPU; parity rule CLOSED until it passes",
+      "status": "parked",
+      "registration": "not-registered"
+    }
+  ]
+}

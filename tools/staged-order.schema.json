@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "osanwe:staged-order:v1",
+  "title": "Osanwe staged-order artifact (TENFOLD T11 action staircase)",
+  "description": "The JSON shape an equity order MUST take to be eligible for the pre-trade gate. Options are NOT representable here (asset_class is const 'equity'); option orders remain denied at the permission layer. In production the main loop composes this artifact, runs tools/pretrade_gate.py over it (which reads a live book snapshot), and only a PASS yields a signed gate-pass that the PreToolUse token hook will honor -- and only after the human types 'EXECUTE ORDER <order_id>' in a genuine prompt.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "order_id", "created_utc", "account", "symbol", "side", "asset_class",
+    "order_type", "quantity", "estimated_notional", "thesis", "risk_reward",
+    "sleep_gate_ack"
+  ],
+  "properties": {
+    "order_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]{6,64}$",
+      "description": "Unique nonce for this order. Anti-replay key; the human names it in the confirm phrase. One order_id is consumed exactly once."
+    },
+    "created_utc": {
+      "type": "string",
+      "description": "ISO-8601 UTC timestamp of staging. Feeds pass TTL context."
+    },
+    "account": {
+      "type": "string",
+      "enum": ["taxable", "tax_advantaged"],
+      "description": "Which account the order targets."
+    },
+    "symbol": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Equity ticker (upper-cased for the canonical hash)."
+    },
+    "side": {
+      "type": "string",
+      "enum": ["buy", "sell"]
+    },
+    "asset_class": {
+      "const": "equity",
+      "description": "MUST be 'equity'. The staircase never carries options; option-order tools stay denied."
+    },
+    "order_type": {
+      "type": "string",
+      "enum": ["market", "limit"]
+    },
+    "quantity": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Share count (fractional allowed)."
+    },
+    "limit_price": {
+      "type": ["number", "null"],
+      "description": "Required (> 0) when order_type == 'limit'; null/absent for market."
+    },
+    "estimated_notional": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "ADVISORY declared size. The gate does NOT trust this for concentration: it sizes off quantity x a TRUSTED book price and BLOCKS if this declared value diverges more than 5% from quantity*price (round-1 A2 fix). Must be finite (NaN/Infinity rejected)."
+    },
+    "thesis": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40,
+      "description": "Thesis bucket for concentration (e.g., theme-alpha, theme-gamma, theme-beta, broad). For a symbol KNOWN to the book (held, or in book.thesis_map) the book's label is AUTHORITATIVE and a mismatch is BLOCKED as a mislabel (round-1 A2 fix); the declared value is only used for a symbol the book does not know."
+    },
+    "risk_reward": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Reward/risk ratio. BUY orders must clear the 3:1 hurdle."
+    },
+    "stop": {"type": ["number", "null"]},
+    "target": {"type": ["number", "null"]},
+    "sleep_gate_ack": {
+      "type": "boolean",
+      "description": "Rested-state attestation. BUY requires true; the gate also blocks all BUYs while the sleep-gate sentinel is active."
+    },
+    "rationale": {"type": "string"},
+    "book_snapshot": {
+      "description": "Inline book snapshot OR a path string. Shape: {as_of_utc, total_value, positions:[{symbol,thesis,value}], prices:{SYMBOL:price}, thesis_map:{SYMBOL:thesis}}. The main loop populates it from the read-only broker MCP (get_equity_positions/get_portfolio for positions+total; get_equity_quotes for prices). prices MUST cover the order symbol (else the gate BLOCKs) because concentration is sized off quantity x this trusted price, NOT the order's declared notional. thesis_map lets the book assert a thesis for symbols not currently held. Numbers must be finite; as_of_utc within 24h. Treated as TRUSTED (broker-sourced); a forged snapshot is a vault-write-compromise threat, out of the gate's mechanical scope and mitigated by human review + the positions-vs-total consistency check.",
+      "type": ["object", "string"]
+    }
+  }
+}

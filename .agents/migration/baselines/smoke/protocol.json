@@ -1,0 +1,12 @@
+{
+  "captured": "2026-08-10T05:41:22.009674+00:00",
+  "checkpoint": "c3a3392",
+  "model_pin": "sonnet",
+  "max_turns": 1,
+  "timeout_s": 300,
+  "passes": 3,
+  "phrase_count": 31,
+  "order": "fixture order, 3 full symmetric passes, zero retries",
+  "recipe": "clone c3a3392, hooksPath=/dev/null, hooks key stripped (permissions kept), VARRO_TTS_DISABLE=1 claude -p <phrase> --model sonnet --max-turns 1 --output-format stream-json --verbose < /dev/null",
+  "claude_exe": "/path/to/home\\.local\\bin\\claude.EXE"
+}

@@ -1,0 +1,8 @@
+Semiconductor Channel Report -- 2026-07-31
+
+JULY DRAM CONTRACT REVIEW: distributor quotes collected across the final fixing
+week indicate July DRAM contract pricing FELL 5 percent month-over-month, as
+inventory digestion at two hyperscalers outweighed any HBM crowd-out effect.
+Sellers conceded on volume commitments into August.
+
+Methodology: SCR distributor quote panel, end-of-month collection.

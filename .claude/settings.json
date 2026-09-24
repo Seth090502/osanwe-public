@@ -1,0 +1,253 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /path/to/vault/tools/session-start.sh",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "python /path/to/vault/tools/vault-score-check.py",
+            "timeout": 25
+          },
+          {
+            "type": "command",
+            "command": "bash /path/to/vault/.claude/hooks/session-integrity-check.sh",
+            "timeout": 8
+          },
+          {
+            "type": "command",
+            "command": "python /path/to/vault/tools/open-loops.py",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python /path/to/vault/.claude/hooks/no-heredoc.py",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /path/to/vault/.claude/hooks/session-branch.sh",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "bash /path/to/vault/.claude/hooks/guard-paths.sh",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "python /path/to/vault/tools/append-only-check.py",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "python /path/to/vault/tools/pre-write-validator.py",
+            "timeout": 25
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__robinhood-trading__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python /path/to/vault/.claude/hooks/pretrade-token-gate.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python /path/to/vault/tools/wikilink-check.py",
+            "timeout": 20
+          },
+          {
+            "type": "command",
+            "command": "python /path/to/vault/tools/frontmatter-check.py",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "python /path/to/vault/.claude/hooks/seed-commitment.py",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "python /path/to/vault/tools/orphan-check.py",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "python /path/to/vault/tools/hot-md-check.py wiki/hot.md --quiet",
+            "timeout": 8
+          },
+          {
+            "type": "command",
+            "command": "bash /path/to/vault/tools/bump-updated.sh",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "python /path/to/vault/.claude/hooks/auto-count-sync.py",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "bash /path/to/vault/.claude/hooks/auto-commit.sh",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "python /path/to/vault/.claude/hooks/reindex-debounce.py",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /path/to/vault/.claude/hooks/log-prompt.sh",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "python /path/to/vault/.claude/hooks/semantic-context-inject.py",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python /path/to/vault/.claude/hooks/post-tool-use-failure.py",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python /path/to/vault/.claude/hooks/subagent-telemetry.py --event start",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python /path/to/vault/.claude/hooks/subagent-telemetry.py --event stop",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python /path/to/vault/.claude/hooks/pre-compact.py",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "PostCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python /path/to/vault/.claude/hooks/post-compact-reinject.py",
+            "timeout": 8
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /path/to/vault/.claude/hooks/stop-pr-and-audit.sh",
+            "timeout": 25
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "deny": [
+      "mcp__robinhood-trading__add_option_to_watchlist",
+      "mcp__robinhood-trading__add_to_watchlist",
+      "mcp__robinhood-trading__cancel_advanced_order",
+      "mcp__robinhood-trading__cancel_crypto_order",
+      "mcp__robinhood-trading__cancel_equity_order",
+      "mcp__robinhood-trading__cancel_option_exercise",
+      "mcp__robinhood-trading__cancel_option_order",
+      "mcp__robinhood-trading__create_alert",
+      "mcp__robinhood-trading__create_scan",
+      "mcp__robinhood-trading__create_watchlist",
+      "mcp__robinhood-trading__delete_alert",
+      "mcp__robinhood-trading__exercise_option",
+      "mcp__robinhood-trading__follow_watchlist",
+      "mcp__robinhood-trading__mark_alerts_read",
+      "mcp__robinhood-trading__place_advanced_order",
+      "mcp__robinhood-trading__place_crypto_order",
+      "mcp__robinhood-trading__place_equity_order",
+      "mcp__robinhood-trading__place_option_order",
+      "mcp__robinhood-trading__preview_crypto_order",
+      "mcp__robinhood-trading__remove_from_watchlist",
+      "mcp__robinhood-trading__remove_option_from_watchlist",
+      "mcp__robinhood-trading__review_advanced_order",
+      "mcp__robinhood-trading__review_equity_order",
+      "mcp__robinhood-trading__review_option_order",
+      "mcp__robinhood-trading__run_scan",
+      "mcp__robinhood-trading__unfollow_watchlist",
+      "mcp__robinhood-trading__update_alert",
+      "mcp__robinhood-trading__update_scan_config",
+      "mcp__robinhood-trading__update_scan_filters",
+      "mcp__robinhood-trading__update_watchlist"
+    ]
+  }
+}
