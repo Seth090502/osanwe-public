@@ -176,7 +176,7 @@ Stated plainly, including the ones that reflect badly on the project.
    nothing is there.
 
 2. **For a period, one hook was the only barrier to a live order.** The deny list named 20 tools the
-   connector no longer offered and none of the eight it did. During that window the pre-trade gate was the
+   connector no longer offered and none of the eight state-changing tools it did offer. During that window the pre-trade gate was the
    sole enforcement layer. It held -- the probe shows it blocks unknown names by default -- but it was a
    single point of failure, and nothing detected the drift. It was found by audit, not by monitoring.
 
@@ -201,8 +201,9 @@ Stated plainly, including the ones that reflect badly on the project.
    narrower than the connector's surface. That is the safe direction, and it means documented capabilities
    silently do not work.
 
-9. **Defects were recorded, not repaired.** The code here matches what was actually running, including its
-   faults. `docs/quant-formula-index.md` names the formulas that do not match their own definitions.
+9. **Defects were recorded as found.** The audit did not repair what it found on the way, so its verdicts
+   describe the code as it was checked. Some fixes have landed since -- the five computational formula
+   defects among them -- and `docs/quant-formula-index.md` says which; the rest remain open.
 
 ---
 

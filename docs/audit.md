@@ -30,7 +30,7 @@ for *equivalence* to the originals instead:
   stream compared in order. 8 files equivalent.
 - **Shell and JavaScript**: syntax checked on both sides, since neither has a portable structural form here.
   44 files parse on both sides.
-- **Unchecked**: 275 files -- 227 Markdown, 17 `.txt`, 7 without a suffix, and a handful of model files,
+- **Unchecked**: 244 files -- 196 Markdown, 17 `.txt`, 7 without a suffix, and a handful of model files,
   `.cmd`, `.yaml`, `.sha256`, `.sql`, `.base`, `.html` and `.ini`. Prose was reviewed by reading, not by parsing.
 - **No original to compare against**: 34 files. 24 are files this audit wrote (this file, the readme, the
   architecture, security, capabilities, threat-model, withheld and changelog documents, the evals and

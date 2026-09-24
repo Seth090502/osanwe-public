@@ -30,7 +30,9 @@ found.
 
 A few files were left out because they would only be clutter here: two launcher scripts for a per-machine
 harness profile that is itself withheld, a workflow that checks the working vault's own data and so could only
-fail in this copy, and a scratch work directory under `tools/pit/`.
+fail in this copy, a scratch work directory under `tools/pit/`, and the research, benchmark and
+conformance notes of a finished migration between agent runtimes (`.agents/migration/` keeps only the
+fixtures and baselines that code reads).
 
 ## Generated copies
 

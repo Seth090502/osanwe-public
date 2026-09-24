@@ -1,6 +1,6 @@
 # Example 4 -- a build gate sheet
 
-> As of 2026-09-20. Published as an example of the system's output.
+> Published on 2026-09-20 as an example of the system's output; the run's own date is in its metadata below.
 > Not investment advice, not a recommendation, and not a statement of anyone's positions.
 
 How a change to the system itself is authorised before it is built, including the mandates the verdict carries.

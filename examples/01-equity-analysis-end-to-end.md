@@ -1,6 +1,6 @@
 # Example 1 -- an end-to-end equity analysis
 
-> As of 2026-09-20. Published as an example of the system's output.
+> Published on 2026-09-20 as an example of the system's output; the run's own date is in its metadata below.
 > Not investment advice, not a recommendation, and not a statement of anyone's positions.
 
 A full `/invest` run that ended in HOLD/AVOID rather than a purchase. It shows the evidence grading, the bear-case pass and the falsifiers the system requires before a verdict.

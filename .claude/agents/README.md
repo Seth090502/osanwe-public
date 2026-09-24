@@ -6,7 +6,7 @@ reproduces every one of them from a source that **is** published.
 | | |
 |---|---|
 | Generator | `.agents/scripts/gen-roles.py` |
-| Source | `.agents/roles/` (published in full: 15 role files, a template and a `.gitkeep`) |
+| Source | `.agents/roles/` (published in full: 15 role files and a template) |
 | To recreate this directory | `python .agents/scripts/gen-roles.py` |
 | To check it without writing | `python .agents/scripts/gen-roles.py --check` |
 
