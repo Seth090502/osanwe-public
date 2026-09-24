@@ -113,7 +113,7 @@ So those runs measured the WSL failure message, not the hooks. The tell was visi
 missed it: `session-start.sh` and `session-integrity-check.sh` both reported **exactly
 916 bytes**, which is the UTF-16 error string, not two different hooks agreeing.
 
-Re-measured with Git Bash (`<PROGRAM_FILES>\Git\bin\bash.exe`):
+Re-measured with Git Bash (`Git\bin\bash.exe`):
 
 | hook | first (invalid) | corrected |
 |---|---|---|
@@ -129,7 +129,7 @@ so tool pruning was still the right fix. But the numbers in hypothesis 2 were wr
 and are corrected here rather than left standing.
 
 **Rule for this box, now twice-learned: never invoke a hook or script with bare `bash` from
-a subprocess. Use `<PROGRAM_FILES>\Git\bin\bash.exe` explicitly.**
+a subprocess. Use `Git\bin\bash.exe` explicitly.**
 
 ## WSL2 is BLOCKED at the BIOS, not merely deferred
 
@@ -238,7 +238,7 @@ Stop hook (3.82 s), vault-audit (0.02 s), proxy SSE buffering, normalizer placem
 ## SessionStart hook gating (W2, shipped)
 
 The 44,360-char block at `messages[1]` turned out to be **entirely SessionStart +
-UserPromptSubmit hook output** -- open-loops digest, `<private-file>`, hot.md smart-emit,
+UserPromptSubmit hook output** -- open-loops digest, a private file, hot.md smart-emit,
 vault-audit line, semantic vault context. The CLAUDE.md -> AGENTS.md chain is NOT in it
 (`CLAUDE_CODE_DISABLE_AUTO_MEMORY=1` already suppresses it), so the planned `BOOTSTRAP.md`
 swap is MOOT -- there was nothing to swap.
@@ -248,7 +248,7 @@ Gated on `CLAUDE_LANE_MODE=local`, verified three ways each (unset / local / sub
 | hook | modes 1-2 | mode 3 |
 |---|---|---|
 | `tools/session-start.sh` | 15,611 B | **158 B** |
-| `.claude/hooks/inject-<private-file>.py` | 4,815 B | **105 B** |
+| `.claude/hooks/inject-a private file.py` | 4,815 B | **105 B** |
 | `.claude/hooks/semantic-context-inject.py` | 2,081 B (1.57 s) | **0 B** |
 
 ~22,244 bytes (~6,180 tok) suppressed for mode 3; modes 1 and 2 byte-for-byte unchanged

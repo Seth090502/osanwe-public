@@ -13,11 +13,11 @@ tags:
   - topic/forensic-accounting
   - topic/evidence-grading
 related:
-  - "*invest* (not published)"
+  - "invest"
   - "[[ref-options-layer]]"
   - "[[ref-scoring-models]]"
-  - "*ref-sector-benchmarks* (not published)"
-  - "*ref-portfolio-doctrine* (not published)"
+  - "ref-sector-benchmarks"
+  - "ref-portfolio-doctrine"
   - "[[ref-research-methodology]]"
   - "[[analysis-depth-standard]]"
 word_count: 10184

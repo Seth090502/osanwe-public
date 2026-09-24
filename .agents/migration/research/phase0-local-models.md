@@ -22,7 +22,7 @@ Provenance: opus/max Explore worker, retrieved 2026-08-10; empirical probes on t
 | Probe | Result |
 |---|---|
 | `ollama --version` | client 0.31.1 -- **behind 0.32.6**; daemon cold-started; updater logged "New update available .../v0.32.6/OllamaSetup.exe" + "deferring pending update" (**staged, not applied**) |
-| Install path | `<HOME>`\AppData\Local\Programs\Ollama (native app), OS Windows/10.0.26200 |
+| Install path | ~\AppData\Local\Programs\Ollama (native app), OS Windows/10.0.26200 |
 | /api/version | {"version":"0.31.1"} -- endpoint live |
 | /v1/models | Live, OpenAI-shaped -- compat surface confirmed working |
 | `ollama list` | **1 model only:** hf.co/unsloth/gemma-4-31B-it-GGUF:UD-Q4_K_XL, 19 GB, ~4 months old |

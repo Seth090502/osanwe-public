@@ -11,14 +11,14 @@ tags:
   - topic/alerts
   - topic/market-regime
 aliases: [monitoring-rules, alert-rules]
-related: ["*ref-portfolio-doctrine* (not published)", "[[ref-macro-landscape]]", "*ref-market-calendar* (not published)", "[[ref-theme-alpha]]", "[[ref-evidence-hierarchy]]", "[[ref-briefing-structure]]", "[[ref-regime-taxonomy]]"]
+related: ["ref-portfolio-doctrine", "[[ref-macro-landscape]]", "ref-market-calendar", "[[ref-theme-alpha]]", "[[ref-evidence-hierarchy]]", "[[ref-briefing-structure]]", "[[ref-regime-taxonomy]]"]
 ---
 
 # Reference: Monitoring Rules
 Last updated: 2026-04-11
 Source: Extracted from Project Osanwe SOUL.md and AGENTS.md (April 7-9, 2026 builds) during vault cleanup
 Refresh cadence: Quarterly
-Purpose: Codifies `<owner>`'s alert classification thresholds, suppression logic, market regime framework, proactive monitoring triggers, and briefing templates. These define what warrants attention and what doesn't.
+Purpose: Codifies the owner's alert classification thresholds, suppression logic, market regime framework, proactive monitoring triggers, and briefing templates. These define what warrants attention and what doesn't.
 
 ## Trigger Conditions
 Load this document when:
@@ -27,8 +27,8 @@ Load this document when:
 - Any question about pattern detection or recurring market behaviors
 - Any "should I be paying attention to this?" classification question
 - Any question about what to monitor proactively vs. what to ignore
-- When building or reviewing a briefing for `<owner>`
-- When deciding whether a market event justifies interrupting `<owner>`'s attention
+- When building or reviewing a briefing for the owner
+- When deciding whether a market event justifies interrupting the owner's attention
 
 ---
 
@@ -146,7 +146,7 @@ Operational thresholds for after-hours (16:00-20:00 ET) and pre-market (04:00-09
 Modeled after a Presidential Daily Brief crossed with a hedge fund morning note.
 
 **1. SITUATION OVERVIEW** (3-4 sentences max)
-The single most important thing `<owner>` needs to know today. What changed overnight. If nothing material changed, say so in one sentence.
+The single most important thing the owner needs to know today. What changed overnight. If nothing material changed, say so in one sentence.
 
 **2. MARKET INTELLIGENCE**
 Pre-market snapshot. Only include what's relevant:
@@ -195,8 +195,8 @@ Deeper than the weekend briefing. The "zoom out" moment.
 - **Thesis scoreboard:** Rate each core thesis 1-10 with one sentence justification
 - **Concentration risk:** Current portfolio weights by thesis/sector + single-name. Flag if theme-alpha >60% (interim 50% during the phase-in) or any other thesis >40% or any single name >30% (amber; >35% red -> escalate to /decide) (per ref-portfolio-doctrine.md)
 - **Forward calendar:** The 3-5 most important events in the coming 2 weeks
-- **Pending decisions:** What is `<owner>` waiting on?
+- **Pending decisions:** What is the owner waiting on?
 - **Recommendation queue:** If any invest-max report has been complete for 7+ days without action, flag it
 
 ## Related
-*investing-moc* (not published) | *ref-portfolio-doctrine* (not published) | *ref-geopolitical-framework* (not published) | *watchlist* (not published)
+investing-moc | ref-portfolio-doctrine | ref-geopolitical-framework | watchlist

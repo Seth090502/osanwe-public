@@ -22,13 +22,13 @@ script produced; if a check fails, fix the INPUTS and re-run `--compute`.
 
 | # | When | Command | Expect |
 |---|---|---|---|
-| K1 | Phase D.8 (every run) | `python <VAULT_ROOT>/tools/doctrine-lint.py --json` | exit 0. Exit 2 -> HALT the run, clear F11 (zero writes yet), report findings verbatim |
-| K2 | Phase D.8 | Record from lint inputs: `doctrine_version` (pd-2/fb-1 style) + `doctrine_fingerprint` (`python <VAULT_ROOT>/tools/doctrine-lint.py --fingerprint`) | both stamped into analysis frontmatter later |
+| K1 | Phase D.8 (every run) | `python tools/doctrine-lint.py --json` | exit 0. Exit 2 -> HALT the run, clear F11 (zero writes yet), report findings verbatim |
+| K2 | Phase D.8 | Record from lint inputs: `doctrine_version` (pd-2/fb-1 style) + `doctrine_fingerprint` (`python tools/doctrine-lint.py --fingerprint`) | both stamped into analysis frontmatter later |
 | K3 | Phase J (both tiers) | Build the trusted book snapshot JSON from live MCP positions (same format `tools/pretrade_gate.py` consumes: `total_value`, `positions[{symbol,value,thesis}]` incl. a CASH row, `prices`, `thesis_map`, `as_of_utc`) | saved to the scratchpad; path noted |
 | K4 | K-bis.7 | Fill the inputs JSON form (below) -- every field `{value, prov}`, prov non-empty | saved to the scratchpad |
-| K5 | K-bis.7 | `python <VAULT_ROOT>/tools/sizing-eval.py --compute --mode add --inputs <inputs.json> --book <book.json> --worksheet-out <ws.md>` (mode `hold-state` for held non-BUY names) | exit 0; paste the emitted worksheet (block + rendered lines) VERBATIM into the analysis after the Decision Sheet |
+| K5 | K-bis.7 | `python tools/sizing-eval.py --compute --mode add --inputs <inputs.json> --book <book.json> --worksheet-out <ws.md>` (mode `hold-state` for held non-BUY names) | exit 0; paste the emitted worksheet (block + rendered lines) VERBATIM into the analysis after the Decision Sheet |
 | K6 | K-bis.7 | Set the TRADING DECISION `**Action**` dollar amount EXACTLY to the worksheet `final_dollars` | equality is script-enforced at K7 |
-| K7 | Pre-Output 10b (before Phase O.0 skill-precheck) | `python <VAULT_ROOT>/tools/sizing-eval.py --check <composed-analysis-tmp.md>` | exit 0. Exit 2 -> fix inputs, re-run K5, replace the WHOLE worksheet; hand-editing individual numbers is FORBIDDEN |
+| K7 | Pre-Output 10b (before Phase O.0 skill-precheck) | `python tools/sizing-eval.py --check <composed-analysis-tmp.md>` | exit 0. Exit 2 -> fix inputs, re-run K5, replace the WHOLE worksheet; hand-editing individual numbers is FORBIDDEN |
 | K8 | Phase P | Paste this completion table with actual exit codes + artifact paths | audit trail |
 
 WORKSHEET FIRES: BINDING mode iff rating is BUY/STRONG BUY with an

@@ -8,7 +8,7 @@ tags:
   - topic/market-brief
   - topic/skill-infrastructure
 related:
-  - "*brief* (not published)"
+  - "brief"
   - "[[ref-output-template]]"
   - "[[ref-macro-data-sources]]"
 aliases:
@@ -64,7 +64,7 @@ Extraction target for /brief SKILL.md over-cap refactor (progressive disclosure,
 - **Broker read coverage missing**: mark affected quantities, dollar impact, P&L and whole-book scope UNVERIFIED in the header and Intelligence Gaps; continue independent public-market work. No protected-file or saved-snapshot fallback.
 
 ### Phase C failures
-- **Thesis essay missing on disk** (any of 5): HALT Phase H; ask `<owner>` (structural gap)
+- **Thesis essay missing on disk** (any of 5): HALT Phase H; ask the owner (structural gap)
 - **Entity recency `git log` returns nothing**: WARN; continue with empty entity-recency input
 - **Continuity audit: <3 prior briefings exist**: degrade gracefully; use what is available; null Brier score if below the scorable-call floor (n>=3 provisional / n>=5 full per Phase C brier-ledger rule)
 
@@ -74,18 +74,18 @@ Extraction target for /brief SKILL.md over-cap refactor (progressive disclosure,
 - **Script crash**: full web-search fallback; cap 60; annotate
 
 ### Phase H failure
-- **Any thesis file missing**: HALT with explicit error; ask `<owner>`
+- **Any thesis file missing**: HALT with explicit error; ask the owner
 
 ### Phase N gate failures
 - **Any 22-item check fails**: HALT with specific item; no writes
 - **ASCII byte >127 in NEW content**: HALT; apply replacement table; re-scan
-- **Confidence exceeds cap**: HALT; `<owner>` authorizes override or revises
+- **Confidence exceeds cap**: HALT; the owner authorizes override or revises
 
 ### Phase P failures (F.halt)
-- **Update 1-4 mid-batch failure**: IMMEDIATE HALT; F11 stays on; report succeeded / failed / not-attempted; `<owner>` decides rollback or fix-and-retry
+- **Update 1-4 mid-batch failure**: IMMEDIATE HALT; F11 stays on; report succeeded / failed / not-attempted; the owner decides rollback or fix-and-retry
 - **F17 detects Co-Authored-By post-commit**: HALT; investigate; do NOT silently amend
 - **Daily note race (sha256 mismatch)**: re-read once; if still mismatch, F.halt
-- **F11 unlink fails post-commit**: log but do not halt (vault is in committed state); `<owner>` manually `rm .claude/state/auto-commit-disabled`
+- **F11 unlink fails post-commit**: log but do not halt (vault is in committed state); the owner manually `rm .claude/state/auto-commit-disabled`
 
 ## Section 3: Coordination (shared infra + division-of-concerns matrix + consumers)
 

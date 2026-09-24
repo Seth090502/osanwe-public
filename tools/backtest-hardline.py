@@ -154,28 +154,28 @@ def run_backtest(bars, universe, all_dates, rebalance_dates,
                  lookback_days=63, n_positions=5,
                  max_per_sector=2, cost_bps=25):
     """Run the momentum backtest with bias corrections."""
-    
+
     # Build price lookup: {ticker: {date: close}}
     px = {}
     for t in universe:
         if t in bars:
             px[t] = {d: c for d, c in bars[t]}
-    
+
     # SPY returns for benchmark
     spy_px = px.get("SPY", {})
-    
+
     cash = 1.0
     holdings = {}  # ticker -> shares (as fraction of portfolio)
     monthly_returns = []
     trades_log = []
-    
+
     prev_rebal = None
-    
+
     for i, rebal_date in enumerate(rebalance_dates):
         if i == 0:
             prev_rebal = rebal_date
             continue
-        
+
         # 1. Score momentum: trailing `lookback_days` calendar days return
         lookback_start_idx = all_dates.index(rebal_date) - lookback_days if rebal_date in all_dates else None
         # find the date ~lookback days ago
@@ -186,9 +186,9 @@ def run_backtest(bars, universe, all_dates, rebalance_dates,
                 break
         if date_idx is None or date_idx < lookback_days:
             continue
-            
+
         lookback_start = all_dates[date_idx - lookback_days]
-        
+
         scores = []
         for t in universe:
             if t not in px or t == "SPY":
@@ -206,10 +206,10 @@ def run_backtest(bars, universe, all_dates, rebalance_dates,
             if start_close and end_close and start_close > 0:
                 ret = (end_close - start_close) / start_close
                 scores.append((t, ret))
-        
+
         # Rank by momentum (best first)
         scores.sort(key=lambda x: x[1], reverse=True)
-        
+
         # Apply filters
         selected = []
         sector_count = {}
@@ -221,32 +221,32 @@ def run_backtest(bars, universe, all_dates, rebalance_dates,
             sector_count[sector] = sector_count.get(sector, 0) + 1
             if len(selected) >= n_positions:
                 break
-        
+
         if len(selected) < 3:
             # Not enough qualified names; stay in cash
             monthly_returns.append(0.0)
             continue
-        
+
         # 2. Execute at NEXT day's close (B5 slippage)
         next_date_idx = date_idx + 1
         if next_date_idx >= len(all_dates):
             break
         exec_date = all_dates[next_date_idx]
-        
+
         # Calculate execution prices
         exec_prices = {}
         for t, _ in selected:
             if t in px and exec_date in px[t]:
                 exec_prices[t] = px[t][exec_date]
-        
+
         if len(exec_prices) < 3:
             continue
-        
+
         # Sell old positions (transaction costs)
         if holdings:
             sell_cost = sum(holdings.values()) * (cost_bps / 10000)
             cash -= sell_cost
-        
+
         # Buy new equal-weighted portfolio
         weight = 1.0 / len(exec_prices)
         new_holdings = {}
@@ -258,14 +258,14 @@ def run_backtest(bars, universe, all_dates, rebalance_dates,
             buy_cost = w * (cost_bps / 10000)
             total_cost += buy_cost
             new_holdings[t] = w - buy_cost
-        
+
         cash -= total_cost
-        
+
         # 3. Hold until next rebalance -- compute portfolio return
         period_start = next_date_idx
         next_rebal_idx = min(next_date_idx + 21, len(all_dates) - 1)  # ~21 trading days = 1 month
         period_end = all_dates[next_rebal_idx] if next_rebal_idx < len(all_dates) else all_dates[-1]
-        
+
         port_start = 0
         port_end = 0
         valid = 0
@@ -284,7 +284,7 @@ def run_backtest(bars, universe, all_dates, rebalance_dates,
                 port_start += w * start_v
                 port_end += w * end_v
                 valid += 1
-        
+
         if port_start > 0 and valid >= 3:
             period_ret = (port_end - port_start) / port_start
             monthly_returns.append({
@@ -292,9 +292,9 @@ def run_backtest(bars, universe, all_dates, rebalance_dates,
                 "return": period_ret,
                 "positions": list(new_holdings.keys()),
             })
-        
+
         holdings = new_holdings
-    
+
     return monthly_returns
 
 
@@ -302,18 +302,18 @@ def compute_metrics(monthly_rets, spy_monthly):
     """Compute summary statistics from monthly returns."""
     if not monthly_rets:
         return {}
-    
+
     strategy_rets = [m["return"] for m in monthly_rets if isinstance(m, dict)]
-    
+
     if len(strategy_rets) < 12:
         return {"error": "insufficient periods"}
-    
+
     cum = 1.0
     spy_cum = 1.0
     peak = 1.0
     max_dd = 0.0
     wins = 0
-    
+
     for i, r in enumerate(strategy_rets):
         cum *= (1 + r)
         if i < len(spy_monthly):
@@ -325,21 +325,21 @@ def compute_metrics(monthly_rets, spy_monthly):
             max_dd = dd
         if i < len(spy_monthly) and r > spy_monthly[i]:
             wins += 1
-    
+
     years = len(strategy_rets) / 12
     cagr = (cum ** (1 / years)) - 1 if years > 0 else 0
     spy_cagr = (spy_cum ** (1 / years)) - 1 if years > 0 else 0
-    
+
     avg_ret = sum(strategy_rets) / len(strategy_rets)
     variance = sum((r - avg_ret) ** 2 for r in strategy_rets) / len(strategy_rets)
     vol_m = variance ** 0.5
     sharpe = (avg_ret / vol_m) * (12 ** 0.5) if vol_m > 0 else 0
-    
+
     spy_avg = sum(spy_monthly[:len(strategy_rets)]) / min(len(spy_monthly), len(strategy_rets)) if spy_monthly else 0
     spy_var = sum((r - spy_avg) ** 2 for r in spy_monthly[:len(strategy_rets)]) / min(len(spy_monthly), len(strategy_rets)) if spy_monthly else 0
     spy_vol_m = spy_var ** 0.5
     spy_sharpe = (spy_avg / spy_vol_m) * (12 ** 0.5) if spy_vol_m > 0 else 0
-    
+
     return {
         "n_periods": len(strategy_rets),
         "total_return_pct": round((cum - 1) * 100, 1),
@@ -358,13 +358,13 @@ def main():
     bars = load_bars()
     all_dates = get_trading_dates(bars)
     rebalance_dates = month_end_dates(all_dates)
-    
+
     universe = sorted(LIQUID_UNIVERSE & set(bars.keys()))
-    
+
     print(f"Universe: {len(universe)} liquid instruments")
     print(f"Window: {all_dates[0]} to {all_dates[-1]}")
     print(f"Rebalance points: {len(rebalance_dates)}")
-    
+
     monthly = run_backtest(
         bars=bars,
         universe=universe,
@@ -375,13 +375,13 @@ def main():
         max_per_sector=2,
         cost_bps=25,  # 25bps per side
     )
-    
+
     # Extract SPY monthly returns for comparison
     spy_px_dict = {}
     if "SPY" in bars:
         for d, c in bars["SPY"]:
             spy_px_dict[d] = c
-    
+
     spy_monthly = []
     spy_dates = month_end_dates(sorted(spy_px_dict.keys()))
     for i in range(1, len(spy_dates)):
@@ -390,9 +390,9 @@ def main():
         if prev_d in spy_px_dict and curr_d in spy_px_dict:
             r = (spy_px_dict[curr_d] - spy_px_dict[prev_d]) / spy_px_dict[prev_d]
             spy_monthly.append(r)
-    
+
     metrics = compute_metrics(monthly, spy_monthly)
-    
+
     print("\n=== HARDLINE BACKTEST RESULTS ===")
     print(f"Periods evaluated: {metrics.get('n_periods', 'N/A')}")
     print(f"Strategy total return: {metrics.get('total_return_pct', 'N/A')}%")
@@ -404,7 +404,7 @@ def main():
     print(f"Max drawdown:          {metrics.get('max_drawdown_pct', 'N/A')}%")
     print(f"Win rate vs SPY:       {metrics.get('win_rate_vs_spy', 'N/A')}%")
     print(f"Beats SPY:             {metrics.get('beats_spy', 'N/A')}")
-    
+
     # Save results
     output = {
         "meta": {
@@ -430,7 +430,7 @@ def main():
         "metrics": metrics,
         "monthly_detail": monthly[-24:],  # last 24 months detail
     }
-    
+
     out_path = ROOT / "Efforts/osanwe-v2-overhaul/_work/backtest-hardline-results.json"
     out_path.write_text(json.dumps(output, indent=1), encoding="utf-8")
     print(f"\nsaved: {out_path}")

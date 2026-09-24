@@ -20,10 +20,10 @@ Aggregate: 7/7 dir==name; 6/7 over 1024 (the withheld skill alone complies); 1/7
 
 | File | Bytes/Lines | Purpose | Invoked by |
 |---|---|---|---|
-| brief-research.js | 10615/131 | Wave-1 read-only acquirer fan-out <=6: price-fetcher + fred-insider-macro + entity-challenge-recency + continuity + `<private-file>` | /brief |
+| brief-research.js | 10615/131 | Wave-1 read-only acquirer fan-out <=6: price-fetcher + fred-insider-macro + entity-challenge-recency + continuity + a private file | /brief |
 | invest-research.js | 17378/217 | price-fetcher -> Wave 1 (identity/fundamentals/filings/competitive x4) -> Wave 2a (forensic-scorer + institutional-positioning-scout) | /invest |
 | invest-verify.js | 8077/107 | Wave-3 skeptics (data-integrity, R/R, routing, provenance); any refutation -> parent Phase N HALT, zero writes; gated on verdict>=BUY / status change / +-5 boundary / --verify | /invest |
-| regenerate-distillate.js | 10730/134 | Distillate regen on SENTINEL-2 STALE: discovery -> sonnet extractors -> default-to-refuted judges -> <=2 fix rounds; sensitive Parts excluded | SessionStart hook (inject-`<private-file>`.py), NOT a skill |
+| regenerate-distillate.js | 10730/134 | Distillate regen on SENTINEL-2 STALE: discovery -> sonnet extractors -> default-to-refuted judges -> <=2 fix rounds; sensitive Parts excluded | SessionStart hook (inject-a private file.py), NOT a skill |
 | spark-sweep.js | 16344/247 | 9x pattern-class-scout chunked waves <=6; no_patterns=SUCCESS; failure -> re-dispatch -> _fallback marker | /spark |
 | spark-verify.js | 8971/130 | One 4-lens verifier per qualifying spark (EVIDENCE/FALSIFIABILITY/NOVELTY/MUNDANE-ALT), fail-closed, cap 7 | /spark |
 

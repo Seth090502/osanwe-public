@@ -1,6 +1,6 @@
 # Frozen fixture: 6-task conformance suite (identical wording for EVERY harness)
 
-FROZEN 2026-08-10 (S1, pre-build). sha256-pinned in FIXTURES.sha256; post-freeze edits fail checkall until FREEZE-NOTE.md records an operator-visible justification. Phase 4 may not edit any task. Each task is pasted to the harness VERBATIM as a user message, one task per fresh session, in order. The checker script (`.agents/scripts/conformance-checker.py`, built S4) grades ONLY the machine-checkable postconditions listed; orchestrator impressions are not grades. Run environment: the isolated conformance clone at `<LOCAL_PATH>`\`<tag>`\ (no the broker, openinsider-only MCP, least-privilege permissions).
+FROZEN 2026-08-10 (S1, pre-build). sha256-pinned in FIXTURES.sha256; post-freeze edits fail checkall until FREEZE-NOTE.md records an operator-visible justification. Phase 4 may not edit any task. Each task is pasted to the harness VERBATIM as a user message, one task per fresh session, in order. The checker script (`.agents/scripts/conformance-checker.py`, built S4) grades ONLY the machine-checkable postconditions listed; orchestrator impressions are not grades. Run environment: the isolated conformance clone at `<tag>`\ (no the broker, openinsider-only MCP, least-privilege permissions).
 
 ## Task A -- router comprehension
 
@@ -67,4 +67,4 @@ POSTCONDITIONS:
 
 ## Grading
 
-PASS = all postconditions of all 6 tasks green per the checker. Any FAIL is recorded verbatim in COMPATIBILITY.md (findings, not judgment). The reduced Tier-C suite is in tierc-reduced.md.
+PASS = all postconditions of all 6 tasks green per the checker. Any FAIL is recorded verbatim in docs/compatibility.md (findings, not judgment). The reduced Tier-C suite is in tierc-reduced.md.

@@ -63,7 +63,7 @@ Skill-level semantic retrieval over the local HNSW vault index (covers `wiki/` +
 `"<D>"`, `"<D> options and alternatives"`, `"<D> risks and failure modes"`, `"<D> similar prior decisions"`, `"<D> reversibility"`, `"<D> opportunity cost"`, `"<D> counter-arguments"`, `"<D> time horizon"`, `"<D> calibration base rates"`, `"<D> invalidation signals"`, `"<D> downstream dependencies"`, `"<D> stakeholder impact"`.
 
 0.2 -- Fire `query-skill.mjs` TWICE via Bash, piping the JSON payload to stdin (heredoc; no temp file). Model loads once per call (~0.3-1.5s):
-- BROAD (cross-vault, no filter): stdin `{"queries":[<the 12>],"top_k":100,"threshold":0.60}` to `node <HOME>\.vault-substrate\query-skill.mjs`
+- BROAD (cross-vault, no filter): stdin `{"queries":[<the 12>],"top_k":100,"threshold":0.60}` to `node ~\.vault-substrate\query-skill.mjs`
 - FOCUSED (decision record subtree): stdin `{"queries":[<the 12>],"top_k":25,"threshold":0.60,"filter_path_prefix":"Calendar/decisions/"}` to the same script.
 
 Each returns `[{path,line,score,text}]`; the script always exits 0 (emits `[]` on error) so Phase 0 never crashes the run.
@@ -175,7 +175,7 @@ If decision is NOT investment-shaped (career, life, health, vault-architecture):
 
 #### Phase E.6: GATE-F prerequisite (judgment-gates kit, 2026-07-06; position decisions only)
 
-If the decision proposes an ADD / TRIM / EXIT on a specific instrument: a same-day GATE-F sheet (verdict != BLOCKED) is a PREREQUISITE to ratification. Run the GATE-F procedure per the /gate skill's `ref-gate-tables.md` (fill markers with provenance, `python <VAULT_ROOT>/tools/gate-eval.py --compute`, write sheet, `--check`, registry row) and cite the sheet in the detail record's Related. BLOCKED -> the decision records DEFER with the gate mandates as review triggers (a legitimate close), never a ratified action. FOMO-SUSPECT -> the recommendation carries the cooling-off-48h + tranche-cap mandates verbatim. Non-position decisions: skip (documented skip, not deviation). Enforced by HALT item 16a.
+If the decision proposes an ADD / TRIM / EXIT on a specific instrument: a same-day GATE-F sheet (verdict != BLOCKED) is a PREREQUISITE to ratification. Run the GATE-F procedure per the /gate skill's `ref-gate-tables.md` (fill markers with provenance, `python tools/gate-eval.py --compute`, write sheet, `--check`, registry row) and cite the sheet in the detail record's Related. BLOCKED -> the decision records DEFER with the gate mandates as review triggers (a legitimate close), never a ratified action. FOMO-SUSPECT -> the recommendation carries the cooling-off-48h + tranche-cap mandates verbatim. Non-position decisions: skip (documented skip, not deviation). Enforced by HALT item 16a.
 
 #### E.1 First Principles Decomposition
 
@@ -254,9 +254,9 @@ Frontmatter:
       - topic/`<domain>`
       - decision/`<slug>`
     related:
-      - "*decision-log* (not published)"
-      - "*hot* (not published)"
-      - "*`<domain>`-moc* (not published)"  -- e.g., investing-moc
+      - "decision-log"
+      - "hot"
+      - "`<domain>`-moc"  -- e.g., investing-moc
     ---
 
 Body sections: H1 + Decision header (date, domain, conviction) + The Question + Options table + Pre-Mortem + Reversibility + Recommendation + Review Triggers + Related Prior Decisions (wikilinks to past decision-{slug} files where applicable).
@@ -303,7 +303,7 @@ This is defense-in-depth on top of PreToolUse pre-write-validator.py + PostToolU
 9. Phase J.0 pre-commit /vault audit gate passed (skill-precheck.py exit 0)
 10. Sha256 body-preservation invariant computed for each append-mode file
 11. ASCII-only on new content (Pattern 22)
-12. `related:` field has 3-5 wikilinks (*decision-log* (not published), *hot* (not published), domain MOC, related prior decisions)
+12. `related:` field has 3-5 wikilinks (decision-log, hot, domain MOC, related prior decisions)
 13. Tag vocabulary guardrail: tags use `topic/*`, `decision/*`; no forbidden `domain/*` or `type/*` namespaces
 14. Path-guard: no Write targets `.raw/`, `private/`, `finance/`, `credentials/`
 15. Sessions-log entry composed for /retro pickup (the decision is itself a substantive item)

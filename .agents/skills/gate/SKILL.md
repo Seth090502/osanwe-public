@@ -46,7 +46,7 @@ NEVER estimate a marker you can read; NEVER omit one. Sheets carry NO dollar
 amounts, share counts, or position sizes -- fractions and percentages only.
 
 ### Phase B: Compute (never judge)
-`python <VAULT_ROOT>/tools/gate-eval.py --compute <draft-sheet> --json`
+`python tools/gate-eval.py --compute <draft-sheet> --json`
 Transcribe verdict, mandates, suggested review_date VERBATIM into the sheet.
 If the verdict surprises you, the markers are wrong or the table is wrong -- say so
 to the user; do not adjust markers to steer the verdict (that is the failure mode
@@ -61,7 +61,7 @@ sections -- `## Evidence` (prose behind each marker, cited) and
 override reason -- markers are never edited to flip a verdict).
 
 ### Phase D: Check (HALT gate)
-`python <VAULT_ROOT>/tools/gate-eval.py --check <sheet> --json`
+`python tools/gate-eval.py --check <sheet> --json`
 Exit 2 -> HALT: report findings, fix the sheet, re-check. Never proceed unchecked.
 
 ### Phase E: Registry row
@@ -83,7 +83,7 @@ One line to today's `Calendar/daily/` note under the session's actions:
 to the sheet.
 
 ### Mode: calibrate
-`python <VAULT_ROOT>/tools/gate-eval.py --calibrate --since <date> --json`
+`python tools/gate-eval.py --calibrate --since <date> --json`
 (default 30d). Append a dated `## Compliance <date>` block to gates-registry.md
 with the per-gate expected/gated/compliance table, misses, ROUTING-AROUND flags,
 and mandate follow-through gaps. Surface flags to the user bluntly -- low

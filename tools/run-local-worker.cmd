@@ -1,7 +1,7 @@
 @echo off
 rem run-local-worker.cmd -- idle-gated scheduled relay-worker wrapper (W11).
 rem GATE-B: wiki/research/gates/gate-b-local-orchestration-program-2026-08-17.md
-rem Registered (BY <owner>, never by an agent -- X70a) via
+rem Registered (BY THE OWNER, never by an agent -- X70a) via
 rem tools/register-local-worker-task.ps1; fires daily 03:30.
 rem
 rem CLAUDE_LANE_TRIGGER=scheduled-idle is LOAD-BEARING: the trigger is frozen

@@ -10,7 +10,7 @@ tags:
   - topic/investing
   - topic/portfolio-construction
   - topic/sizing
-related: ["*ref-portfolio-doctrine* (not published)", "*ref-portfolio-optimization* (not published)", "[[ref-correlation-matrix-full]]", "[[ref-composite-scoring]]", "*calibration-2026-08-23* (not published)"]
+related: ["ref-portfolio-doctrine", "ref-portfolio-optimization", "[[ref-correlation-matrix-full]]", "[[ref-composite-scoring]]", "calibration-2026-08-23"]
 ---
 
 # Allocation Methodology -- position sizing math (normative)
@@ -18,7 +18,7 @@ related: ["*ref-portfolio-doctrine* (not published)", "*ref-portfolio-optimizati
 Companion to `.agents/skills/portfolio/SKILL.md` (flow + formats live there;
 formulas live here). Every constant is quoted from the doctrine machine block
 in `Atlas/sources/investing/ref-portfolio-doctrine.md` (fingerprint
-`c5890053`, ratified *decision-invest-rate-gate-retire-2026-07-30* (not published)) or from
+`c5890053`, ratified decision-invest-rate-gate-retire-2026-07-30) or from
 the generated research refs cited per section. Arithmetic is local after
 current-session broker read acquisition. Quantities, account cash and lots from
 saved files do not verify current inputs. No reads of `.raw/`, `private/`,
@@ -236,5 +236,5 @@ worksheet SHAPE, not a recommendation.
   confidence overrates realized win rates -- that is WHY R-A2 exists.
 - Not investment advice; the operator executes (D-SEC-1).
 
-Related: .agents/skills/allocate/SKILL.md | *ref-portfolio-doctrine* (not published) |
-*ref-portfolio-optimization* (not published) | tools/sizing-eval.py
+Related: .agents/skills/allocate/SKILL.md | ref-portfolio-doctrine |
+ref-portfolio-optimization | tools/sizing-eval.py

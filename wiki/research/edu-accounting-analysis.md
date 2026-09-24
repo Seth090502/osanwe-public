@@ -12,7 +12,7 @@ tags:
   - topic/financial-statements
   - topic/quality-of-earnings
   - topic/fundamental-analysis
-related: ["[[edu-quantitative-methods]]", "[[edu-fixed-income]]", "*edu-behavioral-finance* (not published)", "*edu-corporate-finance* (not published)", "*investing-moc* (not published)"]
+related: ["[[edu-quantitative-methods]]", "[[edu-fixed-income]]", "edu-behavioral-finance", "edu-corporate-finance", "investing-moc"]
 ---
 
 # Accounting Analysis: Reading Financial Statements Like a Skeptic
@@ -27,7 +27,7 @@ readable filings (XBRL) let analysis scale. The operating stance throughout:
 not "companies lie" but "incentives shape presentation," so the analyst's
 job is to restate what management shows into economic reality.
 Companions: [[edu-fixed-income]], [[edu-quantitative-methods]],
-*edu-behavioral-finance* (not published), *edu-corporate-finance* (not published).
+edu-behavioral-finance, edu-corporate-finance.
 
 ## Table of contents
 
@@ -548,14 +548,14 @@ Where the theory above plugs into this vault's measured layer:
 
 - [[ref-financial-statements]] -- EDGAR XBRL statement data; the raw feed for
   the statement-linkage and red-flag screens in Sections 2 through 9.
-- *ref-earnings-analysis-framework* (not published) -- earnings framework over the covered
+- ref-earnings-analysis-framework -- earnings framework over the covered
   names; applies Section 10's workflow name by name each print.
 - [[ref-composite-scoring]] -- quality sleeves consume the accrual and FCF
   conversion checks defined here; scoring inputs trace to statement items.
-- *ref-institutional-insider-tracking* (not published) -- ownership and insider context;
+- ref-institutional-insider-tracking -- ownership and insider context;
   the behavioral cross-check when statement signals and smart money diverge.
 - [[ref-alternative-data-signals]] -- non-price signals mined from filings;
   extends Section 9's manipulation heuristics with disclosed-data tells.
-- Companion theory: *edu-corporate-finance* (not published) (what the statements should
+- Companion theory: edu-corporate-finance (what the statements should
   imply for value), [[edu-fixed-income]] (leverage channel),
   [[edu-quantitative-methods]] (statistical testing of screen hit rates).

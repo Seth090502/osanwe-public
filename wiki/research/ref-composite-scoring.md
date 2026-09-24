@@ -9,7 +9,7 @@ tags:
   - topic/investing
   - topic/scoring
   - topic/meta
-related: ["[[ref-financial-statements]]", "*confidence-map-2026* (not published)", "*ref-sector-benchmarks* (not published)", "*portfolio-x-invest-history* (not published)"]
+related: ["[[ref-financial-statements]]", "confidence-map-2026", "ref-sector-benchmarks", "portfolio-x-invest-history"]
 ---
 
 # Quantitative composite scoring engine -- all tickers (GENERATED)

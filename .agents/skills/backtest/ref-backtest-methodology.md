@@ -67,7 +67,7 @@ test that (data starts 2021 for equities).
 
 ### S3. Ticker-universe composition bias
 
-The list is tech/semiconductor-heavy by design (it mirrors `<owner>`'s watchlist).
+The list is tech/semiconductor-heavy by design (it mirrors the owner's watchlist).
 Sector-rotation results reflect THIS universe's sector weights, not the
 market's. Flag when a rotation result is really "tech went up".
 

@@ -2,7 +2,7 @@
 
 Sources: Phase-0 worker reports ONLY (`.agents/migration/research/phase0-*.md`; row IDs
 in harness-matrix.md). Claims here are documentation-derived; a recipe is UNRUN until a
-conformance record exists (COMPATIBILITY.md verification table).
+conformance record exists (docs/compatibility.md verification table).
 
 | Abstract lifecycle (manifest) | Claude Code [CC-5] | Codex CLI [CX-5] | OpenCode [OC-5] | Goose [GS-5] | Crush [CR-5] | Cline [CL-6] |
 |---|---|---|---|---|---|---|

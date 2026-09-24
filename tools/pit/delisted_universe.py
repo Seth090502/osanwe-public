@@ -828,7 +828,7 @@ def _selftest():
     q = seed_reg.quarantine_report()
     qmap = dict((e["ticker"], e["reasons"]) for e in q)
     check("fully-verified clean registry quarantines nobody",
-          not q), 
+          not q),
     qreg = UniverseRegistry({
         "SHADY": LifecycleRecord(
             "SHADY", "2010-01-01", "2020-12-31", "delisted",

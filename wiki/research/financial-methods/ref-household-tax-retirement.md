@@ -6,7 +6,7 @@ tags: [topic/investing]
 status: active
 created: 2026-09-13
 updated: 2026-09-13
-related: ["[[fin-cash-flow-framework]]", "[[fin-tax-aware-investing]]", "*fin-retirement-planning* (not published)", "[[ref-fixed-income-liabilities]]"]
+related: ["[[fin-cash-flow-framework]]", "[[fin-tax-aware-investing]]", "fin-retirement-planning", "[[ref-fixed-income-liabilities]]"]
 ---
 
 # Household constraints, tax scope and sequence risk

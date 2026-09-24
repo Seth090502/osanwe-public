@@ -168,9 +168,9 @@ Orphan entities may indicate incomplete /enrich onboarding, missing MOC links, o
 ### Worked example
 
 Source: `wiki/entities/companies/<company>.md`
-Detection: 1 inbound reference (only from `<private-area>/research/osanwe-public-readme-draft-2026-04-14.md`)
+Detection: 1 inbound reference (only from a private file)
 Classification: SAFE-AUTO
-Proposed fix: add `[[<company>]]` to `Atlas/_MOCs/<private-file>.md` companies list
+Proposed fix: add `[[<company>]]` to `Atlas/_MOCs/a private file` companies list
 
 ## Classifier 5: stale-refs (WARNING)
 
@@ -222,7 +222,7 @@ Stale references to deprecated skills don't break anything but signal cleanup op
 
 ### Worked example
 
-Source: `<private-area>/research/osanwe-public-readme-draft-2026-04-14.md` line 122
+Source: a private file line 122
 Match: "Methodology grounded in /research workflow"
 Classification: SAFE-AUTO
 Proposed fix: replace with "Methodology grounded in WebSearch + WebFetch workflow" (since /research was displaced by direct tool use)
@@ -302,10 +302,10 @@ MOC-coverage gaps mean files exist in a domain but aren't discoverable via the M
 
 ### Worked example
 
-Source: `Atlas/_MOCs/<private-file>.md`
-Detection: `wiki/entities/companies/<Company>.md` exists but not linked from `<private-file>` Companies section
+Source: `Atlas/_MOCs/a private file`
+Detection: `wiki/entities/companies/<Company>.md` exists but not linked from a private file Companies section
 Classification: SAFE-AUTO
-Proposed fix: add `- [[<Company>]]` to `<private-file>` Companies list, alphabetically ordered
+Proposed fix: add `- [[<Company>]]` to a private file Companies list, alphabetically ordered
 
 ## Cross-cutting rules
 

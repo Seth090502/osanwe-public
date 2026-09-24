@@ -6,7 +6,7 @@ created: 2026-07-10
 updated: 2026-07-10
 tags: [topic/consolidation, topic/playbook]
 related:
-  - "*hot* (not published)"
+  - "hot"
 ---
 
 # WebFetch unclassified Playbook
@@ -37,7 +37,7 @@ Amend the AGENTS.md Tool-mechanics line (Data sources section) via /decide webfe
 A WebFetch call just failed and you are about to reissue it: read the error string. SSL-cert -> one curl -sk retry. Anything else (timeout / ECONNREFUSED / socket-closed / maxContentLength / redirects / unable-to-fetch) -> at most one curl -sk retry, then drop the source and grade it unverifiable. Two failures on one URL means switch source; a third fire on the same URL means you are the storm -- stop.
 
 ## Related
-- *hot* (not published) -- session cache; this playbook is surfaced in the consolidation digest
+- hot -- session cache; this playbook is surfaced in the consolidation digest
 - [[bash-exit-code-1-playbook]]
 - [[bash-exit-code-2-playbook]]
 - [[read-unclassified-playbook]]

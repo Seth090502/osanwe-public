@@ -7,8 +7,8 @@ status: complete
 created: 2026-07-06
 updated: 2026-07-06
 related:
-  - "*gates-registry* (not published)"
-  - "*thesis-theme-alpha* (not published)"
+  - "gates-registry"
+  - "thesis-theme-alpha"
 gate:
   schema_version: 1
   mode: t

@@ -6,7 +6,7 @@ created: 2026-07-10
 updated: 2026-07-10
 tags: [topic/consolidation, topic/playbook]
 related:
-  - "*hot* (not published)"
+  - "hot"
 ---
 
 # Read unclassified Playbook
@@ -24,7 +24,7 @@ Confidence: 88% -- all 122/122 records classified directly and the unclassified 
 
 ## Counter-cases
 
-- A third mode strains the strict two-mode reading -- 7 EISDIR records (a directory handed to Read; fix is Glob, not Read): 2026-06-06 wiki/investing/analyses (.claude/state/failures-2026-06-06.jsonl:7); 2026-06-07 same dir (failures-2026-06-07.jsonl:12); 2026-06-09 four dirs incl. `<VAULT_ROOT>`/tools/lib (failures-2026-06-09.jsonl:7,32,34,42); 2026-07-02 `<VAULT_ROOT>`/tools (failures-2026-07-02.jsonl:11)
+- A third mode strains the strict two-mode reading -- 7 EISDIR records (a directory handed to Read; fix is Glob, not Read): 2026-06-06 wiki/investing/analyses (.claude/state/failures-2026-06-06.jsonl:7); 2026-06-07 same dir (failures-2026-06-07.jsonl:12); 2026-06-09 four dirs incl. tools/lib (failures-2026-06-09.jsonl:7,32,34,42); 2026-07-02 tools (failures-2026-07-02.jsonl:11)
 - (none found for genuine tool/IO/permission faults -- searched all 122 Read records: zero permission-denied, zero file-existed-then-vanished races, zero environment faults; the 100% call-site-preventable claim holds)
 
 ## Recommendation
@@ -36,7 +36,7 @@ Structural (dissolves the false mega-cluster): extend _derive_error_class in too
 /consolidate or /consolidate telemetry surfaces Read::unclassified (or post-fix Read::path_not_found / Read::oversize_read) at count >= 5: run two greps over .claude/state/failures-*.jsonl counting "does not exist" vs "exceeds maximum". If both are non-trivial (57 vs 58 here), it is the composite -- apply the path-verify fix AND the read-bounding fix; do not expect one change to clear it.
 
 ## Related
-- *hot* (not published) -- session cache; this playbook is surfaced in the consolidation digest
+- hot -- session cache; this playbook is surfaced in the consolidation digest
 - [[bash-exit-code-1-playbook]]
 - [[bash-exit-code-2-playbook]]
 - [[webfetch-unclassified-playbook]]

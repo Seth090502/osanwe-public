@@ -1357,7 +1357,7 @@ def _selftest() -> int:
         check("empty-registry-approves-nobody",
               exc.code == "NO_HUMAN_REGISTERED", exc.code)
 
-    auth.registry.register("<owner>@household", "<owner>",
+    auth.registry.register("owner@household", "owner",
                            registered_by="operator-setup",
                            when_utc="2025-12-01T00:00:00Z")
 
@@ -1380,7 +1380,7 @@ def _selftest() -> int:
         check("machine-identity-unregisterable",
               exc.code == "NON_HUMAN_APPROVER", exc.code)
 
-    g = auth.issue(rec, "<owner>@household", ttl_seconds=3600)
+    g = auth.issue(rec, "owner@household", ttl_seconds=3600)
     check("grant-issued", rec.state == STATE_APPROVED_FOR_SIMULATION,
           rec.state)
     vr = auth.verify(rec, now="2026-01-01T00:10:00Z")
@@ -1411,9 +1411,9 @@ def _selftest() -> int:
     # Execution purpose can never succeed.
     rec4 = DecisionRecord(binding=b, state=STATE_HUMAN_APPROVAL_REQUIRED)
     auth2 = ApprovalAuthority(generate_key(), clock=lambda: "2026-01-01T00:00:00Z")
-    auth2.registry.register("<owner>@household", "<owner>", registered_by="setup",
+    auth2.registry.register("owner@household", "owner", registered_by="setup",
                             when_utc="2025-12-01T00:00:00Z")
-    g4 = auth2.issue(rec4, "<owner>@household", ttl_seconds=3600)
+    g4 = auth2.issue(rec4, "owner@household", ttl_seconds=3600)
     vr5 = auth2.authorize(rec4, grant=g4, now="2026-01-01T00:14:00Z",
                           purpose="EXECUTION")
     check("execution-never-authorized",
@@ -1428,9 +1428,9 @@ def _selftest() -> int:
                          expires_at="2026-01-02T00:00:00Z", **base)
     r5 = DecisionRecord(binding=b2, state=STATE_HUMAN_APPROVAL_REQUIRED)
     a3 = ApprovalAuthority(generate_key(), clock=lambda: "2026-01-01T00:00:00Z")
-    a3.registry.register("<owner>@household", "<owner>", registered_by="setup",
+    a3.registry.register("owner@household", "owner", registered_by="setup",
                          when_utc="2025-12-01T00:00:00Z")
-    g5 = a3.issue(r5, "<owner>@household", leg_scope=["L0"], ttl_seconds=3600)
+    g5 = a3.issue(r5, "owner@household", leg_scope=["L0"], ttl_seconds=3600)
     vr6 = a3.authorize(r5, grant=g5, now="2026-01-01T00:15:00Z")
     check("partial-approval-authorizes-nothing",
           (not vr6.ok) and "PARTIAL_APPROVAL" in vr6.codes, str(vr6.codes))
@@ -1460,12 +1460,12 @@ def _selftest() -> int:
         clock = lambda: "2026-01-01T00:00:00Z"  # noqa: E731
         a_first = ApprovalAuthority(key, clock=clock,
                                     consumption_path=ledger)
-        a_first.registry.register("<owner>@household", "<owner>",
+        a_first.registry.register("owner@household", "owner",
                                   registered_by="setup",
                                   when_utc="2025-12-01T00:00:00Z")
         r_first = DecisionRecord(binding=b,
                                  state=STATE_HUMAN_APPROVAL_REQUIRED)
-        g_first = a_first.issue(r_first, "<owner>@household", ttl_seconds=3600)
+        g_first = a_first.issue(r_first, "owner@household", ttl_seconds=3600)
         first = a_first.verify(r_first, grant=g_first,
                                now="2026-01-01T00:20:00Z")
         # A FRESH authority sharing the same key and ledger == a restart.

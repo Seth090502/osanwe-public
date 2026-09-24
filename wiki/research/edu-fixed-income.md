@@ -12,7 +12,7 @@ tags:
   - topic/bonds
   - topic/rates
   - topic/fed-policy
-related: ["[[edu-quantitative-methods]]", "[[edu-accounting-analysis]]", "*edu-portfolio-theory* (not published)", "*edu-market-microstructure* (not published)", "*investing-moc* (not published)"]
+related: ["[[edu-quantitative-methods]]", "[[edu-accounting-analysis]]", "edu-portfolio-theory", "edu-market-microstructure", "investing-moc"]
 ---
 
 # Fixed Income: Bond Math, Rates, and Policy Transmission
@@ -25,7 +25,7 @@ structure (curves, spreads), inflation linkage, the Fed's toolkit, and the
 transmission channels into equities -- because a stock-focused investor who
 ignores the bond market is navigating with half the map. Companions:
 [[edu-quantitative-methods]], [[edu-accounting-analysis]],
-*edu-behavioral-finance* (not published), *edu-portfolio-theory* (not published).
+edu-behavioral-finance, edu-portfolio-theory.
 
 ## Table of contents
 
@@ -550,11 +550,11 @@ Where bond math meets this vault's measured rates stack:
   series feeding Sections 7 and 9; the DGS10 gate lineage lives here.
 - [[ref-fed-liquidity-engine]] -- QT, reserves, and repo plumbing; the
   balance-sheet channel of Section 10 in operational detail.
-- *ref-yen-carry-global-liquidity* (not published) -- global carry mechanics where
+- ref-yen-carry-global-liquidity -- global carry mechanics where
   duration, FX, and risk appetite collide; unwind episode census.
-- *ref-portfolio-risk-decomposition* (not published) -- how rates exposure shows up in
+- ref-portfolio-risk-decomposition -- how rates exposure shows up in
   current factor contributions and duration-like sensitivities.
-- *ref-scenario-stress-test* (not published) -- the rate-shock scenarios that turn
+- ref-scenario-stress-test -- the rate-shock scenarios that turn
   duration intuition into portfolio P&L numbers.
 - [[ref-datacenter-infrastructure]] -- bond-proxy REIT exposure (DLR-class)
   where equity duration makes Section 11's transmission direct.

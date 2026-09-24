@@ -180,7 +180,7 @@ present in the knowledge base but not in this factor store; not master rows.
 
 - `wiki/meta/security-master.json` - the machine-readable master (schema_version 1.0)
 - `wiki/meta/security-master-report.md` - this document
-- Build script (reproducible): `<HOME>\build-security-master.py`
+- Build script (reproducible): `~\build-security-master.py`
   (kept outside the vault because it was authored in session workspace; copy it
   under Efforts/osanwe-v2-overhaul/_work/ to regenerate after re-ingests)
 

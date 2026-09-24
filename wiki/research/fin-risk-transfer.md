@@ -25,7 +25,7 @@ aliases:
   - risk transfer framework
 related:
   - "[[fin-cash-flow-framework]]"
-  - "*fin-retirement-planning* (not published)"
+  - "fin-retirement-planning"
   - "[[fin-tax-aware-investing]]"
 
 ---
@@ -124,7 +124,7 @@ D3 Liquidity for estate/taxes (large IRAs/401ks to non-spouse heirs
 A  Available resources:
    survivor's own income, SS survivor benefits (model via claiming
    framework logic), existing coverage, liquid assets earmarked.
-   
+
 Coverage gap = Capital needed - existing resources
 ```
 
@@ -317,7 +317,7 @@ the sinking fund accrual lines L1/L3/L4 floors.
 
 Annuity/LTC floors change withdrawal guardrail aggressiveness;
 life wind-down at retirement; Medicare/Medigap decisions live in
-*fin-retirement-planning* (not published) sec 5 but premium lines originate here.
+fin-retirement-planning sec 5 but premium lines originate here.
 
 ### 6.3 With calibration engine
 
@@ -510,9 +510,9 @@ Premium-vs-reserve break-even: if annual premium for transferring a
 ## 8. Cross-references
 
 - [[fin-cash-flow-framework]]: premiums, deductibles, EF multiplier.
-- *fin-retirement-planning* (not published): Medicare bridge, annuity floors,
+- fin-retirement-planning: Medicare bridge, annuity floors,
   healthcare cost modeling.
 - [[fin-tax-aware-investing]]: premium funding source taxability;
   HSA interplay with HDHP choices.
-- *fin-governance-framework* (not published): acceptance decisions (self-insured
+- fin-governance-framework: acceptance decisions (self-insured
   risks) ratified and logged there.
