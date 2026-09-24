@@ -188,8 +188,8 @@ Stated plainly, including the ones that reflect badly on the project.
    that defeat it -- and the specific end-to-end path is also unexercised: no test ingests a hostile document
    and then attempts the order.
 
-5. **The published suites do not all pass from a clean copy.** 50 of 72 published test files exit 0 from a
-   fresh copy; 22 do not, mostly because the data they read is withheld. A reader cannot verify the full
+5. **The published suites do not all pass from a clean copy.** 49 of 72 published test files exit 0 from a
+   fresh copy, a 50th only with a local language model running; 22 do not, mostly because the data they read is withheld. A reader cannot verify the full
    suite from this repository alone.
 
 6. **The system has never been run end to end from a clean clone.** Nobody has cloned this, configured it,
