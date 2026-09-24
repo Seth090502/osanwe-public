@@ -1,0 +1,24 @@
+{
+  "name": "osanwe-finance-data",
+  "version": "1.3.1",
+  "description": "Traceable financial evidence, replayable models and Data context for the Osanwe workspace.",
+  "author": {
+    "name": "Osanwe workspace maintainers"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Osanwe Finance and Data",
+    "shortDescription": "Connect checked financial evidence to Data",
+    "longDescription": "One reusable context skill and a portable offline runtime for public/synthetic evidence, financial metrics, operating DCF and cashflow checks. Full portfolio judgment stays in the Osanwe workspace. No account connector, credentials, or financial execution.",
+    "developerName": "Osanwe workspace maintainers",
+    "category": "Finance",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Compare these company statements and prepare a source-backed Data report.",
+      "Explain spending and transfers using the available Finances data."
+    ]
+  }
+}

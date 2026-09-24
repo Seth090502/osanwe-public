@@ -1,0 +1,2 @@
+# The closed pilot's public source release is retained byte-for-byte.
+development_cases.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

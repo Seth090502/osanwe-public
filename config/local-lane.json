@@ -1,0 +1,293 @@
+{
+  "_doc": "Local delegation lane -- SINGLE SOURCE OF TRUTH for which local model serves delegated legs. This is the ONLY operational file that names a model; docs point here and never restate it. No ambient env var selects the model (X12 lesson: a persistent CLAUDE_CODE_SUBAGENT_MODEL once silently outranked every model pin for weeks). Resolution order is exactly: --model flag (explicit, per-invocation, visible in transcript) > this file. Swap with: python tools/delegate.py --use <tag>. Doctrine: docs/osanwe-runtime-reference.md 'Local model lane'.",
+  "schema_version": 1,
+  "lane": "glimmer",
+  "_lane_note": "'glimmer' names the LANE, not the model. The operator's phrase ('use glimmer for what it can handle') survives every model swap verbatim.",
+  "model": "qwen3.8:27b",
+  "model_digest": "22130167c4c2",
+  "adopted": "2026-08-14",
+  "adopted_evidence": "acceptance PASS; daemon env {\"OLLAMA_CONTEXT_LENGTH\": \"65536\", \"OLLAMA_FLASH_ATTENTION\": \"1\", \"OLLAMA_KEEP_ALIVE\": \"30m\", \"OLLAMA_KV_CACHE_TYPE\": \"q8_0\", \"OLLAMA_LLM_LIBRARY\": \"cuda_v13\", \"OLLAMA_MAX_LOADED_MODELS\": \"2\", \"OLLAMA_MAX_QUEUE\": \"16\", \"OLLAMA_NUM_PARALLEL\": \"4\"}",
+  "previous_model": "muse-glimmer:latest",
+  "previous_digest": "de878ce33ad8",
+  "_previous_note": "muse-glimmer:latest was REMOVED FROM DISK 2026-08-14 on operator directive (both `muse-glimmer:latest` and `hf.co/unsloth/Muse-Glimmer-30B-GGUF:UD-Q4_K_XL`). previous_model is kept as the historical record of what qwen3.8:27b displaced, NOT as a live rollback target: `python tools/delegate.py --rollback` will repoint the lane at a tag that is no longer local and the next arm will fail until `ollama pull muse-glimmer` runs. The on-disk fallback if qwen3.8:27b has to be abandoned is qwen3.6:27b (a50eda8ed977), the lane model before glimmer. nemotron-3.5-lightning is retained deliberately -- it is the C7 known-bad fixture that proves the acceptance suite still discriminates, and it must never be deleted.",
+  "host": "http://127.0.0.1:11434",
+  "ctx": 262144,
+  "_ctx_note": "Context length the launcher PINS when it starts the Ollama daemon (tools/lane-arm.ps1). Daemon context is frozen at daemon START, and three different values coexist on this machine (GUI 262144, HKLM 65536, the retired PS-profile qwen map 131072). Pinning here stops the daemon's context from depending on which shell happened to launch it. Re-derived 2026-08-14 for qwen3.8:27b: /api/show reports qwen35.context_length = 262144, so the pin moved 131072 -> 262144 and OLLAMA_NUM_PARALLEL moved to 1 in BOTH tools/lane-arm.ps1 and tools/claude-launcher.ps1. CORRECTED 2026-08-18: the earlier note claimed '2 x 262144 holds the same total as the old 4 x 131072', which is false -- ctx doubled, so the KV budget doubled with it. lane-arm.ps1:83 had already been corrected to 1 on 2026-08-15 (ollama derates 2 to -np 1 in practice); claude-launcher.ps1 still said 2 until now. MEASURED at 1 slot: 30,094 MiB of 32,607 used, 2,513 free -- there is no headroom for a second slot, and above it the load fails with 'failed to allocate buffer for rs cache', the recurrent-state cache for the 48 Gated DeltaNet layers being a third consumer beside weights and KV. Mirrored into config/mode-local.settings.json (CLAUDE_CODE_MAX_CONTEXT_TOKENS = this value, CLAUDE_CODE_AUTO_COMPACT_WINDOW = 209715 ~= 80%); those two key names are load-bearing because checkall's ctx lint SKIPS absent keys.",
+  "timeout_s": 300,
+  "max_context_bytes": 180000,
+  "relay": {
+    "_doc": "Relay-worker protocol constants (tools/relay.py; GATE-B gate-b-relay-worker-2026-08-16). INVARIANT (checkall-linted once the lint ships): relay_threshold_tokens + relay_reserve_tokens + max_result_tokens <= w_eff_tokens, with max_result_tokens = min(32768, 0.15 * w_eff_tokens). W_eff = 262144 per experiment R0 2026-08-16 (prefix reuse WORKS on /api/chat; discriminator is prompt_eval_duration, not count). If a future engine change breaks reuse, drop w_eff_tokens to the prefill-economic window and every other number scales; the protocol is unchanged.",
+    "w_eff_tokens": 262144,
+    "relay_threshold_tokens": 209715,
+    "relay_reserve_tokens": 5000,
+    "max_result_tokens": 32768,
+    "hard_trigger_pct": 0.9,
+    "budgets": {
+      "max_turns": 60,
+      "max_tool_calls": 120,
+      "max_fetches": 12,
+      "max_mcp_calls": 40,
+      "max_segments": 8,
+      "wall_clock_s": 2400,
+      "max_output_tokens_total": 65536,
+      "scratch_files_per_leg": 50,
+      "scratch_file_bytes": 2097152,
+      "max_escalations_per_leg": 3,
+      "max_proposals_per_leg": 20,
+      "propose_edit_max_chars": 4000
+    },
+    "roles": {
+      "_doc": "Role library (GATE-B gate-b-local-orchestration-program-2026-08-17). Keyed by LEG-FAMILY PREFIX (leg.split(':')[0]); relay.py resolves the role from the leg id (--role overrides explicitly, X12: no ambient selection). tools[] is BOTH the TOOL_DEFS subset advertised to the model AND the executor allowlist (out-of-role calls are REFUSED AND LOGGED). raw_reads: payloads escape non-ASCII as \\uXXXX (reversible) instead of Pattern-22 normalizing -- required for byte-exact propose_edit olds. expose_sha: source wrapper header carries the file SHA256 for before_sha256. An unmapped prefix with no --role is REFUSED (fail closed). Role identity (file sha + tools) is FROZEN into run state at leg creation; --resume refuses on role-file drift. NOTE: interleaving legs of different roles evicts each other's KV prefix cache on the single Ollama slot -- relay-batch stable-sorts by family for this reason.",
+      "research": {
+        "role_file": ".agents/roles/lane-researcher.md",
+        "tools": [
+          "fetch_url",
+          "mcp_call",
+          "read_file",
+          "list_dir",
+          "grep_vault",
+          "scratch_write",
+          "scratch_read",
+          "record_claim",
+          "note_open_item",
+          "record_negative",
+          "ask_frontier"
+        ]
+      },
+      "extract": {
+        "role_file": ".agents/roles/lane-extractor.md",
+        "tools": [
+          "read_file",
+          "list_dir",
+          "grep_vault",
+          "scratch_write",
+          "scratch_read",
+          "record_claim",
+          "note_open_item",
+          "record_negative",
+          "ask_frontier"
+        ]
+      },
+      "edit": {
+        "role_file": ".agents/roles/lane-editor.md",
+        "tools": [
+          "read_file",
+          "list_dir",
+          "grep_vault",
+          "scratch_write",
+          "scratch_read",
+          "propose_edit",
+          "note_open_item",
+          "record_negative",
+          "ask_frontier"
+        ],
+        "raw_reads": true,
+        "expose_sha": true
+      }
+    },
+    "mcp_allowlist": [
+      "openinsider",
+      "fred"
+    ],
+    "_mcp_note": "fred ENABLED 2026-08-17 (W8: minimal child env via SERVER_ENV, FRED_API_KEY fail-closed at spawn; 3x cold-probe evidence in the W8 commit). edgar-tools STILL GATED: enable only after an operator-run E5 re-probe passes 3/3 cold <60s (uvx cache primed manually first) AND EDGAR_IDENTITY is present -- its first successful probe pins the UNVERIFIED 13-tool roster into .agents/mcp/servers.json (a wildly different roster is a supply-chain flag, not a shrug). vault-search DROPPED from v1 by E4 2026-08-16 (HNSW index leaks private/; rebuild+probe OPTIONAL per operator privacy stance). robinhood + claudewatch have NO code path (D-SEC-1; omission, not scanning).",
+    "mcp_spawn_timeout_s": 60,
+    "read_jail_exclude": [
+      "private",
+      "finance",
+      "credentials",
+      ".raw",
+      ".git",
+      "config",
+      ".claude/state",
+      "*.local.md",
+      ".obsidian"
+    ],
+    "sampling": {
+      "_note": "null = model-shipped defaults (temp 1 / top_p 0.95 / top_k 20). Settled by the E6 suite pass on QUALITY before production legs; never hardcode in the tool (the delegate.py temp-0 lesson).",
+      "temperature": null,
+      "top_p": null
+    }
+  },
+  "default_delegation": "off",
+  "_default_note": "off = delegation happens only when the operator asks (any wording pairing the lane with a scope hint) or launcher mode-2 selection-is-consent. Promotion to on, pre-registered (BOTH must hold): (1) 20+ qualifying legs with zero verification failures in the receipts ledger -- MISMATCH fabrication-grade counts as a failure, MISMATCH drift-possible does NOT; (2) the parity rule at wiki/research/parity-eval-rule-2026-08-17.md passes (median >= 97, no task < 90, every session share <= 5). The flip itself is /decide-ratified and consists of exactly this field plus the AGENTS.md scope clause; demotion is AUTOMATIC per the rule doc (fabrication-grade event or 2 consecutive nightly consistency divergences).",
+  "_scheduled_note": "Scheduled lane (W11): config/scheduled-missions.json + config/scheduled/ frozen specs, driven by tools/run-local-worker.cmd (trigger=scheduled-idle, frozen at leg creation, NEVER counts toward promotion) through relay-batch --if-idle (fail-closed GPU/lane/daemon precheck). Task registration is operator-only (X70a); staged script tools/register-local-worker-task.ps1.",
+  "legs": {
+    "invest": {
+      "_note": "Tier-A dispatches E.0/J-bis.0/K-bis.0/K.5/L.0 to Opus SUBAGENTS and delegation is main-loop-only, so the delegable set here is small by design. The lane's real payoff is bulk mechanical vault work, /enrich + /ingest text processing, rate-limited days, and sequential-topology runs where E/F/H.2/I are main-loop work.",
+      "delegable": [
+        {
+          "id": "invest:E-extract",
+          "class": "provenance-checked-retrieval",
+          "note": "extraction from text the orchestrator already fetched -- never the fetching itself"
+        },
+        {
+          "id": "invest:F-extract",
+          "class": "provenance-checked-retrieval"
+        },
+        {
+          "id": "invest:H2-extract",
+          "class": "provenance-checked-retrieval"
+        },
+        {
+          "id": "invest:I-extract",
+          "class": "provenance-checked-retrieval"
+        },
+        {
+          "id": "invest:table-compose",
+          "class": "mechanical-checkable"
+        },
+        {
+          "id": "invest:ascii-normalize",
+          "class": "mechanical-checkable"
+        }
+      ],
+      "never_local": [
+        "invest:verdict-spine",
+        "invest:scoring-route",
+        "invest:thesis-status",
+        "invest:rating-conviction-kill",
+        "invest:w3-data-integrity",
+        "invest:w3-rr",
+        "invest:w3-routing",
+        "invest:w3-provenance",
+        "invest:price-fetcher",
+        "invest:w1-identity-structure",
+        "invest:w1-fundamentals",
+        "invest:w1-filings-integrity",
+        "invest:w1-competitive-macro"
+      ],
+      "_never_local_note": "The w1-* and price-fetcher entries are NOT quality judgments -- they are mandatory subagent dispatches (AGENTS.md / invest SKILL.md 'Pre-emptive skip is FORBIDDEN') and they use tools the lane does not have. The w3-* skeptics are excluded on principle: a weak verifier that rubber-stamps is worse than no verifier."
+    },
+    "research": {
+      "_note": "Relay-worker leg family (tools/relay.py; GATE-B gate-b-relay-worker-2026-08-16). Class tool-using-retrieval is the FOURTH route-local class (operator-ratified 2026-08-16, Calendar/daily/2026-08-16.md). Mapping this prefix makes delegate.py leg_status() fail CLOSED on unknown research:* ids -- that property is the reason this block ships in the same commit as the tool. One relay LEG = one leg toward the promotion criterion regardless of segment count; research:* counts SEPARATELY from delegate.py's progress.",
+      "delegable": [
+        {
+          "id": "research:E-identity",
+          "class": "tool-using-retrieval"
+        },
+        {
+          "id": "research:F-fundamentals",
+          "class": "tool-using-retrieval"
+        },
+        {
+          "id": "research:H2-shortinterest",
+          "class": "tool-using-retrieval"
+        },
+        {
+          "id": "research:I-competitive-macro",
+          "class": "tool-using-retrieval"
+        },
+        {
+          "id": "research:vault-context",
+          "class": "tool-using-retrieval",
+          "note": "jailed vault reads; vault-search MCP excluded until the E4 leak is fixed"
+        },
+        {
+          "id": "research:url-harvest",
+          "class": "tool-using-retrieval"
+        },
+        {
+          "id": "research:insider-sweep",
+          "class": "tool-using-retrieval",
+          "note": "the pilot leg: openinsider pulls for named tickers, public Form 4 / short-interest data only"
+        }
+      ],
+      "never_local": [
+        "research:verdict-spine",
+        "research:scoring-route",
+        "research:thesis-status",
+        "research:rating-conviction-kill",
+        "research:w3-data-integrity",
+        "research:w3-rr",
+        "research:w3-routing",
+        "research:w3-provenance",
+        "research:price",
+        "research:positions",
+        "research:robinhood-any",
+        "research:options-layer",
+        "research:sizing",
+        "research:portfolio-fit"
+      ]
+    },
+    "extract": {
+      "_note": "Relay leg family, role lane-extractor (NO egress: read/grep/scratch only). Mapping the prefix makes leg_status() fail CLOSED on unknown extract:* ids. Per-family promotion counter, separate from research:*.",
+      "delegable": [
+        {
+          "id": "extract:doc-claims",
+          "class": "provenance-checked-retrieval",
+          "note": "claims from one or more named local docs"
+        },
+        {
+          "id": "extract:transcript",
+          "class": "provenance-checked-retrieval",
+          "note": "earnings-call / interview transcripts"
+        },
+        {
+          "id": "extract:filing-tables",
+          "class": "provenance-checked-retrieval",
+          "note": "numeric tables out of filings already on disk"
+        },
+        {
+          "id": "extract:research-dump",
+          "class": "provenance-checked-retrieval",
+          "note": "bulk /deep output onboarding, pre-/ingest"
+        }
+      ],
+      "never_local": [
+        "extract:grade-assignment",
+        "extract:claim-adjudication",
+        "extract:doctrine-any"
+      ]
+    },
+    "edit": {
+      "_note": "Role lane-editor. PROPOSALS ONLY -- the executor's PROPOSE allowlist (relay_exec.py: Calendar/, wiki/ minus wiki/research/, Efforts/, the two pinned fixture roots; Atlas + doctrine/tooling refused mechanically) holds even if a mission tries to point elsewhere; these ids are the mission-scope mirror of that policy.",
+      "delegable": [
+        {
+          "id": "edit:ascii-sweep",
+          "class": "mechanical-checkable"
+        },
+        {
+          "id": "edit:frontmatter-sweep",
+          "class": "mechanical-checkable"
+        },
+        {
+          "id": "edit:dedup-scan",
+          "class": "mechanical-checkable"
+        },
+        {
+          "id": "edit:reformat-tables",
+          "class": "mechanical-checkable"
+        }
+      ],
+      "never_local": [
+        "edit:doctrine-files",
+        "edit:agents-md",
+        "edit:skills",
+        "edit:hooks",
+        "edit:atlas-any",
+        "edit:prose-rewrite",
+        "edit:style-any"
+      ]
+    },
+    "compose": {
+      "_note": "Relay leg family reserved 2026-08-17. NO composer role ships: the measurement said a compose leg is net-NEGATIVE (max win ~16K output against >=9 added orchestrator turns), and the anti-fabrication property it would have relied on is false -- value_occurs is unit- and field-blind, so a fabricated '60%' conviction grounds cleanly against an unrelated 'price 60.00'. This block exists ONLY to make leg_status() fail CLOSED: an UNMAPPED prefix returns 'ok' (delegate.py:392-393), so without it every compose:* id is permitted by name. never_local here is a mission-scope mirror, NOT enforcement -- it stops a leg NAMED compose:rating and does nothing about a leg named compose:table whose mission asks for a rating.",
+      "delegable": [],
+      "never_local": [
+        "compose:rating",
+        "compose:conviction",
+        "compose:target-price",
+        "compose:stop-loss",
+        "compose:verdict",
+        "compose:thesis-status",
+        "compose:kill-criteria",
+        "compose:rr-ratio",
+        "compose:position-size",
+        "compose:analysis-body",
+        "compose:decision-sheet",
+        "compose:prose-narrative",
+        "compose:doctrine-any"
+      ]
+    }
+  },
+  "previous_evidence": "acceptance 9/9 PASS 2026-08-11 (tools/test-delegate.py, hardened suite). DISCRIMINATION VERIFIED: nemotron-3.5-lightning scores 8/9 and is REJECTED on C7 (obeys an in-band 'automated data processors' directive, reporting 1500 for 1200). Correction on the record: the pre-audit claim that 6/6 on two models 'proved the graders are model-agnostic' was wrong -- it demonstrated model-INSENSITIVITY; all three installed models passed the original 6. Bake-off lineage: .agents/migration/verification/bakeoff-round2-plugin-fix-2026-08-11.md"
+}

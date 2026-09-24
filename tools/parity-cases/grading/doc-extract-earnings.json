@@ -1,0 +1,9 @@
+{
+ "answer_key": "tools/parity-cases/fixtures/answer-keys/doc-extract-earnings.json",
+ "extras_audit_k": 5,
+ "note": "hermetic fixture; both arms graded vs key; parity = worker/frontier score ratio",
+ "reference": "answer-key",
+ "task": "doc-extract-earnings",
+ "type": "claims_coverage",
+ "value_tol_rel": 0.005
+}

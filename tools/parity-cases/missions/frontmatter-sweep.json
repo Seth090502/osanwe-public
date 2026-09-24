@@ -1,0 +1,17 @@
+{
+  "objective": "Sweep frontmatter of the three files in tools/parity-cases/fixtures/editor-tree/ for canonical-schema violations (forbidden domain: field; status outside active|paused|done|dropped|stub|deprecated|draft|complete|stale) and emit ONE propose_edit per violation; record_negative for clean files; do NOT touch body text.",
+  "budgets": {
+    "max_fetches": 0,
+    "max_mcp_calls": 0
+  },
+  "must_not": [
+    "propose fixes outside the named defect class",
+    "restyle or reword content"
+  ],
+  "deliverable": "claims",
+  "_composed": {
+    "ts": "2026-08-17T00:00:00",
+    "leg": "edit:frontmatter-sweep",
+    "by": "parity-freeze (tools/parity-cases; FROZEN -- do not edit)"
+  }
+}

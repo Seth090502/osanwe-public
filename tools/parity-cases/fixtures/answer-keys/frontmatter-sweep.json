@@ -1,0 +1,16 @@
+{
+  "task": "frontmatter-sweep",
+  "tree": "tools/parity-cases/fixtures/editor-tree/",
+  "frozen": "2026-08-17",
+  "planted": [
+    {"file": "tools/parity-cases/fixtures/editor-tree/pe-note-b.md",
+     "defect": "forbidden domain: field", "match_old_contains": "domain: investing"},
+    {"file": "tools/parity-cases/fixtures/editor-tree/pe-note-b.md",
+     "defect": "status outside canonical enum", "match_old_contains": "status: in-progress"}
+  ],
+  "clean_files": [
+    "tools/parity-cases/fixtures/editor-tree/pe-note-a.md",
+    "tools/parity-cases/fixtures/editor-tree/pe-note-c.md"
+  ],
+  "grading_note": "Recall = planted defects covered by APPLYABLE proposals whose old text contains match_old_contains; clean-file credit = record_negative (or zero frontmatter proposals) per clean file; pe-note-a's body defects belong to ascii-sweep. A proposal that deletes domain: or maps status to a canonical enum value both count as covering their defect."
+}

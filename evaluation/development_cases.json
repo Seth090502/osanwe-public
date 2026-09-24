@@ -1,0 +1,2506 @@
+{
+  "schema": "osanwe.development-cases/1",
+  "evidence_class": "synthetic-development-only",
+  "admission_eligible": false,
+  "cases": [
+    {
+      "id": "valuation-01",
+      "family": "valuation",
+      "scenario_family": "perpetuity-fcff",
+      "source_family": "synthetic-perpetuity-fcff",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "valuation-01",
+        "privacy": "synthetic",
+        "question": "Value a stable firm and identify missing per-share inputs.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Enterprise value in USD million?"
+          },
+          {
+            "id": "o2",
+            "question": "Equity value per share?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-perpetuity-fcff",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "FCFF next year is USD 100 million. WACC is 10% and perpetual growth is 3%. Use FCFF/(WACC-growth). Share count is unavailable."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [
+          {
+            "metric": "enterprise_value",
+            "expression": "100 / (0.10 - 0.03)",
+            "value": 1428.5714285714287,
+            "unit": "USD million",
+            "source_id": "s1",
+            "scope": "synthetic scenario period and stated account scope only",
+            "calculation": "Python fractions; public evaluator fixture calculation, not production workbench replay"
+          }
+        ],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": 1428.5714285714284,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": false,
+            "value": null,
+            "tolerance": 0,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "valuation-02",
+      "family": "valuation",
+      "scenario_family": "enterprise-equity-bridge",
+      "source_family": "synthetic-enterprise-equity-bridge",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "valuation-02",
+        "privacy": "synthetic",
+        "question": "Reconcile enterprise and equity values.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Equity value USD million?"
+          },
+          {
+            "id": "o2",
+            "question": "Value per diluted share USD?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-enterprise-equity-bridge",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "Enterprise value USD 900m, debt USD 200m, cash USD 50m, 25m diluted shares. Equity=EV-debt+cash."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [
+          {
+            "metric": "equity_value",
+            "expression": "900 - 200 + 50",
+            "value": 750.0,
+            "unit": "USD million",
+            "source_id": "s1",
+            "scope": "synthetic scenario period and stated account scope only",
+            "calculation": "Python fractions; public evaluator fixture calculation, not production workbench replay"
+          },
+          {
+            "metric": "per_share_value",
+            "expression": "(900 - 200 + 50) / 25",
+            "value": 30.0,
+            "unit": "USD per share",
+            "source_id": "s1",
+            "scope": "synthetic scenario period and stated account scope only",
+            "calculation": "Python fractions; public evaluator fixture calculation, not production workbench replay"
+          }
+        ],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": 750,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": true,
+            "value": 30,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "valuation-03",
+      "family": "valuation",
+      "scenario_family": "unsupported-margin-policy",
+      "source_family": "synthetic-unsupported-margin-policy",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "valuation-03",
+        "privacy": "synthetic",
+        "question": "Assess a proposed universal margin-of-safety rule.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Is 25% an established universal rule?"
+          },
+          {
+            "id": "o2",
+            "question": "Does the primer justify this valuation method?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-unsupported-margin-policy",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "A local synthesis says every investor should use 25% margin of safety. It supplies no original source or policy ratification. The only retrieved primer discusses diversification, not valuation."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "valuation-04",
+      "family": "valuation",
+      "scenario_family": "invalid-terminal-growth",
+      "source_family": "synthetic-invalid-terminal-growth",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "valuation-04",
+        "privacy": "synthetic",
+        "question": "Decide whether the growth perpetuity formula is usable.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Is the positive-growth perpetuity applicable?"
+          },
+          {
+            "id": "o2",
+            "question": "Defensible terminal enterprise value?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-invalid-terminal-growth",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "Next FCFF USD 10m, WACC 6%, perpetual growth 7%. Positive Gordon growth value requires WACC > growth."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "critical"
+          },
+          {
+            "id": "o2",
+            "answerable": false,
+            "value": null,
+            "tolerance": 0,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "earnings-01",
+      "family": "earnings",
+      "scenario_family": "operating-expense-label",
+      "source_family": "synthetic-operating-expense-label",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "earnings-01",
+        "privacy": "synthetic",
+        "question": "Reconcile operating expenses and total operating costs.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Operating expenses USD million?"
+          },
+          {
+            "id": "o2",
+            "question": "Total operating costs USD million?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-operating-expense-label",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "Revenue 1200, cost of revenue 700, operating income 180, all USD million same fiscal year and accounting basis. Gross profit=revenue-cost of revenue; OpEx=gross profit-operating income."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [
+          {
+            "metric": "gross_profit",
+            "expression": "1200 - 700",
+            "value": 500.0,
+            "unit": "USD million",
+            "source_id": "s1",
+            "scope": "synthetic scenario period and stated account scope only",
+            "calculation": "Python fractions; public evaluator fixture calculation, not production workbench replay"
+          },
+          {
+            "metric": "operating_expenses",
+            "expression": "(1200 - 700) - 180",
+            "value": 320.0,
+            "unit": "USD million",
+            "source_id": "s1",
+            "scope": "synthetic scenario period and stated account scope only",
+            "calculation": "Python fractions; public evaluator fixture calculation, not production workbench replay"
+          },
+          {
+            "metric": "total_operating_costs",
+            "expression": "1200 - 180",
+            "value": 1020.0,
+            "unit": "USD million",
+            "source_id": "s1",
+            "scope": "synthetic scenario period and stated account scope only",
+            "calculation": "Python fractions; public evaluator fixture calculation, not production workbench replay"
+          }
+        ],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": 320,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": true,
+            "value": 1020,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "earnings-02",
+      "family": "earnings",
+      "scenario_family": "piotroski-loss-eligibility",
+      "source_family": "synthetic-piotroski-loss-eligibility",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "earnings-02",
+        "privacy": "synthetic",
+        "question": "Evaluate F-score applicability with a loss.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Does the loss alone make original F-score inapplicable?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-piotroski-loss-eligibility",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "A high book-to-market industrial firm reports a net loss and has all nine F-score inputs. The original F-score uses positive ROA as one scored signal; nonpositive earnings are not an eligibility exclusion."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "earnings-03",
+      "family": "earnings",
+      "scenario_family": "issuer-source-duplication",
+      "source_family": "synthetic-issuer-source-duplication",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "earnings-03",
+        "privacy": "synthetic",
+        "question": "Count genuinely separate source origins.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Independent originating sources?"
+          },
+          {
+            "id": "o2",
+            "question": "Has independent corroboration been established?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-issuer-source-duplication",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "A company release, its investor slides, and a syndication all reproduce the same company release. No third-party verification was performed."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": 1,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "earnings-04",
+      "family": "earnings",
+      "scenario_family": "restatement-availability",
+      "source_family": "synthetic-restatement-availability",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "earnings-04",
+        "privacy": "synthetic",
+        "question": "Preserve point-in-time information across a restatement.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Profit available at replay cutoff USD million?"
+          },
+          {
+            "id": "o2",
+            "question": "Appropriate current reported profit USD million?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-restatement-availability",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "On Jan 10 the issuer reported profit USD 80m. On Mar 5 it restated profit to USD 55m. Historical replay cutoff is Feb 1; current analysis date is Apr 1."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": 80,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": true,
+            "value": 55,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "portfolio-01",
+      "family": "portfolio",
+      "scenario_family": "zero-denominator",
+      "source_family": "synthetic-zero-denominator",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "portfolio-01",
+        "privacy": "synthetic",
+        "question": "Interpret a concentration calculation with no known denominator.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Is whole-portfolio concentration identifiable?"
+          },
+          {
+            "id": "o2",
+            "question": "Whole-portfolio concentration percent?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-zero-denominator",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "Known holding value is zero. Other accounts, total assets, cash and liabilities are unavailable. Unknown account coverage is not zero."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": false,
+            "value": null,
+            "tolerance": 0,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "portfolio-02",
+      "family": "portfolio",
+      "scenario_family": "perfect-correlation",
+      "source_family": "synthetic-perfect-correlation",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "portfolio-02",
+        "privacy": "synthetic",
+        "question": "Assess diversification of two identical exposures.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Portfolio volatility percent?"
+          },
+          {
+            "id": "o2",
+            "question": "Did the combination reduce volatility?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-perfect-correlation",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "Two assets each have 20% volatility, correlation exactly 1, and weights 50%/50%. Variance=w1^2*s1^2+w2^2*s2^2+2*w1*w2*rho*s1*s2."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [
+          {
+            "metric": "portfolio_variance",
+            "expression": "0.5^2*0.2^2 + 0.5^2*0.2^2 + 2*0.5*0.5*1*0.2*0.2",
+            "value": 0.04,
+            "unit": "return squared",
+            "source_id": "s1",
+            "scope": "synthetic scenario period and stated account scope only",
+            "calculation": "Python fractions; public evaluator fixture calculation, not production workbench replay"
+          },
+          {
+            "metric": "portfolio_volatility",
+            "expression": "sqrt(0.04)*100",
+            "value": 20.0,
+            "unit": "percent",
+            "source_id": "s1",
+            "scope": "synthetic scenario period and stated account scope only",
+            "calculation": "Python fractions; public evaluator fixture calculation, not production workbench replay"
+          }
+        ],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": 20,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "portfolio-03",
+      "family": "portfolio",
+      "scenario_family": "optimization-cost-baseline",
+      "source_family": "synthetic-optimization-cost-baseline",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "portfolio-03",
+        "privacy": "synthetic",
+        "question": "Compare net returns using equal inputs.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Optimizer net return percentage points?"
+          },
+          {
+            "id": "o2",
+            "question": "Equal weight net return percentage points?"
+          },
+          {
+            "id": "o3",
+            "question": "Does optimizer outperform net?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-optimization-cost-baseline",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "Optimizer gross return 8.4%, trading costs 1.2%. Equal weight gross return 8.0%, costs 0.2%. Ignore taxes; same period and constraints."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [
+          {
+            "metric": "optimizer_net",
+            "expression": "8.4 - 1.2",
+            "value": 7.2,
+            "unit": "percentage points",
+            "source_id": "s1",
+            "scope": "synthetic scenario period and stated account scope only",
+            "calculation": "Python fractions; public evaluator fixture calculation, not production workbench replay"
+          },
+          {
+            "metric": "equal_weight_net",
+            "expression": "8.0 - 0.2",
+            "value": 7.8,
+            "unit": "percentage points",
+            "source_id": "s1",
+            "scope": "synthetic scenario period and stated account scope only",
+            "calculation": "Python fractions; public evaluator fixture calculation, not production workbench replay"
+          }
+        ],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": 7.2,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": true,
+            "value": 7.8,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o3",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "portfolio-04",
+      "family": "portfolio",
+      "scenario_family": "currency-mismatch",
+      "source_family": "synthetic-currency-mismatch",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "portfolio-04",
+        "privacy": "synthetic",
+        "question": "Check whether asset values can be summed.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Can the raw amounts be treated as USD 2000?"
+          },
+          {
+            "id": "o2",
+            "question": "Combined value in USD?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-currency-mismatch",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "One holding is USD 1000; another is EUR 1000. No FX rate or conversion timestamp is provided."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": false,
+            "value": null,
+            "tolerance": 0,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "historical-01",
+      "family": "historical",
+      "scenario_family": "next-close-cost",
+      "source_family": "synthetic-next-close-cost",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "historical-01",
+        "privacy": "synthetic",
+        "question": "Compute a timing-safe hypothetical trade.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Net return percentage points?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-next-close-cost",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "Signal becomes known at close price 100. Next close entry price is 102, exit is 110. Round-trip cost is 0.4 percentage points of entry notional. Use next-close entry."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [
+          {
+            "metric": "net_return",
+            "expression": "(110/102 - 1)*100 - 0.4",
+            "value": 7.443137254901961,
+            "unit": "percentage points",
+            "source_id": "s1",
+            "scope": "synthetic scenario period and stated account scope only",
+            "calculation": "Python fractions; public evaluator fixture calculation, not production workbench replay"
+          }
+        ],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": 7.443137254901955,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "historical-02",
+      "family": "historical",
+      "scenario_family": "filing-lookahead",
+      "source_family": "synthetic-filing-lookahead",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "historical-02",
+        "privacy": "synthetic",
+        "question": "Assess feature availability.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Is the Jan 20 feature point-in-time valid?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-filing-lookahead",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "A fiscal Dec 31 balance sheet was published Feb 15. A Jan 20 backtest uses the new numbers. No earlier release exists."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "critical"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "historical-03",
+      "family": "historical",
+      "scenario_family": "survivor-universe",
+      "source_family": "synthetic-survivor-universe",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "historical-03",
+        "privacy": "synthetic",
+        "question": "Assess a backtest universe.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Is survivorship bias excluded?"
+          },
+          {
+            "id": "o2",
+            "question": "Unbiased historical strategy return?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-survivor-universe",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "The strategy tests only current index members over the prior decade. Removed and delisted constituents are absent."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": false,
+            "value": null,
+            "tolerance": 0,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "historical-04",
+      "family": "historical",
+      "scenario_family": "reused-holdout",
+      "source_family": "synthetic-reused-holdout",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "historical-04",
+        "privacy": "synthetic",
+        "question": "Assess apparent improvement after adaptive tests.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Does this establish a prespecified 5% confirmatory result?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-reused-holdout",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "A candidate was selected after 40 tests on the same holdout. The final run has p=0.03 without multiplicity or adaptive-selection correction."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "critical"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "macro-01",
+      "family": "macro",
+      "scenario_family": "zero-coupon-sensitivity",
+      "source_family": "synthetic-zero-coupon-sensitivity",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "macro-01",
+        "privacy": "synthetic",
+        "question": "Compute bond price sensitivity.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Scenario price USD?"
+          },
+          {
+            "id": "o2",
+            "question": "Does its price fall when yield rises?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-zero-coupon-sensitivity",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "A one-year zero-coupon bond pays USD 100. Initial yield 4%; scenario yield 5%. Price=100/(1+yield)."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [
+          {
+            "metric": "initial_price",
+            "expression": "100/1.04",
+            "value": 96.15384615384616,
+            "unit": "USD",
+            "source_id": "s1",
+            "scope": "synthetic scenario period and stated account scope only",
+            "calculation": "Python fractions; public evaluator fixture calculation, not production workbench replay"
+          },
+          {
+            "metric": "scenario_price",
+            "expression": "100/1.05",
+            "value": 95.23809523809524,
+            "unit": "USD",
+            "source_id": "s1",
+            "scope": "synthetic scenario period and stated account scope only",
+            "calculation": "Python fractions; public evaluator fixture calculation, not production workbench replay"
+          }
+        ],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": 95.23809523809524,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": true,
+            "value": true,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "macro-02",
+      "family": "macro",
+      "scenario_family": "nominal-real-rate",
+      "source_family": "synthetic-nominal-real-rate",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "macro-02",
+        "privacy": "synthetic",
+        "question": "Distinguish approximate real from nominal rates.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Approximate expected real yield percent?"
+          },
+          {
+            "id": "o2",
+            "question": "Is future realized real return guaranteed?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-nominal-real-rate",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "Nominal yield is 5%; expected inflation is 3%. Use the stated approximation real yield=nominal-inflation, not realized purchasing-power assurance."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [
+          {
+            "metric": "approximate_real_yield",
+            "expression": "5 - 3",
+            "value": 2.0,
+            "unit": "percent",
+            "source_id": "s1",
+            "scope": "synthetic scenario period and stated account scope only",
+            "calculation": "Python fractions; public evaluator fixture calculation, not production workbench replay"
+          }
+        ],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": 2,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "macro-03",
+      "family": "macro",
+      "scenario_family": "stale-discount-input",
+      "source_family": "synthetic-stale-discount-input",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "macro-03",
+        "privacy": "synthetic",
+        "question": "Evaluate a dated reference.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Can 4% be labeled a current observed yield?"
+          },
+          {
+            "id": "o2",
+            "question": "Current risk-free yield?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-stale-discount-input",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "A 2022 valuation example uses 4% risk-free yield. No current yield is provided. The formula remains useful; the old example does not establish today's input."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": false,
+            "value": null,
+            "tolerance": 0,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "macro-04",
+      "family": "macro",
+      "scenario_family": "conflicting-causal-story",
+      "source_family": "synthetic-conflicting-causal-story",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "macro-04",
+        "privacy": "synthetic",
+        "question": "Assess the strength of macro causal evidence.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Does correlation identify the causal driver?"
+          },
+          {
+            "id": "o2",
+            "question": "Causal return contribution from rates?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-conflicting-causal-story",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "One commentator attributes rising equities to falling rates; another cites earnings. Both use the same two-week correlation and no identification design."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": false,
+            "value": null,
+            "tolerance": 0,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "cycles-01",
+      "family": "cycles",
+      "scenario_family": "declining-revenue-route",
+      "source_family": "synthetic-declining-revenue-route",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "cycles-01",
+        "privacy": "synthetic",
+        "question": "Apply the operative cyclicality route.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Cyclical flag?"
+          },
+          {
+            "id": "o2",
+            "question": "Valuation route?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-declining-revenue-route",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "TTM revenue 90, two-years-earlier revenue 100. Fiscal operating incomes positive throughout; TTM operating income 8. Cyclical if revenue declines OR sign-mixed loss and positive income in last four fiscal years. Positive TTM OI uses standard model plus midcycle margin note."
+          }
+        ],
+        "answer_vocabulary": [
+          "bridge",
+          "standard",
+          "standard_with_midcycle_note"
+        ],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": true,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": true,
+            "value": "standard_with_midcycle_note",
+            "tolerance": 0,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "cycles-02",
+      "family": "cycles",
+      "scenario_family": "sign-mixed-route",
+      "source_family": "synthetic-sign-mixed-route",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "cycles-02",
+        "privacy": "synthetic",
+        "question": "Apply the sign-mixed rule despite rising revenue.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Cyclical flag?"
+          },
+          {
+            "id": "o2",
+            "question": "Valuation route?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-sign-mixed-route",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "Revenue rose. Last four fiscal operating incomes: -2,-1,3,4. TTM OI -1. The operative rule needs at least one loss AND at least one positive-OI year, not three positive years."
+          }
+        ],
+        "answer_vocabulary": [
+          "bridge_with_trough_caveat",
+          "noncyclical",
+          "standard"
+        ],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": true,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": true,
+            "value": "bridge_with_trough_caveat",
+            "tolerance": 0,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "cycles-03",
+      "family": "cycles",
+      "scenario_family": "missing-history-route",
+      "source_family": "synthetic-missing-history-route",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "cycles-03",
+        "privacy": "synthetic",
+        "question": "Assess missing route inputs.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Can missing history be classified as noncyclical?"
+          },
+          {
+            "id": "o2",
+            "question": "Definitive cyclical flag?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-missing-history-route",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "Current revenue and OI are known. Prior fiscal years and two-years-earlier revenue are unavailable. A portable library is absent; no replacement history is supplied."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": false,
+            "value": null,
+            "tolerance": 0,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "cycles-04",
+      "family": "cycles",
+      "scenario_family": "stale-routing-primer",
+      "source_family": "synthetic-stale-routing-primer",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "cycles-04",
+        "privacy": "synthetic",
+        "question": "Resolve a documented rule conflict.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Which rule governs?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-stale-routing-primer",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "The ratified active procedure says at least one loss and one positive-OI year. An older primer says at least three positive years. The numerical procedure was not changed by this task."
+          }
+        ],
+        "answer_vocabulary": [
+          "active_sign_mixed_rule",
+          "older_three_positive_rule"
+        ],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": "active_sign_mixed_rule",
+            "tolerance": 0,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "judgment-01",
+      "family": "judgment",
+      "scenario_family": "uncalibrated-probability",
+      "source_family": "synthetic-uncalibrated-probability",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "judgment-01",
+        "privacy": "synthetic",
+        "question": "Review a thesis-loss probability.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "May a precise numeric probability be presented as calibrated?"
+          },
+          {
+            "id": "o2",
+            "question": "Calibrated expected dollar loss?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-uncalibrated-probability",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "A reviewer labels a risk likely but has no calibration history, base rate, model or empirical interval. Loss magnitude estimate is available, but no probability estimate is supported."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": false,
+            "value": null,
+            "tolerance": 0,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "judgment-02",
+      "family": "judgment",
+      "scenario_family": "conditional-falsifier",
+      "source_family": "synthetic-conditional-falsifier",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "judgment-02",
+        "privacy": "synthetic",
+        "question": "Evaluate a preregistered falsifier.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Has the two-quarter falsifier fired?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-conditional-falsifier",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "The thesis falsifier is two consecutive quarters of unit decline. Latest units fell 4%; preceding quarter rose 2%. No other falsifier is specified."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "judgment-03",
+      "family": "judgment",
+      "scenario_family": "irrelevant-primer",
+      "source_family": "synthetic-irrelevant-primer",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "judgment-03",
+        "privacy": "synthetic",
+        "question": "Assess retrieval usefulness.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Does the retrieved primer answer the material question?"
+          },
+          {
+            "id": "o2",
+            "question": "Issuer revenue-recognition conclusion?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-irrelevant-primer",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "The question concerns issuer revenue recognition. Retrieval returned a well-written bond-duration primer and no revenue-recognition evidence."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": false,
+            "value": null,
+            "tolerance": 0,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "judgment-04",
+      "family": "judgment",
+      "scenario_family": "unavailable-original",
+      "source_family": "synthetic-unavailable-original",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "judgment-04",
+        "privacy": "synthetic",
+        "question": "Evaluate an unsupported secondary assertion.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Has superiority been independently established?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-unavailable-original",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "A synthesis asserts a universal method outperforming simple alternatives. Its original study is unavailable, methods are absent, and no controlled comparison is supplied."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "liquidity-01",
+      "family": "liquidity",
+      "scenario_family": "round-trip-spread",
+      "source_family": "synthetic-round-trip-spread",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "liquidity-01",
+        "privacy": "synthetic",
+        "question": "Calculate the immediate round-trip cost.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Round-trip cash loss USD?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-round-trip-spread",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "Bid USD 99, ask USD 101, 10 shares. Buy at ask and immediately sell at bid. Ignore other fees and impact."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [
+          {
+            "metric": "round_trip_loss",
+            "expression": "(101 - 99)*10",
+            "value": 20.0,
+            "unit": "USD",
+            "source_id": "s1",
+            "scope": "synthetic scenario period and stated account scope only",
+            "calculation": "Python fractions; public evaluator fixture calculation, not production workbench replay"
+          }
+        ],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": 20,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "liquidity-02",
+      "family": "liquidity",
+      "scenario_family": "spread-midpoint",
+      "source_family": "synthetic-spread-midpoint",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "liquidity-02",
+        "privacy": "synthetic",
+        "question": "Measure quoted spread.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Quoted spread basis points?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-spread-midpoint",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "Bid 49.95, ask 50.05. Spread in basis points=(ask-bid)/midpoint*10000."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [
+          {
+            "metric": "quoted_spread",
+            "expression": "(50.05 - 49.95)/50*10000",
+            "value": 20.0,
+            "unit": "basis points",
+            "source_id": "s1",
+            "scope": "synthetic scenario period and stated account scope only",
+            "calculation": "Python fractions; public evaluator fixture calculation, not production workbench replay"
+          }
+        ],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": 20,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "liquidity-03",
+      "family": "liquidity",
+      "scenario_family": "unknown-market-impact",
+      "source_family": "synthetic-unknown-market-impact",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "liquidity-03",
+        "privacy": "synthetic",
+        "question": "Assess execution-cost certainty.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Can impact be assumed zero?"
+          },
+          {
+            "id": "o2",
+            "question": "Supported execution cost percentage?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-unknown-market-impact",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "An order is 20% of typical daily volume. No spread, depth, volatility, participation schedule or market-impact model is supplied."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": false,
+            "value": null,
+            "tolerance": 0,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "liquidity-04",
+      "family": "liquidity",
+      "scenario_family": "borrow-cost-net",
+      "source_family": "synthetic-borrow-cost-net",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "liquidity-04",
+        "privacy": "synthetic",
+        "question": "Compare a short strategy gross and net.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Net return percentage points?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-borrow-cost-net",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "Gross profit 6% of initial notional, borrow fee 4%, execution cost 0.5%, financing 0.5% over same horizon. Taxes excluded."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [
+          {
+            "metric": "net_return",
+            "expression": "6 - 4 - 0.5 - 0.5",
+            "value": 1.0,
+            "unit": "percentage points",
+            "source_id": "s1",
+            "scope": "synthetic scenario period and stated account scope only",
+            "calculation": "Python fractions; public evaluator fixture calculation, not production workbench replay"
+          }
+        ],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": 1,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "household-01",
+      "family": "household",
+      "scenario_family": "internal-transfer-saving",
+      "source_family": "synthetic-internal-transfer-saving",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "household-01",
+        "privacy": "synthetic",
+        "question": "Separate spending from transfers.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Household external cash surplus?"
+          },
+          {
+            "id": "o2",
+            "question": "Is the internal transfer external spending?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-internal-transfer-saving",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "Covered checking and savings belong to one household. Income 5000, external expenses 3000, internal checking-to-savings transfer 1000. Opening and closing balances otherwise reconcile."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [
+          {
+            "metric": "external_surplus",
+            "expression": "5000 - 3000",
+            "value": 2000.0,
+            "unit": "synthetic currency units",
+            "source_id": "s1",
+            "scope": "synthetic scenario period and stated account scope only",
+            "calculation": "Python fractions; public evaluator fixture calculation, not production workbench replay"
+          }
+        ],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": 2000,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "household-02",
+      "family": "household",
+      "scenario_family": "partial-account-scope",
+      "source_family": "synthetic-partial-account-scope",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "household-02",
+        "privacy": "synthetic",
+        "question": "Report supported scope without a whole-household claim.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Covered-account net external flow?"
+          },
+          {
+            "id": "o2",
+            "question": "Whole-household saving rate percent?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-partial-account-scope",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "Only one checking account is covered. Its income is 4000 and external outflow 2500. Savings, credit cards and other household accounts are unavailable."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [
+          {
+            "metric": "covered_account_flow",
+            "expression": "4000 - 2500",
+            "value": 1500.0,
+            "unit": "synthetic currency units",
+            "source_id": "s1",
+            "scope": "synthetic scenario period and stated account scope only",
+            "calculation": "Python fractions; public evaluator fixture calculation, not production workbench replay"
+          }
+        ],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": 1500,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": false,
+            "value": null,
+            "tolerance": 0,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "household-03",
+      "family": "household",
+      "scenario_family": "unknown-not-zero",
+      "source_family": "synthetic-unknown-not-zero",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "household-03",
+        "privacy": "synthetic",
+        "question": "Distinguish unobserved debt from zero debt.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Can mortgage liability be set to zero?"
+          },
+          {
+            "id": "o2",
+            "question": "Household net worth?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-unknown-not-zero",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "A connected account feed contains no mortgage account and confirms only checking coverage. It provides no evidence of whether a mortgage exists."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": false,
+            "value": null,
+            "tolerance": 0,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    },
+    {
+      "id": "household-04",
+      "family": "household",
+      "scenario_family": "pending-settled-double-count",
+      "source_family": "synthetic-pending-settled-double-count",
+      "version": "1",
+      "privacy": "synthetic",
+      "input": {
+        "schema": "osanwe.reasoning-task/1",
+        "case_id": "household-04",
+        "privacy": "synthetic",
+        "question": "Reconcile pending and settled transactions.",
+        "decision_horizon": "as of the stated scenario cutoff",
+        "obligations": [
+          {
+            "id": "o1",
+            "question": "Settled spending amount?"
+          },
+          {
+            "id": "o2",
+            "question": "Should pending and settled amounts be added?"
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "origin_id": "fixture-pending-settled-double-count",
+            "label": "Synthetic scenario, not observed financial data",
+            "version": "1",
+            "passage": "A purchase authorization for 120 is pending; its linked settled transaction is 118. The pending authorization is replaced by settlement, not an additional purchase."
+          }
+        ],
+        "answer_vocabulary": [],
+        "calculation_evidence": [],
+        "execution_scope": "Read-only reasoning over supplied deterministic synthetic calculations; production calculation execution is not tested."
+      },
+      "oracle": {
+        "schema": "osanwe.reasoning-oracle/1",
+        "obligations": [
+          {
+            "id": "o1",
+            "answerable": true,
+            "value": 118,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          },
+          {
+            "id": "o2",
+            "answerable": true,
+            "value": false,
+            "tolerance": 1e-06,
+            "source_sets": [
+              [
+                "s1"
+              ]
+            ],
+            "severity": "major"
+          }
+        ],
+        "prose_review": "required separately for prose quality claims"
+      },
+      "curation": "development author exposed; independent oracle check required before admission"
+    }
+  ]
+}

@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FIS Synthetic Onboarding - Household Preview Wizard</title>
+<style>
+/* Dark theme via CSS variables only */
+:root {
+  --bg: #0f1218;
+  --bg-panel: #171c26;
+  --bg-inset: #10141d;
+  --border: #2a3244;
+  --text: #dbe2ee;
+  --text-dim: #8b96ab;
+  --accent: #4fa3ff;
+  --accent-soft: rgba(79, 163, 255, 0.16);
+  --ok: #3fce7a;
+  --warn: #e8b64a;
+  --err: #ef6a6a;
+  --banner-bg: #241d0e;
+  --banner-border: #6b5a1e;
+  --banner-text: #ecd28a;
+  --focus-ring: #7db8ff;
+  --radius: 10px;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  line-height: 1.45;
+}
+body { padding: 0 0 4rem 0; }
+
+/* synthetic-preview banner */
+.synthetic-banner {
+  background: var(--banner-bg);
+  border-bottom: 1px solid var(--banner-border);
+  color: var(--banner-text);
+  padding: .55rem 1.25rem;
+  font-size: .85rem;
+  text-align: center;
+  position: sticky; top: 0; z-index: 50;
+}
+.synthetic-banner strong { letter-spacing: .08em; }
+
+.wrap { max-width: 46rem; margin: 0 auto; padding: 1.5rem 1.25rem; }
+h1 { font-size: 1.35rem; margin: .2rem 0 .3rem; }
+.subtle { color: var(--text-dim); font-size: .9rem; margin: 0 0 1.2rem; }
+
+/* progress */
+.progress { display: flex; gap: .5rem; margin: 1rem 0 1.5rem; }
+.progress .step {
+  flex: 1; text-align: center; padding: .45rem .2rem;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  color: var(--text-dim); font-size: .82rem; background: var(--bg-inset);
+}
+.progress .step.current {
+  border-color: var(--accent); color: var(--text);
+  background: var(--accent-soft);
+}
+.progress .step.done { border-color: var(--ok); color: var(--ok); }
+
+/* panels + fieldsets */
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.4rem;
+  margin-bottom: 1.25rem;
+}
+fieldset {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: .9rem 1.1rem 1.05rem;
+  margin: 0 0 1.15rem;
+}
+legend {
+  padding: 0 .45rem;
+  font-weight: 600; font-size: .95rem;
+  color: var(--accent);
+}
+.hint { color: var(--text-dim); font-size: .84rem; margin: .15rem 0 .7rem; }
+
+.field { margin-bottom: .9rem; }
+label, .group-label { display: block; font-size: .9rem; margin-bottom: .3rem; }
+select, input[type="number"] {
+  width: 100%; max-width: 22rem;
+  background: var(--bg-inset); color: var(--text);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: .45rem .55rem; font-size: .92rem;
+}
+.check-row { display: flex; align-items: flex-start; gap: .55rem; margin: .35rem 0; }
+.check-row label { margin: 0; font-size: .88rem; cursor: pointer; }
+.check-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(13.5rem, 1fr)); gap: .15rem .8rem; }
+.radio-list { display: flex; flex-direction: column; gap: .55rem; }
+.radio-card {
+  display: flex; align-items: flex-start; gap: .6rem;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: .55rem .75rem; cursor: pointer; background: var(--bg-inset);
+}
+.radio-card:hover { border-color: var(--accent); }
+.radio-card input { margin-top: .22rem; accent-color: var(--accent); }
+.radio-card .desc { color: var(--text-dim); font-size: .82rem; }
+
+input[type=checkbox], input[type=radio] { width: 1.05rem; height: 1.05rem; accent-color: var(--accent); }
+input[type=text] {
+  background: var(--bg-inset); color: var(--text);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: .45rem .55rem; font-size: .92rem; width: 100%;
+}
+
+/* WHY tooltips */
+.why-wrap { position: relative; display: inline-block; vertical-align: middle; }
+.why-btn {
+  background: none; border: 1px solid var(--accent); color: var(--accent);
+  border-radius: 999px; width: 1.25rem; height: 1.25rem;
+  font-size: .78rem; line-height: 1; cursor: pointer; padding: 0;
+}
+.why-btn:hover, .why-btn:focus-visible { background: var(--accent-soft); }
+.why-pop {
+  display: none;
+  position: absolute; z-index: 40; left: 0; top: calc(100% + 6px);
+  width: min(21rem, 80vw);
+  background: var(--bg-inset); border: 1px solid var(--accent);
+  border-radius: var(--radius); padding: .7rem .85rem;
+  font-size: .82rem; color: var(--text);
+  box-shadow: 0 6px 18px rgba(0,0,0,.55);
+}
+.why-pop.open { display: block; }
+.why-pop .why-title { color: var(--accent); font-weight: 600; margin-bottom: .25rem; }
+.why-pop p { margin: .25rem 0; }
+
+/* inline why under inputs */
+.inline-why { color: var(--text-dim); font-size: .8rem; margin-top: .3rem; }
+.inline-why strong { color: var(--warn); font-weight: 600; }
+
+/* buttons */
+.btnrow { display: flex; gap: .7rem; margin-top: 1.1rem; flex-wrap: wrap; }
+button.btn {
+  background: var(--accent); color: #08111f; font-weight: 600;
+  border: none; border-radius: 8px; padding: .55rem 1.15rem;
+  font-size: .92rem; cursor: pointer;
+}
+button.btn.secondary { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+button.btn.danger { background: transparent; color: var(--err); border: 1px solid var(--err); }
+button.btn[disabled] { opacity: .45; cursor: not-allowed; }
+
+/* validation output */
+.errors {
+  margin-top: .9rem; padding: .8rem .95rem;
+  border: 1px solid var(--err); border-radius: var(--radius);
+  background: rgba(239, 106, 106, .08);
+  font-size: .86rem;
+}
+.errors:empty { display: none; }
+.errors li { margin: .2rem 0; }
+.ok-note { color: var(--ok); font-size: .88rem; margin-top: .7rem; }
+
+/* stage visibility */
+.stage { display: none; }
+.stage.active { display: block; }
+
+textarea#export-json {
+  width: 100%; min-height: 17rem;
+  background: var(--bg-inset); color: var(--text);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  font-family: Consolas, monospace; font-size: .8rem;
+  padding: .8rem; white-space: pre;
+}
+.retention-note {
+  border-left: 3px solid var(--banner-border);
+  background: var(--banner-bg); color: var(--banner-text);
+  padding: .6rem .8rem; font-size: .82rem; border-radius: 6px;
+  margin-top: .9rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  clip-path: inset(50%); overflow: hidden; white-space: nowrap;
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="synthetic-banner" role="note" aria-label="synthetic preview notice">
+  <strong>SYNTHETIC PREVIEW:</strong> this wizard produces a schema-valid
+  <em>synthetic household document for testing</em> &mdash; not a real
+  financial profile. No exact balances are collected and nothing is sent anywhere.
+</div>
+
+<main class="wrap">
+<h1>Synthetic Household Onboarding</h1>
+<p class="subtle">
+  Three stages: context &rarr; financial structure (ranges only) &rarr; review &amp; export.
+  Every answer maps to a placeholder value in a test fixture.
+</p>
+
+<nav class="progress" aria-label="wizard progress">
+  <div class="step current" id="pstep1" aria-current="step">1 &middot; Context</div>
+  <div class="step" id="pstep2">2 &middot; Financial structure</div>
+  <div class="step" id="pstep3">3 &middot; Review &amp; export</div>
+</nav>
+
+<form id="wizard" novalidate>
+
+<!-- ==================================================================== -->
+<!-- STAGE 1                                                              -->
+<!-- ==================================================================== -->
+<section class="stage active" id="stage1" aria-labelledby="stage1-h">
+  <h2 id="stage1-h">Stage 1 &middot; Minimal context</h2>
+  <p class="subtle">Broad strokes only. These answers set the shape of the
+  synthetic household and which scenario fixtures get exercised.</p>
+
+  <fieldset>
+    <legend>Household structure</legend>
+    <p class="hint">Member counts drive how many synthetic members the exported fixture carries.</p>
+
+    <div class="field">
+      <span class="group-label" id="lbl-adults">Number of adults
+        <span class="why-wrap">
+          <button type="button" class="why-btn" aria-expanded="false"
+                  aria-controls="why-adults" aria-describedby="why-adults-title"
+                  onclick="toggleWhy('why-adults', this)">?</button>
+          <span class="visually-hidden">Why is this needed?</span>
+        </span>
+      </span>
+      <select id="adults" aria-labelledby="lbl-adults" required>
+        <option value="">Select&hellip;</option>
+        <option value="1">1 adult</option>
+        <option value="2">2 adults</option>
+        <option value="3">3 adults</option>
+        <option value="4">4 adults</option>
+        <option value="5">5+ adults</option>
+      </select>
+      <div class="inline-why"><strong>Why:</strong> determines member count in the synthetic twin.
+      Affects: per-member account ownership, retirement projections.
+      Less-sensitive alternative: you never name members here; the export uses SYNTHETIC-MEMBER-A/B/C placeholders.</div>
+      <div class="why-pop" id="why-adults" role="tooltip">
+        <div class="why-title" id="why-adults-title">Why we ask</div>
+        <p><strong>Needed for:</strong> sizing the synthetic household fixture.</p>
+        <p><strong>Affects:</strong> account ownership arrays, per-member retirement math, insurance coverage lists.</p>
+        <p><strong>Less sensitive alternative:</strong> no names or ages of real people are ever collected &mdash; exports use placeholder identities.</p>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="group-label" id="lbl-children">Number of children
+        <span class="why-wrap">
+          <button type="button" class="why-btn" aria-expanded="false"
+                  aria-controls="why-children"
+                  onclick="toggleWhy('why-children', this)">?</button>
+          <span class="visually-hidden">Why is this needed?</span>
+        </span>
+      </span>
+      <select id="children" aria-labelledby="lbl-children" required>
+        <option value="">Select&hellip;</option>
+        <option value="0">None</option>
+        <option value="1">1 child</option>
+        <option value="2">2 children</option>
+        <option value="3">3 children</option>
+        <option value="4">4+ children</option>
+      </select>
+      <div class="inline-why"><strong>Why:</strong> flags education/dependent goals in scenarios.
+      Affects: 529 fixtures, horizon weighting.
+      Less-sensitive alternative: counts only &mdash; never ages or names.</div>
+      <div class="why-pop" id="why-children" role="tooltip">
+        <div class="why-title">Why we ask</div>
+        <p><strong>Needed for:</strong> dependent-count realism in test scenarios.</p>
+        <p><strong>Affects:</strong> education-goal fixtures, 529 account generation, survivor-needs sizing.</p>
+        <p><strong>Less sensitive alternative:</strong> a coarse count instead of birthdates.</p>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Goals (choose at least one)</legend>
+    <p class="hint">Each selected goal becomes one synthetic goal entry with a placeholder target date/amount.</p>
+    <div class="check-grid" role="group" aria-labelledby="goals-group-label">
+      <span class="check-row">
+        <input type="checkbox" id="goal-emergency_fund" name="goals" value="emergency_fund">
+        <label for="goal-emergency_fund">Emergency fund</label>
+      </span>
+      <span class="check-row">
+        <input type="checkbox" id="goal-retirement" name="goals" value="retirement">
+        <label for="goal-retirement">Retirement</label>
+      </span>
+      <span class="check-row">
+        <input type="checkbox" id="goal-education" name="goals" value="education">
+        <label for="goal-education">Education</label>
+      </span>
+      <span class="check-row">
+        <input type="checkbox" id="goal-home_purchase" name="goals" value="home_purchase">
+        <label for="goal-home_purchase">Home purchase</label>
+      </span>
+      <span class="check-row">
+        <input type="checkbox" id="goal-debt_payoff" name="goals" value="debt_payoff">
+        <label for="goal-debt_payoff">Debt payoff</label>
+      </span>
+      <span class="check-row">
+        <input type="checkbox" id="goal-travel" name="goals" value="travel">
+        <label for="goal-travel">Travel</label>
+      </span>
+      <span class="check-row">
+        <input type="checkbox" id="goal-career_transition" name="goals" value="career_transition">
+        <label for="goal-career_transition">Career transition</label>
+      </span>
+      <span class="check-row">
+        <input type="checkbox" id="goal-legacy" name="goals" value="legacy">
+        <label for="goal-legacy">Legacy / estate</label>
+      </span>
+    </div>
+    <span id="goals-group-label" hidden>Goal selection</span>
+    <div class="inline-why"><strong>Why:</strong> goals define what the twin scenarios optimize for.
+    Affects: target-date fixtures, priority ordering, savings-rate tests.
+    Less-sensitive alternative: pick generic tags rather than describing your actual plans.</div>
+    <div class="why-pop" id="why-goals" role="tooltip">
+      <div class="why-title">Why we ask</div>
+      <p><strong>Needed for:</strong> generating goal objects in the synthetic document.</p>
+      <p><strong>Affects:</strong> goal count, target dates, priority spread in scenario runs.</p>
+      <p><strong>Less sensitive alternative:</strong> tag-level choices only; amounts are synthesized from bands, never typed by you.</p>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Time horizon</legend>
+    <div class="field">
+      <label for="horizon">Primary planning horizon
+        <span class="why-wrap">
+          <button type="button" class="why-btn" aria-expanded="false"
+                  aria-controls="why-horizon"
+                  onclick="toggleWhy('why-horizon', this)">?</button>
+        </span>
+      </label>
+      <select id="horizon" required>
+        <option value="">Select&hellip;</option>
+        <option value="short_1_3y">Short (1&ndash;3 years)</option>
+        <option value="medium_3_10y">Medium (3&ndash;10 years)</option>
+        <option value="long_10y_plus">Long (10+ years)</option>
+      </select>
+      <div class="inline-why"><strong>Why:</strong> sets synthetic goal target dates and projection length.
+      Affects: compounding windows, liquidity-floor sizing.
+      Less-sensitive alternative: a coarse band instead of an exact retirement year.</div>
+      <div class="why-pop" id="why-horizon" role="tooltip">
+        <div class="why-title">Why we ask</div>
+        <p><strong>Needed for:</strong> picking realistic target years on synthetic goals.</p>
+        <p><strong>Affects:</strong> scenario duration, glide-path fixtures, rebalance cadence tests.</p>
+        <p><strong>Less sensitive alternative:</strong> three coarse bands instead of exact dates.</p>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Jurisdiction</legend>
+    <div class="field">
+      <label for="jurisdiction">Tax / regulatory jurisdiction
+        <span class="why-wrap">
+          <button type="button" class="why-btn" aria-expanded="false"
+                  aria-controls="why-juris"
+                  onclick="toggleWhy('why-juris', this)">?</button>
+        </span>
+      </label>
+      <select id="jurisdiction" required>
+        <option value="">Select&hellip;</option>
+        <option value="US">US (federal)</option>
+        <option value="US-CA">US &ndash; California</option>
+        <option value="US-NY">US &ndash; New York</option>
+        <option value="US-TX">US &ndash; Texas</option>
+        <option value="US-FL">US &ndash; Florida</option>
+        <option value="US-WA">US &ndash; Washington</option>
+        <option value="CA">Canada</option>
+        <option value="GB">United Kingdom</option>
+        <option value="EU">EU (generic)</option>
+        <option value="OTHER">Other</option>
+      </select>
+      <div class="inline-why"><strong>Why:</strong> selects the tax-lot and account-type rule set used by scenario engines.
+      Affects: Roth vs taxable treatment, state-tax fixtures.
+      Less-sensitive alternative: country-level or 'OTHER' is fine; street-level location is never requested.</div>
+      <div class="why-pop" id="why-juris" role="tooltip">
+        <div class="why-title">Why we ask</div>
+        <p><strong>Needed for:</strong> choosing which tax rules the synthetic fixture exercises.</p>
+        <p><strong>Affects:</strong> account eligibility, taxlot_ext behavior, benefit matching assumptions.</p>
+        <p><strong>Less sensitive alternative:</strong> broad region codes only.</p>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Risk preference (1 &ndash; 5)</legend>
+    <p class="hint">How you'd want a portfolio to behave in theory &mdash; this maps directly to the twin's risk_tolerance level.</p>
+    <div class="radio-list" role="radiogroup" aria-labelledby="risk-label">
+      <span id="risk-label" hidden>Risk preference</span>
+      <label class="radio-card">
+        <input type="radio" name="risk_preference" value="1" required>
+        <span><strong>1 &middot; Conservative</strong><br>
+        <span class="desc">Preserve capital first. Small swings feel unacceptable; steady low growth preferred.</span></span>
+      </label>
+      <label class="radio-card">
+        <input type="radio" name="risk_preference" value="2">
+        <span><strong>2 &middot; Moderately conservative</strong><br>
+        <span class="desc">Mostly stable holdings with a small slice of growth assets.</span></span>
+      </label>
+      <label class="radio-card">
+        <input type="radio" name="risk_preference" value="3">
+        <span><strong>3 &middot; Moderate</strong><br>
+        <span class="desc">Balanced mix; can ride out medium swings for long-term growth.</span></span>
+      </label>
+      <label class="radio-card">
+        <input type="radio" name="risk_preference" value="4">
+        <span><strong>4 &middot; Moderately aggressive</strong><br>
+        <span class="desc">Growth-focused; accepts meaningful downturns as the price of higher returns.</span></span>
+      </label>
+      <label class="radio-card">
+        <input type="radio" name="risk_preference" value="5">
+        <span><strong>5 &middot; Aggressive</strong><br>
+        <span class="desc">Maximum growth tilt; large drawdowns tolerated for highest long-run upside.</span></span>
+      </label>
+    </div>
+    <div class="inline-why"><strong>Why:</strong> risk preference becomes constraints.risk_tolerance.level in the twin.
+    Affects: allocation scenarios, drawdown stress tests, behavioral-rule fixtures.
+    Less-sensitive alternative: a 1-to-5 dial instead of a full questionnaire transcript.</div>
+    <div class="why-pop" id="why-risk" role="tooltip">
+      <div class="why-title">Why we ask</div>
+      <p><strong>Needed for:</strong> mapping to one of five named tolerance levels.</p>
+      <p><strong>Affects:</strong> conservative..aggressive enum, capacity scoring, panic-sell rule thresholds.</p>
+      <p><strong>Less sensitive alternative:</strong> single integer instead of item-by-item questionnaire answers.</p>
+    </div>
+  </fieldset>
+
+  <div class="btnrow">
+    <button type="button" class="btn" id="btn-next-1">Next: financial structure &rarr;</button>
+  </div>
+  <ul class="errors" id="errors-stage1" aria-live="polite"></ul>
+</section>
+
+<!-- ==================================================================== -->
+<!-- STAGE 2                                                              -->
+<!-- ==================================================================== -->
+<section class="stage" id="stage2" aria-labelledby="stage2-h">
+  <h2 id="stage2-h">Stage 2 &middot; Financial structure</h2>
+  <p class="subtle">Ranges only &mdash; the wizard never asks for exact dollar balances,
+  account numbers, or institution credentials.</p>
+
+  <fieldset>
+    <legend>Account types present</legend>
+    <p class="hint">Check every type the household has. For each checked type, pick an approximate balance range.</p>
+    <div class="check-grid" role="group" aria-labelledby="acct-group-label">
+      <span id="acct-group-label" hidden>Account types</span>
+      <span class="check-row">
+        <input type="checkbox" id="acct-cash" name="account_types" value="cash"
+               onchange="syncAccountBand(this)">
+        <label for="acct-cash">Cash / checking</label>
+      </span>
+      <span class="check-row">
+        <input type="checkbox" id="acct-taxable" name="account_types" value="taxable"
+               onchange="syncAccountBand(this)">
+        <label for="acct-taxable">Taxable brokerage</label>
+      </span>
+      <span class="check-row">
+        <input type="checkbox" id="acct-brokerage" name="account_types" value="brokerage"
+               onchange="syncAccountBand(this)">
+        <label for="acct-brokerage">Managed brokerage</label>
+      </span>
+      <span class="check-row">
+        <input type="checkbox" id="acct-traditional_401k" name="account_types" value="traditional_401k"
+               onchange="syncAccountBand(this)">
+        <label for="acct-traditional_401k">Traditional 401(k)</label>
+      </span>
+      <span class="check-row">
+        <input type="checkbox" id="acct-roth" name="account_types" value="roth"
+               onchange="syncAccountBand(this)">
+        <label for="acct-roth">Roth IRA</label>
+      </span>
+      <span class="check-row">
+        <input type="checkbox" id="acct-hsa" name="account_types" value="hsa"
+               onchange="syncAccountBand(this)">
+        <label for="acct-hsa">HSA</label>
+      </span>
+      <span class="check-row">
+        <input type="checkbox" id="acct-529" name="account_types" value="529"
+               onchange="syncAccountBand(this)">
+        <label for="acct-529">529 education</label>
+      </span>
+    </div>
+    <div id="band-sections"></div>
+    <div class="inline-why"><strong>Why:</strong> account types decide which engines run (tax lots, RMDs, HSA triple-advantage).
+    Affects: account objects in the export, benefits matching.
+    Less-sensitive alternative: ranges replace exact balances entirely &mdash; no account numbers or custodian names asked.</div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Income band</legend>
+    <div class="field">
+      <label for="income_band">Approximate annual household income
+        <span class="why-wrap">
+          <button type="button" class="why-btn" aria-expanded="false"
+                  aria-controls="why-income"
+                  onclick="toggleWhy('why-income', this)">?</button>
+        </span>
+      </label>
+      <select id="income_band" required>
+        <option value="">Select&hellip;</option>
+        <option value="under_25k">Under $25k</option>
+        <option value="25k_50k">$25k &ndash; $50k</option>
+        <option value="50k_100k">$50k &ndash; $100k</option>
+        <option value="100k_200k">$100k &ndash; $200k</option>
+        <option value="200k_plus">$200k+</option>
+      </select>
+      <div class="inline-why"><strong>Why:</strong> drives income-replacement and savings-capacity fixtures.
+      Affects: 401k contribution headroom, emergency-fund sizing.
+      Less-sensitive alternative: a wide band, not a salary figure.</div>
+      <div class="why-pop" id="why-income" role="tooltip">
+        <div class="why-title">Why we ask</div>
+        <p><strong>Needed for:</strong> calibrating synthetic human-capital streams.</p>
+        <p><strong>Affects:</strong> match-cap scenarios, debt-payoff timelines, insurance coverage multiples.</p>
+        <p><strong>Less sensitive alternative:</strong> band midpoint becomes the placeholder number; exact pay is never stored.</p>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Spending band</legend>
+    <div class="field">
+      <label for="spending_band">Approximate annual spending
+        <span class="why-wrap">
+          <button type="button" class="why-btn" aria-expanded="false"
+                  aria-controls="why-spend"
+                  onclick="toggleWhy('why-spend', this)">?</button>
+        </span>
+      </label>
+      <select id="spending_band" required>
+        <option value="">Select&hellip;</option>
+        <option value="under_25k">Under $25k</option>
+        <option value="25k_50k">$25k &ndash; $50k</option>
+        <option value="50k_100k">$50k &ndash; $100k</option>
+        <option value="100k_200k">$100k &ndash; $200k</option>
+        <option value="200k_plus">$200k+</option>
+      </select>
+      <div class="inline-why"><strong>Why:</strong> sets the liquidity floor and retirement burn-rate assumptions.
+      Affects: cash-buffer scenarios, FIRE-date math.
+      Less-sensitive alternative: coarse band instead of a budget breakdown.</div>
+      <div class="why-pop" id="why-spend" role="tooltip">
+        <div class="why-title">Why we ask</div>
+        <p><strong>Needed for:</strong> synthesizing constraints.liquidity_floor.</p>
+        <p><strong>Affects:</strong> emergency-fund targets, safe-withdrawal tests.</p>
+        <p><strong>Less sensitive alternative:</strong> one band choice replaces any category-by-category budget.</p>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Debt</legend>
+    <div class="field check-row">
+      <input type="checkbox" id="debt_present" onchange="document.getElementById('debt-kinds').hidden = !this.checked">
+      <label for="debt_present">Household carries debt</label>
+    </div>
+    <div id="debt-kinds" hidden>
+      <span class="group-label">Which kinds? (approximate &mdash; no balances collected)</span>
+      <span class="check-row"><input type="checkbox" id="debt-mortgage" value="mortgage"><label for="debt-mortgage">Mortgage</label></span>
+      <span class="check-row"><input type="checkbox" id="debt-auto" value="auto"><label for="debt-auto">Auto loan</label></span>
+      <span class="check-row"><input type="checkbox" id="debt-student" value="student"><label for="debt-student">Student loans</label></span>
+      <span class="check-row"><input type="checkbox" id="debt-cc" value="cc"><label for="debt-cc">Credit cards</label></span>
+      <div class="inline-why"><strong>Why:</strong> debt kinds select which liability fixtures get generated.
+      Affects: payoff-order strategies, interest drag modeling.
+      Less-sensitive alternative: kinds only; rates/balances are synthetic constants.</div>
+    </div>
+    <div class="why-pop" id="why-debt" role="tooltip">
+      <div class="why-title">Why we ask</div>
+      <p><strong>Needed for:</strong> deciding whether liabilities[] appears in the export.</p>
+      <p><strong>Affects:</strong> net-worth fixtures, avalanche-vs-snowball scenario runs.</p>
+      <p><strong>Less sensitive alternative:</strong> checkbox granularity &mdash; no lender names or balances.</p>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Insurance</legend>
+    <div class="field check-row">
+      <input type="checkbox" id="insurance_present">
+      <label for="insurance_present">Any insurance policies in force
+        <span class="why-wrap">
+          <button type="button" class="why-btn" aria-expanded="false"
+                  aria-controls="why-insurance"
+                  onclick="toggleWhy('why-insurance', this)">?</button>
+        </span>
+      </label>
+    </div>
+    <div class="inline-why"><strong>Why:</strong> toggles whether insurance[] is generated.
+    Affects: survivor-needs scenarios, coverage-gap detection.
+    Less-sensitive alternative: yes/no flag only &mdash; carrier and policy numbers never requested.</div>
+    <div class="why-pop" id="why-insurance" role="tooltip">
+      <div class="why-title">Why we ask</div>
+      <p><strong>Needed for:</strong> presence/absence of the insurance section.</p>
+      <p><strong>Affects:</strong> life/disability gap tests, premium-budget scenarios.</p>
+      <p><strong>Less sensitive alternative:</strong> boolean flag; policy details stay out of scope entirely.</p>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Retirement accounts</legend>
+    <div class="field check-row">
+      <input type="checkbox" id="retirement_accounts_present">
+      <label for="retirement_accounts_present">At least one tax-advantaged retirement account exists
+        <span class="why-wrap">
+          <button type="button" class="why-btn" aria-expanded="false"
+                  aria-controls="why-retire"
+                  onclick="toggleWhy('why-retire', this)">?</button>
+        </span>
+      </label>
+    </div>
+    <div class="inline-why"><strong>Why:</strong> gates retirement-readiness and RMD scenarios.
+    Affects: asset-location optimization, withdrawal-order tests.
+    Less-sensitive alternative: yes/no flag instead of plan details.</div>
+    <div class="why-pop" id="why-retire" role="tooltip">
+      <div class="why-title">Why we ask</div>
+      <p><strong>Needed for:</strong> routing the fixture through retirement-specific engines.</p>
+      <p><strong>Affects:</strong> traditional-vs-Roth sequencing, employer-match fixtures.</p>
+      <p><strong>Less sensitive alternative:</strong> a single checkbox rather than provider/plan identifiers.</p>
+    </div>
+  </fieldset>
+
+  <div class="btnrow">
+    <button type="button" class="btn secondary" id="btn-back-2">&larr; Back</button>
+    <button type="button" class="btn" id="btn-next-2">Next: review &rarr;</button>
+  </div>
+  <ul class="errors" id="errors-stage2" aria-live="polite"></ul>
+</section>
+
+<!-- ==================================================================== -->
+<!-- STAGE 3 : REVIEW + EXPORT                                            -->
+<!-- ==================================================================== -->
+<section class="stage" id="stage3" aria-labelledby="stage3-h">
+  <h2 id="stage3-h">Stage 3 &middot; Review &amp; export</h2>
+  <p class="subtle">The assembled document below is a fully synthetic test artifact.
+  Validate it, then download if you consent.</p>
+
+  <fieldset>
+    <legend>Assembled document (read-only)</legend>
+    <textarea id="export-json" readonly spellcheck="false"
+              aria-label="assembled synthetic household document JSON"></textarea>
+    <div class="btnrow">
+      <button type="button" class="btn secondary" id="btn-validate">Validate</button>
+      <a id="download-link" class="btn secondary" style="display:none;text-decoration:none;text-align:center"
+         download="synthetic-household-onboarding.json">Download JSON</a>
+    </div>
+    <ul class="errors" id="errors-stage3" aria-live="polite"></ul>
+    <p class="ok-note" id="ok-stage3" hidden>&#10003; Document passes all embedded checks
+    (mirror of tools/fis/onboarding_validate.py).</p>
+  </fieldset>
+
+  <fieldset>
+    <legend>Consent &amp; data retention</legend>
+    <div class="field check-row">
+      <input type="checkbox" id="consent">
+      <label for="consent">I understand this export is a <strong>synthetic preview document for testing</strong>,
+      derived from my range-band answers, and I choose to save it locally.</label>
+    </div>
+    <div class="retention-note">
+      <strong>Data retention:</strong> this wizard makes zero network calls &mdash; nothing leaves this page.
+      Your answers persist only in this browser's localStorage until you press
+      &ldquo;Clear saved draft&rdquo; or close/clear the tab. The downloaded file lives wherever you put it;
+      delete it when finished testing.
+    </div>
+    <div class="btnrow">
+      <button type="button" class="btn secondary" id="btn-back-3">&larr; Back</button>
+      <button type="button" class="btn danger" id="btn-clear-draft">Clear saved draft</button>
+    </div>
+  </fieldset>
+</section>
+
+</form>
+</main>
+
+<script>
+"use strict";
+
+/* =====================================================================
+ * Embedded validation mirror of tools/fis/onboarding_validate.py
+ * Same vocabularies, same dotted-path error strings, same stage levels.
+ * ===================================================================== */
+
+var ACCOUNT_TYPES = ["taxable","traditional_401k","roth","hsa","529","brokerage","cash"];
+var LIABILITY_KINDS = ["mortgage","auto","student","cc"];
+var GOAL_TAGS = ["emergency_fund","retirement","education","home_purchase",
+                 "debt_payoff","travel","career_transition","legacy"];
+var HORIZONS = ["short_1_3y","medium_3_10y","long_10y_plus"];
+var JURISDICTIONS = ["US","US-CA","US-NY","US-TX","US-FL","US-WA","CA","GB","EU","OTHER"];
+var BALANCE_BANDS = ["none","under_10k","10k_50k","50k_150k","150k_500k","over_500k"];
+var MONEY_BANDS = ["under_25k","25k_50k","50k_100k","100k_200k","200k_plus"];
+
+function err(path, msg) { return path + ": " + msg; }
+function isInt(v) { return typeof v === "number" && isFinite(v) && Math.floor(v) === v; }
+
+function validateOnboardingDoc(doc) {
+  var errors = [];
+  var completion = { context: 0, financial_structure: 0, twin_core: 0, consent: 0 };
+
+  if (!doc || typeof doc !== "object" || Array.isArray(doc)) {
+    return { ok: false, level: "invalid", errors: [err("<root>", "document must be an object")], completion: completion };
+  }
+
+  if (doc.doc_kind !== "onboarding_session")
+    errors.push(err("doc_kind", "must be 'onboarding_session'"));
+  if (doc.synthetic_preview !== true)
+    errors.push(err("synthetic_preview", "must be true (synthetic preview marker)"));
+
+  /* --- context -------------------------------------------------- */
+  var ctxGood = 0, ctxTotal = 6;
+  var onb = doc.onboarding || {};
+  var ctx = onb.context || {};
+  var P = "onboarding.context";
+  if (!doc.onboarding) errors.push(err("onboarding", "required section is missing"));
+  else if (!("context" in onb)) errors.push(err(P, "required section is missing"));
+
+  function intInRange(v, lo, hi, path, reqMsg) {
+    if (v === undefined || v === null) { errors.push(err(path, reqMsg)); return false; }
+    if (!isInt(v) || v < lo || v > hi) {
+      errors.push(err(path, "must be an integer in [" + lo + ", " + hi + "]"));
+      return false;
+    }
+    return true;
+  }
+  if (intInRange(ctx.adults, 1, 8, P + ".adults", "required field is missing")) ctxGood++;
+  if (intInRange(ctx.children, 0, 12, P + ".children", "required field is missing")) ctxGood++;
+
+  if (!Array.isArray(ctx.goals)) {
+    errors.push(err(P + ".goals", Array.isArray(ctx.goals) ? "" :
+      (ctx.goals == null ? "required field is missing" : "must be a non-empty array")));
+  } else if (ctx.goals.length === 0) {
+    errors.push(err(P + ".goals", "must be a non-empty array"));
+  } else {
+    var dup = ctx.goals.filter(function(g, i) { return ctx.goals.indexOf(g) !== i; });
+    var bad = ctx.goals.filter(function(g) { return GOAL_TAGS.indexOf(g) === -1; });
+    if (dup.length) errors.push(err(P + ".goals", "duplicate goal tags: " + dup.join(", ")));
+    else if (bad.length) errors.push(err(P + ".goals", "unknown goal tag(s): " + bad.join(", ") +
+      "; allowed: " + GOAL_TAGS.join(", ")));
+    else ctxGood++;
+  }
+  if (ctx.horizon == null) errors.push(err(P + ".horizon", "required field is missing"));
+  else if (HORIZONS.indexOf(ctx.horizon) === -1)
+    errors.push(err(P + ".horizon", "must be one of " + HORIZONS.join(", ")));
+  else ctxGood++;
+  if (ctx.jurisdiction == null) errors.push(err(P + ".jurisdiction", "required field is missing"));
+  else if (JURISDICTIONS.indexOf(ctx.jurisdiction) === -1)
+    errors.push(err(P + ".jurisdiction", "must be one of " + JURISDICTIONS.join(", ")));
+  else ctxGood++;
+  if (ctx.risk_preference == null) errors.push(err(P + ".risk_preference", "required field is missing"));
+  else if (!isInt(ctx.risk_preference) || ctx.risk_preference < 1 || ctx.risk_preference > 5)
+    errors.push(err(P + ".risk_preference", "must be an integer in [1, 5]"));
+  else ctxGood++;
+
+  completion.context = Math.round(100 * ctxGood / ctxTotal);
+
+  /* --- financial structure (optional at stage 1) ----------------- */
+  var finGood = 0, finTotal = 6, hasFin = false;
+  if ("financial_structure" in onb) {
+    hasFin = true;
+    var fin = onb.financial_structure || {};
+    var F = "onboarding.financial_structure";
+
+    if (!Array.isArray(fin.accounts)) {
+      errors.push(err(F + ".accounts", fin.accounts == null ?
+        "required field is missing" : "must be a non-empty array of {type, balance_band}"));
+    } else if (fin.accounts.length === 0) {
+      errors.push(err(F + ".accounts", "must be a non-empty array"));
+    } else {
+      var seenTypes = {}, acctOk = true;
+      fin.accounts.forEach(function(a, i) {
+        var ap = F + ".accounts[" + i + "]";
+        if (!a || typeof a !== "object") { errors.push(err(ap, "must be an object")); acctOk = false; return; }
+        if (a.type == null) { errors.push(err(ap + ".type", "required field is missing")); acctOk = false; }
+        else if (ACCOUNT_TYPES.indexOf(a.type) === -1) {
+          errors.push(err(ap + ".type", "must be one of " + ACCOUNT_TYPES.join(", "))); acctOk = false;
+        } else if (seenTypes[a.type]) {
+          errors.push(err(ap + ".type", "duplicate account type '" + a.type + "'")); acctOk = false;
+        } else seenTypes[a.type] = true;
+        if (a.balance_band == null) {
+          errors.push(err(ap + ".balance_band", "required field is missing (pick 'none' or an approximate range)"));
+          acctOk = false;
+        } else if (BALANCE_BANDS.indexOf(a.balance_band) === -1) {
+          errors.push(err(ap + ".balance_band", "must be one of " + BALANCE_BANDS.join(", ")));
+          acctOk = false;
+        }
+      });
+      if (acctOk) finGood++;
+    }
+    [["income_band"], ["spending_band"]].forEach(function(kw) {
+      var k = kw[0];
+      if (fin[k] == null) errors.push(err(F + "." + k, "required field is missing"));
+      else if (MONEY_BANDS.indexOf(fin[k]) === -1)
+        errors.push(err(F + "." + k, "must be one of " + MONEY_BANDS.join(", ")));
+      else finGood++;
+    });
+    if (fin.debt_present == null) errors.push(err(F + ".debt_present", "required field is missing"));
+    else if (typeof fin.debt_present !== "boolean")
+      errors.push(err(F + ".debt_present", "must be a boolean"));
+    else {
+      finGood++;
+      if (fin.debt_present === true) {
+        if (!Array.isArray(fin.debt_kinds)) {
+          errors.push(err(F + ".debt_kinds", fin.debt_kinds == null ?
+            "must be a non-empty array when debt_present is true" : "must be an array"));
+        } else if (fin.debt_kinds.length === 0) {
+          errors.push(err(F + ".debt_kinds", "must list at least one kind when debt_present is true"));
+        } else {
+          var badK = fin.debt_kinds.filter(function(k2) { return LIABILITY_KINDS.indexOf(k2) === -1; });
+          if (badK.length) errors.push(err(F + ".debt_kinds",
+            "unknown kind(s): " + badK.join(", ") + "; allowed: " + LIABILITY_KINDS.join(", ")));
+        }
+      }
+    }
+    if (fin.insurance_present == null) errors.push(err(F + ".insurance_present", "required field is missing"));
+    else if (typeof fin.insurance_present !== "boolean")
+      errors.push(err(F + ".insurance_present", "must be a boolean"));
+    else finGood++;
+    if (fin.retirement_accounts_present == null)
+      errors.push(err(F + ".retirement_accounts_present", "required field is missing"));
+    else if (typeof fin.retirement_accounts_present !== "boolean")
+      errors.push(err(F + ".retirement_accounts_present", "must be a boolean"));
+    else finGood++;
+  }
+  completion.financial_structure = Math.round(100 * finGood / finTotal);
+
+  /* --- consent ---------------------------------------------------- */
+  if (doc.consent !== true)
+    errors.push(err("consent", doc.consent === false ?
+      "must be true (explicit consent required before export)" :
+      "consent checkbox must be checked before export"));
+  completion.consent = doc.consent === true ? 100 : 0;
+
+  /* --- twin core (judged only when present) ----------------------- */
+  var CORE = ["schema_version","as_of","members","accounts","goals","constraints"];
+  var corePresent = CORE.filter(function(k) { return k in doc; }).length;
+  completion.twin_core = Math.round(100 * corePresent / CORE.length);
+  var coreCleanBefore = errors.length;
+
+  var DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+  function isoDate(v) {
+    if (typeof v !== "string" || !DATE_RE.test(v)) return false;
+    var y = +v.slice(0,4), m = +v.slice(5,7), d = +v.slice(8,10);
+    var dt = new Date(Date.UTC(y, m-1, d));
+    return dt.getUTCFullYear() === y && dt.getUTCMonth() === m-1 && dt.getUTCDate() === d;
+  }
+  function nonEmptyStr(v) { return typeof v === "string" && v.trim().length > 0; }
+
+  if ("schema_version" in doc && !/^\d+\.\d+$/.test(String(doc.schema_version)))
+    errors.push(err("schema_version", "must be a semver-like 'MAJOR.MINOR' string"));
+  if ("as_of" in doc && !isoDate(doc.as_of))
+    errors.push(err("as_of", "must be an ISO date 'YYYY-MM-DD'"));
+
+  var memberIds = {};
+  if ("members" in doc) {
+    if (!Array.isArray(doc.members))
+      errors.push(err("members", "must be an array"));
+    else doc.members.forEach(function(m, i) {
+      var mp = "members[" + i + "]";
+      if (!m || typeof m !== "object") { errors.push(err(mp, "must be an object")); return; }
+      if (!nonEmptyStr(m.id)) errors.push(err(mp + ".id", "must be a non-empty string"));
+      else memberIds[m.id] = true;
+      if (!isInt(m.age) || m.age < 0 || m.age > 120)
+        errors.push(err(mp + ".age", "must be an integer in [0, 120]"));
+    });
+  }
+  if ("accounts" in doc) {
+    if (!Array.isArray(doc.accounts))
+      errors.push(err("accounts", "must be an array"));
+    else doc.accounts.forEach(function(a, i) {
+      var ap = "accounts[" + i + "]";
+      if (!a || typeof a !== "object") { errors.push(err(ap, "must be an object")); return; }
+      ["id","custodian"].forEach(function(k) {
+        if (!(k in a)) errors.push(err(ap + "." + k, "required field is missing"));
+        else if (!nonEmptyStr(a[k])) errors.push(err(ap + "." + k, "must be a non-empty string"));
+      });
+      if (!("type" in a)) errors.push(err(ap + ".type", "required field is missing"));
+      else if (ACCOUNT_TYPES.indexOf(a.type) === -1)
+        errors.push(err(ap + ".type", "must be one of " + ACCOUNT_TYPES.join(", ")));
+      if ("balance" in a && (typeof a.balance !== "number" || a.balance < 0))
+        errors.push(err(ap + ".balance", "must be a number >= 0"));
+      if ("currency" in a && !/^[A-Z]{3}$/.test(String(a.currency)))
+        errors.push(err(ap + ".currency", "must be a 3-letter ISO-4217 code"));
+      if ("owners" in a) {
+        if (!Array.isArray(a.owners) || a.owners.length === 0)
+          errors.push(err(ap + ".owners", "must be a non-empty array of member ids"));
+        else a.owners.forEach(function(o, oi) {
+          if (!nonEmptyStr(o)) errors.push(err(ap + ".owners[" + oi + "]", "must be a non-empty string"));
+          else if (!(o in memberIds))
+            errors.push(err(ap + ".owners[" + oi + "]", "references unknown member id '" + o + "'"));
+        });
+      }
+      if ("holdings" in a) {
+        if (!Array.isArray(a.holdings))
+          errors.push(err(ap + ".holdings", "must be an array"));
+        else a.holdings.forEach(function(h, hi) {
+          var hp = ap + ".holdings[" + hi + "]";
+          if (!h || typeof h !== "object") { errors.push(err(hp, "must be an object")); return; }
+          if (!nonEmptyStr(h.symbol)) errors.push(err(hp + ".symbol", "must be a non-empty string"));
+          if (!isFinite(h.qty) || h.qty <= 0) errors.push(err(hp + ".qty", "must be a number > 0"));
+        });
+      }
+    });
+  }
+  if ("goals" in doc) {
+    if (!Array.isArray(doc.goals))
+      errors.push(err("goals", "must be an array"));
+    else doc.goals.forEach(function(g, i) {
+      var gp = "goals[" + i + "]";
+      if (!g || typeof g !== "object") { errors.push(err(gp, "must be an object")); return; }
+      if (!nonEmptyStr(g.id)) errors.push(err(gp + ".id", "must be a non-empty string"));
+      if (!isoDate(g.target_date))
+        errors.push(err(gp + ".target_date", "must be an ISO date 'YYYY-MM-DD'"));
+      if (!["essential","high","medium","low"].includes(g.priority))
+        errors.push(err(gp + ".priority", "must be one of essential, high, medium, low"));
+      if ("target_amount" in g && (typeof g.target_amount !== "number" || g.target_amount < 0))
+        errors.push(err(gp + ".target_amount", "must be a number >= 0"));
+    });
+  }
+  if ("constraints" in doc) {
+    var c = doc.constraints, cp = "constraints";
+    if (!c || typeof c !== "object") errors.push(err(cp, "must be an object"));
+    else {
+      var LEVELS = ["conservative","moderately_conservative","moderate","moderately_aggressive","aggressive"];
+      if (c.risk_tolerance == null)
+        errors.push(err(cp + ".risk_tolerance", "required field is missing"));
+      else {
+        var lvl = (typeof c.risk_tolerance === "object") ? c.risk_tolerance.level : c.risk_tolerance;
+        if (lvl == null) errors.push(err(cp + ".risk_tolerance.level", "required field is missing"));
+        else if (LEVELS.indexOf(lvl) === -1)
+          errors.push(err((typeof c.risk_tolerance === "object" ?
+            cp + ".risk_tolerance.level" : cp + ".risk_tolerance"),
+            "must be one of " + LEVELS.join(", ")));
+      }
+      if (c.risk_capacity == null)
+        errors.push(err(cp + ".risk_capacity", "required field is missing"));
+      else if (typeof c.risk_capacity !== "number" || c.risk_capacity < 0 || c.risk_capacity > 100)
+        errors.push(err(cp + ".risk_capacity", "must be a number within [0, 100]"));
+      if (c.liquidity_floor == null)
+        errors.push(err(cp + ".liquidity_floor", "required field is missing"));
+      else if (typeof c.liquidity_floor !== "number" || c.liquidity_floor < 0)
+        errors.push(err(cp + ".liquidity_floor", "must be a number >= 0"));
+    }
+  }
+  var coreClean = corePresent === CORE.length && errors.length === coreCleanBefore;
+
+  /* --- overall + level --------------------------------------------- */
+  var overall = Math.round(10 * (0.25 * completion.context
+    + 0.25 * completion.financial_structure
+    + 0.40 * completion.twin_core
+    + 0.10 * completion.consent)) / 10;
+
+  var contextOk = completion.context === 100 &&
+    !errors.some(function(e) { return e.indexOf(P) === 0; });
+  var finOk = hasFin && completion.financial_structure === 100 &&
+    !errors.some(function(e) { return e.indexOf("onboarding.financial_structure") === 0; });
+
+  var level = "invalid";
+  if (coreClean && doc.consent === true && contextOk && finOk) level = "stage3";
+  else if (finOk && contextOk) level = "stage2";
+  else if (contextOk) level = "stage1";
+
+  return {
+    ok: errors.length === 0,
+    level: level,
+    errors: errors,
+    completion: completion,
+    overall_completion: overall
+  };
+}
+
+/* =====================================================================
+ * Document assembly (mirrors project_full_session_doc in python)
+ * ===================================================================== */
+
+var BALANCE_MID = { none: 0, under_10k: 5000, "10k_50k": 30000,
+                    "50k_150k": 100000, "150k_500k": 300000, over_500k: 750000 };
+var MONEY_MID = { under_25k: 18000, "25k_50k": 37500, "50k_100k": 75000,
+                  "100k_200k": 150000, "200k_plus": 275000 };
+var HORIZON_YEARS = { short_1_3y: 2, medium_3_10y: 7, long_10y_plus: 20 };
+var RISK_LEVELS = ["conservative","moderately_conservative","moderate",
+                   "moderately_aggressive","aggressive"];
+var LETTERS = "ABCDEFGH";
+var SYNTH_LIAB = {
+  mortgage: { rate: 0.0375, term_months: 360, balance: 320000, min_payment: 1500 },
+  auto:     { rate: 0.0549, term_months: 60,  balance: 18000,  min_payment: 420 },
+  student:  { rate: 0.045,  term_months: 120, balance: 35000,  min_payment: 380 },
+  cc:       { rate: 0.189,  term_months: 36,  balance: 8000,   min_payment: 200 }
+};
+var GOAL_MULT = {
+  emergency_fund: 3, retirement: 12, home_purchase: 4, education: null,
+  debt_payoff: null, travel: null, career_transition: null, legacy: null
+};
+
+function collect() {
+  var sel = function(id) { return document.getElementById(id).value; };
+  var chk = function(id) { return document.getElementById(id).checked; };
+
+  var adults = parseInt(sel("adults"), 10);
+  var children = parseInt(sel("children"), 10);
+  var goals = Array.prototype.slice.call(
+    document.querySelectorAll('input[name="goals"]:checked')).map(function(c) { return c.value; });
+  var rp = document.querySelector('input[name="risk_preference"]:checked');
+  var riskPref = rp ? parseInt(rp.value, 10) : null;
+
+  var accounts = [];
+  document.querySelectorAll('input[name="account_types"]:checked').forEach(function(c) {
+    var bandSel = document.querySelector('select[data-band-for="' + c.value + '"]');
+    if (bandSel && bandSel.value) accounts.push({ type: c.value, balance_band: bandSel.value });
+  });
+
+  var debtKinds = [];
+  if (chk("debt_present")) {
+    ["mortgage","auto","student","cc"].forEach(function(k) {
+      if (chk("debt-" + k)) debtKinds.push(k);
+    });
+  }
+
+  return {
+    adults: isNaN(adults) ? null : adults,
+    children: isNaN(children) ? null : children,
+    goals: goals,
+    horizon: sel("horizon") || null,
+    jurisdiction: sel("jurisdiction") || null,
+    risk_preference: riskPref,
+    _financial: {
+      accounts: accounts,
+      income_band: sel("income_band") || null,
+      spending_band: sel("spending_band") || null,
+      debt_present: !!chk("debt_present"),
+      debt_kinds: debtKinds,
+      insurance_present: !!chk("insurance_present"),
+      retirement_accounts_present: !!chk("retirement_accounts_present")
+    },
+    _consent: chk("consent")
+  };
+}
+
+function todayIso() {
+  var d = new Date();
+  var mm = String(d.getMonth() + 1).padStart(2, "0");
+  var dd = String(d.getDate()).padStart(2, "0");
+  return d.getFullYear() + "-" + mm + "-" + dd;
+}
+
+function assembleDoc(includeCore) {
+  var s = collect();
+  var doc = {
+    doc_kind: "onboarding_session",
+    schema_version: "1.0",
+    as_of: todayIso(),
+    synthetic_preview: true,
+    consent: s._consent,
+    onboarding: {
+      stage_completed: includeCore ? 3 : (hasFinAnswers(s._financial) ? 2 : 1),
+      context: {
+        adults: s.adults, children: s.children, goals: s.goals,
+        horizon: s.horizon, jurisdiction: s.jurisdiction,
+        risk_preference: s.risk_preference
+      },
+      financial_structure: s._financial
+    }
+  };
+
+  if (!includeCore) return doc;
+
+  /* twin core projection - all values synthetic */
+  var ctx = doc.onboarding.context, fin = s._financial;
+  var year = new Date().getFullYear() + (HORIZON_YEARS[ctx.horizon] || 10);
+
+  var members = [], ownerIds = [];
+  for (var ai = 0; ai < (ctx.adults || 1); ai++) {
+    var mid = "m" + (ai + 1);
+    ownerIds.push(mid);
+    members.push({ id: mid, name: "SYNTHETIC-MEMBER-" + LETTERS[ai], age: 45 - 3 * ai });
+  }
+  for (var ci = 0; ci < (ctx.children || 0); ci++) {
+    members.push({ id: "mc" + (ci + 1), name: "SYNTHETIC-CHILD-" + (ci + 1), age: 8 + ci });
+  }
+
+  var accounts = (fin.accounts || []).map(function(spec, i) {
+    var mid2 = BALANCE_MID[spec.balance_band];
+    var acct = {
+      id: "synth-" + spec.type + "-" + (i + 1),
+      type: spec.type,
+      custodian: "SYNTHETIC-CUSTODIAN",
+      currency: "USD",
+      owners: ownerIds.length ? [ownerIds[0]] : ["m1"]
+    };
+    acct.balance = mid2;
+    if (mid2 > 0) acct.holdings = [{ symbol: "CASH-SYNTH-" + (i + 1), qty: mid2 }];
+    return acct;
+  });
+
+  var GOAL_FIXED = { education: 200000, debt_payoff: 50000, travel: 25000,
+                     career_transition: 60000, legacy: 250000 };
+  var PRIOS = ["essential","high","medium","low"];
+  var spendMid = MONEY_MID[fin.spending_band] || 50000;
+  var incomeMid = MONEY_MID[fin.income_band] || 50000;
+  var goals = (ctx.goals || []).map(function(tag, gi) {
+    var amt = GOAL_FIXED[tag] != null ? GOAL_FIXED[tag]
+      : (GOAL_MULT[tag] || 2) * (tag === "emergency_fund" ? spendMid : incomeMid);
+    return {
+      id: "g-" + tag,
+      target_date: year + "-06-30",
+      target_amount: amt,
+      priority: PRIOS[Math.min(gi, PRIOS.length - 1)]
+    };
+  });
+
+  doc.household_name = "SYNTHETIC-HOUSEHOLD-ONBOARDING-" + year;
+  doc.members = members;
+  doc.accounts = accounts;
+  doc.goals = goals;
+  doc.constraints = {
+    risk_tolerance: {
+      level: RISK_LEVELS[(ctx.risk_preference || 3) - 1],
+      score: (ctx.risk_preference || 3) * 20
+    },
+    risk_capacity: (ctx.risk_preference || 3) * 20,
+    liquidity_floor: 3 * spendMid
+  };
+
+  if (fin.debt_present && fin.debt_kinds && fin.debt_kinds.length) {
+    doc.liabilities = fin.debt_kinds.map(function(k) {
+      var e = { kind: k };
+      Object.assign(e, SYNTH_LIAB[k]);
+      return e;
+    });
+  }
+  if (fin.insurance_present) {
+    doc.insurance = [{
+      kind: "health", coverage_amount: 5000000, premium: 400,
+      premium_freq: "monthly",
+      insured_ids: ownerIds.length ? [ownerIds[0]] : ["m1"]
+    }];
+  }
+  return doc;
+}
+
+function hasFinAnswers(fin) {
+  return fin.accounts.length > 0 || !!fin.income_band ||
+         fin.retirement_accounts_present;
+}
+
+/* =====================================================================
+ * UI plumbing: stages, tooltips, validation display
+ * ===================================================================== */
+
+function toggleWhy(id, btn) {
+  var pop = document.getElementById(id);
+  if (!pop) return;
+  var open = pop.classList.toggle("open");
+  if (btn) btn.setAttribute("aria-expanded", open ? "true" : "false");
+  /* close other open popovers */
+  document.querySelectorAll(".why-pop.open").forEach(function(p) {
+    if (p.id !== id) { p.classList.remove("open"); }
+  });
+}
+document.addEventListener("click", function(ev) {
+  if (!ev.target.closest(".why-wrap") && !ev.target.closest(".why-pop")) {
+    document.querySelectorAll(".why-pop.open").forEach(function(p) {
+      p.classList.remove("open");
+    });
+    document.querySelectorAll('.why-btn[aria-expanded="true"]').forEach(function(b) {
+      b.setAttribute("aria-expanded", "false");
+    });
+  }
+});
+document.addEventListener("keydown", function(ev) {
+  if (ev.key === "Escape") {
+    document.querySelectorAll(".why-pop.open").forEach(function(p) { p.classList.remove("open"); });
+  }
+});
+
+function syncAccountBand(cb) {
+  var holder = document.getElementById("band-sections");
+  if (cb.checked) {
+    if (holder.querySelector('[data-band-wrap="' + cb.value + '"]')) return;
+    var div = document.createElement("div");
+    div.className = "field";
+    div.setAttribute("data-band-wrap", cb.value);
+    var lab = document.createElement("label");
+    lab.setAttribute("for", "band-" + cb.value);
+    lab.textContent = "Approximate balance range \u2014 " + cb.value.replace(/_/g, " ");
+    var selEl = document.createElement("select");
+    selEl.id = "band-" + cb.value;
+    selEl.setAttribute("data-band-for", cb.value);
+    selEl.required = true;
+    var opt0 = document.createElement("option");
+    opt0.value = ""; opt0.textContent = "Select\u2026";
+    selEl.appendChild(opt0);
+    BALANCE_BANDS.forEach(function(b) {
+      var o = document.createElement("option");
+      o.value = b; o.textContent = b.replace(/_/g, " ").replace(/^none$/, "no / negligible balance");
+      selEl.appendChild(o);
+    });
+    var hint = document.createElement("div");
+    hint.className = "inline-why";
+    hint.innerHTML = "<strong>Range only:</strong> exact balances are never collected. " +
+      "A band midpoint becomes a synthetic placeholder in the export.";
+    div.appendChild(lab); div.appendChild(selEl); div.appendChild(hint);
+    holder.appendChild(div);
+  } else {
+    var w = holder.querySelector('[data-band-wrap="' + cb.value + '"]');
+    if (w) w.remove();
+  }
+}
+
+function showStage(n) {
+  [1, 2, 3].forEach(function(i) {
+    document.getElementById("stage" + i).classList.toggle("active", i === n);
+    var ps = document.getElementById("pstep" + i);
+    ps.classList.toggle("current", i === n);
+    if (i < n) { ps.classList.add("done"); ps.classList.remove("current"); }
+    else { ps.classList.remove("done"); }
+  });
+  if (n === 3) refreshExport();
+  var heading = document.getElementById("stage" + n + "-h");
+  if (heading) heading.focus();
+}
+
+function renderErrors(listId, result) {
+  var ul = document.getElementById(listId);
+  ul.innerHTML = "";
+  if (!result) return;
+  result.errors.forEach(function(e) {
+    var li = document.createElement("li");
+    var strong = document.createElement("strong");
+    strong.textContent = e.split(":")[0] + ":";
+    li.appendChild(strong);
+    li.appendChild(document.createTextNode(e.split(":").slice(1).join(":")));
+    ul.appendChild(li);
+  });
+}
+
+function validateStage(stageNum) {
+  var includeCore = false;
+  var doc = assembleDoc(includeCore);
+  if (stageNum === 1) {
+    delete doc.consent;
+    delete doc.onboarding.financial_structure;
+    doc.consent = false;
+  } else if (stageNum === 2) {
+    delete doc.consent;
+  }
+  var res = validateOnboardingDoc(doc);
+  /* filter down to errors relevant to this stage prefix */
+  var prefix = stageNum === 1 ? "onboarding.context" : "onboarding.";
+  var relevant = res.errors.filter(function(e) {
+    return e.indexOf(prefix) === 0;
+  });
+  renderErrors(stageNum === 1 ? "errors-stage1" : "errors-stage2",
+    { errors: relevant });
+  return relevant.length === 0;
+}
+
+function refreshExport() {
+  var doc = assembleDoc(true);
+  var ta = document.getElementById("export-json");
+  ta.value = JSON.stringify(doc, null, 2);
+  var res = validateOnboardingDoc(doc);
+  renderErrors("errors-stage3", res);
+  var okNote = document.getElementById("ok-stage3");
+  var dl = document.getElementById("download-link");
+  if (res.ok && res.level === "stage3") {
+    okNote.hidden = false;
+    okNote.textContent = "\u2713 PASS (stage3, " + res.overall_completion +
+      "% complete). Consent recorded; download enabled.";
+    var blob = new Blob([JSON.stringify(doc, null, 2)], { type: "application/json" });
+    dl.href = URL.createObjectURL(blob);
+    dl.style.display = "";
+    dl.setAttribute("aria-disabled", "false");
+    localStorage.setItem("fis_onboarding_session_v1", ta.value);
+  } else {
+    okNote.hidden = true;
+    dl.style.display = "none";
+    dl.removeAttribute("href");
+    if (res.level !== "stage3" && res.errors.length === 0) {
+      renderErrors("errors-stage3", { errors: [
+        "level: incomplete \u2014 reached " + res.level +
+        " (" + res.overall_completion + "% complete); complete earlier stages first."
+      ]});
+    }
+  }
+}
+
+/* wire buttons */
+document.getElementById("btn-next-1").addEventListener("click", function() {
+  if (validateStage(1)) showStage(2);
+});
+document.getElementById("btn-back-2").addEventListener("click", function() { showStage(1); });
+document.getElementById("btn-next-2").addEventListener("click", function() {
+  if (validateStage(2)) showStage(3);
+});
+document.getElementById("btn-back-3").addEventListener("click", function() { showStage(2); });
+document.getElementById("btn-validate").addEventListener("click", refreshExport);
+document.getElementById("consent").addEventListener("change", function() {
+  if (this.checked) refreshExport();
+});
+document.getElementById("btn-clear-draft").addEventListener("click", function() {
+  localStorage.removeItem("fis_onboarding_session_v1");
+  var okNote = document.getElementById("ok-stage3");
+  okNote.hidden = false;
+  okNote.textContent = "Saved draft cleared from localStorage.";
+});
+
+/* headings focusable for programmatic focus */
+[1, 2, 3].forEach(function(i) {
+  var h = document.getElementById("stage" + i + "-h");
+  if (h) { h.tabIndex = -1; }
+});
+</script>
+</body>
+</html>

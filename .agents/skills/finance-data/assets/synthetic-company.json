@@ -1,0 +1,232 @@
+{
+  "schema": "osanwe.analysis/1",
+  "id": "synthetic-company-v1",
+  "classification": "synthetic",
+  "workflow": "company",
+  "report_at": "2026-09-12T09:36:00Z",
+  "knowledge_cutoff": "2025-08-01T00:00:00Z",
+  "scope": {
+    "population": "Synthetic issuer annual income statements",
+    "coverage": "complete",
+    "included": [
+      "FY2024",
+      "FY2025"
+    ],
+    "excluded": [],
+    "limitations": [
+      "Income-statement arithmetic only; does not establish a full investment view."
+    ]
+  },
+  "sources": [
+    {
+      "id": "src:fixture",
+      "title": "Synthetic annual statements, no real issuer",
+      "uri": "synthetic:annual-statements",
+      "type": "synthetic",
+      "published_at": "2025-07-30T00:00:00Z",
+      "available_at": "2025-08-01T00:00:00Z",
+      "retrieved_at": "2026-09-12T09:35:39Z",
+      "verification": "fixture"
+    }
+  ],
+  "claims": [
+    {
+      "id": "fact:revenue-2024",
+      "entity": "instr:synthetic",
+      "metric": "revenue",
+      "value": 100,
+      "unit": "millions",
+      "currency": "USD",
+      "basis": "GAAP:nominal",
+      "kind": "reported",
+      "source": "src:fixture",
+      "source_locator": "Annual synthetic statement 2024, revenue row",
+      "as_of": "2024-06-30T23:59:59Z",
+      "max_age_days": 800,
+      "freshness_policy": "Historical statement comparison only; not a current valuation",
+      "temporal_type": "flow",
+      "published_at": "2025-07-30T00:00:00Z",
+      "available_at": "2025-08-01T00:00:00Z",
+      "retrieved_at": "2026-09-12T09:35:39Z",
+      "period_start": "2023-07-01T00:00:00Z",
+      "period_end": "2024-06-30T23:59:59Z",
+      "frequency": "annual"
+    },
+    {
+      "id": "fact:operating_income-2024",
+      "entity": "instr:synthetic",
+      "metric": "operating_income",
+      "value": 20,
+      "unit": "millions",
+      "currency": "USD",
+      "basis": "GAAP:nominal",
+      "kind": "reported",
+      "source": "src:fixture",
+      "source_locator": "Annual synthetic statement 2024, operating_income row",
+      "as_of": "2024-06-30T23:59:59Z",
+      "max_age_days": 800,
+      "freshness_policy": "Historical statement comparison only; not a current valuation",
+      "temporal_type": "flow",
+      "published_at": "2025-07-30T00:00:00Z",
+      "available_at": "2025-08-01T00:00:00Z",
+      "retrieved_at": "2026-09-12T09:35:39Z",
+      "period_start": "2023-07-01T00:00:00Z",
+      "period_end": "2024-06-30T23:59:59Z",
+      "frequency": "annual"
+    },
+    {
+      "id": "fact:net_income-2024",
+      "entity": "instr:synthetic",
+      "metric": "net_income",
+      "value": 10,
+      "unit": "millions",
+      "currency": "USD",
+      "basis": "GAAP:nominal",
+      "kind": "reported",
+      "source": "src:fixture",
+      "source_locator": "Annual synthetic statement 2024, net_income row",
+      "as_of": "2024-06-30T23:59:59Z",
+      "max_age_days": 800,
+      "freshness_policy": "Historical statement comparison only; not a current valuation",
+      "temporal_type": "flow",
+      "published_at": "2025-07-30T00:00:00Z",
+      "available_at": "2025-08-01T00:00:00Z",
+      "retrieved_at": "2026-09-12T09:35:39Z",
+      "period_start": "2023-07-01T00:00:00Z",
+      "period_end": "2024-06-30T23:59:59Z",
+      "frequency": "annual"
+    },
+    {
+      "id": "fact:revenue-2025",
+      "entity": "instr:synthetic",
+      "metric": "revenue",
+      "value": 120,
+      "unit": "millions",
+      "currency": "USD",
+      "basis": "GAAP:nominal",
+      "kind": "reported",
+      "source": "src:fixture",
+      "source_locator": "Annual synthetic statement 2025, revenue row",
+      "as_of": "2025-06-30T23:59:59Z",
+      "max_age_days": 800,
+      "freshness_policy": "Historical statement comparison only; not a current valuation",
+      "temporal_type": "flow",
+      "published_at": "2025-07-30T00:00:00Z",
+      "available_at": "2025-08-01T00:00:00Z",
+      "retrieved_at": "2026-09-12T09:35:39Z",
+      "period_start": "2024-07-01T00:00:00Z",
+      "period_end": "2025-06-30T23:59:59Z",
+      "frequency": "annual"
+    },
+    {
+      "id": "fact:operating_income-2025",
+      "entity": "instr:synthetic",
+      "metric": "operating_income",
+      "value": 30,
+      "unit": "millions",
+      "currency": "USD",
+      "basis": "GAAP:nominal",
+      "kind": "reported",
+      "source": "src:fixture",
+      "source_locator": "Annual synthetic statement 2025, operating_income row",
+      "as_of": "2025-06-30T23:59:59Z",
+      "max_age_days": 800,
+      "freshness_policy": "Historical statement comparison only; not a current valuation",
+      "temporal_type": "flow",
+      "published_at": "2025-07-30T00:00:00Z",
+      "available_at": "2025-08-01T00:00:00Z",
+      "retrieved_at": "2026-09-12T09:35:39Z",
+      "period_start": "2024-07-01T00:00:00Z",
+      "period_end": "2025-06-30T23:59:59Z",
+      "frequency": "annual"
+    },
+    {
+      "id": "fact:net_income-2025",
+      "entity": "instr:synthetic",
+      "metric": "net_income",
+      "value": 18,
+      "unit": "millions",
+      "currency": "USD",
+      "basis": "GAAP:nominal",
+      "kind": "reported",
+      "source": "src:fixture",
+      "source_locator": "Annual synthetic statement 2025, net_income row",
+      "as_of": "2025-06-30T23:59:59Z",
+      "max_age_days": 800,
+      "freshness_policy": "Historical statement comparison only; not a current valuation",
+      "temporal_type": "flow",
+      "published_at": "2025-07-30T00:00:00Z",
+      "available_at": "2025-08-01T00:00:00Z",
+      "retrieved_at": "2026-09-12T09:35:39Z",
+      "period_start": "2024-07-01T00:00:00Z",
+      "period_end": "2025-06-30T23:59:59Z",
+      "frequency": "annual"
+    }
+  ],
+  "operations": [
+    {
+      "id": "calc:margin-2024",
+      "op": "ratio",
+      "metric": "operating_margin",
+      "inputs": [
+        "fact:operating_income-2024",
+        "fact:revenue-2024"
+      ],
+      "params": {}
+    },
+    {
+      "id": "calc:margin-2025",
+      "op": "ratio",
+      "metric": "operating_margin",
+      "inputs": [
+        "fact:operating_income-2025",
+        "fact:revenue-2025"
+      ],
+      "params": {}
+    },
+    {
+      "id": "calc:revenue-growth",
+      "op": "growth",
+      "metric": "revenue_growth",
+      "inputs": [
+        "fact:revenue-2025",
+        "fact:revenue-2024"
+      ],
+      "params": {}
+    },
+    {
+      "id": "calc:operating_income-growth",
+      "op": "growth",
+      "metric": "operating_income_growth",
+      "inputs": [
+        "fact:operating_income-2025",
+        "fact:operating_income-2024"
+      ],
+      "params": {}
+    },
+    {
+      "id": "calc:net_income-growth",
+      "op": "growth",
+      "metric": "net_income_growth",
+      "inputs": [
+        "fact:net_income-2025",
+        "fact:net_income-2024"
+      ],
+      "params": {}
+    },
+    {
+      "id": "calc:margin-change",
+      "op": "difference",
+      "metric": "operating_margin_change",
+      "inputs": [
+        "calc:margin-2025",
+        "calc:margin-2024"
+      ],
+      "params": {
+        "allow_period_change": true
+      }
+    }
+  ],
+  "gaps": [],
+  "resolutions": []
+}

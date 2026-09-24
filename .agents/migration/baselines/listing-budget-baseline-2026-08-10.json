@@ -1,0 +1,43 @@
+{
+ "snapshot_date": "2026-08-10",
+ "method": "entry = len(name)+4+min(len(desc),1536); budget = 1pct of 200k-ctx chars = 8000 (binary-verified constants skillListingMaxDescChars=1536, skillListingBudgetFraction=0.01; see research/redteam-plan-v1.md F2)",
+ "per_skill_desc_chars": {
+  "brief": 2860,
+  "challenge": 1619,
+  "consolidate": 1801,
+  "create-skill": 1543,
+  "decide": 2130,
+  "deep": 1961,
+  "enrich": 2353,
+  "gate": 1371,
+  "health": 588,
+  "ingest": 1623,
+  "invest": 4848,
+  "networth": 1671,
+  "retro": 2972,
+  "spark": 3465,
+  "vault": 2117
+ },
+ "per_skill_entry_cost": {
+  "brief": 1545,
+  "challenge": 1549,
+  "consolidate": 1551,
+  "create-skill": 1552,
+  "decide": 1546,
+  "deep": 1544,
+  "enrich": 1546,
+  "gate": 1379,
+  "health": 598,
+  "ingest": 1546,
+  "invest": 1546,
+  "networth": 1548,
+  "retro": 1545,
+  "spark": 1545,
+  "vault": 1545
+ },
+ "total_listing_cost": 22099,
+ "budget": 8000,
+ "budget_mode": "priority",
+ "sum_raw_desc_chars": 32922,
+ "note": "PRE-migration baseline. budget_mode=priority means cold skills render name-only today; post-compression target is budget_mode=fits with all 15 funded. Bundled/user-scope skills consume additional budget not modeled here (conservative)."
+}

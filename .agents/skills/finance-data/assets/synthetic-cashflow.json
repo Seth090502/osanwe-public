@@ -1,0 +1,125 @@
+{
+  "schema": "osanwe.analysis/1",
+  "id": "synthetic-cashflow-v1",
+  "classification": "synthetic",
+  "workflow": "cashflow",
+  "report_at": "2026-09-12T09:36:00Z",
+  "knowledge_cutoff": "2026-09-12T09:36:00Z",
+  "scope": {
+    "population": "Synthetic declared household",
+    "coverage": "complete",
+    "included": [
+      "synthetic-household"
+    ],
+    "excluded": [],
+    "limitations": [
+      "Synthetic account references and transactions; no live account reconciliation."
+    ]
+  },
+  "sources": [
+    {
+      "id": "src:fixture",
+      "title": "Synthetic annual statements, no real issuer",
+      "uri": "synthetic:annual-statements",
+      "type": "synthetic",
+      "published_at": "2026-09-12T09:00:00Z",
+      "available_at": "2026-09-12T09:00:00Z",
+      "retrieved_at": "2026-09-12T09:35:39Z",
+      "verification": "fixture"
+    }
+  ],
+  "claims": [],
+  "operations": [],
+  "gaps": [],
+  "resolutions": [],
+  "cashflow": {
+    "schema": "osanwe.cashflow.input",
+    "version": 1,
+    "dataset_kind": "synthetic",
+    "currency": "USD",
+    "currency_scale": 2,
+    "interval": {
+      "start": "2026-01-01",
+      "end": "2026-02-01"
+    },
+    "coverage": {
+      "status": "complete",
+      "scope": "household",
+      "reason": "All accounts in the synthetic household are declared.",
+      "excluded_scopes": []
+    },
+    "accounts": [
+      {
+        "account_ref": "acct:checking",
+        "coverage": "complete",
+        "reason": "Complete synthetic posted rows for the interval."
+      },
+      {
+        "account_ref": "acct:card",
+        "coverage": "complete",
+        "reason": "Complete synthetic posted rows for the interval."
+      }
+    ],
+    "transactions": [
+      {
+        "id": "txn:income",
+        "account_ref": "acct:checking",
+        "amount_minor": 100000,
+        "kind": "income",
+        "currency": "USD",
+        "currency_scale": 2,
+        "date": "2026-01-15",
+        "status": "posted",
+        "source_id": "src:fixture"
+      },
+      {
+        "id": "txn:purchase",
+        "account_ref": "acct:card",
+        "amount_minor": -12345,
+        "kind": "expense",
+        "currency": "USD",
+        "currency_scale": 2,
+        "date": "2026-01-15",
+        "status": "posted",
+        "source_id": "src:fixture",
+        "category": "groceries"
+      },
+      {
+        "id": "txn:refund",
+        "account_ref": "acct:card",
+        "amount_minor": 345,
+        "kind": "refund",
+        "currency": "USD",
+        "currency_scale": 2,
+        "date": "2026-01-15",
+        "status": "posted",
+        "source_id": "src:fixture",
+        "category": "groceries"
+      },
+      {
+        "id": "txn:payment-out",
+        "account_ref": "acct:checking",
+        "amount_minor": -12000,
+        "kind": "transfer",
+        "currency": "USD",
+        "currency_scale": 2,
+        "date": "2026-01-15",
+        "status": "posted",
+        "source_id": "src:fixture",
+        "transfer_group": "transfer:card-payment"
+      },
+      {
+        "id": "txn:payment-in",
+        "account_ref": "acct:card",
+        "amount_minor": 12000,
+        "kind": "transfer",
+        "currency": "USD",
+        "currency_scale": 2,
+        "date": "2026-01-15",
+        "status": "posted",
+        "source_id": "src:fixture",
+        "transfer_group": "transfer:card-payment"
+      }
+    ]
+  }
+}

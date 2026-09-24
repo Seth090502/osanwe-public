@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "generated": "2026-07-06",
+  "authority": "AUTHORITATIVE machine rules for the judgment gates. .claude/skills/gate/ref-gate-tables.md mirrors this file for humans; on conflict THIS file wins. Verdict logic is implemented in tools/gate-eval.py against the parameters below; both are version-locked via schema_version.",
+  "sheet_location": "wiki/research/gates/gate-<mode>-<slug>-<YYYY-MM-DD>[-HHMM].md",
+  "registry": "wiki/research/gates/gates-registry.md",
+  "gates": {
+    "f": {
+      "name": "trade-generation discipline (anti-FOMO / anti-panic)",
+      "subject": "a proposed ADD / TRIM / EXIT action on a specific instrument",
+      "division_of_labor": "GATE-F checks behavioral/temporal PROCESS markers only. Doctrine ceilings and R/R live in /invest Phase Q + K-bis; execution-time numbers and the sleep-gate live in tools/pretrade_gate.py. GATE-F never rechecks those.",
+      "verdicts": ["DISCIPLINED", "FOMO-SUSPECT", "BLOCKED"],
+      "markers": {
+        "action_side": {"type": "enum", "values": ["ADD", "TRIM", "EXIT"], "fill_rule": "the proposal's action"},
+        "tenure_days": {"type": "int", "fill_rule": "days between the ticker's entity note created: date (wiki/entities/tickers/<T>.md) and today; 0 if no entity note exists"},
+        "held_position": {"type": "bool", "fill_rule": "true iff the entity note frontmatter accounts: list is non-empty"},
+        "catalyst_age_hours": {"type": "int", "fill_rule": "hours since the NEWEST dated event cited in the proposal's own rationale (adversarially conservative: newest = most FOMO-flagging)"},
+        "prior_analysis_days": {"type": "int_or_null", "fill_rule": "days since the latest wiki/investing/analyses/<ticker>-analysis-*.md; null if none. An in-flight full /invest run counts as 0."},
+        "thesis_member": {"type": "bool", "scored": false, "fill_rule": "entity frontmatter thesis: list non-empty. CONTEXT ONLY in v1 -- recorded, not scored."},
+        "regime_alert": {"type": "bool", "fill_rule": "true iff latest briefing meta.json indices_snapshot shows VIX >= 20 OR VIX term_structure == backwardation"},
+        "move_5d_pct": {"type": "number", "fill_rule": "absolute % move over the last 5 regular sessions, regular-close anchored; prov mcp:* > script:*"},
+        "trades_7d": {"type": "int", "fill_rule": "count of prior gate-f sheets (verdict != BLOCKED) in trailing 7 days PLUS execute-or-decline.md rows flipped to EXECUTED with a trade action in-window"},
+        "after_hours_origination": {"type": "bool", "fill_rule": "true iff the proposal's pricing or urgency rests on extended-hours quotes rather than regular-close-anchored data (doctrine: extended-hours prices never trigger doctrine evaluations); an evening run anchored to the regular close is FALSE"},
+        "trigger_backed": {"type": "bool", "fill_rule": "true iff a GATE-T sheet with verdict FIRED exists whose trigger action covers this instrument"},
+        "zone_preregistered": {"type": "bool", "optional": true, "default": false, "fill_rule": "true iff the latest analysis frontmatter for the instrument carries a watch_zone whose set_on is >= 14 days before today, whose low/high are UNCHANGED since set_on (zone_prior comparison, or a single unmoved block), and where the price entered the zone FROM ABOVE (prior regular close > high, current regular close inside [low, high]); prov = the analysis path. OPTIONAL marker under schema_version 1 (absent == false): sheets written before 2026-07-30 validate unchanged."}
+      },
+      "thresholds": {
+        "catalyst_age_hours_lt": 48,
+        "tenure_days_lt": 14,
+        "prior_analysis_days_gt": 30,
+        "move_5d_pct_gte": 10,
+        "trades_7d_gte": 3,
+        "blocked_points_gte": 4,
+        "suspect_points_min": 2,
+        "blocked_combo_catalyst_lt": 24,
+        "vix_alert_gte": 20
+      },
+      "rules_ordered": [
+        "1. trigger_backed AND action_side in {TRIM, EXIT} -> DISCIPLINED (trigger-driven exits are the system working)",
+        "1b. zone_preregistered AND action_side == ADD -> DISCIPLINED (a pre-registered zone firing is the plan working, not FOMO; buy-side parity with rule 1, short-circuits BEFORE fomo_points scoring)",
+        "2. fomo_points >= 4, OR (tenure point fires AND prior_analysis_days is null AND catalyst_age_hours < 24) -> BLOCKED",
+        "3. fomo_points in {2, 3} -> FOMO-SUSPECT",
+        "4. else -> DISCIPLINED",
+        "fomo_points = count of: catalyst_age_hours < 48; (NOT held_position AND tenure_days < 14); (prior_analysis_days null OR > 30); regime_alert; move_5d_pct >= 10; after_hours_origination; trades_7d >= 3"
+      ],
+      "mandates": {
+        "FOMO-SUSPECT": ["cooling-off-48h", "eod-row-regate", "tranche-cap-25pct-on-regate"],
+        "BLOCKED": ["no-recommendation", "invest-and-challenge-required", "regate-min-5td"],
+        "DISCIPLINED": []
+      },
+      "mandate_meanings": {
+        "cooling-off-48h": "no ratification of the action for 48 hours from sheet date",
+        "eod-row-regate": "append an execute-or-decline.md row naming the re-gate, ESCALATION_DATE = sheet date + 2",
+        "tranche-cap-25pct-on-regate": "if the re-gate returns DISCIPLINED, first tranche capped at 25% of intended size (fraction only -- never record dollars or share counts on a gate sheet)",
+        "no-recommendation": "no BUY/SELL recommendation may be emitted for the instrument",
+        "invest-and-challenge-required": "a full /invest run AND a /challenge are prerequisites to any re-gate",
+        "regate-min-5td": "re-gate no earlier than 5 trading days after sheet date"
+      },
+      "review_date_days": {"FOMO-SUSPECT": 2, "BLOCKED": 7, "DISCIPLINED": null}
+    },
+    "t": {
+      "name": "trigger-fired adjudication (manual/evidence triggers only)",
+      "subject": "one trigger_id from a thesis triggers: block where source == manual or the metric needs evidence interpretation (earnings_window)",
+      "division_of_labor": "Numeric machine triggers (operator/threshold computable) are evaluated mechanically by /brief Phase H and are OUT OF SCOPE for GATE-T.",
+      "verdicts": ["FIRED", "NOT-FIRED", "INSUFFICIENT-EVIDENCE"],
+      "markers": {
+        "trigger_id": {"type": "str", "fill_rule": "must exist in the named thesis file's triggers block"},
+        "thesis": {"type": "str", "fill_rule": "thesis file stem, e.g. thesis-theme-alpha"},
+        "tier": {"type": "enum", "values": ["kill", "red", "amber", "manual"], "fill_rule": "the trigger's tier in the thesis block"},
+        "evidence": {"type": "list", "item_fields": ["source", "grade", "date", "statement"], "fill_rule": "each item: source domain/path, grade A-D per the 8.6 evidence-grading rules with freshness downgrades, ISO date, one-line statement"},
+        "metric_condition_met": {"type": "bool", "fill_rule": "numeric restatement of the trigger condition against the evidence; the restatement itself goes in the sheet body"},
+        "window_ok": {"type": "bool", "fill_rule": "all counted evidence dates inside the trigger's window field"},
+        "consecutive_required": {"type": "int_or_null", "fill_rule": "the trigger's counter requirement (e.g. consecutive quarters); null when not a counter trigger"},
+        "consecutive_count": {"type": "int_or_null", "fill_rule": "observed consecutive count; null when not a counter trigger"}
+      },
+      "thresholds": {
+        "min_evidence_items": 2,
+        "max_evidence_grade": "B",
+        "min_distinct_sources": 2
+      },
+      "rules_ordered": [
+        "1. fewer than 2 evidence items of grade A|B from 2+ distinct sources -> INSUFFICIENT-EVIDENCE",
+        "2. metric_condition_met AND window_ok AND (consecutive_count >= consecutive_required when consecutive_required is not null) -> FIRED",
+        "3. else -> NOT-FIRED"
+      ],
+      "mandates": {
+        "FIRED": ["status-floor-<tier>", "eod-row-trigger-action"],
+        "INSUFFICIENT-EVIDENCE": ["eod-row-evidence-collection"],
+        "NOT-FIRED": []
+      },
+      "mandate_meanings": {
+        "status-floor-kill": "thesis INVALIDATED-candidate + mandatory /decide; fired: stamp lands via the existing /brief Pattern-20 write-back with this sheet as the evidence record",
+        "status-floor-red": "thesis status floor STRESSED via the existing Pattern-20 path; this sheet is the evidence record",
+        "status-floor-amber": "thesis status floor WATCH via the existing Pattern-20 path; this sheet is the evidence record",
+        "status-floor-manual": "surface to the user for review; manual triggers carry no automatic floor",
+        "eod-row-trigger-action": "append an execute-or-decline.md row for the trigger's action: field, ESCALATION_DATE = sheet date + 3",
+        "eod-row-evidence-collection": "append an execute-or-decline.md evidence-collection row, ESCALATION_DATE = sheet date + 3"
+      },
+      "review_date_days": {"FIRED": 3, "INSUFFICIENT-EVIDENCE": 3, "NOT-FIRED": null}
+    },
+    "b": {
+      "name": "build-vs-ship discriminator",
+      "subject": "a proposal to create new runtime/tooling artifacts (skill, script, hook, workflow, index)",
+      "division_of_labor": "The 30-day BUILD-gate consumption doctrine and the EOD ledger already exist; GATE-B feeds them and never duplicates their bookkeeping.",
+      "verdicts": ["BUILD-JUSTIFIED", "SHIP-FIRST", "DECLINE"],
+      "markers": {
+        "closes_eod_id": {"type": "str_or_null", "fill_rule": "the execute-or-decline.md row ID this build closes; null if none"},
+        "overdue_eod_count": {"type": "int", "fill_rule": "count of PENDING rows past ESCALATION_DATE in execute-or-decline.md as of today"},
+        "user_directive": {"type": "bool", "fill_rule": "true iff the user explicitly requested this build in their own words this session"},
+        "similar_organ": {"type": "str_or_null", "fill_rule": "vault path of the nearest existing artifact serving the same function; null if none"},
+        "similar_organ_consumed_30d": {"type": "bool_or_null", "fill_rule": "evidence of reads/invocations of similar_organ in the last 30 days; null when similar_organ is null"},
+        "size_class": {"type": "enum", "values": ["S", "M", "L"], "fill_rule": "estimated new lines: S < 50, M 50-200, L > 200"},
+        "deadline_bound": {"type": "bool", "fill_rule": "tied to an Efforts/<slug> deadline"}
+      },
+      "thresholds": {
+        "consumption_review_days": 30
+      },
+      "rules_ordered": [
+        "1. similar_organ not null AND similar_organ_consumed_30d == false -> DECLINE (no v2 of an unused organ; cite it)",
+        "2. user_directive -> BUILD-JUSTIFIED (user overrules; the sheet makes displaced work visible)",
+        "3. closes_eod_id null AND overdue_eod_count >= 1 -> SHIP-FIRST",
+        "4. else -> BUILD-JUSTIFIED",
+        "BUILD-JUSTIFIED extras: size_class L adds consumption-review-30d; overdue_eod_count >= 1 adds list-displaced-eod-rows"
+      ],
+      "mandates": {
+        "SHIP-FIRST": ["resolve-top-overdue-eod-first", "regate-after"],
+        "DECLINE": [],
+        "BUILD-JUSTIFIED": []
+      },
+      "conditional_mandates": {
+        "BUILD-JUSTIFIED": [
+          {"when": "size_class == L", "add": "consumption-review-30d"},
+          {"when": "overdue_eod_count >= 1", "add": "list-displaced-eod-rows"}
+        ]
+      },
+      "mandate_meanings": {
+        "resolve-top-overdue-eod-first": "the top-weighted overdue EOD row must be EXECUTED or explicitly DECLINED (dated Resolution) before the build proceeds",
+        "regate-after": "re-run GATE-B after the EOD row resolves",
+        "consumption-review-30d": "registry entry gets review_date = sheet date + 30; if no consumption evidence by then, the artifact is an archive candidate",
+        "list-displaced-eod-rows": "the sheet body must list the overdue EOD rows this build displaces (visibility, not blockage)"
+      },
+      "review_date_days": {"SHIP-FIRST": 2, "DECLINE": null, "BUILD-JUSTIFIED": null, "BUILD-JUSTIFIED_L": 30}
+    }
+  },
+  "calibration": {
+    "compliance_floor_pct": 80,
+    "min_events_for_flag": 3,
+    "window_days": 14,
+    "match_tolerance_days": 1,
+    "action_ratings": ["STRONG BUY", "BUY", "SELL", "STRONG SELL"]
+  }
+}
