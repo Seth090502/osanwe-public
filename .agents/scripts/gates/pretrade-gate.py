@@ -4,7 +4,7 @@
 Resolves VAULT_ROOT from this file's location (or honors an existing VAULT_ROOT env),
 then delegates to the canonical tools/pretrade_gate.py with all args passed through.
 This gates trade EXECUTION (GATE-F via gate-eval gates trade GENERATION). Note: the
-Claude-side pretrade-token-gate HOOK does not travel (portable: NO -- COMPATIBILITY.md);
+Claude-side pretrade-token-gate HOOK does not travel (portable: NO -- docs/compatibility.md);
 non-Claude harnesses never receive Robinhood order tools at all, so this wrapper is
 analysis/dry-run tooling there, not an authorization path.
 """

@@ -76,7 +76,7 @@ Patterns ranked telemetry_cluster -> skill_failure_rate -> decision_tag -> retro
 
 ### Phase H -- Playbook render (analyzer-internal)
 
-`render_playbook()` emits canonical frontmatter (categories: [wiki], type: synthesis, status: active, ISO dates, topic/* tags, related: *hot* (not published)) + ## Pattern / ## Evidence / ## Recommendation / ## Related. ASCII-clean by construction.
+`render_playbook()` emits canonical frontmatter (categories: [wiki], type: synthesis, status: active, ISO dates, topic/* tags, related: hot) + ## Pattern / ## Evidence / ## Recommendation / ## Related. ASCII-clean by construction.
 
 ### Phase I -- hot.md digest render (analyzer-internal)
 
@@ -188,9 +188,9 @@ If any check fails: HALT, report which check, do not emit success summary.
 ## Coordination contracts
 
 - **/spark** emits `/consolidate topic <topic>` FOLLOWUPS rows when a spark is PERSISTED across >= 2 consecutive continuity audits (emitter aligned 2026-07-09); `topic <slug>` mode is the receiving end, and the bare-positional router hardening catches any legacy-form row. /spark's Phase F novelty filter dedups against the playbooks this skill maintains -- authored playbooks (not stubs) are what make that dedup meaningful.
-- ***retro* (not published)** writes the sessions-log methodology-learnings + decision-log rows that this skill mines. /consolidate is the periodic roll-up that /retro feeds; run /consolidate after a batch of /retro sessions.
+- **retro** writes the sessions-log methodology-learnings + decision-log rows that this skill mines. /consolidate is the periodic roll-up that /retro feeds; run /consolidate after a batch of /retro sessions.
 - **telemetry mode** (formerly the standalone /telemetry skill, merged 2026-07-06) surfaces failure clusters; the default mode folds persistent clusters (>=5) and high subagent failure-rates (>=30%) into durable fix playbooks. Run `/consolidate telemetry` first if you want fresh telemetry signals folded in.
-- ***hot* (not published)** receives the compact dated digest so the next session sees the consolidated doctrine at SessionStart.
+- **hot** receives the compact dated digest so the next session sees the consolidated doctrine at SessionStart.
 - /challenge can be run on any decision surfaced in a decision_tag playbook whose confidence has drifted.
 
 ## Telemetry mode (formerly /telemetry; merged 2026-07-06)
@@ -225,14 +225,14 @@ Codex-side degradation: telemetry sinks are Claude-only (empty on Codex) -- the 
 
 Each `wiki/playbooks/<topic>-playbook.md`:
 
-1. Canonical frontmatter (categories: [wiki], type: synthesis, status: active, ISO dates, topic/consolidation + topic/playbook tags, related: *hot* (not published)).
+1. Canonical frontmatter (categories: [wiki], type: synthesis, status: active, ISO dates, topic/consolidation + topic/playbook tags, related: hot).
 2. H1: `# <Title> Playbook`.
 3. `## Pattern` -- opens with one falsifiable `Invariant:` sentence naming the recurring rule the sources support.
 4. `## Evidence` -- bullet list of dated evidence + the threshold cleared.
 5. `## Counter-cases` -- dated in-corpus strains with paths, or an honest `(none found -- searched <what>)` line.
 6. `## Recommendation` -- concrete next action naming an on-disk target (ref-doc / skill phase / gate id / ledger) or a /decide slug.
 7. `## Apply-when` -- a trigger condition a future session can check in under 30 seconds.
-8. `## Related` -- *hot* (not published) + up to 3 sibling playbook links.
+8. `## Related` -- hot + up to 3 sibling playbook links.
 
 ## ASCII Pattern 22 discipline
 

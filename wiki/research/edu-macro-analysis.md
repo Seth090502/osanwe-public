@@ -669,15 +669,15 @@ Measured macro references consuming the frameworks above:
   the operational layer beneath Sections 4 and 5.
 - [[ref-inflation-rates-complex]] -- CPI/PCE/breakeven series behind
   Section 3's measurement discussion.
-- *ref-yen-carry-global-liquidity* (not published) -- Section 6's currency channel in
+- ref-yen-carry-global-liquidity -- Section 6's currency channel in
   full: carry anatomy, episode census, equity transmission.
 - [[ref-market-regime-detector]] -- Section 7's cycle dating implemented
   mechanically over 1,056 classified sessions.
-- *ref-scenario-stress-test* (not published) -- six macro shocks wired to the book; what
+- ref-scenario-stress-test -- six macro shocks wired to the book; what
   each Section 2 through 8 signal does to positions.
 - [[ref-energy-power-complex]] and [[ref-semiconductor-value-chain]] --
   sector demand engines keyed to ISM, capex cycles, and power load growth.
-- *ref-cross-analysis-synthesis* (not published) -- where macro triggers meet the 51-file
+- ref-cross-analysis-synthesis -- where macro triggers meet the 51-file
   analysis corpus in one playbook.
 
 *Corpus note: Part 3 of the finance education series. Companion files cover

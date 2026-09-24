@@ -1,6 +1,6 @@
 # Conformance record -- OpenCode (5a) + Tier-C local (DoD 6) + Claude ref-integrity (DoD 11)
 
-Date: 2026-08-10. Isolation: `<LOCAL_PATH>\phase-3-skills-b4\` (git clone --no-hardlinks
+Date: 2026-08-10. Isolation: `phase-3-skills-b4\` (git clone --no-hardlinks
 of checkpoint 83413ed phase-3-manifest; detached HEAD; NO remotes; core.hooksPath=/dev/null;
 hooks key stripped from settings.json, permissions.deny kept; env scrubbed per invocation:
 OPENAI_API_KEY/OPENAI_BASE_URL/OPENAI_MODEL/CLAUDE_CODE_USE_OPENAI unset;

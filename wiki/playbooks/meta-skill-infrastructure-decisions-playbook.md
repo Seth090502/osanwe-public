@@ -6,7 +6,7 @@ created: 2026-05-24
 updated: 2026-07-10
 tags: [topic/consolidation, topic/playbook]
 related:
-  - "*hot* (not published)"
+  - "hot"
 ---
 
 # Meta skill infrastructure decisions Playbook
@@ -28,7 +28,7 @@ Confidence: 73% -- full population read (33/33 rows at decision-log.md:23-97, no
 
 ## Counter-cases
 
-- 2026-04-26 -- Codex CLI dual-tool migration built (8 commits) then REVERTED "for strategic optionality," then RE-ADOPTED 2026-07-08 as the AGENTS.md-inverted canonical dual-engine router (Calendar/decisions/decision-log.md:89; docs/Osanwe Vault Codex.md:2434): the same infra decision flipped abandon -> re-adopt as the present referent (a live second engine) materialized -- speculative when reverted, referent-backed when re-adopted
+- 2026-04-26 -- Codex CLI dual-tool migration built (8 commits) then REVERTED "for strategic optionality," then RE-ADOPTED 2026-07-08 as the AGENTS.md-inverted canonical dual-engine router (Calendar/decisions/decision-log.md:89; docs/osanwe-vault-codex.md:2434): the same infra decision flipped abandon -> re-adopt as the present referent (a live second engine) materialized -- speculative when reverted, referent-backed when re-adopted
 - 2026-04-28 -- prevention-arch H2 body-length refactor REVERTED days after adoption for quality preservation; tag prevention-arch-v8 re-marks the quality-preserving state (Calendar/decisions/decision-log.md:466,482-483) -- a validated-seeming change unwound the moment the regression proved out against the real referent
 - 2026-04-26 -- /research + /review deprecated unused; post-mortem: a skill "lacks operational forcing function -> amortizes to zero" (Calendar/decisions/decision-log.md:293,924; OpenClaude fork KILLED at :74) -- the measured mechanism behind the invariant
 - (no in-window falsifier found -- searched the full 33-row table plus the decision-log narrative for any ratified row lacking a referent+artifact, or any reverted row that had both; every reversal traces to a missing or failed referent)
@@ -42,7 +42,7 @@ The enforcement point already exists on disk: /gate b (build-vs-ship; .claude/sk
 Before logging a new meta/skill-infrastructure decision as ratified: in one line, name the concrete referent it was proven against (a dated case, an at-scale empirical run, or a fail-closed mechanical artifact) AND the on-disk file it writes to. If either is blank, it is a speculative build -- route it through /gate b and do NOT stamp it ratified.
 
 ## Related
-- *hot* (not published) -- session cache; this playbook is surfaced in the consolidation digest
+- hot -- session cache; this playbook is surfaced in the consolidation digest
 - [[bash-exit-code-1-playbook]]
 - [[bash-exit-code-2-playbook]]
 - [[read-unclassified-playbook]]

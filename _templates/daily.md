@@ -39,4 +39,3 @@ tags: []
 ## Log
 > Raw prompts auto-appended by UserPromptSubmit hook (Donbavand pattern)
 > Format: `- <ISO> :: <prompt>`
-

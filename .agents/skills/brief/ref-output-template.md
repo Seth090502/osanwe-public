@@ -64,7 +64,7 @@ Notes:
 - `categories: [decisions]` (one element per Group 25 schema)
 - `type: briefing` (canonical subtype)
 - `tags: [topic/market-brief]` only -- no ticker/company/thesis tags on briefing frontmatter unless briefing is itself thesis-centric (rare; explicit). Briefing emits one tag namespace.
-- `related:` field carries 3-7 wikilinks: always *hot* (not published) + materially-discussed entities (3-5) + thesis-slugs invoked. Symmetric back-linking applies in Phase P Update 4 (only entities in this field, not every ticker mentioned in body).
+- `related:` field carries 3-7 wikilinks: always hot + materially-discussed entities (3-5) + thesis-slugs invoked. Symmetric back-linking applies in Phase P Update 4 (only entities in this field, not every ticker mentioned in body).
 - `priced_in_calls:` is a structured list (not free-form). Each scenario gets its own entry. Phase C continuity audit consumes this from prior briefings for Brier scoring.
 - `prior_brier_score_30d:` carries forward from continuity audit; null if <5 scorable calls in rolling 30 days.
 - `confidence_cap_rule:` audits which evidence-grade rule fired (or `none`). Critical for retrospective calibration.
@@ -138,7 +138,7 @@ Skip empty sections entirely (no padding). Do NOT emit "nothing to report" place
    ### Portfolio Movers
    | Ticker | What ($ impact) | So What (thesis) | Now What |
    ...
-   
+
    ORDER (confirm at broker):
    SELL <N> shares <TICKER> @ $<price> LIMIT
    ```

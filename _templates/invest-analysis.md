@@ -10,14 +10,14 @@ thesis: []
 tags: []
 aliases: []
 related:
-  - "*watchlist* (not published)"
-  - "*investing-research-log* (not published)"
-  - "*ref-research-insights* (not published)"
+  - "watchlist"
+  - "investing-research-log"
+  - "ref-research-insights"
 ---
 
 # <% tp.file.title %> Investment Analysis
 
-Confidence Rating: 
+Confidence Rating:
 
 ## Decision Sheet
 
@@ -61,16 +61,16 @@ Confidence Rating:
 |----------|------|--------|-------------|
 
 ## Evidence Quality
-- **Best confirming:** 
-- **Strongest contradictory:** 
-- **Key unknowns:** 
+- **Best confirming:**
+- **Strongest contradictory:**
+- **Key unknowns:**
 
 ## Action
 **Verdict:** BUY / HOLD / WATCH / AVOID
 **Conviction:** HIGH / MEDIUM / LOW
-**Entry strategy:** 
-**Stop loss:** 
+**Entry strategy:**
+**Stop loss:**
 
 ## Sources
 
-Related: *investing-moc* (not published) | [[ref-macro-landscape]] | *ref-sector-benchmarks* (not published)
+Related: investing-moc | [[ref-macro-landscape]] | ref-sector-benchmarks

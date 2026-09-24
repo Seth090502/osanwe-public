@@ -9,7 +9,7 @@ tags:
   - topic/investing
   - topic/semiconductors
   - topic/ai-supply-chain
-related: ["[[ref-financial-statements]]", "*ref-ai-supply-chain-deep-dive* (not published)", "*ref-memory-storage-cycle-deep-dive* (not published)", "[[ref-datacenter-infrastructure]]", "[[ref-energy-power-complex]]"]
+related: ["[[ref-financial-statements]]", "ref-ai-supply-chain-deep-dive", "ref-memory-storage-cycle-deep-dive", "[[ref-datacenter-infrastructure]]", "[[ref-energy-power-complex]]"]
 ---
 
 # Semiconductor Value Chain Reference

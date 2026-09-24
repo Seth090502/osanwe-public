@@ -12,9 +12,9 @@ tags:
   - topic/body-preservation
   - topic/contradiction-resolution
 related:
-  - "*invest* (not published)"
-  - "*ingest* (not published)"
-  - "*enrich* (not published)"
+  - "invest"
+  - "ingest"
+  - "enrich"
   - "[[ref-research-methodology]]"
 word_count: 9716
 sources_count: 37
@@ -40,7 +40,7 @@ sources_count: 37
 
 ## 1. Introduction and scope
 
-This reference defines the canonical entity-update semantics shared between two Claude Code skills that mutate the Obsidian vault entity graph at `<VAULT_ROOT>\wiki\entities\`. Phase L of `/invest` and Phase F of `/ingest` both read this document as the binding specification for how claims are written into ticker notes (`wiki/entities/tickers/<TICKER>.md`) and company notes (`wiki/entities/companies/<Name>.md`). The specification is drop-in compatible across the two skills: a reader of an entity note cannot determine from the text which skill inserted any given claim, because both skills adhere to identical dedup, routing, contradiction-tiering, provenance, and body-preservation rules [1].
+This reference defines the canonical entity-update semantics shared between two Claude Code skills that mutate the Obsidian vault entity graph at `wiki\entities\`. Phase L of `/invest` and Phase F of `/ingest` both read this document as the binding specification for how claims are written into ticker notes (`wiki/entities/tickers/<TICKER>.md`) and company notes (`wiki/entities/companies/<Name>.md`). The specification is drop-in compatible across the two skills: a reader of an entity note cannot determine from the text which skill inserted any given claim, because both skills adhere to identical dedup, routing, contradiction-tiering, provenance, and body-preservation rules [1].
 
 The architecture is deliberately **append-only at the body layer**. Bodies of entity notes accumulate claims; they are never rewritten, reformulated, or retroactively edited except through a narrow Tier-1 supersede annotation that is itself an adjacent text addition rather than an in-place replacement. This choice follows the long-established design discipline of log-structured storage, which treats the write-once log as the source of truth and defers consolidation to read time or to explicit compaction passes [2]. The same discipline animates event-sourced application architectures, where the authoritative state is the ordered event stream rather than any current snapshot [3]. In a personal research context, append-only semantics pay off in three concrete ways: audit trails survive intact across months of updates; re-running an ingestion pipeline over the same source yields zero-diff idempotency; and adversarial regressions (a later source downgrading an earlier well-cited fact) are structurally prevented because no prior line can be silently removed.
 
@@ -132,7 +132,7 @@ The five-section schema is the interface contract between the extraction layer a
 
 ### 3.4 MOC back-link cascade
 
-Every CREATE operation emits a back-link cascade into at least one Map-of-Content (MOC) note. Tickers cascade into `Atlas/_MOCs/investing-moc.md`; companies cascade into `Atlas/_MOCs/<private-file>.md` by default, with routing to a domain MOC (`aerospace-moc.md`, `semiconductors-moc.md`) when the entity's sector matches a registered domain-MOC entry in the `MOC_STEMS` index. The cascade is symmetric: the entity note's frontmatter `related:` field gains `[[<moc-stem>]]`, and the MOC body gains a bullet line under its appropriate grouping. This mirrors Wikipedia's category-membership discipline where every substantive article belongs to at least one category and every category page lists its members [17]. Symmetric maintenance of both directions is what makes Obsidian's graph-view traversal accurate; Obsidian resolves wikilinks by text match rather than by explicit ID, so the symmetric discipline is the only defense against orphan links [18].
+Every CREATE operation emits a back-link cascade into at least one Map-of-Content (MOC) note. Tickers cascade into `Atlas/_MOCs/investing-moc.md`; companies cascade into `Atlas/_MOCs/a private file` by default, with routing to a domain MOC (`aerospace-moc.md`, `semiconductors-moc.md`) when the entity's sector matches a registered domain-MOC entry in the `MOC_STEMS` index. The cascade is symmetric: the entity note's frontmatter `related:` field gains `[[<moc-stem>]]`, and the MOC body gains a bullet line under its appropriate grouping. This mirrors Wikipedia's category-membership discipline where every substantive article belongs to at least one category and every category page lists its members [17]. Symmetric maintenance of both directions is what makes Obsidian's graph-view traversal accurate; Obsidian resolves wikilinks by text match rather than by explicit ID, so the symmetric discipline is the only defense against orphan links [18].
 
 ### 3.5 Post-write gates
 
@@ -197,7 +197,7 @@ Routing is performed by a small decision table evaluated top-down, returning the
 | 3        | Risk condition (concentration, regulation, supply, competitor) | Risks               |
 | 4        | Thesis-relevant support-or-challenge statement                 | Thesis Fit          |
 | 5        | Quantitative financial metric                                  | Financial signals   |
-| 6        | Any other source-attributable fact                             | Claims from *source* (not published) (date) fallback block within the best-guess section |
+| 6        | Any other source-attributable fact                             | Claims from source (date) fallback block within the best-guess section |
 
 The priority ordering reflects specificity: a dated event that also happens to be financial belongs under Recent because its temporal signature is the more distinctive descriptor. Priority is stable across re-runs so that identical claim inputs always route to identical sections.
 
@@ -223,7 +223,7 @@ Catalysts capture future dated events: earnings dates, product-launch windows, p
 
 Recent captures dated events that have already occurred (on or before today). Entries live under ISO-date H3 subheaders sorted newest-first. An acquisition close, a strike action, a partnership announcement, a lawsuit filing, or a material SEC filing are all Recent candidates. "LMT 2026-03-14 awarded USD 4.1B Army IFPC follow-on contract" lives at the top of the Recent section if the date exceeds all existing entries, else at the first position whose subheader is less-than-or-equal to the new date.
 
-### 5.7 Fallback -- Claims from *source* (not published) (date) section
+### 5.7 Fallback -- Claims from source (date) section
 
 When no priority-1-through-5 rule matches, the claim is placed under a section-local fallback block with header `### Claims from [[<source-stem>]] (<date>)` created in the best-guess parent section (typically Financial signals for quantitative residue, else Thesis Fit). The fallback block preserves source grouping when routing uncertainty is high and is intentionally visually distinct so that periodic manual re-routing passes can promote claims into proper sections.
 

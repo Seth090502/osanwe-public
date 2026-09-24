@@ -13,15 +13,15 @@ aliases:
   - earnings playbook ingest
 related:
   - "[[ref-earnings-playbook]]"
-  - "*MU* (not published)"
-  - "*AVGO* (not published)"
-  - "*SNDK* (not published)"
-  - "*NVDA* (not published)"
-  - "*META* (not published)"
-  - "*AMZN* (not published)"
-  - "*GOOGL* (not published)"
-  - "*MSFT* (not published)"
-  - "*SK-Hynix* (not published)"
+  - "MU"
+  - "AVGO"
+  - "SNDK"
+  - "NVDA"
+  - "META"
+  - "AMZN"
+  - "GOOGL"
+  - "MSFT"
+  - "SK-Hynix"
 ---
 
 # Ingested: ref-earnings-playbook (Earnings Playbook)

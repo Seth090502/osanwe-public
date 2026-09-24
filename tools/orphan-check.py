@@ -33,7 +33,7 @@ EXEMPT_DIRS = {
 }
 EXEMPT_PATHS = {
     "CLAUDE.md", "CLAUDE.local.md",
-    "AGENTS.md", "AGENTS.override.md", "AGENTS.override.md.template",
+    "AGENTS.md", "AGENTS.override.md", "docs/agents-override-template.md",
     "docs/PROJECT-OSANWE-PACKET.md", "docs/VAULT-HANDOFF-V16.md",
     "tools/migrations/README.md",
     "tools/migrations/group-30-verification-report.md",

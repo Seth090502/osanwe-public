@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""gen-codex-yaml.py -- GENERATE docs/Osanwe Vault Codex.yaml from disk (ADR-09).
+"""gen-codex-yaml.py -- GENERATE docs/osanwe-vault-codex.yaml from disk (ADR-09).
 
 Replaces the hand-edited organ map. Idempotent by construction: output is a
 pure function of the disk walk + git queries; running twice yields identical
@@ -19,7 +19,7 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / "docs" / "Osanwe Vault Codex.yaml"
+OUT = ROOT / "docs" / "osanwe-vault-codex.yaml"
 
 
 def sh(*args):
@@ -40,7 +40,7 @@ def build():
     c["entry_points"] = {
         "contract": "AGENTS.md",
         "current_state": "Efforts/osanwe-v2-overhaul/STATE.md",
-        "architecture": "docs/Osanwe Vault Codex.md",
+        "architecture": "docs/osanwe-vault-codex.md",
         "financial_methodology": "docs/financial-analysis-contract.md",
         "knowledge": "Atlas/_MOCs/knowledge-moc.md",
         "evaluation": "evaluation/challenge_protocol.md",

@@ -10,7 +10,7 @@ tags:
   - topic/methodology
   - topic/source-evaluation
 aliases: [research-methodology, methodology]
-related: ["*ref-research-insights* (not published)", "*ref-market-calendar* (not published)", "[[ref-evidence-hierarchy]]", "[[ref-briefing-structure]]", "*ref-claude-code-mastery* (not published)"]
+related: ["ref-research-insights", "ref-market-calendar", "[[ref-evidence-hierarchy]]", "[[ref-briefing-structure]]", "ref-claude-code-mastery"]
 ---
 
 # Reference: Research Methodology Standards
@@ -224,4 +224,4 @@ This methodology document is stable. Refresh only when:
 - Experience reveals gaps in the current framework
 
 ## Related
-[[knowledge-moc]] | *ref-market-calendar* (not published) | [[analysis-depth-standard]]
+[[knowledge-moc]] | ref-market-calendar | [[analysis-depth-standard]]

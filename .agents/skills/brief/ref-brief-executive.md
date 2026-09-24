@@ -9,7 +9,7 @@ tags:
   - topic/brief
 related:
   - "[[ref-output-template]]"
-  - "*invest* (not published)"
+  - "invest"
   - "[[ref-macro-data-sources]]"
 ---
 

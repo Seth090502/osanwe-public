@@ -1,6 +1,6 @@
 # .agents/migration/research/ -- evidence base for the cross-harness migration
 
-This directory is the durable Phase-0/Phase-1 evidence base for the 2026-08 cross-harness migration (plan: `<HOME>\.claude\plans\execute-the-instructions-flawlessly-lazy-quokka.md`; approved 2026-08-10). Every capability claim in COMPATIBILITY.md must cite a row ID from `harness-matrix.md`, which resolves into the per-worker reports here. `unverified-cells.md` is the register of cells treated as unsupported until empirically resolved.
+This directory is the durable Phase-0/Phase-1 evidence base for the 2026-08 cross-harness migration (plan: `~\.claude\plans\execute-the-instructions-flawlessly-lazy-quokka.md`; approved 2026-08-10). Every capability claim in docs/compatibility.md must cite a row ID from `harness-matrix.md`, which resolves into the per-worker reports here. `unverified-cells.md` is the register of cells treated as unsupported until empirically resolved.
 
 Contents:
 - `harness-matrix.md` -- the 10-row capability matrix index with row IDs + verification methods.

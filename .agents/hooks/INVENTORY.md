@@ -8,7 +8,7 @@ entries live in manifest.yaml; event mapping in README.md.
 |---|---|---|---|
 | session-start.sh | SessionStart | Injects hot.md head + MOC listing + git status surface | scriptable; Tier-B runs the BOOTSTRAP command list instead |
 | vault-score-check.py | SessionStart | Prints vault health summary + bypass-log count | scriptable; Tier-B runs it manually (BOOTSTRAP lists it) |
-| inject-`<private-file>`.py | (deregistered) | RETIRED 2026-08-23 (commit 85950703, "distillate injection retired"); that commit moved the script to `_archive/2026-08-overhaul/hooks/`, and no SessionStart entry for it remains in .claude/settings.json | n/a |
+| inject-a private file.py | (deregistered) | RETIRED 2026-08-23 (commit 85950703, "distillate injection retired"); that commit moved the script to `_archive/2026-08-overhaul/hooks/`, and no SessionStart entry for it remains in .claude/settings.json | n/a |
 | open-loops.py | SessionStart | Overdue-item digest (6 weighted scanners, top 5) | scriptable (cleanest port); BOOTSTRAP lists it as a session-start command |
 | seed-commitment.py | PostToolUse | Auto-seeds escalation dates for new decision records | scriptable; Tier-B loss = manual escalation seeding; acceptable |
 | bump-updated.sh | PostToolUse | sed-bumps `updated:` frontmatter on edits | scriptable; loss = stale updated: fields; vault-audit catches |

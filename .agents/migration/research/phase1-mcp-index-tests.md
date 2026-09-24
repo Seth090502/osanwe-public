@@ -4,18 +4,18 @@ Provenance: opus/max Explore worker, 2026-08-10. Persisted from session context 
 
 ## MCP registry
 
-No .mcp.json anywhere under `<VAULT_ROOT>`. No mcp keys in .claude/settings.json(.local). **Live registry = `<HOME>`\.claude.json**: top-level mcpServers (user/global): claudewatch, vault-search; projects["`<VAULT_ROOT>`"].mcpServers (project): edgar-tools, fred, openinsider, robinhood-trading. enabledMcpjsonServers/disabledMcpjsonServers both []. Drift: duplicate project keys with EMPTY mcpServers (`<VAULT_ROOT>` backslash form; .claude/worktrees/relaxed-jones) -- self-documented at Vault Codex YAML:156. Two mirror registries agree: Vault Codex YAML:122-128 (all 6) and .codex/config.toml:29-77 (5 of 6 -- working proof the stack already ports).
+No .mcp.json anywhere under the vault root. No mcp keys in .claude/settings.json(.local). **Live registry = ~\.claude.json**: top-level mcpServers (user/global): claudewatch, vault-search; projects["the vault root"].mcpServers (project): edgar-tools, fred, openinsider, robinhood-trading. enabledMcpjsonServers/disabledMcpjsonServers both []. Drift: duplicate project keys with EMPTY mcpServers (the vault root backslash form; .claude/worktrees/relaxed-jones) -- self-documented at Vault Codex YAML:156. Two mirror registries agree: Vault Codex YAML:122-128 (all 6) and .codex/config.toml:29-77 (5 of 6 -- working proof the stack already ports).
 
 | server | command | transport | auth | writes? | portable? |
 |---|---|---|---|---|---|
 | openinsider | npx -y openinsider-mcp@0.3.3 | stdio | **none** | no (16 read tools) | **yes** -- npm, no key |
 | edgar-tools | uvx --from edgartools[ai]==5.35.1 edgartools-mcp | stdio | env EDGAR_IDENTITY (SEC User-Agent courtesy string, not a secret) | no (13 read tools) | **yes** |
-| fred | node `<HOME>`/.local/share/fred-mcp/launch.mjs | stdio | env FRED_API_KEY (launcher falls back to reg query HKCU) | no (3 read tools) | partial -- local shim + key |
+| fred | node ~/.local/share/fred-mcp/launch.mjs | stdio | env FRED_API_KEY (launcher falls back to reg query HKCU) | no (3 read tools) | partial -- local shim + key |
 | robinhood-trading | https://agent.robinhood.com/mcp/trading | http (remote streamable) | the broker OAuth interactive; Codex fallback env RH_MCP_TOKEN | **YES -- order/watchlist/scan mutators** | remote yes; auth interactive per-harness |
-| claudewatch | `<HOME>`\.local\bin\claudewatch.exe mcp --budget 20 | stdio | none | one (set_session_project; ~32 read-only) | binary portable but **semantically Claude-only** (reads Claude transcripts/telemetry) |
-| vault-search | python `<LOCAL_PATH>`/vault-search/server.py | stdio | **none** | no (1 tool: search) | **yes** -- hand-rolled JSON-RPC 2.0, no SDK |
+| claudewatch | ~\.local\bin\claudewatch.exe mcp --budget 20 | stdio | none | one (set_session_project; ~32 read-only) | binary portable but **semantically Claude-only** (reads Claude transcripts/telemetry) |
+| vault-search | python vault-search/server.py | stdio | **none** | no (1 tool: search) | **yes** -- hand-rolled JSON-RPC 2.0, no SDK |
 
-Server code locations: `<LOCAL_PATH>`\vault-search\server.py (7,714 B); ~/.local/share/fred-mcp/launch.mjs (wraps npm fred-mcp-server@^1.0.2); ~/.local/bin/claudewatch.exe (14.4 MB); openinsider/edgar fetched on demand; the broker remote.
+Server code locations: vault-search\server.py (7,714 B); ~/.local/share/fred-mcp/launch.mjs (wraps npm fred-mcp-server@^1.0.2); ~/.local/bin/claudewatch.exe (14.4 MB); openinsider/edgar fetched on demand; the broker remote.
 
 **Write-surface findings.** permissions.deny blocks exactly 18 mutators. **Live surface ALSO exposes mcp__robinhood-trading__exercise_option + cancel_option_exercise -- in NEITHER the deny list NOR any allowlist Claude-side.** Codex mirror safe by construction (27-name enabled_tools default-deny excludes both). Real Claude-side/Codex-side asymmetry to close in the Claude direction. **edgar-tools configured but NOT connected this session** (no mcp__edgar-tools__* in live surface; other five present).
 
@@ -27,13 +27,13 @@ Gmail (write-capable: drafts/labels), Google Drive (auth-handshake surface), Sem
 
 ## Vector index
 
-Server: `<LOCAL_PATH>`\vault-search\server.py -- newline-delimited JSON-RPC 2.0 over stdio, hand-rolled, serverInfo vault-search 1.1.0, one tool search(query, top_k=8, rerank=true). Pipeline: dense HNSW top-25 (Xenova/bge-base-en-v1.5, dim 768, ef 128) + in-process BM25 top-25 over 300-char previews, RRF K=60, dense-cosine rerank top-12. Backend ~/.vault-substrate/ (qsearch.mjs, rerank.mjs, index-vault.mjs, reindex-runner.mjs, .models/).
+Server: vault-search\server.py -- newline-delimited JSON-RPC 2.0 over stdio, hand-rolled, serverInfo vault-search 1.1.0, one tool search(query, top_k=8, rerank=true). Pipeline: dense HNSW top-25 (Xenova/bge-base-en-v1.5, dim 768, ef 128) + in-process BM25 top-25 over 300-char previews, RRF K=60, dense-cosine rerank top-12. Backend ~/.vault-substrate/ (qsearch.mjs, rerank.mjs, index-vault.mjs, reindex-runner.mjs, .models/).
 
 **Index present: 40 MB** (vault.hnsw 36,780,604 B + vault-meta.json 4,365,997 B), both dated **2026-07-04 23:55** (~5 weeks old). Debounce marker touched 2026-08-08; scheduled task Last Run 8/9 result 0 -- poller runs and exits clean without rebuilding. [Session note: this matches the 2026-07-12 idle-gate decision -- stale-by-design; manual refresh command in memory note reference_vault_search_reindex.] Reindex chain: task \osanwe-vault-reindex (2-min repeat) -> wscript hidden-launcher.vbs -> node reindex-runner.mjs (5-min debounce, 20-min stale-lock, atomic index.tmp -> index rename). Marker toucher: .claude/hooks/reindex-debounce.py (7 prefixes).
 
 Auto-inject: .claude/hooks/semantic-context-inject.py (UserPromptSubmit, THRESHOLD 0.6, TOP_K 5, 12s, suppressed for /invest /challenge /decide and one withheld personal skill, private/ hits dropped X20). Usage telemetry: value delivered almost entirely by the hook (~21 explicit MCP calls in 123 sessions).
 
-**VERDICT: (a) AND (b), not (c).** Already an MCP any harness can configure (Codex config consumes it verbatim) AND two CLIs: hybrid `python <LOCAL_PATH>/vault-search/server.py --oneshot` (stdin JSON prompt -> JSON array [{path,line,score,text}]; HOOK_TOPK env; emits [] on error) and dense `node <HOME>/.vault-substrate/qsearch.mjs "<query>" <k>` (cwd must be ~/.vault-substrate). Only the auto-injection trigger is Claude-hook-bound.
+**VERDICT: (a) AND (b), not (c).** Already an MCP any harness can configure (Codex config consumes it verbatim) AND two CLIs: hybrid `python vault-search/server.py --oneshot` (stdin JSON prompt -> JSON array [{path,line,score,text}]; HOOK_TOPK env; emits [] on error) and dense `node ~/.vault-substrate/qsearch.mjs "<query>" <k>` (cwd must be ~/.vault-substrate). Only the auto-injection trigger is Claude-hook-bound.
 
 ## Regression tests
 
@@ -45,7 +45,7 @@ Categories: pre-write-validator gating T1-T6,T16,T22 (8); PostToolUse checkers T
 
 **Claude-specific ~23/38** (hook-payload synthesis + exit-2 semantics + workflow dialect): T1-T9, T13-T16, T22, T25, T27, T29-T32, T34/35/37/38. **Harness-neutral ~15**: T10-T12, T17-T21, T23, T24, T26, T33 (pure vault-audit CLI), T28, T36.
 
-**NOT currently green: known pre-existing T9 FAIL** (BACKLOG.md:38 -- orphan-check exits 0 on the harness fixture, expected 2; bisected NOT caused by the router pass; orphan-on-create hook coverage currently dead). **Baseline = 37/38.** Nothing invokes the suite automatically (no hook, no scheduled task, no CI).
+**NOT currently green: known pre-existing T9 FAIL** (docs/backlog.md:38 -- orphan-check exits 0 on the harness fixture, expected 2; bisected NOT caused by the router pass; orphan-on-create hook coverage currently dead). **Baseline = 37/38.** Nothing invokes the suite automatically (no hook, no scheduled task, no CI).
 
 ### T11 action-staircase red-team suite: different artifact, exists
 

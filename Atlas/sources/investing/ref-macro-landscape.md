@@ -16,22 +16,22 @@ aliases:
   - macro landscape
   - macro regime primer
 related:
-  - "*investing-moc* (not published)"
-  - "*ref-portfolio-doctrine* (not published)"
+  - "investing-moc"
+  - "ref-portfolio-doctrine"
   - "[[ref-regime-taxonomy]]"
   - "[[ref-monitoring-rules]]"
-  - "*ref-market-calendar* (not published)"
-  - "*ref-sector-benchmarks* (not published)"
-  - "*ref-geopolitical-framework* (not published)"
+  - "ref-market-calendar"
+  - "ref-sector-benchmarks"
+  - "ref-geopolitical-framework"
   - "[[ref-evidence-hierarchy]]"
   - "[[ref-briefing-structure]]"
   - "[[ref-theme-alpha]]"
-  - "*ref-ai-supply-chain-deep-dive* (not published)"
+  - "ref-ai-supply-chain-deep-dive"
   - "[[ref-ai-power-grid-deep-dive]]"
-  - "*ref-theme-beta-institutional-crypto-deep-dive* (not published)"
-  - "*ref-defense-aerospace-space-economy-deep-dive* (not published)"
-  - "*geopolitics-playbook* (not published)"
-  - "*macro-outlook* (not published)"
+  - "ref-theme-beta-institutional-crypto-deep-dive"
+  - "ref-defense-aerospace-space-economy-deep-dive"
+  - "geopolitics-playbook"
+  - "macro-outlook"
 ---
 
 # Macroeconomic Landscape Reference
@@ -206,7 +206,7 @@ Inflation series: Section 3 block owns them.
 
 ### Remaining 2026 FOMC meetings
 
-**July 28-29 | September 15-16 (SEP) | October 27-28 | December 8-9 (SEP)** [Grade B] (Source: federalreserve.gov FOMC calendar, retrieved 2026-07-15). Calendar ownership sits with *ref-market-calendar* (not published); deployment bands and the regime halt sit with *ref-portfolio-doctrine* (not published). Nothing in this section authorizes a trade.
+**July 28-29 | September 15-16 (SEP) | October 27-28 | December 8-9 (SEP)** [Grade B] (Source: federalreserve.gov FOMC calendar, retrieved 2026-07-15). Calendar ownership sits with ref-market-calendar; deployment bands and the regime halt sit with ref-portfolio-doctrine. Nothing in this section authorizes a trade.
 
 ## 3. Inflation
 
@@ -534,7 +534,7 @@ Breadth of leadership: roughly 2 of 11 sectors above SPY -- the aggregator's own
 count, NOT independently recomputed (Grade C).
 ```
 
-**Read.** Leadership is narrow, and the YTD ranking records H1 conditions rather than a live signal -- energy's position was earned under an oil premise that has since reversed (Grade C; Section 9 owns the energy state and sources it independently). Nothing here supports a broad value/defensive rotation call. Regime classification belongs to [[ref-regime-taxonomy]]; benchmark tables to *ref-sector-benchmarks* (not published).
+**Read.** Leadership is narrow, and the YTD ranking records H1 conditions rather than a live signal -- energy's position was earned under an oil premise that has since reversed (Grade C; Section 9 owns the energy state and sources it independently). Nothing here supports a broad value/defensive rotation call. Regime classification belongs to [[ref-regime-taxonomy]]; benchmark tables to ref-sector-benchmarks.
 
 ## 9. Global macro and geopolitical
 
@@ -672,7 +672,7 @@ No Grade A claim appears in this section: no verbatim quotation from a primary d
 
 Eleven rows, every probability rebuilt from zero. Two binding disciplines. First, each row names a resolution DATE and a mechanically checkable MARKER, so it can be Brier-scored later -- an unscored probability column is how a top row survives months after its premise dies. Second, the probability is calibrated author judgment, Grade D by construction; evidential weight sits in the marker, whose own grade is stated.
 
-**On the Impact column, stated so it cannot be misread.** It is an ordinal **magnitude of consequence conditional on the row firing**, and carries no probability or confidence content whatsoever -- probability lives in its own column, confidence in the marker grade. Bands, so the column is anchored rather than free-floating [Grade D -- inference from mechanism], never a return estimate: *Medium* = alters one thesis' earnings path, trips no doctrine gate; *Medium-high* = same, plus a plausible second-order credit or supply channel; *High* = trips a doctrine gate (deployment band or regime halt per *ref-portfolio-doctrine* (not published)) or re-rates the whole long-duration complex; *Very high* = impairs Treasury-market function itself, so the discount rate for every row moves at once; *Extreme* = both of the above plus a physical supply-chain break with no financial offset.
+**On the Impact column, stated so it cannot be misread.** It is an ordinal **magnitude of consequence conditional on the row firing**, and carries no probability or confidence content whatsoever -- probability lives in its own column, confidence in the marker grade. Bands, so the column is anchored rather than free-floating [Grade D -- inference from mechanism], never a return estimate: *Medium* = alters one thesis' earnings path, trips no doctrine gate; *Medium-high* = same, plus a plausible second-order credit or supply channel; *High* = trips a doctrine gate (deployment band or regime halt per ref-portfolio-doctrine) or re-rates the whole long-duration complex; *Very high* = impairs Treasury-market function itself, so the discount rate for every row moves at once; *Extreme* = both of the above plus a physical supply-chain break with no financial offset.
 
 | Risk | Probability by date | Falsifiable resolution marker | Impact magnitude IF FIRED (ordinal; not a probability) | Marker grade |
 |---|---|---|---|---|
@@ -702,7 +702,7 @@ PCEPILFE = Section 3; DFEDTARU = Section 2; SAHMREALTIME = Section 4.
 
 ### This section confers no action authority
 
-Partial satisfaction of any scenario below is NOT an action recommendation. Scenario markers do not override, relax, or substitute for the deployment bands, the concentration bands, or an active regime halt defined in *ref-portfolio-doctrine* (not published), which is the sole authority on deployment size. A scenario reading "bull" while a regime halt is active means the halt binds and the scenario is commentary. This document primes analysis; it never authorizes a trade. (House rule -- a governing constraint on this document, not an evidentiary claim; the Grade A-D scale applies to external evidence and does not apply here.)
+Partial satisfaction of any scenario below is NOT an action recommendation. Scenario markers do not override, relax, or substitute for the deployment bands, the concentration bands, or an active regime halt defined in ref-portfolio-doctrine, which is the sole authority on deployment size. A scenario reading "bull" while a regime halt is active means the halt binds and the scenario is commentary. This document primes analysis; it never authorizes a trade. (House rule -- a governing constraint on this document, not an evidentiary claim; the Grade A-D scale applies to external evidence and does not apply here.)
 
 ### The superseded bull case, scored
 
@@ -805,7 +805,7 @@ If a falsifier is observed, revise the mapping here -- never override the doctri
 **Provenance and method.** Every figure in Sections 15-18 is computed from
 `Efforts/osanwe-v2-overhaul/_work/factors.db` (sqlite; tables `bars`, `factors`),
 the same point-in-time store ingested by `tools/bulk-data-pull.py` and read by
-`tools/macro-reference.py` for *macro-regime-tables* (not published). Computed 2026-08-24.
+`tools/macro-reference.py` for macro-regime-tables. Computed 2026-08-24.
 Series coverage in the store: daily factors from 2015-01-02 (SOFR from 2018-04-03;
 HY OAS from 2023-08-22) to their as-of dates below. "Percentile" means rank of the
 latest value within that full stored history, unless a shorter window is named.
@@ -995,7 +995,7 @@ the interpretation, and nothing here changes a doctrine gate.
 
 ## Related
 
-*investing-moc* (not published) | *ref-portfolio-doctrine* (not published) | [[ref-regime-taxonomy]] | [[ref-monitoring-rules]] | *ref-market-calendar* (not published) | *ref-sector-benchmarks* (not published) | *ref-geopolitical-framework* (not published) | [[ref-evidence-hierarchy]] | [[ref-briefing-structure]] | [[ref-theme-alpha]] | *ref-ai-supply-chain-deep-dive* (not published) | [[ref-ai-power-grid-deep-dive]] | *ref-theme-beta-institutional-crypto-deep-dive* (not published) | *ref-defense-aerospace-space-economy-deep-dive* (not published) | *geopolitics-playbook* (not published) | *macro-outlook* (not published)
+investing-moc | ref-portfolio-doctrine | [[ref-regime-taxonomy]] | [[ref-monitoring-rules]] | ref-market-calendar | ref-sector-benchmarks | ref-geopolitical-framework | [[ref-evidence-hierarchy]] | [[ref-briefing-structure]] | [[ref-theme-alpha]] | ref-ai-supply-chain-deep-dive | [[ref-ai-power-grid-deep-dive]] | ref-theme-beta-institutional-crypto-deep-dive | ref-defense-aerospace-space-economy-deep-dive | geopolitics-playbook | macro-outlook
 
 ## Sources
 

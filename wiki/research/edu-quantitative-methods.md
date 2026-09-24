@@ -12,7 +12,7 @@ tags:
   - topic/statistics
   - topic/time-series
   - topic/risk-management
-related: ["[[edu-fixed-income]]", "[[edu-accounting-analysis]]", "*edu-behavioral-finance* (not published)", "*edu-portfolio-theory* (not published)", "[[ref-momentum-backtest]]", "[[ref-market-regime-detector]]", "*calibration-2026-08-23* (not published)", "*investing-moc* (not published)"]
+related: ["[[edu-fixed-income]]", "[[edu-accounting-analysis]]", "edu-behavioral-finance", "edu-portfolio-theory", "[[ref-momentum-backtest]]", "[[ref-market-regime-detector]]", "calibration-2026-08-23", "investing-moc"]
 ---
 
 # Quantitative Methods: Statistical Foundations for Market Work
@@ -24,9 +24,9 @@ The theme throughout: financial data is noisy, non-stationary, and fat-tailed,
 so naive statistics systematically overstates confidence. The vault's own
 calibration loop (wiki/maintenance/calibration/) exists precisely because
 stated confidence ran ~45 points hot against realized outcomes. Companions:
-[[edu-fixed-income]], [[edu-accounting-analysis]], *edu-behavioral-finance* (not published),
-*edu-portfolio-theory* (not published). Key internal anchors: [[ref-momentum-backtest]],
-[[ref-market-regime-detector]], *calibration-2026-08-23* (not published).
+[[edu-fixed-income]], [[edu-accounting-analysis]], edu-behavioral-finance,
+edu-portfolio-theory. Key internal anchors: [[ref-momentum-backtest]],
+[[ref-market-regime-detector]], calibration-2026-08-23.
 
 ## Table of contents
 
@@ -676,11 +676,11 @@ a stop-loss on beliefs.
 - wiki/maintenance/calibration/: the empirical audit trail for Section 6.3
   -- realized-vs-stated confidence is multiple-comparison bias measured in
   the wild.
-- *edu-behavioral-finance* (not published): behavioral counterpart -- overconfidence is
+- edu-behavioral-finance: behavioral counterpart -- overconfidence is
   the psychological engine of the statistical sins catalogued here.
-- *edu-portfolio-theory* (not published) and *ref-portfolio-optimization* (not published): covariance
+- edu-portfolio-theory and ref-portfolio-optimization: covariance
   estimation (shrinking, Ledoit-Wolf) feeds optimization inputs directly.
-- *investing-moc* (not published): map of concepts; this file is the methods backbone.
+- investing-moc: map of concepts; this file is the methods backbone.
 
 ## Closing summary
 
@@ -712,9 +712,9 @@ Where each statistical tool is already running on vault data:
   lean on Section 5's regression logic.
 - [[ref-correlation-matrix-full]] -- estimation noise and shrinkage
   questions from Sections 5 and 9 visible in the live matrix.
-- *ref-theme-detection* (not published) -- text-mining theme extraction; Section 11's ML
+- ref-theme-detection -- text-mining theme extraction; Section 11's ML
   limits stated as an operating rule.
 - [[ref-alternative-data-signals]] -- signal mining where multiple-
   comparison honesty decides what survives.
-- *ref-synthetic-benchmarks* (not published) -- hypothesis testing applied to the vault's
+- ref-synthetic-benchmarks -- hypothesis testing applied to the vault's
   own alpha claims against indices 1 through 12.

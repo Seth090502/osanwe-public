@@ -1,6 +1,6 @@
 # Worker-lane Phase-0 experiments -- 2026-08-16
 
-Plan of record: `<HOME>\.claude\plans\okay-now-summarize-the-radiant-brook.md`
+Plan of record: `~\.claude\plans\okay-now-summarize-the-radiant-brook.md`
 (operator-approved 2026-08-16 after a Fable red-team, SHIP-WITH-FIXES, 5 fixes applied).
 Rule: nothing ships before these report. Refuted hypotheses stay in this record.
 
@@ -41,8 +41,8 @@ Rule: nothing ships before these report. Refuted hypotheses stay in this record.
 - Hypothesis: the vault-search HNSW index honors the documented exclusion set
   (.obsidian, _archive, openclaude, openclaw, data, private, .raw).  REFUTED.
 - Method: semantic queries targeting private/-only content via mcp__vault-search__search.
-- Result: top hits INCLUDED `<private-file>:59`, `<private-file>:20`,
-  `<private-file>:78`, each with real private content in the excerpt.
+- Result: top hits INCLUDED `a private file:59`, `a private file:20`,
+  `a private file:78`, each with real private content in the excerpt.
   The exclusion set documented for the vault-researcher SUBAGENT does not bind the index.
 - Verdict: **vault-search is DROPPED from the worker's v1 MCP surface.** Reopen trigger:
   index rebuild with a PROVEN exclusion (re-run this probe, 0 hits from excluded trees).

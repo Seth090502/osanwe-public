@@ -431,7 +431,7 @@ thesis, sector, cash buffer). Ticker already HELD -> HOLD-STATE panel
 | Source | Owns | Gate |
 |---|---|---|
 | `Efforts/osanwe-v2-overhaul/_work/factors.db` | bars(ticker,date,close) for vol/beta; factors for ^VIX, DFII10, DGS10, HY OAS | Report max bar date used |
-| `Atlas/sources/investing/ref-portfolio-doctrine.md` | Machine `doctrine:` block: ceilings, deployment multipliers, sizing constants, override lane | Run `python <VAULT_ROOT>/tools/doctrine-lint.py --json`; exit 2 -> HALT |
+| `Atlas/sources/investing/ref-portfolio-doctrine.md` | Machine `doctrine:` block: ceilings, deployment multipliers, sizing constants, override lane | Run `python tools/doctrine-lint.py --json`; exit 2 -> HALT |
 | Current-session broker read evidence | Quantities, account cash, basis and lots | Missing input/coverage UNVERIFIED; do not size against saved-history values |
 | `wiki/maintenance/calibration/confidence-map.json` | Truth-adjusted confidence bins | Cite `generated` date |
 | `wiki/research/ref-correlation-matrix-full.md` | 90d rhos, clusters, N_eff | Cite generation date; recompute pairwise rho from bars if pair absent |
@@ -455,7 +455,7 @@ Phase S-B compute: recipes R-A1 deployment state -> R-A2 calibrated win prob
 -> R-A3 half-Kelly -> R-A4 volatility parity cross-check -> R-A5 waterfall
 caps -> R-A6 stop construction -> R-A7 lump-vs-tranche -> R-A8 post-entry
 weights; R-B (rebalance), R-C (review). Arithmetic: prefer
-`python <VAULT_ROOT>/tools/sizing-eval.py` (model fills form, script
+`python tools/sizing-eval.py` (model fills form, script
 computes). Inline computation must show both half-Kelly forms and assert
 reconciliation tolerances (identity 1e-9; dollars $0.50; shares derivation
 $0.50). Round dollars to nearest $10, percentages to 0.1.

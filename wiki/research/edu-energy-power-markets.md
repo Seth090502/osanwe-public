@@ -655,11 +655,11 @@ Measured references pairing with each framework block above:
   and the levered-structure sensitivity in Section 7.
 - [[ref-inflation-rates-complex]] -- real-rate and breakeven context for
   regulated return-setting and long-duration power assets.
-- *ref-scenario-stress-test* (not published) -- gas-shock and rate-shock scenarios applied
+- ref-scenario-stress-test -- gas-shock and rate-shock scenarios applied
   to the energy sleeve of a covered book; Section 7 stress tests made concrete.
-- *ref-portfolio-risk-decomposition* (not published) -- how much of current risk sits in
+- ref-portfolio-risk-decomposition -- how much of current risk sits in
   this complex after the wave-E additions.
-- *ref-cross-analysis-synthesis* (not published) -- cross-file read of every wave-E and
+- ref-cross-analysis-synthesis -- cross-file read of every wave-E and
   wave-U verdict referenced throughout.
 - Companion theory: [[edu-semiconductor-industry]] (demand side) and
   [[edu-macro-analysis]] (rates, growth, and commodity cycles).

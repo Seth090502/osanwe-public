@@ -10,7 +10,7 @@ tags:
   - topic/backtesting
   - topic/momentum
 related:
-  - "*ref-factor-lens* (not published)"
+  - "ref-factor-lens"
 ---
 
 # Ref: Monthly Momentum Backtest vs SPY (baseline, untuned)

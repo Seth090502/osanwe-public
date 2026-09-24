@@ -26,18 +26,18 @@ tags:
   - ticker/ONDO
   - ticker/COIN
 related:
-  - "*ref-theme-beta-institutional-crypto-deep-dive* (not published)"
-  - "*XRP* (not published)"
-  - "*XLM* (not published)"
-  - "*LINK* (not published)"
-  - "*HBAR* (not published)"
-  - "*ALGO* (not published)"
-  - "*QNT* (not published)"
-  - "*XDC* (not published)"
-  - "*ONDO* (not published)"
-  - "*COIN* (not published)"
-  - "*investing-moc* (not published)"
-  - "*thesis-theme-beta* (not published)"
+  - "ref-theme-beta-institutional-crypto-deep-dive"
+  - "XRP"
+  - "XLM"
+  - "LINK"
+  - "HBAR"
+  - "ALGO"
+  - "QNT"
+  - "XDC"
+  - "ONDO"
+  - "COIN"
+  - "investing-moc"
+  - "thesis-theme-beta"
 ---
 
 # Ingested: ref-theme-beta-institutional-crypto-deep-dive

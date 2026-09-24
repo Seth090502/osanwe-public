@@ -10,7 +10,7 @@ tags:
   - topic/investing
   - topic/meta
 aliases: ["master toc", "finance knowledge graph"]
-related: ["*investing-moc* (not published)", "[[financial-analysis-contract]]"]
+related: ["investing-moc", "[[financial-analysis-contract]]"]
 ---
 
 # Knowledge Master TOC (wiki/meta/knowledge-moc)
@@ -64,14 +64,14 @@ independent evidence, calibration, or permission to alter doctrine.
 
 | Question | Education and method references | Application check |
 |---|---|---|
-| What expectations justify a company valuation? | *edu-corporate-finance* (not published), [[Atlas/sources/investing/ref-valuation-methodology|ref-valuation-methodology]] | Match FCFF/FCFE, reinvestment, discount basis and business type; expose reverse-DCF expectations and sensitivities. Operating DCF has explicit scope limits in institutional-methods. |
-| Are reported earnings and financial quality credible? | [[wiki/research/edu-accounting-analysis|edu-accounting-analysis]], [[Atlas/sources/investing/ref-scoring-models|ref-scoring-models]], *ref-earnings-analysis-framework* (not published) | Inspect accounting definitions, recasts and original filings. Follow /invest's current scoring route; unresolved loss-maker/cyclical wording conflicts are not silently reconciled. |
-| Is a portfolio diversified and robust to estimation error? | *edu-portfolio-theory* (not published), *ref-factor-lens* (not published) | Separate thesis labels from factor exposure, estimator error and tail co-movement; current account scope comes from /networth. Use the validated modules in institutional-methods. |
+| What expectations justify a company valuation? | edu-corporate-finance, [[Atlas/sources/investing/ref-valuation-methodology|ref-valuation-methodology]] | Match FCFF/FCFE, reinvestment, discount basis and business type; expose reverse-DCF expectations and sensitivities. Operating DCF has explicit scope limits in institutional-methods. |
+| Are reported earnings and financial quality credible? | [[wiki/research/edu-accounting-analysis|edu-accounting-analysis]], [[Atlas/sources/investing/ref-scoring-models|ref-scoring-models]], ref-earnings-analysis-framework | Inspect accounting definitions, recasts and original filings. Follow /invest's current scoring route; unresolved loss-maker/cyclical wording conflicts are not silently reconciled. |
+| Is a portfolio diversified and robust to estimation error? | edu-portfolio-theory, ref-factor-lens | Separate thesis labels from factor exposure, estimator error and tail co-movement; current account scope comes from /networth. Use the validated modules in institutional-methods. |
 | Does a historical signal survive fair evaluation? | [[wiki/research/edu-quantitative-methods|edu-quantitative-methods]], [[Atlas/sources/investing/ref-quantitative-signals-library|ref-quantitative-signals-library]] | Availability dates, universe coverage, costs, multiple testing and holdout discipline precede performance interpretation; /backtest and the evaluation protocol own acceptance. |
 | How do rates, liquidity or credit affect the thesis? | [[wiki/research/edu-macro-analysis|edu-macro-analysis]], [[wiki/research/edu-fixed-income|edu-fixed-income]], [[Atlas/sources/investing/ref-macro-landscape|ref-macro-landscape]] | Refresh dated macro inputs and distinguish causal channels from historical correlations; /brief and /market own current regime claims. |
-| How does sector structure transmit demand and margins? | [[wiki/research/edu-semiconductor-industry|edu-semiconductor-industry]], [[wiki/research/edu-energy-power-markets|edu-energy-power-markets]], *ref-ai-supply-chain-deep-dive* (not published) | Trace customers, bottlenecks, capacity, power and substitution through current issuer/industry evidence; old sector snapshots are hypotheses to refresh. |
-| What could invalidate the thesis or distort judgment? | *edu-behavioral-finance* (not published), [[Atlas/sources/investing/ref-investor-frameworks-2026|ref-investor-frameworks-2026]] | /challenge loads disconfirming evidence first. Investor lenses generate questions; they do not establish probabilities or voting-based confidence. |
-| Could liquidity and implementation costs erase the result? | *edu-market-microstructure* (not published), *ref-technical-analysis-comprehensive* (not published) | Compare spread, impact, turnover and timing assumptions with the actual instrument; analysis does not authorize execution. |
+| How does sector structure transmit demand and margins? | [[wiki/research/edu-semiconductor-industry|edu-semiconductor-industry]], [[wiki/research/edu-energy-power-markets|edu-energy-power-markets]], ref-ai-supply-chain-deep-dive | Trace customers, bottlenecks, capacity, power and substitution through current issuer/industry evidence; old sector snapshots are hypotheses to refresh. |
+| What could invalidate the thesis or distort judgment? | edu-behavioral-finance, [[Atlas/sources/investing/ref-investor-frameworks-2026|ref-investor-frameworks-2026]] | /challenge loads disconfirming evidence first. Investor lenses generate questions; they do not establish probabilities or voting-based confidence. |
+| Could liquidity and implementation costs erase the result? | edu-market-microstructure, ref-technical-analysis-comprehensive | Compare spread, impact, turnover and timing assumptions with the actual instrument; analysis does not authorize execution. |
 
 The active executable method map is `docs/institutional-methods.md`. Knowledge
 selection informs its assumptions and applicability; a named formula in a primer
@@ -90,7 +90,7 @@ a "Related vault data" section mapping theory to the reference layer.
 - [[edu-accounting-analysis]] -- the three statements, accrual vs cash,
   revenue recognition (ASC 606), quality-of-earnings red flags, off-balance-
   sheet items, XBRL, manipulation detection heuristics.
-- *edu-corporate-finance* (not published) -- DCF theory and tech practice, WACC builds,
+- edu-corporate-finance -- DCF theory and tech practice, WACC builds,
   FCFF vs FCFE, capital structure (MM / trade-off / pecking order), working
   capital cycles, M&A accretion math, real options.
 - [[edu-fixed-income]] -- present value, bond pricing, duration/convexity,
@@ -102,13 +102,13 @@ a "Related vault data" section mapping theory to the reference layer.
 
 ### Portfolio and market behavior
 
-- *edu-behavioral-finance* (not published) -- prospect theory, cognitive bias catalog,
+- edu-behavioral-finance -- prospect theory, cognitive bias catalog,
   disposition effect, overtrading evidence, and the bias-compensating system
   designs (doctrine ladders, gates, calibration) this vault already runs.
-- *edu-market-microstructure* (not published) -- order types, spreads and market impact,
+- edu-market-microstructure -- order types, spreads and market impact,
   dark pools, maker inventory, circuit breakers, short/squeeze dynamics,
   options market-maker hedging flows.
-- *edu-portfolio-theory* (not published) -- Markowitz through factor investing: CAPM,
+- edu-portfolio-theory -- Markowitz through factor investing: CAPM,
   Fama-French, APT, Black-Litterman, risk parity, Kelly sizing, correlation
   breakdown, anchored on a covered book's measured effective-bets statistic.
 
@@ -135,7 +135,7 @@ type. Ingest reports (`*-ingest-*`) sit under Data as source archives.
   store: funds rate path, balance sheet, reaction function.
 - [[ref-fed-liquidity-engine]] -- QT, reserves, repo, RRP; the net-liquidity
   verdict model behind the brief's liquidity overlay.
-- *ref-yen-carry-global-liquidity* (not published) -- yen carry unwind anatomy, DEXJPUS
+- ref-yen-carry-global-liquidity -- yen carry unwind anatomy, DEXJPUS
   episode census, global liquidity transmission into semis.
 - [[ref-inflation-rates-complex]] -- inflation and rates complex: breakevens,
   real rates, the DGS10 gate lineage now carried by DFII10.
@@ -146,24 +146,24 @@ type. Ingest reports (`*-ingest-*`) sit under Data as source archives.
 
 - [[ref-semiconductor-value-chain]] -- semi value chain reference: segments,
   demand engines, cycle position, per-name exposure map.
-- *ref-supply-chain-dependency* (not published) -- AI value chain dependency map: who earns
+- ref-supply-chain-dependency -- AI value chain dependency map: who earns
   which system-level margin, single-source chokepoints.
 - [[ref-energy-power-complex]] -- energy / AI-power complex: generators,
   IPPs, utilities, fuel and turbine supply, PPA economics.
 - [[ref-datacenter-infrastructure]] -- datacenter infrastructure: capacity
   pipeline, power density, REIT vs developer models.
-- *ref-crypto-deep-dive* (not published) -- crypto majors plus the theme-beta institutional
+- ref-crypto-deep-dive -- crypto majors plus the theme-beta institutional
   coverage.
 - [[ref-ai-supply-chain-complete]] -- Tier 0-7 dependency graph across the
   full AI stack; edge-level supplier relationships, single-source flags.
-- *ref-ai-outcome-scenarios* (not published) -- AI buildout outcome scenarios mapped to
-  portfolio exposure; complements *ref-cross-analysis-synthesis* (not published).
+- ref-ai-outcome-scenarios -- AI buildout outcome scenarios mapped to
+  portfolio exposure; complements ref-cross-analysis-synthesis.
 - [[ref-theme-alpha|theme-alpha thesis layer (Atlas)]] and its ingest archives:
   [[ref-theme-alpha-ingest-2026-04-22]], [[ref-theme-alpha-ingest-2026-07-16]],
   [[ref-ai-supply-chain-deep-dive-ingest-2026-05-06]],
   [[ref-ai-power-grid-deep-dive-ingest-2026-05-06]],
   [[ref-memory-storage-cycle-deep-dive-ingest-2026-05-06]],
-  *ref-defense-aerospace-space-economy-deep-dive-ingest-2026-05-06* (not published),
+  ref-defense-aerospace-space-economy-deep-dive-ingest-2026-05-06,
   [[ref-theme-beta-institutional-crypto-deep-dive-ingest-2026-05-06]].
 
 ### Quantitative
@@ -172,30 +172,30 @@ type. Ingest reports (`*-ingest-*`) sit under Data as source archives.
   across the covered universe; N_eff inputs; crisis-co movement notes.
 - [[ref-composite-scoring]] -- composite scoring engine: quality/momentum/
   valuation sleeves for every ticker.
-- *Factor lens (Atlas)* (not published) -- factor decomposition of the
+- Factor lens (Atlas) -- factor decomposition of the
   book; concentration risk view.
-- *ref-theme-detection* (not published) -- theme detection engine over the /invest corpus.
-- *ref-synthetic-benchmarks* (not published) and *ref-synthetic-benchmarks-extended* (not published) --
+- ref-theme-detection -- theme detection engine over the /invest corpus.
+- ref-synthetic-benchmarks and ref-synthetic-benchmarks-extended --
   true-benchmark alpha vs the opportunity set a book actually competes with.
-- *ref-options-derivatives-layer* (not published) -- options overlay: IV context, skew,
+- ref-options-derivatives-layer -- options overlay: IV context, skew,
   earnings-event structures per name.
 
 ### Portfolio
 
-- *ref-portfolio-risk-decomposition* (not published) -- factor exposures, risk
+- ref-portfolio-risk-decomposition -- factor exposures, risk
   contributions, concentration ladder on a modelled book.
-- *ref-portfolio-optimization* (not published) -- a modelled book vs optimal weights;
+- ref-portfolio-optimization -- a modelled book vs optimal weights;
   rebalance paths under doctrine ceilings.
-- *ref-hedge-construction* (not published) -- systemic risks mapped to measured
+- ref-hedge-construction -- systemic risks mapped to measured
   instruments; sleeve sizing logic.
-- *ref-scenario-stress-test* (not published) -- six macro shocks applied to a modelled
+- ref-scenario-stress-test -- six macro shocks applied to a modelled
   book; trigger-to-P&L playbook.
-- *ref-cross-analysis-synthesis* (not published) -- synthesis across all 51 wave analyses:
+- ref-cross-analysis-synthesis -- synthesis across all 51 wave analyses:
   consensus leaders, contrarian file, contradiction log, scenario playbook.
-- *ref-earnings-analysis-framework* (not published) -- earnings framework across the covered
+- ref-earnings-analysis-framework -- earnings framework across the covered
   names; post-print rerun checklist.
-- *ref-earnings-calendar* (not published) -- dated earnings calendar for covered names.
-- *ref-technical-analysis-comprehensive* (not published) -- technical read on every covered
+- ref-earnings-calendar -- dated earnings calendar for covered names.
+- ref-technical-analysis-comprehensive -- technical read on every covered
   ticker: trend, levels, zones wired to doctrine triggers.
 - [[ref-momentum-backtest]] and [[ref-strategy-backtest-results]] --
   momentum baseline vs SPY and the V1/V2/V3 variant results (honest costs).
@@ -204,61 +204,61 @@ type. Ingest reports (`*-ingest-*`) sit under Data as source archives.
 
 - [[ref-financial-statements]] -- EDGAR XBRL statement reference feeding
   quality checks and reverse-DCF inputs.
-- *ref-institutional-flow-analysis* (not published) -- filings-based institutional money
+- ref-institutional-flow-analysis -- filings-based institutional money
   flow analysis.
-- *ref-institutional-insider-tracking* (not published) -- institutional ownership and
+- ref-institutional-insider-tracking -- institutional ownership and
   insider transaction tracking from EDGAR feeds.
 - [[ref-alternative-data-signals]] -- non-price alternative signals mined
   from filings and disclosures.
 - Ingest archives: [[ref-earnings-playbook-ingest-2026-06-10]]
-  (earnings mechanics + PEAD), *ref-factor-lens-ingest-2026-06-10* (not published),
-  *ref-claude-leveraged-income-2026-ingest-2026-04-29* (not published).
+  (earnings mechanics + PEAD), ref-factor-lens-ingest-2026-06-10,
+  ref-claude-leveraged-income-2026-ingest-2026-04-29.
 
 ## Analysis Corpus
 
 All 51 wave analyses live in Efforts/osanwe-v2-overhaul/_work/ (mission
 scratch space; wikilinks resolve via the audit's extra-targets wiring).
-Cross-file synthesis: *ref-cross-analysis-synthesis* (not published). Entity notes carry
+Cross-file synthesis: ref-cross-analysis-synthesis. Entity notes carry
 the symmetric "latest wave analysis" links back.
 
 ### Large-cap names
 
-*wave2-amd-analysis* (not published), *wave2-amzn-analysis* (not published), *wave2-googl-analysis* (not published), *wave2-meta-analysis* (not published),
-*wave1-msft-analysis* (not published), *wave1-mu-analysis* (not published), *wave1-nvda-analysis* (not published), *wave1-sndk-analysis* (not published),
-*wave2-tsla-analysis* (not published), *wave1-tsm-analysis* (not published), *wave2-vgt-analysis* (not published), *wave1-voo-analysis* (not published)
+wave2-amd-analysis, wave2-amzn-analysis, wave2-googl-analysis, wave2-meta-analysis,
+wave1-msft-analysis, wave1-mu-analysis, wave1-nvda-analysis, wave1-sndk-analysis,
+wave2-tsla-analysis, wave1-tsm-analysis, wave2-vgt-analysis, wave1-voo-analysis
 
 ### Wave E -- energy and compute-cooling complex
 
-*waveE-bwxt-analysis* (not published), *waveE-ceg-analysis* (not published), *waveE-etn-analysis* (not published),
-*waveE-gev-analysis* (not published), *waveE-nee-analysis* (not published), *waveE-tln-analysis* (not published),
-*waveE-vrt-analysis* (not published), *waveE-vst-analysis* (not published)
+waveE-bwxt-analysis, waveE-ceg-analysis, waveE-etn-analysis,
+waveE-gev-analysis, waveE-nee-analysis, waveE-tln-analysis,
+waveE-vrt-analysis, waveE-vst-analysis
 
 ### Wave I -- AI server OEMs and datacenter REITs
 
-*waveI-dell-analysis* (not published), *waveI-dlr-analysis* (not published), *waveI-eqix-analysis* (not published),
-*waveI-hpe-analysis* (not published), *waveI-smci-analysis* (not published)
+waveI-dell-analysis, waveI-dlr-analysis, waveI-eqix-analysis,
+waveI-hpe-analysis, waveI-smci-analysis
 
 ### Wave N -- AI networking and interconnect
 
-*waveN-anet-analysis* (not published), *waveN-avgo-analysis* (not published), *waveN-cohr-analysis* (not published),
-*waveN-mrvl-analysis* (not published)
+waveN-anet-analysis, waveN-avgo-analysis, waveN-cohr-analysis,
+waveN-mrvl-analysis
 
 ### Wave S -- semiconductor equipment, EDA, IP
 
-*waveS-amat-analysis* (not published), *waveS-arm-analysis* (not published), *waveS-asml-analysis* (not published),
-*waveS-klac-analysis* (not published), *waveS-lrcx-analysis* (not published), *waveS-snps-analysis* (not published)
+waveS-amat-analysis, waveS-arm-analysis, waveS-asml-analysis,
+waveS-klac-analysis, waveS-lrcx-analysis, waveS-snps-analysis
 
 ### Wave T -- software, cloud, defense primes, neocloud
 
-*waveT-crwv-analysis* (not published), *waveT-lmt-analysis* (not published), *waveT-nbis-analysis* (not published),
-*waveT-noc-analysis* (not published), *waveT-now-analysis* (not published), *waveT-orcl-analysis* (not published),
-*waveT-pltr-analysis* (not published), *waveT-rtx-analysis* (not published)
+waveT-crwv-analysis, waveT-lmt-analysis, waveT-nbis-analysis,
+waveT-noc-analysis, waveT-now-analysis, waveT-orcl-analysis,
+waveT-pltr-analysis, waveT-rtx-analysis
 
 ### Wave U -- utilities, power names, crypto kernels
 
-*waveU-AEP-analysis* (not published), *waveU-BE-analysis* (not published), *waveU-COIN-analysis* (not published),
-*waveU-DUK-analysis* (not published), *waveU-FLNC-analysis* (not published), *waveU-PPL-analysis* (not published),
-*waveU-SO-analysis* (not published), *waveU-XRP-analysis* (not published)
+waveU-AEP-analysis, waveU-BE-analysis, waveU-COIN-analysis,
+waveU-DUK-analysis, waveU-FLNC-analysis, waveU-PPL-analysis,
+waveU-SO-analysis, waveU-XRP-analysis
 
 
 ### Semiconductor supply chain -- 2026-08-24 ingest batch
@@ -266,75 +266,75 @@ the symmetric "latest wave analysis" links back.
 Newly wired entities (bars since 2021-08-24 in the factor store; entity
 notes + benchmark profiles + data annexes generated 2026-08-24):
 
-- Equities: *ASX* (not published), *ACLS* (not published), *TER* (not published), *ENTG* (not published), *MPWR* (not published), *GLW* (not published),
-  *TEL* (not published), *UCTT* (not published), *COHU* (not published)
-- Sector ETFs: *SOXX* (not published), *XLE* (not published), *XLF* (not published), *XLI* (not published), *XLP* (not published), *XLRE* (not published),
-  *XLU* (not published), *XLV* (not published), *XLY* (not published)
+- Equities: ASX, ACLS, TER, ENTG, MPWR, GLW,
+  TEL, UCTT, COHU
+- Sector ETFs: SOXX, XLE, XLF, XLI, XLP, XLRE,
+  XLU, XLV, XLY
 - Existing semi supply-chain entities refreshed with generated data layers:
-  *CDNS* (not published), *GFS* (not published), *AMKR* (not published), *ONTO* (not published), *AEIS* (not published), *APH* (not published), *SMH* (not published)
+  CDNS, GFS, AMKR, ONTO, AEIS, APH, SMH
 
 Data sources: per-ticker benchmark profiles under
-*reference-index* (not published); XBRL statement data via [[ref-financial-statements]];
+reference-index; XBRL statement data via [[ref-financial-statements]];
 value-chain placement in [[ref-semiconductor-value-chain]] and
-*ref-supply-chain-dependency* (not published). Landed wave analyses (2026-08-24 supply-chain wave):
+ref-supply-chain-dependency. Landed wave analyses (2026-08-24 supply-chain wave):
 
-- *waveSC-aph-analysis* (not published) -- APH: connectors, backplanes, high-speed interconnect.
-- *waveSC-cohu-analysis* (not published) -- COHU: test handling and metrology instrumentation.
-- *waveSC-acls-analysis* (not published) -- ACLS: plasma abatement and thermal subsystems.
-- *waveSC-aeis-analysis* (not published) -- AEIS: semiconductor thermal/ESD solutions.
-- *waveSC-amkr-analysis* (not published) -- AMKR: OSAT assembly and test services.
-- *waveSC-asx-analysis* (not published) -- ASX: advanced packaging and test equipment.
-- *waveSC-cdns-analysis* (not published) -- CDNS: EDA and digital design implementation.
-- *waveSC-entg-analysis* (not published) -- ENTG: specialty materials and wafer reclaim.
-- *waveSC-gfs-analysis* (not published) -- GFS: global foundries, differentiated nodes.
-- *waveSC-glw-analysis* (not published) -- GLW: optical fiber and connectivity.
-- *waveSC-mram-analysis* (not published) -- MRAM-class memory and embedded NVM exposure.
-- *waveSC-mpwr-analysis* (not published) -- MPWR: analog/power management ICs.
-- *waveSC-onto-analysis* (not published) -- ONTO: process control and inspection.
-- *waveSC-tel-analysis* (not published) -- TEL: connectivity and sensor solutions.
-- *waveSC-ter-analysis* (not published) -- TER: automated test equipment.
-- *waveSC-uctt-analysis* (not published) -- UCTT: semiconductor consumables and components.
+- waveSC-aph-analysis -- APH: connectors, backplanes, high-speed interconnect.
+- waveSC-cohu-analysis -- COHU: test handling and metrology instrumentation.
+- waveSC-acls-analysis -- ACLS: plasma abatement and thermal subsystems.
+- waveSC-aeis-analysis -- AEIS: semiconductor thermal/ESD solutions.
+- waveSC-amkr-analysis -- AMKR: OSAT assembly and test services.
+- waveSC-asx-analysis -- ASX: advanced packaging and test equipment.
+- waveSC-cdns-analysis -- CDNS: EDA and digital design implementation.
+- waveSC-entg-analysis -- ENTG: specialty materials and wafer reclaim.
+- waveSC-gfs-analysis -- GFS: global foundries, differentiated nodes.
+- waveSC-glw-analysis -- GLW: optical fiber and connectivity.
+- waveSC-mram-analysis -- MRAM-class memory and embedded NVM exposure.
+- waveSC-mpwr-analysis -- MPWR: analog/power management ICs.
+- waveSC-onto-analysis -- ONTO: process control and inspection.
+- waveSC-tel-analysis -- TEL: connectivity and sensor solutions.
+- waveSC-ter-analysis -- TER: automated test equipment.
+- waveSC-uctt-analysis -- UCTT: semiconductor consumables and components.
 
 
 ### Wave X -- 2026-08-25 ad-hoc batch
 
-Equities: *waveX-aaoi-analysis* (not published) (optical modules),
-*waveX-abbny-analysis* (not published) (ABB ADR),
-*waveX-alab-analysis* (not published) (Arista), *waveX-amba-analysis* (not published) (Ambarella),
-*waveX-gd-analysis* (not published) (General Dynamics, AUKUS submarine prime),
-*waveX-lhx-analysis* (not published) (L3Harris, defense electronics).
+Equities: waveX-aaoi-analysis (optical modules),
+waveX-abbny-analysis (ABB ADR),
+waveX-alab-analysis (Arista), waveX-amba-analysis (Ambarella),
+waveX-gd-analysis (General Dynamics, AUKUS submarine prime),
+waveX-lhx-analysis (L3Harris, defense electronics).
 
-Crypto: *waveX-link-usd-analysis* (not published) (Chainlink).
+Crypto: waveX-link-usd-analysis (Chainlink).
 
-Late additions (2026-08-24/25): *waveX-AVAV-analysis* (not published) (AeroVironment),
-*waveX-BAH-analysis* (not published) (Booz Allen), *waveX-hii-analysis* (not published) (HII, naval
-shipbuilding), *waveX-mbly-analysis* (not published) (Mobileye),
-*waveX-mksi-analysis* (not published) (MKS Instruments), *waveX-soxx-analysis* (not published)
-(SOXX ETF benchmark read), *waveX-ateyy-analysis* (not published) (Advantest ADR),
-*waveX-spcx-analysis* (not published) (SpaceX private-markets read),
-*waveX-hims-analysis* (not published) (HIMS, telehealth post-squeeze),
-*waveX-CRDO-analysis* (not published) (Credo, connectivity silicon),
-*waveX-usar-analysis* (not published) (USA Rare Earth), *waveX-hubb-analysis* (not published)
-(Hubbell), *waveX-mpwr-analysis* (not published) (Monolithic Power),
-*waveX-nrg-analysis* (not published) (NRG Energy).
+Late additions (2026-08-24/25): waveX-AVAV-analysis (AeroVironment),
+waveX-BAH-analysis (Booz Allen), waveX-hii-analysis (HII, naval
+shipbuilding), waveX-mbly-analysis (Mobileye),
+waveX-mksi-analysis (MKS Instruments), waveX-soxx-analysis
+(SOXX ETF benchmark read), waveX-ateyy-analysis (Advantest ADR),
+waveX-spcx-analysis (SpaceX private-markets read),
+waveX-hims-analysis (HIMS, telehealth post-squeeze),
+waveX-CRDO-analysis (Credo, connectivity silicon),
+waveX-usar-analysis (USA Rare Earth), waveX-hubb-analysis
+(Hubbell), waveX-mpwr-analysis (Monolithic Power),
+waveX-nrg-analysis (NRG Energy).
 
 ### Wave 7 -- memory and defense hardware kernels
 
-*wave7-WDC-analysis* (not published) -- Western Digital storage cycle read.
-*wave7-XAR-analysis* (not published) -- SPDR S&P Aerospace & Defense ETF kernel.
+wave7-WDC-analysis -- Western Digital storage cycle read.
+wave7-XAR-analysis -- SPDR S&P Aerospace & Defense ETF kernel.
 
 ### Wave 8 -- sector ETF kernels
 
-*wave8-xlp-analysis* (not published) -- Consumer Staples sector SPDR.
-*wave8-xlre-analysis* (not published) -- Real Estate sector SPDR.
+wave8-xlp-analysis -- Consumer Staples sector SPDR.
+wave8-xlre-analysis -- Real Estate sector SPDR.
 
-Wave 7 ETF kernel: *wave7-XLE-analysis* (not published) -- Energy sector SPDR.
+Wave 7 ETF kernel: wave7-XLE-analysis -- Energy sector SPDR.
 
 ## Entity Universe
 
 Entity navigation lives in the Atlas MOC layer:
 
-- *investing-moc* (not published) -- portfolio, watchlist, research log; routes into
+- investing-moc -- portfolio, watchlist, research log; routes into
   wiki/entities/tickers/ (108 ticker notes) and wiki/entities/companies/
   (51 company notes).
 - Whole-vault domain router: [[knowledge-moc]] (Atlas/_MOCs).
@@ -374,5 +374,5 @@ indexed for resolution but audited only in their canon home.
 - New edu/ref docs get one line here in the right section, same day they land.
 - Wave analyses are indexed by wave prefix; keep ratings OUT of this file
   (they age fast) -- ratings live in the files themselves and in
-  *ref-cross-analysis-synthesis* (not published).
+  ref-cross-analysis-synthesis.
 - ASCII only; no numbers invented here -- this file routes, it does not assert.

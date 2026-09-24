@@ -4,7 +4,7 @@ status: active
 created: 2026-08-25
 updated: 2026-08-25
 tags: [topic/meta]
-related: ["*confidence-map-2026* (not published)"]
+related: ["confidence-map-2026"]
 ---
 
 # Prediction contract v1

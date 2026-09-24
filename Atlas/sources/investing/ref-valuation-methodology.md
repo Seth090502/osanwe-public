@@ -14,11 +14,11 @@ tags:
 aliases:
   - valuation methodology
 related:
-  - "*investing-moc* (not published)"
+  - "investing-moc"
   - "[[ref-scoring-models]]"
-  - "*ref-portfolio-doctrine* (not published)"
+  - "ref-portfolio-doctrine"
   - "[[ref-investor-frameworks-2026]]"
-  - "*ref-memory-storage-cycle-deep-dive* (not published)"
+  - "ref-memory-storage-cycle-deep-dive"
 ---
 
 # Valuation Methodology

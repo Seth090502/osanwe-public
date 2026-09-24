@@ -2,7 +2,7 @@
 
 Operator-directed ("We should try using glimmer 30b for this"). Same isolation +
 protocol as the qwen conformance run (conformance-opencode-tierc-2026-08-10.md):
-`<LOCAL_PATH>\phase-3-skills-b4\` clone, env scrubbed, OPENCODE_DISABLE_CLAUDE_CODE_SKILLS=1,
+`phase-3-skills-b4\` clone, env scrubbed, OPENCODE_DISABLE_CLAUDE_CODE_SKILLS=1,
 fresh `opencode run` per probe. ONE protocol delta, recorded: no Ollama engine can load
 the Glimmer arch on Windows yet, so the model was served by llama.cpp b10353
 (llama-server, OpenAI-compatible endpoint, port 8089, -ngl 999, -c 32768, --jinja)

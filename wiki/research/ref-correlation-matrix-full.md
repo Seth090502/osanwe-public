@@ -11,7 +11,7 @@ tags:
   - topic/portfolio-construction
   - topic/correlation
   - thesis/theme-alpha
-related: ["[[ref-correlation-matrix-full]]", "*ref-supply-chain-dependency* (not published)", "*ref-factor-lens* (not published)", "*investing-moc* (not published)"]
+related: ["[[ref-correlation-matrix-full]]", "ref-supply-chain-dependency", "ref-factor-lens", "investing-moc"]
 ---
 
 # Full Pairwise Correlation Matrix (90-day)

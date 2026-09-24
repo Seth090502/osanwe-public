@@ -6,7 +6,7 @@ created: 2026-07-10
 updated: 2026-07-10
 tags: [topic/consolidation, topic/playbook]
 related:
-  - "*hot* (not published)"
+  - "hot"
 ---
 
 # Bash Exit_code_1_HTTP_298 Playbook
@@ -14,7 +14,7 @@ related:
 ## Pattern
 Invariant: A telemetry error_class of the shape Exit_code_N_HTTP_<n> does NOT denote an HTTP status; <n> is only the first word-bounded 3-digit token the classifier regex reaches inside the captured trace, so the slug is non-diagnostic and any such cluster must be triaged by reading the raw failures-*.jsonl records, never by its label.
 
-Mechanism: the HTTP branch in tools/consolidator.py:96 and its byte-identical twin in tools/telemetry_analyzer.py:102 is `^Exit code (\d+).*?\b(\d{3})\b` compiled with re.DOTALL: the lazy .*? crosses every newline into the full Python traceback and grabs the first 3-digit token -- which for any json.load failure is the interpreter frame json/__init__.py line 298. Because json.load is a near-universal idiom in the vault's bash one-liners, that single library line number manufactured an 8-of-8 "HTTP_298" family out of two unrelated root causes: 4 empty-stdin/empty-file JSONDecodeErrors and 4 cp1252 UnicodeDecodeErrors on the SAME `<HOME>`/.vault-substrate/index/vault-meta.json read without encoding='utf-8' -- the real, still-unfixed repeat offender the label hid (06-09 x2, 06-27, 07-02, recurring as that index grew 1.3MB -> 3.2MB). The same regex mislabels a wider family -- ls block counts (153), wc line counts (503), DCF dollar figures (492), workflow-hash fragments (435) all surface as HTTP_<n> across the 05-23/06-10/07-10 telemetry reports -- and a PowerShell::Exit_code_1_HTTP_298 record on 05-30 shows the false family is not confined to Bash.
+Mechanism: the HTTP branch in tools/consolidator.py:96 and its byte-identical twin in tools/telemetry_analyzer.py:102 is `^Exit code (\d+).*?\b(\d{3})\b` compiled with re.DOTALL: the lazy .*? crosses every newline into the full Python traceback and grabs the first 3-digit token -- which for any json.load failure is the interpreter frame json/__init__.py line 298. Because json.load is a near-universal idiom in the vault's bash one-liners, that single library line number manufactured an 8-of-8 "HTTP_298" family out of two unrelated root causes: 4 empty-stdin/empty-file JSONDecodeErrors and 4 cp1252 UnicodeDecodeErrors on the SAME ~/.vault-substrate/index/vault-meta.json read without encoding='utf-8' -- the real, still-unfixed repeat offender the label hid (06-09 x2, 06-27, 07-02, recurring as that index grew 1.3MB -> 3.2MB). The same regex mislabels a wider family -- ls block counts (153), wc line counts (503), DCF dollar figures (492), workflow-hash fragments (435) all surface as HTTP_<n> across the 05-23/06-10/07-10 telemetry reports -- and a PowerShell::Exit_code_1_HTTP_298 record on 05-30 shows the false family is not confined to Bash.
 
 Confidence: 96% -- mechanism read directly in both source files and all 8 in-window records hand-traced through the regex; residual is only exact cluster-window membership across reports, which does not affect the invariant.
 
@@ -37,7 +37,7 @@ Fix the identical HTTP-branch regex in BOTH tools/consolidator.py:96 (_derive_er
 Any /consolidate or telemetry cluster whose slug matches *_HTTP_<n>: do NOT read it as a network error. Grep that cluster's failures-*.jsonl for <n>; if it appears as a '", line <n>,' traceback frame or a wc/ls/dollar count, it is a first-3-digit-token false-split -- triage by terminal exception type. Treat as HTTP only if a raw record shows an actual curl/registry/HTTP-response result.
 
 ## Related
-- *hot* (not published) -- session cache; this playbook is surfaced in the consolidation digest
+- hot -- session cache; this playbook is surfaced in the consolidation digest
 - [[bash-exit-code-1-playbook]]
 - [[bash-exit-code-2-playbook]]
 - [[read-unclassified-playbook]]

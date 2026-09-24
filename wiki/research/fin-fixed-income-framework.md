@@ -26,7 +26,7 @@ aliases:
 related:
   - "[[fin-cash-flow-framework]]"
   - "[[fin-tax-aware-investing]]"
-  - "*fin-retirement-planning* (not published)"
+  - "fin-retirement-planning"
 
 ---
 
@@ -54,7 +54,7 @@ Usage rules:
    pulled fresh via `python tools/factor-store.py --query-bars DGS10`
    (and siblings) before any computation; the numbers above are context,
    not inputs.
-2. Doctrine note (*research-dgs10-band-2026-07-18* (not published)): the 10Y LEVEL is
+2. Doctrine note (research-dgs10-band-2026-07-18): the 10Y LEVEL is
    a weak return predictor; use it here only for what it directly
    prices -- bond math, discounting, and reinvestment assumptions --
    not as an equity timing gate.
@@ -307,7 +307,7 @@ above).
 
 ### 7.3 With retirement planning
 
-The withdrawal cash wedge *fin-retirement-planning* (not published) is implemented as
+The withdrawal cash wedge fin-retirement-planning is implemented as
 this document's ladder sections 1-2; sequence-of-returns defense equals
 rungs covering 1-3 years of withdrawals.
 
@@ -353,7 +353,7 @@ deferral_value(1yr) = tax_deferred * (1 + short_rate)  # sec 7 note
 ```
 
 Doctrine caution (repeat of sec 0): these series price BONDS; they are
-not equity timing signals (*research-dgs10-band-2026-07-18* (not published)).
+not equity timing signals (research-dgs10-band-2026-07-18).
 
 ## Appendix B. CD and savings-rate comparison module
 
@@ -512,10 +512,10 @@ construction, NOT an equity signal (doctrine research, sec 0).
 
 - [[edu-fixed-income]]: educational foundations (convexity, curve
   mechanics) backing the formulas used here.
-- *research-dgs10-band-2026-07-18* (not published): why the 10Y level is not used
+- research-dgs10-band-2026-07-18: why the 10Y level is not used
   as an equity gate; valuation-conditional replacement evidence.
 - [[fin-cash-flow-framework]]: liability schedule source; band-C cash
   destination.
 - [[fin-tax-aware-investing]]: TEY math details, AMT/private-activity
   screening, phantom income handling.
-- *fin-retirement-planning* (not published): cash wedge consumption sequencing.
+- fin-retirement-planning: cash wedge consumption sequencing.

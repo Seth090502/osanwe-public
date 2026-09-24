@@ -6,7 +6,7 @@ created: 2026-07-10
 updated: 2026-07-10
 tags: [topic/consolidation, topic/playbook]
 related:
-  - "*hot* (not published)"
+  - "hot"
 ---
 
 # StructuredOutput unclassified Playbook
@@ -37,7 +37,7 @@ Treat the cluster as a classifier artifact: (1) primary -- add a prefix-regex to
 /consolidate or /consolidate telemetry surfaces a StructuredOutput cluster: grep '"tool": "StructuredOutput"' across the cited failures-*.jsonl, group records by missing-property set, and treat as retry-noise unless one schema's set appears under two or more distinct session_id values. Only the cross-session schema warrants a fix; scaffold no playbook for the single-session remainder.
 
 ## Related
-- *hot* (not published) -- session cache; this playbook is surfaced in the consolidation digest
+- hot -- session cache; this playbook is surfaced in the consolidation digest
 - [[bash-exit-code-1-playbook]]
 - [[bash-exit-code-2-playbook]]
 - [[read-unclassified-playbook]]

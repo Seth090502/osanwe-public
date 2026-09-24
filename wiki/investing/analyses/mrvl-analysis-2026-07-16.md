@@ -39,24 +39,24 @@ tags:
 aliases:
   - MRVL analysis 2026-07-16
 related:
-  - "*MRVL* (not published)"
-  - "*mrvl-analysis-2026-07-13* (not published)"
-  - "*mrvl-analysis-2026-06-18* (not published)"
-  - "*AVGO* (not published)"
-  - "*watchlist* (not published)"
-  - "*investing-research-log* (not published)"
-  - "*investing-moc* (not published)"
-  - "*thesis-theme-alpha* (not published)"
-  - "*ref-portfolio-doctrine* (not published)"
+  - "MRVL"
+  - "mrvl-analysis-2026-07-13"
+  - "mrvl-analysis-2026-06-18"
+  - "AVGO"
+  - "watchlist"
+  - "investing-research-log"
+  - "investing-moc"
+  - "thesis-theme-alpha"
+  - "ref-portfolio-doctrine"
   - "[[ref-theme-alpha]]"
-  - "*calibration-monitor* (not published)"
+  - "calibration-monitor"
 ---
 
 # MRVL Investment Analysis -- 2026-07-16
 
 **Date:** 2026-07-16 (Thursday; broker-authoritative anchor = $206.26 7/15 regular close; LIVE $188.48 -8.62% intraday at ~14:21 ET, broker_authoritative, displayed as-of -- today's regular session not yet closed, so ALL threshold math anchors to $206.26 per doctrine J.0b).
 **Model:** Claude Opus 4.8 (/effort high) | **Topology:** dw (Tier-A; price-fetcher + forensic-scorer + institutional-positioning-scout + thesis-critic dispatched as direct parallel research legs; claim-distributor at Phase L). Executed as a 3-day refresh scope, not the full 13-WebSearch spine.
-**Analysis Depth:** institutional refresh (40 sources / 12+ domains this run, leveraging the *mrvl-analysis-2026-07-13* (not published) 42-source baseline; 4 mandatory subagents dispatched + a live broker read + FRED macro + EDGAR primary). Refresh of *mrvl-analysis-2026-07-13* (not published) (3d prior; FRESH) and *mrvl-analysis-2026-06-18* (not published).
+**Analysis Depth:** institutional refresh (40 sources / 12+ domains this run, leveraging the mrvl-analysis-2026-07-13 42-source baseline; 4 mandatory subagents dispatched + a live broker read + FRED macro + EDGAR primary). Refresh of mrvl-analysis-2026-07-13 (3d prior; FRESH) and mrvl-analysis-2026-06-18.
 
 ## TRADING DECISION
 
@@ -66,7 +66,7 @@ related:
 **Conviction**: 22% (conviction_base 60 minus 38.36 K.5 failure-mode penalty across 5 modes; not floored. LOW -- appropriately, and DOWN from 28% on 7/13: this is now a genuinely close, mechanically-gated call. The AVOID is held by three Grade-A gates (R/R, deployment band, open air pocket + unresolved binary), not by a conviction that the business is bad. Separate from confidence per Quality Standards).
 **Time Horizon**: 12mo; rating reviewable at the FQ2 FY27 print (Aug 27, 2026 expected -- the customer-concentration binary, FM1/FM3).
 **Risk/Reward**: **~0.75:1** at the $206.26 anchor (target = MIN(model, analyst median $242.50) = $242.50, +17.6% over the close; stop = $158 nearest real swing-low support, -23.4%, inside the 25% doctrine cap of $154.70). At the live $188.48: **~1.77:1** (target $242.50 +28.7% / stop $158 -16.2%). **FAILS the 3:1 BUY hurdle** at the anchor by ~4x; below the 2:1 rejected-as-BUY floor at the anchor. The R/R has IMPROVED materially vs 7/13 (0.33:1) as the price fell -- BUY-eligibility on R/R alone arrives near ~$179 -- but "close" is not "cleared," and the anchor basis still fails.
-**Composite Quality Score**: 68/100 (forensic 70 quality-strong/priced-for-perfection + framework 66 Lynch-borderline-PASS; weighted 50/50). Unchanged vs 7/13's 68 -- the valuation sub-leg improved with the -13% price move (PEG ~1.0 now clean-passes Lynch, EY 0.84% up from 0.73%), but not enough to round the composite up. Squarely in the BUY band, R/R-demoted to HOLD (the AVGO-precedent mechanism, per *ref-portfolio-doctrine* (not published)).
+**Composite Quality Score**: 68/100 (forensic 70 quality-strong/priced-for-perfection + framework 66 Lynch-borderline-PASS; weighted 50/50). Unchanged vs 7/13's 68 -- the valuation sub-leg improved with the -13% price move (PEG ~1.0 now clean-passes Lynch, EY 0.84% up from 0.73%), but not enough to round the composite up. Squarely in the BUY band, R/R-demoted to HOLD (the AVGO-precedent mechanism, per ref-portfolio-doctrine).
 **Scoring path**: positive-eps-standard (TTM GAAP operating income positive all 4 trailing quarters; forward-earnings bridge INERT; NBIS-trap check PASSED -- GAAP NI positive but inflated by the one-time +$1,830.4M disposition gain, op-income stands on its own; SOLVENCY-RUNWAY GATE inert).
 
 **Summary**: Marvell is the structural #2 in custom AI silicon and a genuine leader in 1.6T optical interconnect, with real numbers -- FY27 guide ~$11.5B/+40%, FY28 ~$16.5B/+45%, data center 76% of revenue, an NVIDIA $2B strategic alignment, and clean forensics (Altman Z 12.1 SAFE, Greenblatt ROC ~60% top-decile, filing integrity CLEAN, no new SEC filing 7/13-7/16). Since the 7/13 AVOID at $216 the stock has fallen another ~13-20% to $188.48 -- and today's -8.6% is decisively COHORT-driven (TSMC's 7/16 capex-reset triggered an AI-capex-digestion / multiple-compression scare across the whole semis complex: SOXX -4.4%, AVGO -4.3%, AMD -6.0%, ARM -6.7%; VOO only -0.4%, VIX 16), amplified ~2x because MRVL is the highest-multiple, highest-beta name. Three of four 7/13 bear vectors eased: positioning DE-ESCALATED (the insider kill-criterion is NOT tripped -- the only new post-6/23 Form 4 is a mechanical 10b5-1 sale; the "$65M CFO sale" was a holdings misread; SI 3.90% and falling), valuation reset further (PEG ~1.0, median PT $242.50 now +28.7% ABOVE live), and the drop is the buyable cohort kind. But the AVOID holds on three Grade-A gates: R/R still fails 3:1 at the $206.26 anchor (0.75:1), the ~40% air pocket is open (support broke, next real floor ~$170 then ~$158, SMA200 $129), and the DGS10 4.58% hold-cash band sizes any entry to $0 -- with the dominant structural risk (custom-compute-socket erosion: Trainium3/4 reportedly to Alchip, Maia200 to Global UniChip per Grade-C channel checks) still unresolved until the Aug 27 binary. HOLD / AVOID INITIATING -- the pullback the prior analysis anticipated has arrived and the business is excellent, but the disciplined move is a conditional-accumulation WATCH: build only on the ~$170-179 R/R-clear + a band reopen + an Aug-27 socket-resolution, not initiation at $188 into a multiple-compression regime that structurally targets this exact 1%-FCF-yield profile.
@@ -293,4 +293,4 @@ The strongest bull is now stronger than 7/13: the drop is cohort/technical not i
 :::
 
 ---
-*Analysis generated 2026-07-16 via /invest (Tier-A dw topology; 4 mandatory subagents dispatched + a recency-scan worker + a live broker read + FRED macro + EDGAR primary; Wave-3 skipped on a non-boundary HOLD). Broker-authoritative price anchor $206.26 (7/15 close); live $188.48 displayed as-of (session open). 3-day refresh of *mrvl-analysis-2026-07-13* (not published). Not investment advice; decision-support for `<owner>`'s vault. Per *ref-portfolio-doctrine* (not published) + [[ref-theme-alpha]] + *mrvl-analysis-2026-07-13* (not published) + *mrvl-analysis-2026-06-18* (not published).*
+*Analysis generated 2026-07-16 via /invest (Tier-A dw topology; 4 mandatory subagents dispatched + a recency-scan worker + a live broker read + FRED macro + EDGAR primary; Wave-3 skipped on a non-boundary HOLD). Broker-authoritative price anchor $206.26 (7/15 close); live $188.48 displayed as-of (session open). 3-day refresh of mrvl-analysis-2026-07-13. Not investment advice; decision-support for the owner's vault. Per ref-portfolio-doctrine + [[ref-theme-alpha]] + mrvl-analysis-2026-07-13 + mrvl-analysis-2026-06-18.*

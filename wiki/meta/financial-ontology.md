@@ -11,7 +11,7 @@ tags:
   - topic/investing
   - topic/knowledge-graph
 aliases: ["financial ontology", "kg schema", "unified finance ontology"]
-related: ["[[knowledge-moc]]", "*investing-moc* (not published)"]
+related: ["[[knowledge-moc]]", "investing-moc"]
 ---
 
 # Unified Financial Ontology

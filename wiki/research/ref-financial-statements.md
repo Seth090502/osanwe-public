@@ -10,7 +10,7 @@ tags:
   - topic/investing
   - topic/filings
   - topic/xbrl
-related: ["*ref-institutional-insider-tracking* (not published)", "*ref-factor-lens* (not published)"]
+related: ["ref-institutional-insider-tracking", "ref-factor-lens"]
 ---
 
 # Financial Statements Reference (EDGAR XBRL)
@@ -30,7 +30,7 @@ FY minus the three reported quarters and marked "(Q4d)". YoY compares the
 same fiscal quarter one year earlier (330-400 day window). TTM = trailing
 four reported quarters (span 240-400 days).
 
-Market caps for ranking: yfinance fast_info, pulled 2026-08-24, cache outside vault (`<HOME>`/edgar-ref-mcaps.json); 86/90 resolved.
+Market caps for ranking: yfinance fast_info, pulled 2026-08-24, cache outside vault (~/edgar-ref-mcaps.json); 86/90 resolved.
 
 EPS: NOT COMPUTABLE from this corpus. EarningsPerShareDiluted is mapped in
 tools/edgar-scraper.py but produced 0 points across all tickers; every EPS
@@ -220,48 +220,48 @@ gaps). Quarterly fallback only when no FY pair exists.
 
 | Ticker | FY Capex | FY Rev | Capex/Rev | FY period | Src |
 |---|---|---|---|---|---|
-| NVDA | n/a | n/a | n/a | n/a | `<VAULT_ROOT>`/wiki/investing/filings/NVDA/NVDA-xbrl.json (no FY capex+revenue pair; quarterly window too thin) |
+| NVDA | n/a | n/a | n/a | n/a | wiki/investing/filings/NVDA/NVDA-xbrl.json (no FY capex+revenue pair; quarterly window too thin) |
 | TSM | n/a | n/a | n/a | n/a | no xbrl json in corpus (see Section 7) |
-| AVGO | 623M | 63.9B | 1.0% | FY end 2025-11-02 (filed 2025-12-18) | `<VAULT_ROOT>`/wiki/investing/filings/AVGO/AVGO-xbrl.json |
-| MRVL | 354M | 8.2B | 4.3% | FY end 2026-01-31 (filed 2026-03-11) | `<VAULT_ROOT>`/wiki/investing/filings/MRVL/MRVL-xbrl.json |
-| MU | 15.9B | 37.4B | 42.4% | FY end 2025-08-28 (filed 2025-10-03) | `<VAULT_ROOT>`/wiki/investing/filings/MU/MU-xbrl.json |
-| SNDK | 177M | 20.2B | 0.9% | FY end 2026-07-03 (filed 2026-08-17) | `<VAULT_ROOT>`/wiki/investing/filings/SNDK/SNDK-xbrl.json |
-| WDC | 418M | 12.9B | 3.2% | FY end 2026-07-03 (filed 2026-08-14) | `<VAULT_ROOT>`/wiki/investing/filings/WDC/WDC-xbrl.json |
+| AVGO | 623M | 63.9B | 1.0% | FY end 2025-11-02 (filed 2025-12-18) | wiki/investing/filings/AVGO/AVGO-xbrl.json |
+| MRVL | 354M | 8.2B | 4.3% | FY end 2026-01-31 (filed 2026-03-11) | wiki/investing/filings/MRVL/MRVL-xbrl.json |
+| MU | 15.9B | 37.4B | 42.4% | FY end 2025-08-28 (filed 2025-10-03) | wiki/investing/filings/MU/MU-xbrl.json |
+| SNDK | 177M | 20.2B | 0.9% | FY end 2026-07-03 (filed 2026-08-17) | wiki/investing/filings/SNDK/SNDK-xbrl.json |
+| WDC | 418M | 12.9B | 3.2% | FY end 2026-07-03 (filed 2026-08-14) | wiki/investing/filings/WDC/WDC-xbrl.json |
 
 ## 5. R&D spend ranking (TTM absolute and % of revenue)
 
 | Rank | Ticker | R&D TTM | R&D % Rev | Rev TTM end | Src |
 |---|---|---|---|---|---|
-| 1 | META | 71.6B | 31.4% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/META/META-xbrl.json R&D+rev TTM ending 2026-06-30 |
-| 2 | GOOGL | 69.0B | 15.5% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/GOOGL/GOOGL-xbrl.json R&D+rev TTM ending 2026-06-30 |
-| 3 | MSFT | 35.6B | 10.7% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/MSFT/MSFT-xbrl.json R&D+rev TTM ending 2026-06-30 |
-| 4 | NVDA | 20.8B | 8.2% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/NVDA/NVDA-xbrl.json R&D+rev TTM ending 2026-04-26 |
-| 5 | INTC | 13.2B | 23.1% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/INTC/INTC-xbrl.json R&D+rev TTM ending 2026-06-27 |
-| 6 | AVGO | 12.0B | 15.9% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/AVGO/AVGO-xbrl.json R&D+rev TTM ending 2026-05-03 |
-| 7 | ORCL | 10.3B | 15.3% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/ORCL/ORCL-xbrl.json R&D+rev TTM ending 2026-05-31 |
-| 8 | QCOM | 9.9B | 22.4% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/QCOM/QCOM-xbrl.json R&D+rev TTM ending 2026-06-28 |
-| 9 | CSCO | 9.5B | 15.7% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/CSCO/CSCO-xbrl.json R&D+rev TTM ending 2026-04-25 |
-| 10 | AMD | 9.4B | 22.7% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/AMD/AMD-xbrl.json R&D+rev TTM ending 2026-06-27 |
-| 11 | TSLA | 7.7B | 7.5% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/TSLA/TSLA-xbrl.json R&D+rev TTM ending 2026-06-30 |
-| 12 | MU | 4.8B | 5.3% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/MU/MU-xbrl.json R&D+rev TTM ending 2026-05-28 |
-| 13 | AMAT | 4.0B | 12.9% | 2026Q3 | `<VAULT_ROOT>`/wiki/investing/filings/AMAT/AMAT-xbrl.json R&D+rev TTM ending 2026-07-26 |
-| 14 | DELL | 3.3B | 2.5% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/DELL/DELL-xbrl.json R&D+rev TTM ending 2026-05-01 |
-| 15 | NOW | 3.3B | 22.1% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/NOW/NOW-xbrl.json R&D+rev TTM ending 2026-06-30 |
-| 16 | HPE | 3.2B | 8.2% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/HPE/HPE-xbrl.json R&D+rev TTM ending 2026-04-30 |
-| 17 | RTX | 2.8B | 3.0% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/RTX/RTX-xbrl.json R&D+rev TTM ending 2026-06-30 |
-| 18 | SNPS | 2.8B | 32.1% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/SNPS/SNPS-xbrl.json R&D+rev TTM ending 2026-04-30 |
-| 19 | LRCX | 2.4B | 10.2% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/LRCX/LRCX-xbrl.json R&D+rev TTM ending 2026-06-28 |
-| 20 | MRVL | 2.2B | 25.5% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/MRVL/MRVL-xbrl.json R&D+rev TTM ending 2026-05-02 |
-| 21 | COIN | 1.9B | 30.7% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/COIN/COIN-xbrl.json R&D+rev TTM ending 2026-06-30 |
-| 22 | KLAC | 1.5B | 11.3% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/KLAC/KLAC-xbrl.json R&D+rev TTM ending 2026-06-30 |
-| 23 | ANET | 1.4B | 13.0% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/ANET/ANET-xbrl.json R&D+rev TTM ending 2026-06-30 |
-| 24 | SNDK | 1.3B | 6.6% | 2026Q3 | `<VAULT_ROOT>`/wiki/investing/filings/SNDK/SNDK-xbrl.json R&D+rev TTM ending 2026-07-03 |
-| 25 | GEV | 1.3B | 3.2% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/GEV/GEV-xbrl.json R&D+rev TTM ending 2026-06-30 |
-| 26 | MBLY | 1.1B | 55.8% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/MBLY/MBLY-xbrl.json R&D+rev TTM ending 2026-06-27 |
-| 27 | ETN | 845M | 2.8% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/ETN/ETN-xbrl.json R&D+rev TTM ending 2026-06-30 |
-| 28 | SMCI | 753M | 2.2% | 2026Q1 | `<VAULT_ROOT>`/wiki/investing/filings/SMCI/SMCI-xbrl.json R&D+rev TTM ending 2026-03-31 |
-| 29 | COHR | 723M | 10.2% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/COHR/COHR-xbrl.json R&D+rev TTM ending 2026-06-30 |
-| 30 | PLTR | 641M | 10.4% | 2026Q2 | `<VAULT_ROOT>`/wiki/investing/filings/PLTR/PLTR-xbrl.json R&D+rev TTM ending 2026-06-30 |
+| 1 | META | 71.6B | 31.4% | 2026Q2 | wiki/investing/filings/META/META-xbrl.json R&D+rev TTM ending 2026-06-30 |
+| 2 | GOOGL | 69.0B | 15.5% | 2026Q2 | wiki/investing/filings/GOOGL/GOOGL-xbrl.json R&D+rev TTM ending 2026-06-30 |
+| 3 | MSFT | 35.6B | 10.7% | 2026Q2 | wiki/investing/filings/MSFT/MSFT-xbrl.json R&D+rev TTM ending 2026-06-30 |
+| 4 | NVDA | 20.8B | 8.2% | 2026Q2 | wiki/investing/filings/NVDA/NVDA-xbrl.json R&D+rev TTM ending 2026-04-26 |
+| 5 | INTC | 13.2B | 23.1% | 2026Q2 | wiki/investing/filings/INTC/INTC-xbrl.json R&D+rev TTM ending 2026-06-27 |
+| 6 | AVGO | 12.0B | 15.9% | 2026Q2 | wiki/investing/filings/AVGO/AVGO-xbrl.json R&D+rev TTM ending 2026-05-03 |
+| 7 | ORCL | 10.3B | 15.3% | 2026Q2 | wiki/investing/filings/ORCL/ORCL-xbrl.json R&D+rev TTM ending 2026-05-31 |
+| 8 | QCOM | 9.9B | 22.4% | 2026Q2 | wiki/investing/filings/QCOM/QCOM-xbrl.json R&D+rev TTM ending 2026-06-28 |
+| 9 | CSCO | 9.5B | 15.7% | 2026Q2 | wiki/investing/filings/CSCO/CSCO-xbrl.json R&D+rev TTM ending 2026-04-25 |
+| 10 | AMD | 9.4B | 22.7% | 2026Q2 | wiki/investing/filings/AMD/AMD-xbrl.json R&D+rev TTM ending 2026-06-27 |
+| 11 | TSLA | 7.7B | 7.5% | 2026Q2 | wiki/investing/filings/TSLA/TSLA-xbrl.json R&D+rev TTM ending 2026-06-30 |
+| 12 | MU | 4.8B | 5.3% | 2026Q2 | wiki/investing/filings/MU/MU-xbrl.json R&D+rev TTM ending 2026-05-28 |
+| 13 | AMAT | 4.0B | 12.9% | 2026Q3 | wiki/investing/filings/AMAT/AMAT-xbrl.json R&D+rev TTM ending 2026-07-26 |
+| 14 | DELL | 3.3B | 2.5% | 2026Q2 | wiki/investing/filings/DELL/DELL-xbrl.json R&D+rev TTM ending 2026-05-01 |
+| 15 | NOW | 3.3B | 22.1% | 2026Q2 | wiki/investing/filings/NOW/NOW-xbrl.json R&D+rev TTM ending 2026-06-30 |
+| 16 | HPE | 3.2B | 8.2% | 2026Q2 | wiki/investing/filings/HPE/HPE-xbrl.json R&D+rev TTM ending 2026-04-30 |
+| 17 | RTX | 2.8B | 3.0% | 2026Q2 | wiki/investing/filings/RTX/RTX-xbrl.json R&D+rev TTM ending 2026-06-30 |
+| 18 | SNPS | 2.8B | 32.1% | 2026Q2 | wiki/investing/filings/SNPS/SNPS-xbrl.json R&D+rev TTM ending 2026-04-30 |
+| 19 | LRCX | 2.4B | 10.2% | 2026Q2 | wiki/investing/filings/LRCX/LRCX-xbrl.json R&D+rev TTM ending 2026-06-28 |
+| 20 | MRVL | 2.2B | 25.5% | 2026Q2 | wiki/investing/filings/MRVL/MRVL-xbrl.json R&D+rev TTM ending 2026-05-02 |
+| 21 | COIN | 1.9B | 30.7% | 2026Q2 | wiki/investing/filings/COIN/COIN-xbrl.json R&D+rev TTM ending 2026-06-30 |
+| 22 | KLAC | 1.5B | 11.3% | 2026Q2 | wiki/investing/filings/KLAC/KLAC-xbrl.json R&D+rev TTM ending 2026-06-30 |
+| 23 | ANET | 1.4B | 13.0% | 2026Q2 | wiki/investing/filings/ANET/ANET-xbrl.json R&D+rev TTM ending 2026-06-30 |
+| 24 | SNDK | 1.3B | 6.6% | 2026Q3 | wiki/investing/filings/SNDK/SNDK-xbrl.json R&D+rev TTM ending 2026-07-03 |
+| 25 | GEV | 1.3B | 3.2% | 2026Q2 | wiki/investing/filings/GEV/GEV-xbrl.json R&D+rev TTM ending 2026-06-30 |
+| 26 | MBLY | 1.1B | 55.8% | 2026Q2 | wiki/investing/filings/MBLY/MBLY-xbrl.json R&D+rev TTM ending 2026-06-27 |
+| 27 | ETN | 845M | 2.8% | 2026Q2 | wiki/investing/filings/ETN/ETN-xbrl.json R&D+rev TTM ending 2026-06-30 |
+| 28 | SMCI | 753M | 2.2% | 2026Q1 | wiki/investing/filings/SMCI/SMCI-xbrl.json R&D+rev TTM ending 2026-03-31 |
+| 29 | COHR | 723M | 10.2% | 2026Q2 | wiki/investing/filings/COHR/COHR-xbrl.json R&D+rev TTM ending 2026-06-30 |
+| 30 | PLTR | 641M | 10.4% | 2026Q2 | wiki/investing/filings/PLTR/PLTR-xbrl.json R&D+rev TTM ending 2026-06-30 |
 
 ## 6. Balance-sheet strength (Cash / LongTermDebt, latest snapshots)
 
@@ -271,40 +271,40 @@ cash are excluded from ranking and listed below).
 
 | Rank | Ticker | Cash | LTD | Cash/LTD | Cash period | LTD period | Src |
 |---|---|---|---|---|---|---|---|
-| 1 | RKLB | 2.1B | 13M | 162.2x | 2026-06-30 | 2026-06-30 | `<VAULT_ROOT>`/wiki/investing/filings/RKLB/RKLB-xbrl.json |
-| 2 | AAOI | 500M | 34M | 14.7x | 2026-06-30 | 2025-12-31 | `<VAULT_ROOT>`/wiki/investing/filings/AAOI/AAOI-xbrl.json |
-| 3 | MU | 25.0B | 8.8B | 2.8x | 2026-05-28 | 2025-11-27 | `<VAULT_ROOT>`/wiki/investing/filings/MU/MU-xbrl.json |
-| 4 | TSLA | 15.2B | 7.7B | 2.0x | 2026-06-30 | 2026-06-30 | `<VAULT_ROOT>`/wiki/investing/filings/TSLA/TSLA-xbrl.json |
-| 5 | NVDA | 13.2B | 8.5B | 1.6x | 2026-04-26 | 2026-04-26 | `<VAULT_ROOT>`/wiki/investing/filings/NVDA/NVDA-xbrl.json |
-| 6 | WDC | 1.6B | 1.1B | 1.5x | 2026-07-03 | 2026-07-03 | `<VAULT_ROOT>`/wiki/investing/filings/WDC/WDC-xbrl.json |
-| 7 | LRCX | 5.6B | 3.7B | 1.5x | 2026-06-28 | 2026-06-28 | `<VAULT_ROOT>`/wiki/investing/filings/LRCX/LRCX-xbrl.json |
-| 8 | COIN | 8.6B | 5.9B | 1.5x | 2026-06-30 | 2026-06-30 | `<VAULT_ROOT>`/wiki/investing/filings/COIN/COIN-xbrl.json |
-| 9 | GOOGL | 55.9B | 49.1B | 1.1x | 2026-06-30 | 2025-12-31 | `<VAULT_ROOT>`/wiki/investing/filings/GOOGL/GOOGL-xbrl.json |
-| 10 | AEIS | 1.4B | 1.3B | 1.1x | 2026-06-30 | 2026-06-30 | `<VAULT_ROOT>`/wiki/investing/filings/AEIS/AEIS-xbrl.json |
-| 11 | VRT | 2.8B | 2.9B | 1.0x | 2026-06-30 | 2026-06-30 | `<VAULT_ROOT>`/wiki/investing/filings/VRT/VRT-xbrl.json |
-| 12 | MRVL | 3.8B | 5.0B | 0.8x | 2026-05-02 | 2026-05-02 | `<VAULT_ROOT>`/wiki/investing/filings/MRVL/MRVL-xbrl.json |
-| 13 | AMZN | 78.2B | 133.0B | 0.6x | 2026-06-30 | 2026-06-30 | `<VAULT_ROOT>`/wiki/investing/filings/AMZN/AMZN-xbrl.json |
-| 14 | MSFT | 20.9B | 40.3B | 0.5x | 2026-06-30 | 2026-06-30 | `<VAULT_ROOT>`/wiki/investing/filings/MSFT/MSFT-xbrl.json |
-| 15 | AVAV | 377M | 748M | 0.5x | 2026-04-30 | 2026-04-30 | `<VAULT_ROOT>`/wiki/investing/filings/AVAV/AVAV-xbrl.json |
-| 16 | NOW | 2.5B | 5.4B | 0.5x | 2026-06-30 | 2026-06-30 | `<VAULT_ROOT>`/wiki/investing/filings/NOW/NOW-xbrl.json |
-| 17 | MP | 429M | 935M | 0.5x | 2026-06-30 | 2026-06-30 | `<VAULT_ROOT>`/wiki/investing/filings/MP/MP-xbrl.json |
-| 18 | DELL | 11.6B | 31.2B | 0.4x | 2026-05-01 | 2026-05-01 | `<VAULT_ROOT>`/wiki/investing/filings/DELL/DELL-xbrl.json |
-| 19 | COHR | 1.2B | 3.2B | 0.4x | 2026-06-30 | 2026-06-30 | `<VAULT_ROOT>`/wiki/investing/filings/COHR/COHR-xbrl.json |
-| 20 | QCOM | 4.5B | 12.8B | 0.4x | 2026-06-28 | 2026-06-28 | `<VAULT_ROOT>`/wiki/investing/filings/QCOM/QCOM-xbrl.json |
-| 21 | CSCO | 7.1B | 22.9B | 0.3x | 2026-04-25 | 2026-04-25 | `<VAULT_ROOT>`/wiki/investing/filings/CSCO/CSCO-xbrl.json |
-| 22 | AVGO | 19.6B | 64.9B | 0.3x | 2026-05-03 | 2026-05-03 | `<VAULT_ROOT>`/wiki/investing/filings/AVGO/AVGO-xbrl.json |
-| 23 | KLAC | 1.6B | 5.9B | 0.3x | 2026-06-30 | 2026-06-30 | `<VAULT_ROOT>`/wiki/investing/filings/KLAC/KLAC-xbrl.json |
-| 24 | INTC | 12.9B | 46.6B | 0.3x | 2026-06-27 | 2025-12-27 | `<VAULT_ROOT>`/wiki/investing/filings/INTC/INTC-xbrl.json |
-| 25 | HPE | 5.3B | 21.7B | 0.2x | 2026-04-30 | 2025-10-31 | `<VAULT_ROOT>`/wiki/investing/filings/HPE/HPE-xbrl.json |
-| 26 | SNPS | 2.4B | 10.0B | 0.2x | 2026-04-30 | 2026-04-30 | `<VAULT_ROOT>`/wiki/investing/filings/SNPS/SNPS-xbrl.json |
-| 27 | CRWV | 5.5B | 24.9B | 0.2x | 2026-06-30 | 2026-03-31 | `<VAULT_ROOT>`/wiki/investing/filings/CRWV/CRWV-xbrl.json |
-| 28 | META | 15.5B | 83.7B | 0.2x | 2026-06-30 | 2026-06-30 | `<VAULT_ROOT>`/wiki/investing/filings/META/META-xbrl.json |
-| 29 | MKSI | 454M | 2.5B | 0.2x | 2026-06-30 | 2026-06-30 | `<VAULT_ROOT>`/wiki/investing/filings/MKSI/MKSI-xbrl.json |
-| 30 | LMT | 3.8B | 21.7B | 0.2x | 2026-06-28 | 2025-12-31 | `<VAULT_ROOT>`/wiki/investing/filings/LMT/LMT-xbrl.json |
+| 1 | RKLB | 2.1B | 13M | 162.2x | 2026-06-30 | 2026-06-30 | wiki/investing/filings/RKLB/RKLB-xbrl.json |
+| 2 | AAOI | 500M | 34M | 14.7x | 2026-06-30 | 2025-12-31 | wiki/investing/filings/AAOI/AAOI-xbrl.json |
+| 3 | MU | 25.0B | 8.8B | 2.8x | 2026-05-28 | 2025-11-27 | wiki/investing/filings/MU/MU-xbrl.json |
+| 4 | TSLA | 15.2B | 7.7B | 2.0x | 2026-06-30 | 2026-06-30 | wiki/investing/filings/TSLA/TSLA-xbrl.json |
+| 5 | NVDA | 13.2B | 8.5B | 1.6x | 2026-04-26 | 2026-04-26 | wiki/investing/filings/NVDA/NVDA-xbrl.json |
+| 6 | WDC | 1.6B | 1.1B | 1.5x | 2026-07-03 | 2026-07-03 | wiki/investing/filings/WDC/WDC-xbrl.json |
+| 7 | LRCX | 5.6B | 3.7B | 1.5x | 2026-06-28 | 2026-06-28 | wiki/investing/filings/LRCX/LRCX-xbrl.json |
+| 8 | COIN | 8.6B | 5.9B | 1.5x | 2026-06-30 | 2026-06-30 | wiki/investing/filings/COIN/COIN-xbrl.json |
+| 9 | GOOGL | 55.9B | 49.1B | 1.1x | 2026-06-30 | 2025-12-31 | wiki/investing/filings/GOOGL/GOOGL-xbrl.json |
+| 10 | AEIS | 1.4B | 1.3B | 1.1x | 2026-06-30 | 2026-06-30 | wiki/investing/filings/AEIS/AEIS-xbrl.json |
+| 11 | VRT | 2.8B | 2.9B | 1.0x | 2026-06-30 | 2026-06-30 | wiki/investing/filings/VRT/VRT-xbrl.json |
+| 12 | MRVL | 3.8B | 5.0B | 0.8x | 2026-05-02 | 2026-05-02 | wiki/investing/filings/MRVL/MRVL-xbrl.json |
+| 13 | AMZN | 78.2B | 133.0B | 0.6x | 2026-06-30 | 2026-06-30 | wiki/investing/filings/AMZN/AMZN-xbrl.json |
+| 14 | MSFT | 20.9B | 40.3B | 0.5x | 2026-06-30 | 2026-06-30 | wiki/investing/filings/MSFT/MSFT-xbrl.json |
+| 15 | AVAV | 377M | 748M | 0.5x | 2026-04-30 | 2026-04-30 | wiki/investing/filings/AVAV/AVAV-xbrl.json |
+| 16 | NOW | 2.5B | 5.4B | 0.5x | 2026-06-30 | 2026-06-30 | wiki/investing/filings/NOW/NOW-xbrl.json |
+| 17 | MP | 429M | 935M | 0.5x | 2026-06-30 | 2026-06-30 | wiki/investing/filings/MP/MP-xbrl.json |
+| 18 | DELL | 11.6B | 31.2B | 0.4x | 2026-05-01 | 2026-05-01 | wiki/investing/filings/DELL/DELL-xbrl.json |
+| 19 | COHR | 1.2B | 3.2B | 0.4x | 2026-06-30 | 2026-06-30 | wiki/investing/filings/COHR/COHR-xbrl.json |
+| 20 | QCOM | 4.5B | 12.8B | 0.4x | 2026-06-28 | 2026-06-28 | wiki/investing/filings/QCOM/QCOM-xbrl.json |
+| 21 | CSCO | 7.1B | 22.9B | 0.3x | 2026-04-25 | 2026-04-25 | wiki/investing/filings/CSCO/CSCO-xbrl.json |
+| 22 | AVGO | 19.6B | 64.9B | 0.3x | 2026-05-03 | 2026-05-03 | wiki/investing/filings/AVGO/AVGO-xbrl.json |
+| 23 | KLAC | 1.6B | 5.9B | 0.3x | 2026-06-30 | 2026-06-30 | wiki/investing/filings/KLAC/KLAC-xbrl.json |
+| 24 | INTC | 12.9B | 46.6B | 0.3x | 2026-06-27 | 2025-12-27 | wiki/investing/filings/INTC/INTC-xbrl.json |
+| 25 | HPE | 5.3B | 21.7B | 0.2x | 2026-04-30 | 2025-10-31 | wiki/investing/filings/HPE/HPE-xbrl.json |
+| 26 | SNPS | 2.4B | 10.0B | 0.2x | 2026-04-30 | 2026-04-30 | wiki/investing/filings/SNPS/SNPS-xbrl.json |
+| 27 | CRWV | 5.5B | 24.9B | 0.2x | 2026-06-30 | 2026-03-31 | wiki/investing/filings/CRWV/CRWV-xbrl.json |
+| 28 | META | 15.5B | 83.7B | 0.2x | 2026-06-30 | 2026-06-30 | wiki/investing/filings/META/META-xbrl.json |
+| 29 | MKSI | 454M | 2.5B | 0.2x | 2026-06-30 | 2026-06-30 | wiki/investing/filings/MKSI/MKSI-xbrl.json |
+| 30 | LMT | 3.8B | 21.7B | 0.2x | 2026-06-28 | 2025-12-31 | wiki/investing/filings/LMT/LMT-xbrl.json |
 
 Tickers with cash but no long-term-debt point (ratio undefined): ALAB, AMBA, ANET, CRDO, FLNC, HIMS, MBLY, MRAM, NEE, OKLO, PLTR, SMR, SNDK, SO, USAR.
 Excluded from ranking -- latest LongTermDebt snapshot > 200 days older
-than latest cash (stale debt side; listed with their LTD period): 
+than latest cash (stale debt side; listed with their LTD period):
   AMAT (2020-10-25); AMD (2021-12-25); APH (2018-03-31); BWXT (2015-12-31); DLR (2012-03-31); FN (2014-03-28); HII (2022-12-31); KTOS (2021-12-26); LHX (2019-09-27); LITE (2023-04-01); ONTO (2013-12-28); ORCL (2022-05-31); RTX (2024-12-31); SMCI (2023-06-30).
 
 ## 7. Data gaps and caveats

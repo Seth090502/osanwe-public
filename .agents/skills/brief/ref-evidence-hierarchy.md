@@ -5,19 +5,19 @@ target_path: .claude/skills/brief/ref-evidence-hierarchy.md
 tags: [topic/evidence-grading, topic/analytic-tradecraft, topic/briefing]
 aliases: [evidence grading, source hierarchy, analytic tradecraft, confidence calibration]
 related:
-  - "*hot* (not published)"
+  - "hot"
   - "[[ref-research-methodology]]"
   - "[[analysis-depth-standard]]"
   - "[[ref-macro-landscape]]"
   - "[[ref-monitoring-rules]]"
-  - "*ref-portfolio-doctrine* (not published)"
-  - "*ref-geopolitical-framework* (not published)"
+  - "ref-portfolio-doctrine"
+  - "ref-geopolitical-framework"
   - "[[ref-regime-taxonomy]]"
-  - "*thesis-theme-alpha* (not published)"
-  - "*thesis-theme-beta* (not published)"
-  - "*thesis-theme-gamma* (not published)"
-  - "*thesis-theme-delta* (not published)"
-  - "*thesis-theme-epsilon* (not published)"
+  - "thesis-theme-alpha"
+  - "thesis-theme-beta"
+  - "thesis-theme-gamma"
+  - "thesis-theme-delta"
+  - "thesis-theme-epsilon"
   - "[[ref-briefing-structure]]"
 status: active
 created: 2026-04-23

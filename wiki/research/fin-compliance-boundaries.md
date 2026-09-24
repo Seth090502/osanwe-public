@@ -13,7 +13,7 @@ related: []
 # Financial Compliance Boundaries
 
 Status: ACTIVE
-Scope: Personal finance research vault at `<VAULT_ROOT>`
+Scope: Personal finance research vault at the vault root
 Companion to: fin-governance-framework.md, fin-risk-controls.md
 
 ---

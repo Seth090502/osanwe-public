@@ -12,17 +12,17 @@ tags:
   - topic/china-semiconductors
 related:
   - "[[ref-theme-alpha]]"
-  - "*MU* (not published)"
-  - "*SNDK* (not published)"
-  - "*MSFT* (not published)"
-  - "*GOOGL* (not published)"
-  - "*AMZN* (not published)"
-  - "*META* (not published)"
-  - "*NVDA* (not published)"
-  - "*AMD* (not published)"
-  - "*TSM* (not published)"
-  - "*CXMT* (not published)"
-  - "*YMTC* (not published)"
+  - "MU"
+  - "SNDK"
+  - "MSFT"
+  - "GOOGL"
+  - "AMZN"
+  - "META"
+  - "NVDA"
+  - "AMD"
+  - "TSM"
+  - "CXMT"
+  - "YMTC"
 ---
 
 # Ingested: ref-theme-alpha (2026-07-16 rewrite)
@@ -49,7 +49,7 @@ related:
 
 ## Contradictions
 ### Tier 1 -- grade correction (1)
-- **SNDK NBM dollar terms.** SNDK.md currently carries the $42B minimum-revenue and >$11B guarantee figures at HIGH/"as if filed" (per *ref-memory-storage-cycle-deep-dive* (not published)). ref-theme-alpha establishes those dollar figures are CALL-AND-PRESS sourced, NOT filed (Grade B); the filed 8-K Ex-99.1 (2026-04-30) confirms only the COUNT (three NBM agreements by end-FQ3 + two in FQ4 = 5 total). The VALUE is not disputed -- only the grade/provenance. Captured as a correcting claim in the new SNDK claims block (append-only); the surgical downgrade of the existing line is deferred to a follow-up (below) rather than done as an in-place edit this pass.
+- **SNDK NBM dollar terms.** SNDK.md currently carries the $42B minimum-revenue and >$11B guarantee figures at HIGH/"as if filed" (per ref-memory-storage-cycle-deep-dive). ref-theme-alpha establishes those dollar figures are CALL-AND-PRESS sourced, NOT filed (Grade B); the filed 8-K Ex-99.1 (2026-04-30) confirms only the COUNT (three NBM agreements by end-FQ3 + two in FQ4 = 5 total). The VALUE is not disputed -- only the grade/provenance. Captured as a correcting claim in the new SNDK claims block (append-only); the surgical downgrade of the existing line is deferred to a follow-up (below) rather than done as an in-place edit this pass.
 
 ### Tier 3 -- rejected (2)
 - **MSFT FQ4 print date.** Incoming 2026-07-29 rejected; the note's IR-confirmed 2026-07-28 (which already flagged 7/29 as an erroneous prior reference) stands -- higher authority. Not distributed.
@@ -57,7 +57,7 @@ related:
 
 ## Entity actions
 - **Updated (9):** MU (+9), SNDK (+5), MSFT (+4), GOOGL (+7), AMZN (+4), META (+5), NVDA (+1), AMD (+3), TSM (+2). Each got a dated `## Claims from [[ref-theme-alpha]] (2026-07-16)` block (append-only; strictly additive; body sha256 preserved on the pre-existing content; `updated:` bumped to 2026-07-16).
-- **Created (2):** *CXMT* (not published) + *YMTC* (not published) as `type: company` competitive-intelligence entities (foreign, non-tradeable; the China-memory oversupply bear case on *MU* (not published) / *SNDK* (not published)). Dedicated-section threshold met in source. Symmetric back-links: investing-moc + mutual CXMT<->YMTC.
+- **Created (2):** CXMT + YMTC as `type: company` competitive-intelligence entities (foreign, non-tradeable; the China-memory oversupply bear case on MU / SNDK). Dedicated-section threshold met in source. Symmetric back-links: investing-moc + mutual CXMT<->YMTC.
 - **Sub-threshold / not created:** none (the source's two China-memory entities both cleared the dedicated-section bar).
 
 ## Follow-ups

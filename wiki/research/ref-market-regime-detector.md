@@ -9,7 +9,7 @@ tags:
   - topic/investing
   - topic/macro
   - topic/scoring
-related: ["[[ref-fed-liquidity-engine]]", "*ref-scenario-stress-test* (not published)", "*ref-factor-lens-ingest-2026-06-10* (not published)", "*ref-yen-carry-global-liquidity* (not published)", "[[ref-composite-scoring]]"]
+related: ["[[ref-fed-liquidity-engine]]", "ref-scenario-stress-test", "ref-factor-lens-ingest-2026-06-10", "ref-yen-carry-global-liquidity", "[[ref-composite-scoring]]"]
 ---
 
 # Market Regime Detector -- factor-store derived (GENERATED)

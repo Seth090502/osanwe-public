@@ -12,7 +12,7 @@ tags:
   - topic/skill-infrastructure
 aliases: [execution-discipline, f11-discipline, cascade-discipline]
 related:
-  - "*ref-claude-code-mastery* (not published)"
+  - "ref-claude-code-mastery"
   - "[[ref-hot-md-schema]]"
   - "[[ref-research-methodology]]"
 ---

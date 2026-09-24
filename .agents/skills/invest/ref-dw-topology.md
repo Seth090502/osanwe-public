@@ -11,12 +11,12 @@ tags:
   - topic/concurrency
   - topic/adversarial-verification
 related:
-  - "*invest* (not published)"
+  - "invest"
   - "[[ref-analysis-template]]"
   - "[[ref-entity-update-semantics]]"
   - "[[ref-scoring-models]]"
-  - "*ref-portfolio-doctrine* (not published)"
-  - "*calibration-monitor* (not published)"
+  - "ref-portfolio-doctrine"
+  - "calibration-monitor"
 ---
 
 Current evidence authority: docs/financial-analysis-contract.md. Every quantity,
@@ -157,7 +157,7 @@ verified per-call read-only restriction and the guard refuses to dispatch
 unrestricted reviewers. The rest of this section is the contract the lenses
 resume under once such a boundary exists. Until then every Tier-A call of the
 gate resolves to the Phase N withheld-acceptance path in SKILL.md K.5 STEP 4,
-which is unchanged. COMPATIBILITY.md ("Validation profiles") records the same
+which is unchanged. docs/compatibility.md ("Validation profiles") records the same
 boundary.
 
 FIRES for every material STRONG BUY, BUY, HOLD, SELL or STRONG SELL conclusion.
@@ -235,7 +235,7 @@ legacy analyses are structurally exempt).
   placeholder is RETIRED (was ~46K/agent x 28 agents, low-moderate conf).
   The workflow sandbox has NO process.env -- the MAIN LOOP reads
   the env var (default 750000) and passes `args.token_budget` for logging.
-- MODEL POLICY (`<owner>`-ratified 2026-06-09): template workers + skeptics
+- MODEL POLICY (owner-ratified 2026-06-09): template workers + skeptics
   INHERIT the session model (omit the model option). Fleet agents dispatched
   via agentType run their own ratified definitions (opus/max). No skill
   logic ever branches on model identity.

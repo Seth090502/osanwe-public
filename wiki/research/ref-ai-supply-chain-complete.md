@@ -11,13 +11,13 @@ tags:
   - topic/theme-alpha
   - topic/supply-chain
   - topic/semiconductors
-related: ["[[ref-semiconductor-value-chain]]", "*ref-supply-chain-dependency* (not published)", "[[ref-datacenter-infrastructure]]", "[[ref-energy-power-complex]]", "*ref-memory-storage-cycle-deep-dive* (not published)"]
+related: ["[[ref-semiconductor-value-chain]]", "ref-supply-chain-dependency", "[[ref-datacenter-infrastructure]]", "[[ref-energy-power-complex]]", "ref-memory-storage-cycle-deep-dive"]
 ---
 
 # AI Supply Chain -- Complete Dependency Graph (Tier 0-7)
 
 GENERATED: 2026-08-25. Sources: [[ref-semiconductor-value-chain]] (the 20-name
-semiconductor reference), *ref-supply-chain-dependency* (not published) (edge-level map),
+semiconductor reference), ref-supply-chain-dependency (edge-level map),
 [[ref-datacenter-infrastructure]] (server OEMs, networking, DC REITs, neo-clouds),
 [[ref-energy-power-complex]] (power layer). Entity-note claims are carried through
 with their grade (HIGH/MEDIUM/LOW); anything computed in this document is labeled
@@ -60,7 +60,7 @@ Tier 7  Data Center Operations          hyperscalers, neo-clouds, colo REITs, po
 CORPUS STATUS: none of these names carry entity notes or XBRL pulls in this vault
 -- this tier is mapped structurally (DERIVED from role descriptions in the source
 refs) and is the file's largest DATA GAP. The one corpus-anchored upstream fact:
-ASML depends on a Zeiss-class optics supply web (*ASML* (not published), Section 13.6 of
+ASML depends on a Zeiss-class optics supply web (ASML, Section 13.6 of
 [[ref-semiconductor-value-chain]]) -- i.e. even Tier 1 equipment has a Tier 0-style
 upstream chokepoint inside it.
 
@@ -73,20 +73,20 @@ without entity coverage.
 
 | Node | Companies | Role | Key dependencies |
 |---|---|---|---|
-| Lithography (EUV/DUV) | ASML | SOLE EUV supplier on earth; High-NA EUV EUR 350M+/tool | Zeiss-class optics; every 1-alpha/1-beta DRAM node AND every leading-edge logic node routes through it (*ASML* (not published), HIGH) |
+| Lithography (EUV/DUV) | ASML | SOLE EUV supplier on earth; High-NA EUV EUR 350M+/tool | Zeiss-class optics; every 1-alpha/1-beta DRAM node AND every leading-edge logic node routes through it (ASML, HIGH) |
 | Deposition/etch (broadline) | AMAT | largest installed base; dep/etch/inspection; HBM TSV etch+dep named in ENT[AMAT] | subcomponents, precision optics; memory-IDM capex cycle |
 | Deposition/etch (memory-weighted) | LRCX | cleanest WFE beta to the HBM/DRAM shortage; cryogenic NAND etch | memory IDM capex (~$65B 2026 aggregate, HIGH); captures ~$8B per $100B incremental DC investment (MEDIUM) |
-| Process control / metrology | KLAC | inspection intensity rises every node transition and with hybrid bonding | N2 ramp at TSMC pulls inspection (*KLAC* (not published) catalyst list) |
+| Process control / metrology | KLAC | inspection intensity rises every node transition and with hybrid bonding | N2 ramp at TSMC pulls inspection (KLAC catalyst list) |
 | Advanced-packaging instruments | ONTO | hybrid-bonding metrology/inspection pure play -- direct instrument on the CoWoS bottleneck | TSM CoWoS expansion schedule |
 
 Key dependencies (tier level):
 - Demand comes from two capex streams: TSM capex FY26 $60-64B (raised from
   $52-56B at the 2026-07-16 Q2 print, HIGH, ENT[TSM]) plus memory IDM capex
   ~$65B 2026 (SK hynix $20.5B + Samsung $20B + Micron ~$20B + Kioxia/SanDisk
-  $4.5B, HIGH, via *ref-supply-chain-dependency* (not published) Edge 4).
+  $4.5B, HIGH, via ref-supply-chain-dependency Edge 4).
 - Industry-wide WFE guided to ~$135B CY2026 from ~$110B 2025, +23%
-  (*LRCX* (not published) guide, HIGH; AMAT cites same figure).
-- Backlog visibility through 2027-2028 (*LRCX* (not published)/*AMAT* (not published)).
+  (LRCX guide, HIGH; AMAT cites same figure).
+- Backlog visibility through 2027-2028 (LRCX/AMAT).
 - Policy tail: China export controls clamp both tool sales (ASML China mix 33%
   2025 -> ~20% 2026 guided, HIGH) and indigenous substitution risk
   (NAURA/AMEC absorbing sockets, wave-S-AMAT).
@@ -113,7 +113,7 @@ Key dependencies:
 |---|---|---|---|
 | Leading-edge foundry | TSM | 70.2% foundry share Q2-25 (ENT[TSM]); monopoly leading edge; N2 volume production Q4-2025 at ~65-75% yields, N2P H2-26, A16 backside-power H2-26 (all HIGH) | ASML EUV/High-NA (sole supplier; TSM is FIRST High-NA volume customer); AMAT/LRCX/KLAC/ONTO tooling; Taiwan geographic concentration |
 | Trailing-edge/specialty foundry | GFS | power-management ICs, silicon photonics SOI (via Tower Semi) | auto/industrial cycles; NOT in the leading-edge AI compute path |
-| DRAM/HBM | MU (+ SK hynix, Samsung as unlisted co-duopolists) | HBM leader; FQ2-26 revenue $23.86B beat 28%, GM 74.9%, DRAM +90% QoQ record (*MU* (not published) analysis log); LQ $41.46B +345.7% YoY (FIN) | EUV-gated nodes (every HBM die requires 1-alpha/1-beta DRAM); TSM base-die partnership for HBM4 with SK Hynix; capex/revenue 42.4% FY25, FY26 raised $20B -> $25B |
+| DRAM/HBM | MU (+ SK hynix, Samsung as unlisted co-duopolists) | HBM leader; FQ2-26 revenue $23.86B beat 28%, GM 74.9%, DRAM +90% QoQ record (MU analysis log); LQ $41.46B +345.7% YoY (FIN) | EUV-gated nodes (every HBM die requires 1-alpha/1-beta DRAM); TSM base-die partnership for HBM4 with SK Hynix; capex/revenue 42.4% FY25, FY26 raised $20B -> $25B |
 | NAND/SSD | SNDK (+ Kioxia JV) | NAND complement inside AI storage stacks; Kioxia 14% stake re-rated 14x | cryogenic etch tooling (LRCX); sold-out posture |
 | Nearline HDD | WDC | AI training/inference archive demand; "sold out for all of 2026" (ENT[WDC], HIGH); 1y total return +860% at claim date | component chains; decoupled from DRAM cycle (rho 0.73 max) |
 
@@ -135,7 +135,7 @@ Key dependencies:
 
 | Node | Companies | Role | Key dependencies |
 |---|---|---|---|
-| Merchant accelerators | NVDA | system-level integrator; FY26 revenue $215.9B +65%, GAAP GM 75.0%; Q1-FY27 guide $78B +/-2% (SEC 8-K Feb 25 2026, HIGH); 85% AI compute share (*NVDA* (not published) via *ref-supply-chain-dependency* (not published)) | TSM N3/N4 wafers (#1 customer ~19-22%); CoWoS-L >50% booked through 2027 (HIGH); SK hynix/Micron HBM ('One Team' >50%); four direct customers = 61% of Q3-FY26 revenue (10-Q, up from 34% Q1-FY25) |
+| Merchant accelerators | NVDA | system-level integrator; FY26 revenue $215.9B +65%, GAAP GM 75.0%; Q1-FY27 guide $78B +/-2% (SEC 8-K Feb 25 2026, HIGH); 85% AI compute share (NVDA via ref-supply-chain-dependency) | TSM N3/N4 wafers (#1 customer ~19-22%); CoWoS-L >50% booked through 2027 (HIGH); SK hynix/Micron HBM ('One Team' >50%); four direct customers = 61% of Q3-FY26 revenue (10-Q, up from 34% Q1-FY25) |
 | Challenger accelerator + server CPU | AMD | MI350/EPYC growth drivers; MI450/Helios 2H-2026 guided-not-booked; MI455X HBM4 rides SAMSUNG (MEDIUM); CoWoS allocation ~105K wafers 2026 = 11% of demand vs NVDA ~60% (amd-analysis in ENT[TSM]) | TSM wafers + allocation queue; Samsung HBM4 (direct exposure to binding memory layer); Alibaba MI308 order 40-50K units @192GB HBM3 (Reuters, HIGH); Oracle 50K MI450 Q3-26 |
 | Custom XPU house #1 | AVGO | six named hyperscaler XPU customers: Google Ironwood TPU v7 + partial Meta MTIA + ByteDance + unnamed $10B 4th + OpenAI 10GW + unspecified; Q1-FY26 AI revenue $8.4B +106%; $73B AI backlog disclosed (8-K Mar 4 2026, HIGH) | TSM wafers + CoWoS; custom-ASIC HBM demand +82% YoY 2026 -> ~1/3 of HBM market per Goldman (ENT[AVGO]); Anthropic 1GW->3.5GW TPU facilitation |
 | Custom XPU house #2 | MRVL | Amazon Trainium anchor (Project Rainier live Oct 29 2025, ~500K Trainium2 scaling >1M by year-end; Trainium3 first 3nm AI accelerator shipping); 400G->800G->1.6T optical DSP curve; datacenter 76% of FQ1-FY27 revenue | TSM 3nm + CoWoS; MU/SKH HBM; single-program concentration (Trainium) |
@@ -147,8 +147,8 @@ Key dependencies:
   fabrication (Tier 3) and SNPS/CDNS/ARM tooling (Tier 2).
 - Displacement vector: custom silicon (TPU v7 + Trainium 3 + Maia 200 + MTIA)
   growing 44.6% CAGR displaces merchant GPUs toward ~75% share by late 2026
-  (*AMD* (not published) via *NVDA* (not published) risks); counterweight AMD-Meta $60B MI450 deal +
-  MI455X parity (*NVDA* (not published)).
+  (AMD via NVDA risks); counterweight AMD-Meta $60B MI450 deal +
+  MI455X parity (NVDA).
 - Vendor-financing circularity: ~$1.15T OpenAI-linked commitment chain across
   Broadcom $350B / Oracle $300B / MSFT $250B / NVDA $100B / AMD $90B, >$800B
   estimated circular; WSJ reported the NVDA tranche "stalled" Feb-2026
@@ -199,7 +199,7 @@ Key dependencies:
 
 | Node | Companies | Role | Key dependencies |
 |---|---|---|---|
-| Hyperscalers | MSFT, GOOGL, AMZN, META | 2026 capex: AMZN $200B, GOOGL $175-185B, META $115-145B, MSFT ~$150B annualized (*NVDA* (not published) catalysts); Big-4 ~$640B confirmed across all four prints (*TSM* (not published)); $725B total per *NVDA* (not published); $750B +67% incl. Oracle $50B per *MU* (not published) -- rising band, different capture dates | everything above; grid interconnection queues 5-7 YEARS structural (*VRT* (not published)/*ETN* (not published)) |
+| Hyperscalers | MSFT, GOOGL, AMZN, META | 2026 capex: AMZN $200B, GOOGL $175-185B, META $115-145B, MSFT ~$150B annualized (NVDA catalysts); Big-4 ~$640B confirmed across all four prints (TSM); $725B total per NVDA; $750B +67% incl. Oracle $50B per MU -- rising band, different capture dates | everything above; grid interconnection queues 5-7 YEARS structural (VRT/ETN) |
 | Oracle (neo-hyperscale) | ORCL | RPO $638B +363% YoY; OCI +93% to $5.8B Q4-FY26; FY27 guide ~$90B; BUT FCF -$23.7B FY26 on $55.7B capex, debt $108B -> $124B trajectory, ~$300B (~47%) of RPO estimated tracing to OpenAI (BofA est.) | NVDA/AMD allocation; IG credit access |
 | Neo-clouds | CRWV, NBIS | CRWV: contracted backlog $66.8B, 2026 guide $12-13B, capex $30-35B, 850MW active end-2025 targeting >1.7GW end-2026, NVIDIA $2B strategic investment Jan-2026; NBIS: TTM rev $873.5M +442%, deferred revenue $4.78B = 5.4x TTM, Altman Z 2.29 GREY | GPU supply; debt/prepayment financing constructs |
 | Colo REITs | DLR, EQIX | DLR: record 2025 bookings $1.2B, AI-ready capacity ~60% rate premium ($150-200/kW/mo vs $100-120 hist.), vacancy 1.4%, 92% of construction pre-committed; EQIX: xScale JV off-balance-sheet shells, Baa1 upgrade 2026-03-05 | bypass risk: hyperscaler self-build (Microsoft 2GW cancellation precedent, MEDIUM) |
@@ -214,7 +214,7 @@ Key dependencies:
   ([[ref-energy-power-complex]] S2 synthesis).
 - Buyer-side stress signal: FM1 resolution window showed MSFT Azure +43% CC with
   capex HELD and META RAISING FY26 capex ~$136.7B while the MARKET punished the
-  buyer (-7.4%) and rewarded arms dealers (*TSM* (not published) thesis-fit log).
+  buyer (-7.4%) and rewarded arms dealers (TSM thesis-fit log).
 - Financing fragility concentrates at Tier 7: ORCL leverage trigger ~0.2x away
   from downgrade, NBIS grey-zone Altman Z, CRWV negative margins -- the demand
   engine itself runs on credit.
@@ -231,7 +231,7 @@ order-of-magnitude read, not a measurement).
 
 Scores are DERIVED judgments anchored to the graded claims listed in the map
 above; ranking judgment follows Section 10 of [[ref-semiconductor-value-chain]]
-and the chokepoint register of *ref-supply-chain-dependency* (not published).
+and the chokepoint register of ref-supply-chain-dependency.
 
 | # | Node (owner) | Irreplaceability | Capacity-constraint severity | Time-to-replace | Current utilization | Composite (avg) |
 |---|---|---|---|---|---|---|
@@ -395,7 +395,7 @@ everything downstream; the graph's narrowest boxes are TSM (fab + CoWoS), ASML
 
 Every edge below carries a dollar/wafer/megawatt figure traced to the cited
 entity note or reference. Bands reflect different capture dates, not
-contradictions (per caveats in *ref-supply-chain-dependency* (not published)).
+contradictions (per caveats in ref-supply-chain-dependency).
 
 ### Edge 1: Hyperscaler budgets -> accelerator demand (THE revenue edge)
 
@@ -403,9 +403,9 @@ contradictions (per caveats in *ref-supply-chain-dependency* (not published)).
 |---|---|---|
 | AMZN 2026 capex | $200B | ENT[NVDA] catalysts |
 | GOOGL 2026 capex | $175-185B | ENT[NVDA] catalysts |
-| META 2026 capex | $115-145B (FY26 raised ~$136.7B) | ENT[NVDA]; *TSM* (not published) thesis-fit log |
+| META 2026 capex | $115-145B (FY26 raised ~$136.7B) | ENT[NVDA]; TSM thesis-fit log |
 | MSFT 2026 capex | ~$150B annualized | ENT[NVDA] catalysts |
-| Big-4 aggregate | ~$640B confirmed across 4 prints; $725B total per *NVDA* (not published); $750B +67% YoY incl. Oracle $50B per *MU* (not published) | band, see above |
+| Big-4 aggregate | ~$640B confirmed across 4 prints; $725B total per NVDA; $750B +67% YoY incl. Oracle $50B per MU | band, see above |
 | NVDA revenue conversion | FY26 $215.9B +65%; Q4-FY26 DC revenue $62.3B +75%; Q1-FY27 guide $78B | SEC 8-K Feb 25 2026 via ENT[NVDA], HIGH |
 | NVDA concentration | top-4 customers = 61% of Q3-FY26 revenue (from 34% in Q1-FY25); kill criterion: 2 consecutive hyperscaler capex cuts | 10-Q basis, ENT[NVDA] |
 | AMD counterweight | Meta $60B MI450 deal; Alibaba MI308 40-50K units @192GB HBM3; Oracle 50K MI450 Q3-26 | Reuters HIGH; ENT[AMD] |
@@ -416,13 +416,13 @@ contradictions (per caveats in *ref-supply-chain-dependency* (not published)).
 |---|---|---|
 | TSM FY26 capex | $60-64B (raised 30%+ -> 40%+ from $52-56B at 2026-07-16 Q2 print) | ENT[TSM], HIGH |
 | TSM revenue guide | FY26 raised to 40%+ growth; Q1-26 rev $35.9B +40.6% @66.2% GM record | ENT[TSM] via ref-theme-alpha, HIGH |
-| Memory IDM capex 2026 | ~$65B aggregate: SK hynix $20.5B + Samsung $20B + Micron ~$20B + Kioxia/SanDisk $4.5B | *LRCX* (not published)/*AMAT* (not published) per memory-storage deep dive |
-| Industry WFE CY2026 | ~$135B from ~$110B 2025 (+23%) | *LRCX* (not published) guide, HIGH |
+| Memory IDM capex 2026 | ~$65B aggregate: SK hynix $20.5B + Samsung $20B + Micron ~$20B + Kioxia/SanDisk $4.5B | LRCX/AMAT per memory-storage deep dive |
+| Industry WFE CY2026 | ~$135B from ~$110B 2025 (+23%) | LRCX guide, HIGH |
 | ASML bookings/backlog | Q4-25 bookings EUR 13.2B (EUR 7.4B EUV); YE backlog EUR 38.8B; 2026 guide EUR 36-40B | ENT[ASML] via ref-theme-alpha, HIGH |
 | SK hynix EUV buy | ~$8B for ~30 EUV systems by Dec-2027 | ENT[ASML] |
 | High-NA tool price | EUR 350M+/tool, TSMC first volume customer | ENT[ASML], HIGH |
 | MU own capex | FY26 raised $20B -> $25B (Mar 18 2026 call); 9-month FY26 $19.6B +92.2% YoY; capex/revenue 42.4% FY25 | ENT[MU]; FIN-S4 |
-| SK hynix total commitment | $410B cited as demand engine | *LRCX* (not published) wave file |
+| SK hynix total commitment | $410B cited as demand engine | LRCX wave file |
 
 ### Edge 3: Chips -> memory (HBM)
 
@@ -451,7 +451,7 @@ contradictions (per caveats in *ref-supply-chain-dependency* (not published)).
 | AVGO AI revenue | Q1-FY26 $8.4B +106% YoY; six XPU customers incl. OpenAI 10GW (first-gen deliveries late 2026, up to $300B revenue potential) | ENT[AVGO] extended log |
 | MRVL anchor program | Project Rainier live Oct 29 2025: ~500K Trainium2 scaling >1M by year-end; Trainium3 first 3nm AI accelerator shipping; datacenter 76% of FQ1-FY27 revenue | ENT[MRVL] |
 | EDA scale | SNPS FY-guide era LQ $2.3B +41.9%; CDNS FY24 $4.64B +13%, FY25 guide ~$5.23B; combined ~73-74% share | FIN; ENT[CDNS] |
-| Displacement CAGR | custom silicon growing 44.6% CAGR toward ~75% compute share by late 2026 | *AMD* (not published) via *NVDA* (not published) risks |
+| Displacement CAGR | custom silicon growing 44.6% CAGR toward ~75% compute share by late 2026 | AMD via NVDA risks |
 
 ### Edge 6: Networking/optics speed transition
 
@@ -463,7 +463,7 @@ contradictions (per caveats in *ref-supply-chain-dependency* (not published)).
 | CRDO growth | ~200% YoY at profiling; ~75% AEC share; LQ $437M +157% | FIN; crdo analysis |
 | APH orders | Q1-26 $9.4B, book-to-bill 1.24; IT-datacom 41% of revenue +99% YoY | ENT[APH], corrections logged |
 | AVGO SerDes roadmap | 200G -> 400G in 2028, co-packaged optics beyond | ENT[AVGO], MEDIUM |
-| Tomahawk 6 | 102 Tb/s switching silicon capturing hyperscale fabric | *ref-supply-chain-dependency* (not published) register #7 |
+| Tomahawk 6 | 102 Tb/s switching silicon capturing hyperscale fabric | ref-supply-chain-dependency register #7 |
 
 ### Edge 7: Servers/racks -> buildings
 
@@ -496,7 +496,7 @@ contradictions (per caveats in *ref-supply-chain-dependency* (not published)).
 | NBIS prepayments | deferred revenue $4.78B = 5.4x TTM revenue; first covenant debt $775M (SOFR+250, DSCR 1.15) | nbis-analysis-2026-07-29, Grade A EDGAR |
 | OpenAI commitment chain | ~$1.15T across AVGO $350B / ORCL $300B / MSFT $250B / NVDA $100B / AMD $90B; >$800B circular; NVDA tranche "stalled" Feb-2026 | challenge-thesis-theme-alpha-2026-07-10 on ENT[NVDA] |
 | DLR/EQIX funding | DLR ~5.1x net-debt/EBITDA; EQIX Baa1 upgrade 2026-03-05 validates buildout financing | ENT[DLR] MEDIUM; ENT[EQIX] |
-| Cascade sizing | "NVDA -15% would drag AMD -8-10% and semiconductor ETFs -2-4%" | *NVDA* (not published) risk-cascade anchor |
+| Cascade sizing | "NVDA -15% would drag AMD -8-10% and semiconductor ETFs -2-4%" | NVDA risk-cascade anchor |
 
 ### Edge magnitudes at a glance (one-line ledger)
 
@@ -685,7 +685,7 @@ The chokepoint thesis dies if any of these resolve the wrong way:
 - Semiconductor-layer detail and per-company profiles:
   [[ref-semiconductor-value-chain]].
 - Edge-level dependency map with portfolio mapping:
-  *ref-supply-chain-dependency* (not published).
+  ref-supply-chain-dependency.
 - Downstream buyers, server OEMs, neo-clouds: [[ref-datacenter-infrastructure]].
 - Power/grid gating layer: [[ref-energy-power-complex]].
 - Memory cycle mechanics: [[ref-memory-storage-cycle-deep-dive-ingest-2026-05-06]].
@@ -769,7 +769,7 @@ Every claim class used in this file and where to re-verify it:
 | Quarterly revenue / margins / capex | FIN[n] | wiki/investing/filings/<T>/<T>-xbrl.json |
 | Prices / returns / vol / drawdowns | TECH[n] | factors.db bars table (ends 2026-08-21) |
 | Backlogs, PPAs, capacity ramps, customer shares | ENT[<T>] | wiki/entities/tickers/<T>.md (grades carried) |
-| Edge structure | *ref-supply-chain-dependency* (not published) Sections "Edge 1-5" | regenerate per that file's header |
+| Edge structure | ref-supply-chain-dependency Sections "Edge 1-5" | regenerate per that file's header |
 | Chokepoint ranking method | [[ref-semiconductor-value-chain]] Section 10 | same |
 | Server/optics/colo/neo-cloud detail | [[ref-datacenter-infrastructure]] S1-S4 | same |
 | Power contracts, queues, SMR timelines | [[ref-energy-power-complex]] S1-S7 | same |

@@ -6,7 +6,7 @@ created: 2026-07-10
 updated: 2026-07-10
 tags: [topic/consolidation, topic/playbook]
 related:
-  - "*hot* (not published)"
+  - "hot"
 ---
 
 # PowerShell Exit_code_1 Playbook
@@ -30,14 +30,14 @@ Confidence: 83% -- the dialect-mismatch mechanism is dispositive from verbatim e
 
 ## Recommendation
 
-Extend the AGENTS.md Tool-mechanics line ("Bash paths Unix-style (`<VAULT_ROOT>`)") with the reciprocal dialect-routing rule: bash heredocs / multi-line `python -c` / $(...) / sqlite3 -> Bash tool; Verb-Noun cmdlets / .Property access / $null -> PowerShell tool; a Windows-only binary missing from Git Bash PATH -> call it by full path or via python inside Bash rather than switching shells. Escalate to a PreToolUse dialect-lint hook (GATE-B scored once, covering BOTH this cluster and Bash::Exit_code_127) only if one new mismatch appears in .claude/state/failures-*.jsonl after this playbook lands.
+Extend the AGENTS.md Tool-mechanics line ("Bash paths Unix-style (the vault root)") with the reciprocal dialect-routing rule: bash heredocs / multi-line `python -c` / $(...) / sqlite3 -> Bash tool; Verb-Noun cmdlets / .Property access / $null -> PowerShell tool; a Windows-only binary missing from Git Bash PATH -> call it by full path or via python inside Bash rather than switching shells. Escalate to a PreToolUse dialect-lint hook (GATE-B scored once, covering BOTH this cluster and Bash::Exit_code_127) only if one new mismatch appears in .claude/state/failures-*.jsonl after this playbook lands.
 
 ## Apply-when
 
 Before sending a shell command: if it contains a << heredoc, a `python -c` with newlines or nested quotes, $(...), or sqlite3 -> Bash tool. If it contains a Verb-Noun cmdlet (Get-Content, Select-Object, Select-String, Measure-Object), .Property member access, or $null -> PowerShell tool. If the tool you picked disagrees with the idiom, switch the tool, not the syntax.
 
 ## Related
-- *hot* (not published) -- session cache; this playbook is surfaced in the consolidation digest
+- hot -- session cache; this playbook is surfaced in the consolidation digest
 - [[bash-exit-code-1-playbook]]
 - [[bash-exit-code-2-playbook]]
 - [[read-unclassified-playbook]]

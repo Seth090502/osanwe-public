@@ -220,7 +220,7 @@ def main():
                          for p in sorted(cfg.iterdir()) if p.is_file()} if cfg.is_dir() else {}
 
     c["ledgers"] = {}
-    for lp in LEDGERS + ["wiki/hot.md", "BACKLOG.md"]:
+    for lp in LEDGERS + ["wiki/hot.md", "docs/backlog.md"]:
         fp = ROOT / lp
         if fp.is_file():
             raw = fp.read_bytes()
