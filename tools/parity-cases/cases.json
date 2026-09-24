@@ -1,0 +1,71 @@
+{
+ "_doc": "Parity instrument manifest -- FROZEN 2026-08-17 with wiki/research/parity-eval-rule-2026-08-17.md (same commit). The manifest may NOT be narrowed to pass the rule. 8 tasks (composer family cut by Fable review round 1). Worker arms n=2, frontier arm n=1; run accounting + first-complete-pair binding per the rule doc.",
+ "frozen": "2026-08-17",
+ "rule_doc": "wiki/research/parity-eval-rule-2026-08-17.md",
+ "tasks": [
+  {
+   "id": "insider-sweep-held",
+   "family": "research",
+   "leg": "research:insider-sweep",
+   "mission": "tools/parity-cases/missions/insider-sweep-held.json",
+   "grading": "tools/parity-cases/grading/insider-sweep-held.json",
+   "frontier_protocol": "tools/parity-cases/frontier/insider-sweep-held.md"
+  },
+  {
+   "id": "insider-sweep-screen",
+   "family": "research",
+   "leg": "research:insider-sweep",
+   "mission": "tools/parity-cases/missions/insider-sweep-screen.json",
+   "grading": "tools/parity-cases/grading/insider-sweep-screen.json",
+   "frontier_protocol": "tools/parity-cases/frontier/insider-sweep-screen.md"
+  },
+  {
+   "id": "url-harvest-brief",
+   "family": "research",
+   "leg": "research:url-harvest",
+   "mission": "tools/parity-cases/missions/url-harvest-brief.json",
+   "grading": "tools/parity-cases/grading/url-harvest-brief.json",
+   "frontier_protocol": "tools/parity-cases/frontier/url-harvest-brief.md"
+  },
+  {
+   "id": "doc-extract-earnings",
+   "family": "extract",
+   "leg": "extract:doc-claims",
+   "mission": "tools/parity-cases/missions/doc-extract-earnings.json",
+   "grading": "tools/parity-cases/grading/doc-extract-earnings.json",
+   "frontier_protocol": "tools/parity-cases/frontier/doc-extract-earnings.md"
+  },
+  {
+   "id": "doc-extract-filing",
+   "family": "extract",
+   "leg": "extract:filing-tables",
+   "mission": "tools/parity-cases/missions/doc-extract-filing.json",
+   "grading": "tools/parity-cases/grading/doc-extract-filing.json",
+   "frontier_protocol": "tools/parity-cases/frontier/doc-extract-filing.md"
+  },
+  {
+   "id": "vault-context-gather",
+   "family": "research",
+   "leg": "research:vault-context",
+   "mission": "tools/parity-cases/missions/vault-context-gather.json",
+   "grading": "tools/parity-cases/grading/vault-context-gather.json",
+   "frontier_protocol": "tools/parity-cases/frontier/vault-context-gather.md"
+  },
+  {
+   "id": "ascii-sweep",
+   "family": "edit",
+   "leg": "edit:ascii-sweep",
+   "mission": "tools/parity-cases/missions/ascii-sweep.json",
+   "grading": "tools/parity-cases/grading/ascii-sweep.json",
+   "frontier_protocol": "tools/parity-cases/frontier/ascii-sweep.md"
+  },
+  {
+   "id": "frontmatter-sweep",
+   "family": "edit",
+   "leg": "edit:frontmatter-sweep",
+   "mission": "tools/parity-cases/missions/frontmatter-sweep.json",
+   "grading": "tools/parity-cases/grading/frontmatter-sweep.json",
+   "frontier_protocol": "tools/parity-cases/frontier/frontmatter-sweep.md"
+  }
+ ]
+}

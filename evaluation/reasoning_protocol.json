@@ -1,0 +1,51 @@
+{
+  "schema": "osanwe.reasoning-protocol/2",
+  "revision": "ten-family-coverage-2026-09-13",
+  "status": "implemented_development_only",
+  "campaign": "one continuing campaign across candidates and replacement datasets",
+  "development": {
+    "cases": 36, "privacy": "public synthetic", "unseen_claim": false,
+    "as_run_family_count": 9, "as_run_case_file": "development_cases.json",
+    "as_run_limit": "The closed 108-opportunity pilot omitted a separate account-scope family; partial-account questions within other families do not fulfill that coverage obligation.",
+    "coverage_supplement": {"file": "account_scope_development_v1.json", "cases": 4, "family": "account_scope", "native_tested": false},
+    "current_public_material_cases": 40,
+    "revised_36_case_release_available": false,
+    "history": "The original 36 cases and pilot remain unchanged. The supplement repairs prospective development coverage, not the historical pilot result."
+  },
+  "admission": {
+    "cases": 72, "family_count": 10,
+    "cases_by_family": {"valuation": 7, "earnings": 7, "portfolio": 7, "historical": 7, "macro": 7, "cycles": 7, "judgment": 7, "liquidity": 7, "household": 8, "account_scope": 8},
+    "curator": "independent custody after freeze", "currently_available": false,
+    "coverage_review": "Independently inspect all four task types in every family; family labels and software shape checks alone do not prove substantive coverage."
+  },
+  "families": ["valuation", "earnings", "portfolio", "historical", "macro", "cycles", "judgment", "liquidity", "household", "account_scope"],
+  "family_coverage": ["answerable", "conflicting_evidence", "method_applicability", "misleading_framing"],
+  "arms": ["baseline", "revised_no_library", "revised_library"],
+  "model": {"id": "claude-opus-5", "effort": "xhigh", "fresh_sessions": true, "substitution": "refuse", "hosting": "local native first-party subscription"},
+  "primary_outcome": "correct useful completion of every supported structured obligation and appropriate withholding of unsupported conclusions",
+  "separate_outcomes": ["material_financial_errors", "critical_incidents", "source_support", "numeric_accuracy", "justified_abstention", "missing_output", "latency", "usage", "library_retrieval"],
+  "native_read_only_scope": "Interpretation and reconciliation of identical supplied synthetic calculation evidence; not production deterministic-engine execution",
+  "prose_assessment": "separate calibrated full-artifact review, not established by the deterministic server",
+  "failed_attempts": "preserved and counted; no retries with new request names",
+  "case_split": "underlying scenario and source family, never number or ticker substitutions",
+  "confirmation": {
+    "power": 0.9, "minimum_detectable_improvement": 0.05,
+    "size_source": "public pilot discordance; fixed before confirmation",
+    "campaign_familywise_alpha": 0.05, "batch_alpha": "0.05 / 2^j, j starts at 1 and never resets",
+    "comparisons": ["revised_no_library versus baseline", "revised_library versus revised_no_library"],
+    "multiplicity": "Holm within the prespecified batch",
+    "sampling_unit": "independent underlying scenario/source family",
+    "interval": "exact Clopper-Pearson on independent binary family outcomes",
+    "optional_extension": false, "interim_score_release": false,
+    "insufficient_evidence": "inconclusive",
+    "cohort_release": "One immutable cohort with fixed paired family sample across at most 32 bounded chunks. No member receipt or cohort aggregate before every member closes and seals.",
+    "alpha_scope": "One witness-owned analysis slot per whole cohort; chunk indices do not grant alpha. Replacements and candidates remain in the original campaign.",
+    "power_limit": "Sizing is conditional on task distribution, valid independent families and feasible underlying improvement; a ceiling-limited public pilot cannot establish guaranteed power."
+  },
+  "acceptance": {
+    "controls": "all deterministic and calibrated reviewer controls functioning",
+    "critical_findings": 0, "accepted_report_unresolved_major_findings": 0,
+    "expert_certification": false, "strategy_promotion": false,
+    "operational_pilot": "seven actual scheduled cycles including Sunday; separate rolling 30-day record"
+  }
+}

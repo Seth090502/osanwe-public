@@ -1,0 +1,15 @@
+{
+  "task": "ascii-sweep",
+  "tree": "tools/parity-cases/fixtures/editor-tree/",
+  "frozen": "2026-08-17",
+  "planted": [
+    {"file": "tools/parity-cases/fixtures/editor-tree/pe-note-a.md",
+     "defect": "em-dash U+2014", "escaped_char": "\\u2014", "occurrences": 2},
+    {"file": "tools/parity-cases/fixtures/editor-tree/pe-note-a.md",
+     "defect": "curly apostrophe U+2019", "escaped_char": "\\u2019", "occurrences": 1}
+  ],
+  "clean_files": [
+    "tools/parity-cases/fixtures/editor-tree/pe-note-c.md"
+  ],
+  "grading_note": "Recall = planted defect instances covered by APPLYABLE proposals whose old text contains the escaped char and whose file matches; clean-file credit = record_negative (or zero proposals) for each clean_files entry; false-positive proposals against clean lines subtract. pe-note-b.md frontmatter defects belong to the frontmatter-sweep task, not this one."
+}

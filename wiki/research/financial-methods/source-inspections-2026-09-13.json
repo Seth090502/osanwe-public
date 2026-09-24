@@ -1,0 +1,714 @@
+{
+  "schema": "osanwe.public-method-source-inspections/1",
+  "classification": "PUBLIC",
+  "reviewer": "corpus_quality_plan_audit",
+  "review_completed_at": "2026-09-13T19:02:06Z",
+  "retrieval_window": {
+    "started_at": "2026-09-13T18:58:31Z",
+    "finished_at": "2026-09-13T18:58:35Z"
+  },
+  "scope": "Eighteen original-source excerpt inspections and eight newly authored public/synthetic method notes. This is evidence for bounded admission, not a whole-corpus approval or expert certification.",
+  "limitations": [
+    "Excerpts are short exact text fragments with whitespace normalized, not full-source snapshots.",
+    "Original publication date and earliest historical availability are unknown unless explicitly supplied by the source version label.",
+    "Current accessibility was observed in the recorded retrieval window; it does not establish historical availability before that window.",
+    "Source versions identify the inspected public representation, not an independently archived complete source body.",
+    "All original text outside the named reviewed passages is unverified by this receipt.",
+    "The 2025 IRS publication is not blanket current-law approval for 2026 or future tax years.",
+    "The 17 worked-example tests are synthetic development tests; their interpretation is not independently expert-assessed."
+  ],
+  "sources": [
+    {
+      "source_id": "S01",
+      "source_origin_id": "sec-edgar-api",
+      "title": "SEC EDGAR API documentation",
+      "uri": "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
+      "source_version": "current page observed 2026-09-13",
+      "classification": "PUBLIC",
+      "source_kind": "primary_excerpt",
+      "snapshot_path": "wiki/research/financial-methods/source-excerpts/S01.txt",
+      "snapshot_locator": {
+        "start_line": 1,
+        "end_line": 1
+      },
+      "original_locator": "Frames; web text line 63",
+      "transformations": [
+        "whitespace normalized within each preserved fragment"
+      ],
+      "reviewed_scope": "Calendar frames do not guarantee comparable issuer fiscal periods.",
+      "source_documents": [
+        "wiki/research/financial-methods/ref-financial-statement-evidence.md"
+      ],
+      "retrieved_at": "2026-09-13T18:58:35Z",
+      "retrieval_started_at": "2026-09-13T18:58:31Z",
+      "reviewed_at": "2026-09-13T19:02:06Z",
+      "published_at": null,
+      "available_at": "2026-09-13T18:58:35Z",
+      "availability_basis": "current public accessibility observed; no earlier availability asserted",
+      "excerpt_match_verified": true
+    },
+    {
+      "source_id": "S02",
+      "source_origin_id": "sec-non-gaap-cdi",
+      "title": "SEC Non-GAAP Financial Measures",
+      "uri": "https://www.sec.gov/rules-regulations/staff-guidance/corporation-finance-interpretations/non-gaap-financial-measures",
+      "source_version": "question 100.01; current page observed 2026-09-13",
+      "classification": "PUBLIC",
+      "source_kind": "primary_excerpt",
+      "snapshot_path": "wiki/research/financial-methods/source-excerpts/S02.txt",
+      "snapshot_locator": {
+        "start_line": 1,
+        "end_line": 1
+      },
+      "original_locator": "Questions 100.01 and 102.10; web text lines 30-37,150-177",
+      "transformations": [
+        "whitespace normalized within each preserved fragment"
+      ],
+      "reviewed_scope": "Non-GAAP adjustment and presentation interpretation; not a full accounting-standard review.",
+      "source_documents": [
+        "wiki/research/financial-methods/ref-financial-statement-evidence.md"
+      ],
+      "retrieved_at": "2026-09-13T18:58:35Z",
+      "retrieval_started_at": "2026-09-13T18:58:31Z",
+      "reviewed_at": "2026-09-13T19:02:06Z",
+      "published_at": null,
+      "available_at": "2026-09-13T18:58:35Z",
+      "availability_basis": "current public accessibility observed; no earlier availability asserted",
+      "excerpt_match_verified": true
+    },
+    {
+      "source_id": "S03",
+      "source_origin_id": "stl-fed-alfred-help",
+      "title": "ALFRED Help",
+      "uri": "https://alfred.stlouisfed.org/help",
+      "source_version": "current help observed 2026-09-13",
+      "classification": "PUBLIC",
+      "source_kind": "primary_excerpt",
+      "snapshot_path": "wiki/research/financial-methods/source-excerpts/S03.txt",
+      "snapshot_locator": {
+        "start_line": 1,
+        "end_line": 1
+      },
+      "original_locator": "What is ALFRED; release dates; accuracy; web text lines 19-43",
+      "transformations": [
+        "whitespace normalized within each preserved fragment"
+      ],
+      "reviewed_scope": "Vintage/release-date semantics and limitations; not individual series verification.",
+      "source_documents": [
+        "wiki/research/financial-methods/ref-financial-statement-evidence.md"
+      ],
+      "retrieved_at": "2026-09-13T18:58:35Z",
+      "retrieval_started_at": "2026-09-13T18:58:31Z",
+      "reviewed_at": "2026-09-13T19:02:06Z",
+      "published_at": null,
+      "available_at": "2026-09-13T18:58:35Z",
+      "availability_basis": "current public accessibility observed; no earlier availability asserted",
+      "excerpt_match_verified": true
+    },
+    {
+      "source_id": "S04",
+      "source_origin_id": "damodaran-terminal-value",
+      "title": "Excess Returns and Terminal Value",
+      "uri": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/valquestions/termvalueexreturns.htm",
+      "source_version": "undated method page observed 2026-09-13",
+      "classification": "PUBLIC",
+      "source_kind": "primary_excerpt",
+      "snapshot_path": "wiki/research/financial-methods/source-excerpts/S04.txt",
+      "snapshot_locator": {
+        "start_line": 1,
+        "end_line": 1
+      },
+      "original_locator": "Firm cash-flow discussion; web text lines 26-34",
+      "transformations": [
+        "whitespace normalized within each preserved fragment"
+      ],
+      "reviewed_scope": "Growth/reinvestment identity; not the page's dated company inputs.",
+      "source_documents": [
+        "wiki/research/financial-methods/ref-valuation-applicability.md"
+      ],
+      "retrieved_at": "2026-09-13T18:58:35Z",
+      "retrieval_started_at": "2026-09-13T18:58:31Z",
+      "reviewed_at": "2026-09-13T19:02:06Z",
+      "published_at": null,
+      "available_at": "2026-09-13T18:58:35Z",
+      "availability_basis": "current public accessibility observed; no earlier availability asserted",
+      "excerpt_match_verified": true
+    },
+    {
+      "source_id": "S05",
+      "source_origin_id": "damodaran-financial-firms-2009",
+      "title": "Valuing Financial Service Firms",
+      "uri": "https://pages.stern.nyu.edu/~adamodar/pdfiles/papers/finfirm09.pdf",
+      "source_version": "April 2009",
+      "classification": "PUBLIC",
+      "source_kind": "primary_excerpt",
+      "snapshot_path": "wiki/research/financial-methods/source-excerpts/S05.txt",
+      "snapshot_locator": {
+        "start_line": 1,
+        "end_line": 1
+      },
+      "original_locator": "PDF printed pp. 1-2,5; web text lines 4-35,99-127",
+      "transformations": [
+        "whitespace normalized within each preserved fragment"
+      ],
+      "reviewed_scope": "Equity-based valuation applicability and regulatory-capital constraints; not current regulations.",
+      "source_documents": [
+        "wiki/research/financial-methods/ref-valuation-applicability.md"
+      ],
+      "retrieved_at": "2026-09-13T18:58:35Z",
+      "retrieval_started_at": "2026-09-13T18:58:31Z",
+      "reviewed_at": "2026-09-13T19:02:06Z",
+      "published_at": null,
+      "available_at": "2026-09-13T18:58:35Z",
+      "availability_basis": "current public accessibility observed; no earlier availability asserted",
+      "excerpt_match_verified": true
+    },
+    {
+      "source_id": "S06",
+      "source_origin_id": "piotroski-selected-paper-84",
+      "title": "Value Investing: Historical Financial Statement Information",
+      "uri": "https://www.chicagobooth.edu/~/media/FE874EE65F624AAEBD0166B1974FD74D",
+      "source_version": "Selected Paper 84, January 2002 version",
+      "classification": "PUBLIC",
+      "source_kind": "primary_excerpt",
+      "snapshot_path": "wiki/research/financial-methods/source-excerpts/S06.txt",
+      "snapshot_locator": {
+        "start_line": 1,
+        "end_line": 2
+      },
+      "original_locator": "PDF printed p. 7, footnote 3 and section 2.3.1; web text lines 244-295",
+      "transformations": [
+        "whitespace normalized within each preserved fragment"
+      ],
+      "reviewed_scope": "Loss firms in original high book-to-market population and binary profitability scoring; not current alpha.",
+      "source_documents": [
+        "wiki/research/financial-methods/ref-valuation-applicability.md"
+      ],
+      "retrieved_at": "2026-09-13T18:58:35Z",
+      "retrieval_started_at": "2026-09-13T18:58:31Z",
+      "reviewed_at": "2026-09-13T19:02:06Z",
+      "published_at": null,
+      "available_at": "2026-09-13T18:58:35Z",
+      "availability_basis": "current public accessibility observed; no earlier availability asserted",
+      "excerpt_match_verified": true
+    },
+    {
+      "source_id": "S07",
+      "source_origin_id": "ledoit-wolf-qis-2022",
+      "title": "Quadratic shrinkage for large covariance matrices",
+      "uri": "https://www.econ.uzh.ch/dam/jcr:27e9ffa4-578e-4d6f-84d9-7707c98cedb0/bernoulli_2022.pdf",
+      "source_version": "Bernoulli 28(3), 2022",
+      "classification": "PUBLIC",
+      "source_kind": "primary_excerpt",
+      "snapshot_path": "wiki/research/financial-methods/source-excerpts/S07.txt",
+      "snapshot_locator": {
+        "start_line": 1,
+        "end_line": 1
+      },
+      "original_locator": "PDF printed p. 1519, opening summary and section 1; web text lines 8-30",
+      "transformations": [
+        "whitespace normalized within each preserved fragment"
+      ],
+      "reviewed_scope": "Published estimator identity and high-dimensional estimation motivation, not proof of every theorem or implementation.",
+      "source_documents": [
+        "wiki/research/financial-methods/ref-portfolio-risk-sensitivity.md"
+      ],
+      "retrieved_at": "2026-09-13T18:58:35Z",
+      "retrieval_started_at": "2026-09-13T18:58:31Z",
+      "reviewed_at": "2026-09-13T19:02:06Z",
+      "published_at": null,
+      "available_at": "2026-09-13T18:58:35Z",
+      "availability_basis": "current public accessibility observed; no earlier availability asserted",
+      "excerpt_match_verified": true
+    },
+    {
+      "source_id": "S08",
+      "source_origin_id": "goldman-black-litterman-history",
+      "title": "Goldman Sachs Black-Litterman model history",
+      "uri": "https://www.goldmansachs.com/our-firm/history/moments/1990-black-litterman-model",
+      "source_version": "history page observed 2026-09-13",
+      "classification": "PUBLIC",
+      "source_kind": "primary_excerpt",
+      "snapshot_path": "wiki/research/financial-methods/source-excerpts/S08.txt",
+      "snapshot_locator": {
+        "start_line": 1,
+        "end_line": 1
+      },
+      "original_locator": "Model inputs discussion; web text lines 192-195",
+      "transformations": [
+        "whitespace normalized within each preserved fragment"
+      ],
+      "reviewed_scope": "Historical explanation of supplied views; not primary mathematical validation of a local implementation.",
+      "source_documents": [
+        "wiki/research/financial-methods/ref-portfolio-risk-sensitivity.md"
+      ],
+      "retrieved_at": "2026-09-13T18:58:35Z",
+      "retrieval_started_at": "2026-09-13T18:58:31Z",
+      "reviewed_at": "2026-09-13T19:02:06Z",
+      "published_at": null,
+      "available_at": "2026-09-13T18:58:35Z",
+      "availability_basis": "current public accessibility observed; no earlier availability asserted",
+      "excerpt_match_verified": true
+    },
+    {
+      "source_id": "S09",
+      "source_origin_id": "sec-trading-basics",
+      "title": "SEC Investor Bulletin: Trading Basics",
+      "uri": "https://www.sec.gov/investor/alerts/trading101basics.pdf",
+      "source_version": "PDF version observed 2026-09-13",
+      "classification": "PUBLIC",
+      "source_kind": "primary_excerpt",
+      "snapshot_path": "wiki/research/financial-methods/source-excerpts/S09.txt",
+      "snapshot_locator": {
+        "start_line": 1,
+        "end_line": 1
+      },
+      "original_locator": "PDF p. 2, stop orders; web text lines 81-90",
+      "transformations": [
+        "whitespace normalized within each preserved fragment"
+      ],
+      "reviewed_scope": "Stops do not guarantee execution price; stop-limits may not execute.",
+      "source_documents": [
+        "wiki/research/financial-methods/ref-portfolio-risk-sensitivity.md"
+      ],
+      "retrieved_at": "2026-09-13T18:58:35Z",
+      "retrieval_started_at": "2026-09-13T18:58:31Z",
+      "reviewed_at": "2026-09-13T19:02:06Z",
+      "published_at": null,
+      "available_at": "2026-09-13T18:58:35Z",
+      "availability_basis": "current public accessibility observed; no earlier availability asserted",
+      "excerpt_match_verified": true
+    },
+    {
+      "source_id": "S10",
+      "source_origin_id": "cfa-gips-firms-handbook",
+      "title": "GIPS Standards Handbook for Firms",
+      "uri": "https://www.gipsstandards.org/standards/gips-standards-for-firms/gips-standards-handbook-for-firms/",
+      "source_version": "current handbook page observed 2026-09-13",
+      "classification": "PUBLIC",
+      "source_kind": "primary_excerpt",
+      "snapshot_path": "wiki/research/financial-methods/source-excerpts/S10.txt",
+      "snapshot_locator": {
+        "start_line": 1,
+        "end_line": 2
+      },
+      "original_locator": "Input Data and Calculation Methodology; web text lines 1642-1644,1784-1799",
+      "transformations": [
+        "whitespace normalized within each preserved fragment"
+      ],
+      "reviewed_scope": "TWR geometric linking and MWR cash-flow dependence; not GIPS compliance.",
+      "source_documents": [
+        "wiki/research/financial-methods/ref-performance-attribution.md"
+      ],
+      "retrieved_at": "2026-09-13T18:58:35Z",
+      "retrieval_started_at": "2026-09-13T18:58:31Z",
+      "reviewed_at": "2026-09-13T19:02:06Z",
+      "published_at": null,
+      "available_at": "2026-09-13T18:58:35Z",
+      "availability_basis": "current public accessibility observed; no earlier availability asserted",
+      "excerpt_match_verified": true
+    },
+    {
+      "source_id": "S11",
+      "source_origin_id": "bailey-borwein-lopezdeprado-zhu-pbo-2015",
+      "title": "The Probability of Backtest Overfitting",
+      "uri": "https://www.davidhbailey.com/dhbpapers/backtest-prob.pdf",
+      "source_version": "February 27, 2015 revision",
+      "classification": "PUBLIC",
+      "source_kind": "primary_excerpt",
+      "snapshot_path": "wiki/research/financial-methods/source-excerpts/S11.txt",
+      "snapshot_locator": {
+        "start_line": 1,
+        "end_line": 1
+      },
+      "original_locator": "Abstract and section 1, printed pp. 2-5; web text lines 19-28,46-139",
+      "transformations": [
+        "whitespace normalized within each preserved fragment"
+      ],
+      "reviewed_scope": "Trial selection and false-positive risk; not a reimplementation or empirical validation of PBO.",
+      "source_documents": [
+        "wiki/research/financial-methods/ref-empirical-research-validation.md"
+      ],
+      "retrieved_at": "2026-09-13T18:58:35Z",
+      "retrieval_started_at": "2026-09-13T18:58:31Z",
+      "reviewed_at": "2026-09-13T19:02:06Z",
+      "published_at": null,
+      "available_at": "2026-09-13T18:58:35Z",
+      "availability_basis": "current public accessibility observed; no earlier availability asserted",
+      "excerpt_match_verified": true
+    },
+    {
+      "source_id": "S12",
+      "source_origin_id": "french-data-library",
+      "title": "Kenneth R. French Data Library",
+      "uri": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html",
+      "source_version": "current page observed 2026-09-13",
+      "classification": "PUBLIC",
+      "source_kind": "primary_excerpt",
+      "snapshot_path": "wiki/research/financial-methods/source-excerpts/S12.txt",
+      "snapshot_locator": {
+        "start_line": 1,
+        "end_line": 1
+      },
+      "original_locator": "Introduction, CRSP format change; web text line 14",
+      "transformations": [
+        "whitespace normalized within each preserved fragment"
+      ],
+      "reviewed_scope": "Data-format provenance; no downloaded factor-return dataset or current factor estimates.",
+      "source_documents": [
+        "wiki/research/financial-methods/ref-empirical-research-validation.md"
+      ],
+      "retrieved_at": "2026-09-13T18:58:35Z",
+      "retrieval_started_at": "2026-09-13T18:58:31Z",
+      "reviewed_at": "2026-09-13T19:02:06Z",
+      "published_at": null,
+      "available_at": "2026-09-13T18:58:35Z",
+      "availability_basis": "current public accessibility observed; no earlier availability asserted",
+      "excerpt_match_verified": true
+    },
+    {
+      "source_id": "S13",
+      "source_origin_id": "sec-etf-bulletin-2023",
+      "title": "Updated Investor Bulletin: Exchange-Traded Funds",
+      "uri": "https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-24",
+      "source_version": "February 23, 2023",
+      "classification": "PUBLIC",
+      "source_kind": "primary_excerpt",
+      "snapshot_path": "wiki/research/financial-methods/source-excerpts/S13.txt",
+      "snapshot_locator": {
+        "start_line": 1,
+        "end_line": 1
+      },
+      "original_locator": "Scope, risks/benefits, before investing; web text lines 84,114-130",
+      "transformations": [
+        "whitespace normalized within each preserved fragment"
+      ],
+      "reviewed_scope": "Registered ETF costs, NAV/market-price distinction and source selection; not ETN/commodity-ETP universality.",
+      "source_documents": [
+        "wiki/research/financial-methods/ref-etf-implementation.md"
+      ],
+      "retrieved_at": "2026-09-13T18:58:35Z",
+      "retrieval_started_at": "2026-09-13T18:58:31Z",
+      "reviewed_at": "2026-09-13T19:02:06Z",
+      "published_at": null,
+      "available_at": "2026-09-13T18:58:35Z",
+      "availability_basis": "current public accessibility observed; no earlier availability asserted",
+      "excerpt_match_verified": true
+    },
+    {
+      "source_id": "S14",
+      "source_origin_id": "sec-leveraged-inverse-etf-bulletin",
+      "title": "Updated Investor Bulletin: Leveraged and Inverse ETFs",
+      "uri": "https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-alerts/sec",
+      "source_version": "current bulletin observed 2026-09-13",
+      "classification": "PUBLIC",
+      "source_kind": "primary_excerpt",
+      "snapshot_path": "wiki/research/financial-methods/source-excerpts/S14.txt",
+      "snapshot_locator": {
+        "start_line": 1,
+        "end_line": 1
+      },
+      "original_locator": "Daily objectives and compounding; web text lines 103-121",
+      "transformations": [
+        "whitespace normalized within each preserved fragment"
+      ],
+      "reviewed_scope": "Daily objectives and compounded multi-day paths; not an actual fund simulation.",
+      "source_documents": [
+        "wiki/research/financial-methods/ref-etf-implementation.md"
+      ],
+      "retrieved_at": "2026-09-13T18:58:35Z",
+      "retrieval_started_at": "2026-09-13T18:58:31Z",
+      "reviewed_at": "2026-09-13T19:02:06Z",
+      "published_at": null,
+      "available_at": "2026-09-13T18:58:35Z",
+      "availability_basis": "current public accessibility observed; no earlier availability asserted",
+      "excerpt_match_verified": true
+    },
+    {
+      "source_id": "S15",
+      "source_origin_id": "treasury-direct-tips",
+      "title": "Treasury Inflation-Protected Securities",
+      "uri": "https://www.treasurydirect.gov/marketable-securities/tips/",
+      "source_version": "current page observed 2026-09-13",
+      "classification": "PUBLIC",
+      "source_kind": "primary_excerpt",
+      "snapshot_path": "wiki/research/financial-methods/source-excerpts/S15.txt",
+      "snapshot_locator": {
+        "start_line": 1,
+        "end_line": 1
+      },
+      "original_locator": "Principal and interest mechanics; web text lines 39-58,79-83",
+      "transformations": [
+        "whitespace normalized within each preserved fragment"
+      ],
+      "reviewed_scope": "Principal adjustment, semiannual coupons and original-principal maturity floor; not market-price protection.",
+      "source_documents": [
+        "wiki/research/financial-methods/ref-fixed-income-liabilities.md"
+      ],
+      "retrieved_at": "2026-09-13T18:58:35Z",
+      "retrieval_started_at": "2026-09-13T18:58:31Z",
+      "reviewed_at": "2026-09-13T19:02:06Z",
+      "published_at": null,
+      "available_at": "2026-09-13T18:58:35Z",
+      "availability_basis": "current public accessibility observed; no earlier availability asserted",
+      "excerpt_match_verified": true
+    },
+    {
+      "source_id": "S16",
+      "source_origin_id": "irs-pub550-2025",
+      "title": "IRS Publication 550 (2025)",
+      "uri": "https://www.irs.gov/publications/p550",
+      "source_version": "2025 publication edition",
+      "classification": "PUBLIC",
+      "source_kind": "primary_excerpt",
+      "snapshot_path": "wiki/research/financial-methods/source-excerpts/S16.txt",
+      "snapshot_locator": {
+        "start_line": 1,
+        "end_line": 2
+      },
+      "original_locator": "Chapter 4, Wash Sales; web text lines 5731-5745",
+      "transformations": [
+        "whitespace normalized within each preserved fragment"
+      ],
+      "reviewed_scope": "Wash-sale window and taxable replacement-basis deferral; not complete 2026 tax law.",
+      "source_documents": [
+        "wiki/research/financial-methods/ref-household-tax-retirement.md"
+      ],
+      "retrieved_at": "2026-09-13T18:58:35Z",
+      "retrieval_started_at": "2026-09-13T18:58:31Z",
+      "reviewed_at": "2026-09-13T19:02:06Z",
+      "published_at": null,
+      "available_at": "2026-09-13T18:58:35Z",
+      "availability_basis": "current public accessibility observed; no earlier availability asserted",
+      "excerpt_match_verified": true
+    },
+    {
+      "source_id": "S17",
+      "source_origin_id": "irs-revenue-ruling-2008-5",
+      "title": "IRS Revenue Ruling 2008-5",
+      "uri": "https://www.irs.gov/pub/irs-drop/rr-08-05.pdf",
+      "source_version": "Revenue Ruling 2008-5",
+      "classification": "PUBLIC",
+      "source_kind": "primary_excerpt",
+      "snapshot_path": "wiki/research/financial-methods/source-excerpts/S17.txt",
+      "snapshot_locator": {
+        "start_line": 1,
+        "end_line": 1
+      },
+      "original_locator": "PDF p. 4, HOLDING; web text lines 68-73",
+      "transformations": [
+        "whitespace normalized within each preserved fragment"
+      ],
+      "reviewed_scope": "Loss disallowance and no IRA-basis increase for ruling's facts; not other prohibited-transaction issues.",
+      "source_documents": [
+        "wiki/research/financial-methods/ref-household-tax-retirement.md"
+      ],
+      "retrieved_at": "2026-09-13T18:58:35Z",
+      "retrieval_started_at": "2026-09-13T18:58:31Z",
+      "reviewed_at": "2026-09-13T19:02:06Z",
+      "published_at": null,
+      "available_at": "2026-09-13T18:58:35Z",
+      "availability_basis": "current public accessibility observed; no earlier availability asserted",
+      "excerpt_match_verified": true
+    },
+    {
+      "source_id": "S18",
+      "source_origin_id": "ssa-delayed-retirement",
+      "title": "SSA Delayed Retirement Credits",
+      "uri": "https://www.ssa.gov/benefits/retirement/planner/delayret.html",
+      "source_version": "current SSA page observed 2026-09-13",
+      "classification": "PUBLIC",
+      "source_kind": "primary_excerpt",
+      "snapshot_path": "wiki/research/financial-methods/source-excerpts/S18.txt",
+      "snapshot_locator": {
+        "start_line": 1,
+        "end_line": 1
+      },
+      "original_locator": "Delayed retirement and rate table; web text lines 50-70",
+      "transformations": [
+        "whitespace normalized within each preserved fragment"
+      ],
+      "reviewed_scope": "Credit endpoint and birth-cohort rates; not a complete claiming optimization.",
+      "source_documents": [
+        "wiki/research/financial-methods/ref-household-tax-retirement.md"
+      ],
+      "retrieved_at": "2026-09-13T18:58:35Z",
+      "retrieval_started_at": "2026-09-13T18:58:31Z",
+      "reviewed_at": "2026-09-13T19:02:06Z",
+      "published_at": null,
+      "available_at": "2026-09-13T18:58:35Z",
+      "availability_basis": "current public accessibility observed; no earlier availability asserted",
+      "excerpt_match_verified": true
+    }
+  ],
+  "documents": [
+    {
+      "path": "wiki/research/financial-methods/ref-financial-statement-evidence.md",
+      "classification": "PUBLIC",
+      "source_kind": "synthesis",
+      "version": "1",
+      "privacy_review": {
+        "classification": "PUBLIC",
+        "scope": "whole_document",
+        "reviewed_by": "corpus_quality_plan_audit",
+        "reviewed_at": "2026-09-13T19:02:06Z"
+      },
+      "scope": "Newly authored method guidance with invented examples only; exact source and calculation scopes are separated in its sections.",
+      "excluded_claims": [
+        "live account figures",
+        "current issuer recommendations",
+        "complete books or paper verification",
+        "independent expert certification",
+        "production pipeline or portfolio outcome performance"
+      ]
+    },
+    {
+      "path": "wiki/research/financial-methods/ref-valuation-applicability.md",
+      "classification": "PUBLIC",
+      "source_kind": "synthesis",
+      "version": "1",
+      "privacy_review": {
+        "classification": "PUBLIC",
+        "scope": "whole_document",
+        "reviewed_by": "corpus_quality_plan_audit",
+        "reviewed_at": "2026-09-13T19:02:06Z"
+      },
+      "scope": "Newly authored method guidance with invented examples only; exact source and calculation scopes are separated in its sections.",
+      "excluded_claims": [
+        "live account figures",
+        "current issuer recommendations",
+        "complete books or paper verification",
+        "independent expert certification",
+        "production pipeline or portfolio outcome performance"
+      ]
+    },
+    {
+      "path": "wiki/research/financial-methods/ref-portfolio-risk-sensitivity.md",
+      "classification": "PUBLIC",
+      "source_kind": "synthesis",
+      "version": "1",
+      "privacy_review": {
+        "classification": "PUBLIC",
+        "scope": "whole_document",
+        "reviewed_by": "corpus_quality_plan_audit",
+        "reviewed_at": "2026-09-13T19:02:06Z"
+      },
+      "scope": "Newly authored method guidance with invented examples only; exact source and calculation scopes are separated in its sections.",
+      "excluded_claims": [
+        "live account figures",
+        "current issuer recommendations",
+        "complete books or paper verification",
+        "independent expert certification",
+        "production pipeline or portfolio outcome performance"
+      ]
+    },
+    {
+      "path": "wiki/research/financial-methods/ref-performance-attribution.md",
+      "classification": "PUBLIC",
+      "source_kind": "synthesis",
+      "version": "1",
+      "privacy_review": {
+        "classification": "PUBLIC",
+        "scope": "whole_document",
+        "reviewed_by": "corpus_quality_plan_audit",
+        "reviewed_at": "2026-09-13T19:02:06Z"
+      },
+      "scope": "Newly authored method guidance with invented examples only; exact source and calculation scopes are separated in its sections.",
+      "excluded_claims": [
+        "live account figures",
+        "current issuer recommendations",
+        "complete books or paper verification",
+        "independent expert certification",
+        "production pipeline or portfolio outcome performance"
+      ]
+    },
+    {
+      "path": "wiki/research/financial-methods/ref-empirical-research-validation.md",
+      "classification": "PUBLIC",
+      "source_kind": "synthesis",
+      "version": "1",
+      "privacy_review": {
+        "classification": "PUBLIC",
+        "scope": "whole_document",
+        "reviewed_by": "corpus_quality_plan_audit",
+        "reviewed_at": "2026-09-13T19:02:06Z"
+      },
+      "scope": "Newly authored method guidance with invented examples only; exact source and calculation scopes are separated in its sections.",
+      "excluded_claims": [
+        "live account figures",
+        "current issuer recommendations",
+        "complete books or paper verification",
+        "independent expert certification",
+        "production pipeline or portfolio outcome performance"
+      ]
+    },
+    {
+      "path": "wiki/research/financial-methods/ref-etf-implementation.md",
+      "classification": "PUBLIC",
+      "source_kind": "synthesis",
+      "version": "1",
+      "privacy_review": {
+        "classification": "PUBLIC",
+        "scope": "whole_document",
+        "reviewed_by": "corpus_quality_plan_audit",
+        "reviewed_at": "2026-09-13T19:02:06Z"
+      },
+      "scope": "Newly authored method guidance with invented examples only; exact source and calculation scopes are separated in its sections.",
+      "excluded_claims": [
+        "live account figures",
+        "current issuer recommendations",
+        "complete books or paper verification",
+        "independent expert certification",
+        "production pipeline or portfolio outcome performance"
+      ]
+    },
+    {
+      "path": "wiki/research/financial-methods/ref-fixed-income-liabilities.md",
+      "classification": "PUBLIC",
+      "source_kind": "synthesis",
+      "version": "1",
+      "privacy_review": {
+        "classification": "PUBLIC",
+        "scope": "whole_document",
+        "reviewed_by": "corpus_quality_plan_audit",
+        "reviewed_at": "2026-09-13T19:02:06Z"
+      },
+      "scope": "Newly authored method guidance with invented examples only; exact source and calculation scopes are separated in its sections.",
+      "excluded_claims": [
+        "live account figures",
+        "current issuer recommendations",
+        "complete books or paper verification",
+        "independent expert certification",
+        "production pipeline or portfolio outcome performance"
+      ]
+    },
+    {
+      "path": "wiki/research/financial-methods/ref-household-tax-retirement.md",
+      "classification": "PUBLIC",
+      "source_kind": "synthesis",
+      "version": "1",
+      "privacy_review": {
+        "classification": "PUBLIC",
+        "scope": "whole_document",
+        "reviewed_by": "corpus_quality_plan_audit",
+        "reviewed_at": "2026-09-13T19:02:06Z"
+      },
+      "scope": "Newly authored method guidance with invented examples only; exact source and calculation scopes are separated in its sections.",
+      "excluded_claims": [
+        "live account figures",
+        "current issuer recommendations",
+        "complete books or paper verification",
+        "independent expert certification",
+        "production pipeline or portfolio outcome performance"
+      ]
+    }
+  ],
+  "validation": {
+    "command": "python tools/fis/test_corpus_examples.py",
+    "tests_run": 17,
+    "failures": 0,
+    "errors": 0,
+    "prior_failed_attempt": "Initial test launcher import path failed before test execution; corrected without changing tests or expected values.",
+    "result_path": "wiki/research/financial-methods/corpus-examples-2026-09-13.json"
+  }
+}

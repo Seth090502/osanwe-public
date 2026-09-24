@@ -1,0 +1,27 @@
+{
+ "snapshot_date": "2026-08-10",
+ "phase": "POST-migration (phase-3-skills-b4)",
+ "method": "entry = len(name)+4+min(len(desc),1536); budget 8000 (identical to the S1 baseline method)",
+ "per_skill_entry_cost": {
+  "brief": 479,
+  "challenge": 476,
+  "consolidate": 467,
+  "create-skill": 444,
+  "decide": 490,
+  "deep": 414,
+  "enrich": 480,
+  "gate": 453,
+  "health": 365,
+  "ingest": 468,
+  "invest": 464,
+  "networth": 437,
+  "retro": 480,
+  "spark": 454,
+  "vault": 408
+ },
+ "total_listing_cost": 6779,
+ "budget": 8000,
+ "budget_mode": "fits",
+ "baseline_total_was": 22099,
+ "note": "DoD 3 offline evidence: fits, all 15 funded, 1221 chars headroom. Expected direction (pre-registered at S1): previously name-only skills may START activating -- that is the remedy, not a regression."
+}

@@ -1,0 +1,293 @@
+{
+  "schema": "osanwe.analysis/1",
+  "id": "msft-fy2025-historical-v3",
+  "classification": "public",
+  "workflow": "company",
+  "report_at": "2026-09-12T09:36:00Z",
+  "knowledge_cutoff": "2025-08-01T00:00:00Z",
+  "scope": {
+    "population": "Microsoft FY2024/FY2025 GAAP annual income statements",
+    "coverage": "complete",
+    "included": [
+      "FY2024",
+      "FY2025"
+    ],
+    "excluded": [],
+    "limitations": [
+      "Historical annual figures only; no current quote, valuation, holdings, investment recommendation or alpha inference."
+    ]
+  },
+  "sources": [
+    {
+      "id": "src:msft-fy25",
+      "title": "Microsoft FY25 Q4 annual income statements",
+      "uri": "https://www.microsoft.com/en-us/Investor/earnings/FY-2025-Q4/income-statements",
+      "type": "primary",
+      "published_at": "2025-07-30T00:00:00Z",
+      "available_at": "2025-08-01T00:00:00Z",
+      "retrieved_at": "2026-09-12T09:35:39Z",
+      "verification": "source_checked",
+      "timestamp_policy": "Release date July 30, 2025; publication normalized to UTC date boundary, exact publication time unknown. Availability conservatively delayed to August 1 UTC. Not suitable for intraday event research."
+    }
+  ],
+  "claims": [
+    {
+      "id": "fact:revenue-2024",
+      "entity": "instr:MSFT",
+      "metric": "revenue",
+      "value": 245122,
+      "unit": "millions",
+      "currency": "USD",
+      "basis": "GAAP:nominal",
+      "kind": "reported",
+      "source": "src:msft-fy25",
+      "source_locator": "Year ended June 30 2024, revenue row; USD millions; GAAP",
+      "as_of": "2024-06-30T23:59:59Z",
+      "max_age_days": 800,
+      "freshness_policy": "Historical statement comparison only; not a current valuation",
+      "temporal_type": "flow",
+      "published_at": "2025-07-30T00:00:00Z",
+      "available_at": "2025-08-01T00:00:00Z",
+      "retrieved_at": "2026-09-12T09:35:39Z",
+      "period_start": "2023-07-01T00:00:00Z",
+      "period_end": "2024-06-30T23:59:59Z",
+      "frequency": "annual"
+    },
+    {
+      "id": "fact:operating_income-2024",
+      "entity": "instr:MSFT",
+      "metric": "operating_income",
+      "value": 109433,
+      "unit": "millions",
+      "currency": "USD",
+      "basis": "GAAP:nominal",
+      "kind": "reported",
+      "source": "src:msft-fy25",
+      "source_locator": "Year ended June 30 2024, operating_income row; USD millions; GAAP",
+      "as_of": "2024-06-30T23:59:59Z",
+      "max_age_days": 800,
+      "freshness_policy": "Historical statement comparison only; not a current valuation",
+      "temporal_type": "flow",
+      "published_at": "2025-07-30T00:00:00Z",
+      "available_at": "2025-08-01T00:00:00Z",
+      "retrieved_at": "2026-09-12T09:35:39Z",
+      "period_start": "2023-07-01T00:00:00Z",
+      "period_end": "2024-06-30T23:59:59Z",
+      "frequency": "annual"
+    },
+    {
+      "id": "fact:net_income-2024",
+      "entity": "instr:MSFT",
+      "metric": "net_income",
+      "value": 88136,
+      "unit": "millions",
+      "currency": "USD",
+      "basis": "GAAP:nominal",
+      "kind": "reported",
+      "source": "src:msft-fy25",
+      "source_locator": "Year ended June 30 2024, net_income row; USD millions; GAAP",
+      "as_of": "2024-06-30T23:59:59Z",
+      "max_age_days": 800,
+      "freshness_policy": "Historical statement comparison only; not a current valuation",
+      "temporal_type": "flow",
+      "published_at": "2025-07-30T00:00:00Z",
+      "available_at": "2025-08-01T00:00:00Z",
+      "retrieved_at": "2026-09-12T09:35:39Z",
+      "period_start": "2023-07-01T00:00:00Z",
+      "period_end": "2024-06-30T23:59:59Z",
+      "frequency": "annual"
+    },
+    {
+      "id": "fact:revenue-2025",
+      "entity": "instr:MSFT",
+      "metric": "revenue",
+      "value": 281724,
+      "unit": "millions",
+      "currency": "USD",
+      "basis": "GAAP:nominal",
+      "kind": "reported",
+      "source": "src:msft-fy25",
+      "source_locator": "Year ended June 30 2025, revenue row; USD millions; GAAP",
+      "as_of": "2025-06-30T23:59:59Z",
+      "max_age_days": 800,
+      "freshness_policy": "Historical statement comparison only; not a current valuation",
+      "temporal_type": "flow",
+      "published_at": "2025-07-30T00:00:00Z",
+      "available_at": "2025-08-01T00:00:00Z",
+      "retrieved_at": "2026-09-12T09:35:39Z",
+      "period_start": "2024-07-01T00:00:00Z",
+      "period_end": "2025-06-30T23:59:59Z",
+      "frequency": "annual"
+    },
+    {
+      "id": "fact:operating_income-2025",
+      "entity": "instr:MSFT",
+      "metric": "operating_income",
+      "value": 128528,
+      "unit": "millions",
+      "currency": "USD",
+      "basis": "GAAP:nominal",
+      "kind": "reported",
+      "source": "src:msft-fy25",
+      "source_locator": "Year ended June 30 2025, operating_income row; USD millions; GAAP",
+      "as_of": "2025-06-30T23:59:59Z",
+      "max_age_days": 800,
+      "freshness_policy": "Historical statement comparison only; not a current valuation",
+      "temporal_type": "flow",
+      "published_at": "2025-07-30T00:00:00Z",
+      "available_at": "2025-08-01T00:00:00Z",
+      "retrieved_at": "2026-09-12T09:35:39Z",
+      "period_start": "2024-07-01T00:00:00Z",
+      "period_end": "2025-06-30T23:59:59Z",
+      "frequency": "annual"
+    },
+    {
+      "id": "fact:net_income-2025",
+      "entity": "instr:MSFT",
+      "metric": "net_income",
+      "value": 101832,
+      "unit": "millions",
+      "currency": "USD",
+      "basis": "GAAP:nominal",
+      "kind": "reported",
+      "source": "src:msft-fy25",
+      "source_locator": "Year ended June 30 2025, net_income row; USD millions; GAAP",
+      "as_of": "2025-06-30T23:59:59Z",
+      "max_age_days": 800,
+      "freshness_policy": "Historical statement comparison only; not a current valuation",
+      "temporal_type": "flow",
+      "published_at": "2025-07-30T00:00:00Z",
+      "available_at": "2025-08-01T00:00:00Z",
+      "retrieved_at": "2026-09-12T09:35:39Z",
+      "period_start": "2024-07-01T00:00:00Z",
+      "period_end": "2025-06-30T23:59:59Z",
+      "frequency": "annual"
+    }
+  ],
+  "operations": [
+    {
+      "id": "calc:margin-2024",
+      "op": "ratio",
+      "metric": "operating_margin",
+      "inputs": [
+        "fact:operating_income-2024",
+        "fact:revenue-2024"
+      ],
+      "params": {}
+    },
+    {
+      "id": "calc:margin-2025",
+      "op": "ratio",
+      "metric": "operating_margin",
+      "inputs": [
+        "fact:operating_income-2025",
+        "fact:revenue-2025"
+      ],
+      "params": {}
+    },
+    {
+      "id": "calc:revenue-growth",
+      "op": "growth",
+      "metric": "revenue_growth",
+      "inputs": [
+        "fact:revenue-2025",
+        "fact:revenue-2024"
+      ],
+      "params": {}
+    },
+    {
+      "id": "calc:operating_income-growth",
+      "op": "growth",
+      "metric": "operating_income_growth",
+      "inputs": [
+        "fact:operating_income-2025",
+        "fact:operating_income-2024"
+      ],
+      "params": {}
+    },
+    {
+      "id": "calc:net_income-growth",
+      "op": "growth",
+      "metric": "net_income_growth",
+      "inputs": [
+        "fact:net_income-2025",
+        "fact:net_income-2024"
+      ],
+      "params": {}
+    },
+    {
+      "id": "calc:margin-change",
+      "op": "difference",
+      "metric": "operating_margin_change",
+      "inputs": [
+        "calc:margin-2025",
+        "calc:margin-2024"
+      ],
+      "params": {
+        "allow_period_change": true
+      }
+    },
+    {
+      "id": "calc:revenue-increase",
+      "op": "difference",
+      "metric": "revenue",
+      "inputs": [
+        "fact:revenue-2025",
+        "fact:revenue-2024"
+      ],
+      "params": {
+        "allow_period_change": true
+      }
+    },
+    {
+      "id": "calc:operating_income-increase",
+      "op": "difference",
+      "metric": "operating_income",
+      "inputs": [
+        "fact:operating_income-2025",
+        "fact:operating_income-2024"
+      ],
+      "params": {
+        "allow_period_change": true
+      }
+    },
+    {
+      "id": "calc:incremental-margin",
+      "op": "ratio",
+      "metric": "incremental_operating_margin",
+      "inputs": [
+        "calc:operating_income-increase",
+        "calc:revenue-increase"
+      ],
+      "params": {}
+    },
+    {
+      "id": "calc:total-operating-costs-2024",
+      "op": "difference",
+      "metric": "total_operating_costs",
+      "inputs": [
+        "fact:revenue-2024",
+        "fact:operating_income-2024"
+      ],
+      "params": {
+        "identity": "total_operating_costs"
+      }
+    },
+    {
+      "id": "calc:total-operating-costs-2025",
+      "op": "difference",
+      "metric": "total_operating_costs",
+      "inputs": [
+        "fact:revenue-2025",
+        "fact:operating_income-2025"
+      ],
+      "params": {
+        "identity": "total_operating_costs"
+      }
+    }
+  ],
+  "gaps": [
+    "Exact release timestamp was not verified; conservative availability policy is disclosed in source metadata."
+  ],
+  "resolutions": []
+}

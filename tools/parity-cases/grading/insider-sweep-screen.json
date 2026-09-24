@@ -1,0 +1,8 @@
+{
+ "extras_audit_k": 5,
+ "note": "live MCP data; same-evening pairing mandatory",
+ "reference": "frontier",
+ "task": "insider-sweep-screen",
+ "type": "claims_coverage",
+ "value_tol_rel": 0.005
+}

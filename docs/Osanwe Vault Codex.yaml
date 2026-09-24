@@ -1,0 +1,189 @@
+# Osanwe Vault Codex -- machine index (GENERATED; do not hand-edit)
+meta:
+  codex_version: '4.0'
+  generated: '2026-09-13'
+  generator: tools/gen-codex-yaml.py (OSANWE-V2 ADR-09)
+  vault_root: /path/to/vault
+  note: GENERATED from disk -- hand edits will be overwritten; prose Codex is authoritative
+    on conflict
+  scheduled_tasks_status: not queried; see docs/osanwe-runtime-reference.md
+folders:
+- path: .agents/
+  files_on_disk: 277
+- path: .backups/
+  files_on_disk: 25
+- path: .claude/
+  files_on_disk: 195
+- path: .claude-ox/
+  files_on_disk: 990
+- path: .codex/
+  files_on_disk: 37
+- path: .githooks/
+  files_on_disk: 1
+- path: .github/
+  files_on_disk: 1
+- path: .obsidian/
+  files_on_disk: 59
+- path: .playwright-mcp/
+  files_on_disk: 25
+- path: .runtime/
+  files_on_disk: 0
+- path: .workbuddy-ai/
+  files_on_disk: 1
+- path: Atlas/
+  files_on_disk: 72
+- path: Calendar/
+  files_on_disk: 818
+- path: Efforts/
+  files_on_disk: 212
+- path: _archive/
+  files_on_disk: 723
+- path: _quarantine/
+  files_on_disk: 19
+- path: _templates/
+  files_on_disk: 8
+- path: config/
+  files_on_disk: 17
+- path: data/
+  files_on_disk: 5
+- path: docs/
+  files_on_disk: 15
+- path: evaluation/
+  files_on_disk: 63
+- path: fis-app/
+  files_on_disk: 3
+- path: private/
+  files_on_disk: 6
+- path: production/
+  files_on_disk: 0
+- path: registry/
+  files_on_disk: 4
+- path: research/
+  files_on_disk: 10
+- path: skeleton/
+  files_on_disk: 74
+- path: tools/
+  files_on_disk: 338
+- path: wiki/
+  files_on_disk: 1192
+skills:
+- name: backtest
+  desc_chars: 373
+  last_commit: '2026-09-12'
+- name: brief
+  desc_chars: 470
+  last_commit: '2026-09-12'
+- name: challenge
+  desc_chars: 463
+  last_commit: '2026-09-13'
+- name: decide
+  desc_chars: 480
+  last_commit: '2026-08-24'
+- name: deep
+  desc_chars: 406
+  last_commit: '2026-09-12'
+- name: finance-data
+  desc_chars: 369
+  last_commit: '2026-09-13'
+- name: gate
+  desc_chars: 445
+  last_commit: '2026-08-24'
+- name: ingest
+  desc_chars: 481
+  last_commit: '2026-08-24'
+- name: invest
+  desc_chars: 454
+  last_commit: '2026-09-13'
+- name: local
+  desc_chars: 489
+  last_commit: '2026-08-24'
+- name: market
+  desc_chars: 435
+  last_commit: '2026-09-12'
+- name: networth
+  desc_chars: 425
+  last_commit: '2026-09-12'
+- name: portfolio
+  desc_chars: 403
+  last_commit: '2026-09-13'
+- name: retro
+  desc_chars: 471
+  last_commit: '2026-09-12'
+- name: synthesis
+  desc_chars: 468
+  last_commit: '2026-08-24'
+- name: vault
+  desc_chars: 399
+  last_commit: '2026-08-24'
+agents:
+- claim-distributor
+- compound-researcher
+- decision-critic
+- forensic-scorer
+- frontmatter-linter
+- institutional-positioning-scout
+- interaction-critic
+- lane-editor
+- lane-extractor
+- lane-researcher
+- pattern-class-scout
+- playbook-author
+- price-fetcher
+- source-aggregator
+- thesis-critic
+- vault-classifier-sweep
+- vault-researcher
+roles:
+- _template-wrapper
+- claim-distributor
+- compound-researcher
+- decision-critic
+- forensic-scorer
+- frontmatter-linter
+- institutional-positioning-scout
+- interaction-critic
+- lane-editor
+- lane-extractor
+- lane-researcher
+- pattern-class-scout
+- playbook-author
+- price-fetcher
+- source-aggregator
+- thesis-critic
+- vault-classifier-sweep
+- vault-researcher
+workflows:
+- brief-research.js
+- invest-research.js
+- invest-verify.js
+- regenerate-distillate.js
+- spark-sweep.js
+- spark-verify.js
+hooks:
+  claude_settings_hook_entries: 52
+mcp_servers:
+  openinsider:
+    write_capable: true
+  vault-search:
+    write_capable: true
+  edgar-tools:
+    write_capable: true
+  fred:
+    write_capable: true
+  robinhood-trading:
+    write_capable: true
+  claudewatch:
+    write_capable: true
+scheduled_tasks: []
+git:
+  head_branch: main
+  remotes: []
+gaps: []
+entry_points:
+  contract: AGENTS.md
+  current_state: Efforts/osanwe-v2-overhaul/STATE.md
+  architecture: docs/Osanwe Vault Codex.md
+  financial_methodology: docs/financial-analysis-contract.md
+  knowledge: Atlas/_MOCs/knowledge-moc.md
+  evaluation: evaluation/challenge_protocol.md
+  validation: .agents/scripts/checkall.py

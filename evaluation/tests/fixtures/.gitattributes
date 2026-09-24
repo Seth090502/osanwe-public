@@ -1,0 +1,2 @@
+# Exact historical schema copied from the preserved pre-cohort source bundle.
+witness-v1.sql -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

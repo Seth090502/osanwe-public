@@ -1,0 +1,5 @@
+Micron Technology (MU) Financials part B -- fixture page (hermetic; not live data)
+Per-share and balance items (FY2026 Q3, ended 2026-05-28)
+Diluted EPS: $1.62.
+Inventory: $8,400 million, days inventory 142.
+Cash and investments: $9,200 million.

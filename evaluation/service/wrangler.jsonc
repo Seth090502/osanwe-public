@@ -1,0 +1,19 @@
+{
+  "name": "<WORKER_NAME>",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-09-13",
+  "workers_dev": false,
+  "observability": {"enabled": false},
+  "d1_databases": [
+    {"binding": "DB", "database_name": "<D1_DATABASE_NAME>", "database_id": "CUSTODIAN_MUST_SET"},
+    {"binding": "EVAL_WITNESS_V2", "database_name": "<D1_WITNESS_DATABASE_NAME>", "database_id": "SEPARATE_CUSTODY_MUST_SET"}
+  ],
+  "vars": {
+    "EXPECTED_WITNESS_GENERATION": "CUSTODIAN_MUST_SET",
+    "CUSTODY_VERIFIED": "false",
+    "RESTORE_LOCK": "true",
+    "RELEASE_CODE_SHA256": "",
+    "CUSTODY_RECEIPT_DIGEST": "",
+    "SIGNING_KEY_ID": "CUSTODIAN_MUST_SET"
+  }
+}

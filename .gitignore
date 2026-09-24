@@ -1,0 +1,144 @@
+# Obsidian plugin state (user workspace, caches)
+# OSANWE-V2 SOTA pass 3: whitelist machine-readable Obsidian config
+# (versioned + recoverable); workspace/plugin dirs/caches stay ignored.
+.obsidian/
+
+# Smart Connections plugin cache (embeddings, event logs)
+.smart-env/
+
+# Ephemeral checkpoint state
+.checkpoints/
+
+
+# Nested repo -- genesis skeleton (layered project engine) has its own .git (2026-07-07)
+skeleton/
+
+# Claude Code agent worktrees (each is its own nested git repo)
+.claude/worktrees/
+
+# Runtime-appended log (hook artifact)
+.claude/command-log.txt
+
+# Hook artifacts -- transcripts + logs + session state
+.claude/transcripts/
+.claude/logs/
+.claude/state/
+.claude/session.pid
+
+# Playwright MCP runtime artifacts (browser page-snapshots + console logs from /invest
+# scraping + ad-hoc browsing). Untracked session output, not vault content -- gitignore
+# to prevent accidental git-add of scraped financial pages / browsing history.
+.playwright-mcp/
+
+# Local/per-machine settings (gitignored per spec line 38)
+.claude/settings.local.json
+CLAUDE.local.md
+
+# Maximal master-context tell-all -- single most secret-dense artifact in the vault.
+# Concentrates sensitive local context (pointers to private/ and credential
+# locations) in one file. NEVER commit/push/off-machine in plaintext. Treat like CLAUDE.local.md.
+*.local.md
+
+# A generated distillate of the master context (auto-injected at SessionStart by a hook).
+# Structure and locations only, no secret
+# values, but sensitive-pointer entries reference the master doc. Same handling: local-only.
+OSANWE-*.local.md
+OSANWE-*.local.md.bak*
+
+# Per-machine instruction overrides (replace AGENTS.md when present)
+AGENTS.override.md
+
+# Harness runtime artifacts (transcripts + state). Tracked generated artifacts:
+# .agents/skills/* (CANON tree), .claude/skills/* (sync-generated derived copies),
+# .mcp.json / opencode.json / .codex/config.toml (gen-mcp-configs.py outputs).
+.codex/state/
+.codex/transcripts/
+.agents/state/
+
+# Sensitive data -- NEVER commit (path-guarded by PreToolUse hook + gitignored as defense in depth)
+# Path-guards enforced by .claude/hooks/path-guard.sh (CLAUDE.md write-discipline section)
+# Defense-in-depth: hook blocks agent writes; gitignore blocks accidental git add / auto-commit sweep
+private/
+finance/
+credentials/
+
+# Backup credential/secret files -- defense-in-depth. The restic backup config
+# (passphrase + repo paths) lives OUTSIDE the vault at /path/to/local\restic-env.ps1 and
+# is never committable. These rules block any accidental in-vault credential file.
+*.env
+restic-env.ps1
+*.restic-passphrase
+*.restic-password
+
+# Local CSV data (not vault content)
+data/
+
+# Pre-rebuild HTML exports (replaced by Atlas/)
+knowledge/
+
+# Quarantined paths (write-protected per CLAUDE.md)
+openclaude/
+openclaude-test/
+project-palantir-complete-state-v2.md
+
+# Standard tooling
+node_modules/
+__pycache__/
+.venv/
+.cache/
+*.log
+*.lock
+*.7z
+
+# Experimental tools (tools/dev/) runtime state -- not vault content
+tools/dev/*-state.json
+tools/fs-watcher-state.json
+
+
+# /invest vNEXT shadow-validation staging (S7 write isolation): shadow runs stage
+# composed analyses here -- ZERO entity/monitor/hot.md writes, never committed.
+wiki/research/test-tmp/shadow/
+# /retro Phase D.5 fills cache (R2a path; in-session get_equity_orders export)
+wiki/research/test-tmp/fills-cache-*.json
+
+# tenfold-t1 (2026-07-03): test-tmp is a scratch zone -- nothing under it is ever tracked
+#
+wiki/research/test-tmp/
+*.bak-t2
+/_work/
+
+# Generated native Data export; exact bytes and source are versioned in its adjacent ZIP.
+/Efforts/osanwe-v2-overhaul/FINANCE-DATA-DEMO-2026-09-12.html
+# Accepted export in PUBLIC-REPORT-REVIEW-2026-09-13-v8.zip, current/archive/artifacts/delivered/report.html.
+/Efforts/osanwe-v2-overhaul/MSFT-FY2026-REVIEWED-2026-09-13.html
+
+# ---------------------------------------------------------------------------
+# Public-copy hardening (audit, 2026-09-20). These paths hold the author's own
+# material and must never be committed to this repository. They are listed even
+# though they are absent, so that restoring a working copy over this checkout
+# cannot quietly add them.
+# ---------------------------------------------------------------------------
+private/
+.raw/
+finance/
+credentials/
+.env
+.env.*
+auth.json
+*.local.md
+CLAUDE.local.md
+AGENTS.local.md
+Calendar/
+Efforts/
+_archive/
+_quarantine/
+.backups/
+wiki/investing/snapshots/
+wiki/investing/benchmarks/
+wiki/entities/
+registry/*.jsonl
+.claude-ox/
+**/transcripts/
+**/*.sqlite
+**/*.db
+**/node_modules/

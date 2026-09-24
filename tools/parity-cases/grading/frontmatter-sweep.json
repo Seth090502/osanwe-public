@@ -1,0 +1,7 @@
+{
+ "answer_key": "tools/parity-cases/fixtures/answer-keys/frontmatter-sweep.json",
+ "note": "recall of planted defects x apply-clean x clean-file negatives; false positives subtract",
+ "reference": "answer-key",
+ "task": "frontmatter-sweep",
+ "type": "edit_correctness"
+}

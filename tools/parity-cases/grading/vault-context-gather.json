@@ -1,0 +1,8 @@
+{
+ "extras_audit_k": 5,
+ "note": "live vault state; same-evening pairing; frontier arm reads the same paths",
+ "reference": "frontier",
+ "task": "vault-context-gather",
+ "type": "claims_coverage",
+ "value_tol_rel": 0.005
+}

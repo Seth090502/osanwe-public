@@ -1,0 +1,28 @@
+{
+  "task": "doc-extract-earnings",
+  "source_fixture": "tools/parity-cases/fixtures/earnings-release.md",
+  "frozen": "2026-08-17",
+  "value_tol_rel": 0.005,
+  "reference_claims": [
+    {"entity": "MRSD", "metric": "revenue q3 fy2026", "value": "9301", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "revenue yoy growth", "value": "36.6", "unit": "%"},
+    {"entity": "MRSD", "metric": "gaap gross margin", "value": "37.9", "unit": "%"},
+    {"entity": "MRSD", "metric": "non-gaap gross margin", "value": "39.0", "unit": "%"},
+    {"entity": "MRSD", "metric": "gaap diluted eps", "value": "1.68", "unit": "USD"},
+    {"entity": "MRSD", "metric": "non-gaap diluted eps", "value": "1.91", "unit": "USD"},
+    {"entity": "MRSD", "metric": "operating cash flow", "value": "4608", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "free cash flow", "value": "1946", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "capital expenditures q3", "value": "2662", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "cash and investments", "value": "12220", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "compute and networking revenue", "value": "5105", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "mobile revenue", "value": "1589", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "embedded revenue", "value": "1315", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "storage revenue", "value": "1292", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "inventory write-down", "value": "181", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "q4 revenue guidance midpoint", "value": "10700", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "q4 non-gaap gross margin guidance", "value": "42.0", "unit": "%"},
+    {"entity": "MRSD", "metric": "q4 non-gaap eps guidance midpoint", "value": "2.50", "unit": "USD"},
+    {"entity": "MRSD", "metric": "quarterly dividend per share", "value": "0.115", "unit": "USD"},
+    {"entity": "MRSD", "metric": "diluted weighted average shares", "value": "1122", "unit": "million"}
+  ]
+}

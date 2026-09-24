@@ -1,0 +1,204 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python '/path/to/vault\\.codex\\hooks\\no-heredoc.py'"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/path/to/vault\\.codex\\hooks\\session-branch.sh'",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "bash '/path/to/vault\\.codex\\hooks\\guard-paths.sh'",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "python /path/to/vault/tools/append-only-check.py",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "python /path/to/vault/tools/pre-write-validator.py",
+            "timeout": 25
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__robinhood-trading__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python '/path/to/vault\\.codex\\hooks\\pretrade-token-gate.py'",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python /path/to/vault/tools/wikilink-check.py",
+            "timeout": 20
+          },
+          {
+            "type": "command",
+            "command": "python /path/to/vault/tools/frontmatter-check.py",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "python '/path/to/vault\\.codex\\hooks\\seed-commitment.py'",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "python /path/to/vault/tools/orphan-check.py",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "python /path/to/vault/tools/hot-md-check.py wiki/hot.md --quiet",
+            "timeout": 8
+          },
+          {
+            "type": "command",
+            "command": "bash /path/to/vault/tools/bump-updated.sh",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "python '/path/to/vault\\.codex\\hooks\\auto-count-sync.py'",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "bash '/path/to/vault\\.codex\\hooks\\auto-commit.sh'",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "python '/path/to/vault\\.codex\\hooks\\reindex-debounce.py'",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python '/path/to/vault\\.codex\\hooks\\pre-compact.py'",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "PostCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python '/path/to/vault\\.codex\\hooks\\post-compact-reinject.py'",
+            "timeout": 8
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /path/to/vault/tools/session-start.sh",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "python /path/to/vault/tools/vault-score-check.py",
+            "timeout": 25
+          },
+          {
+            "type": "command",
+            "command": "bash '/path/to/vault\\.codex\\hooks\\session-integrity-check.sh'",
+            "timeout": 8
+          },
+          {
+            "type": "command",
+            "command": "python /path/to/vault/tools/open-loops.py",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/path/to/vault\\.codex\\hooks\\log-prompt.sh'",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "python '/path/to/vault\\.codex\\hooks\\semantic-context-inject.py'",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python '/path/to/vault\\.codex\\hooks\\subagent-telemetry.py' --event start",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python '/path/to/vault\\.codex\\hooks\\subagent-telemetry.py' --event stop",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/path/to/vault\\.codex\\hooks\\stop-pr-and-audit.sh'",
+            "timeout": 25
+          }
+        ]
+      }
+    ]
+  }
+}

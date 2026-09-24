@@ -1,0 +1,6 @@
+{
+  "datasets": [
+    {"name": "factors_db", "path": "Efforts/osanwe-v2-overhaul/_work/factors.db", "version": "phase-i-final", "hash": null}
+  ],
+  "schema_version": "1.0"
+}

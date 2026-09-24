@@ -1,0 +1,118 @@
+# Runs exactly the test files that pass from a clean copy of this repository -- nothing else.
+#
+# Why a fixed list rather than "run everything": 22 of the 72 published test files do not pass from a clean
+# copy, almost all because the data they read is withheld (the point-in-time price store, the factor store,
+# the parity fixtures) or because a path to the author's machine was replaced by a placeholder. One more,
+# tools/test-delegate.py, passes only where a local language model is running, so it is not listed here.
+# Running any of them here would fail for a reason that has nothing to do with the code, and a red badge
+# that everyone learns to ignore is worse than no badge. The failing files are listed in AUDIT.md with
+# their causes; none of them is excluded by loosening a test.
+#
+# No secrets and a read-only token. The only network access is pip installing the packages the
+# suites import. Two suites exercise a market-data client; they mock the fetch, so the job does
+# not call a market-data service.
+
+name: Tests that pass from a clean copy
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  suites:
+    name: Run the 49 clean-copy suites
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install the packages these suites import
+        run: pip install --quiet numpy pandas scipy yfinance
+
+      - name: Show what is being run
+        run: |
+          echo "49 test files, listed in this workflow."
+          echo "Dependencies: numpy, pandas, scipy and yfinance, which eight of the suites import."
+          echo "Nothing else is installed, and no suite is modified to make it pass."
+
+      - name: Run the suites
+        run: |
+          set +e
+          pass=0; fail=0; failed=""
+          while IFS= read -r t; do
+            [ -z "$t" ] && continue
+            out=$(cd "$(dirname "$t")" && timeout 120 python "$(basename "$t")" 2>&1)
+            rc=$?
+            if [ $rc -eq 0 ]; then
+              pass=$((pass+1)); echo "PASS  $t"
+            else
+              fail=$((fail+1)); failed="$failed\n  $t (exit $rc)"
+              echo "FAIL  $t (exit $rc)"
+              echo "$out" | tail -15 | sed 's/^/      /'
+            fi
+          done <<'SUITES'
+          evaluation/tests/test_native_pilot.py
+          evaluation/tests/test_protocol.py
+          evaluation/tests/test_reviewer_controls.py
+          tools/fis/test_capabilities.py
+          tools/fis/test_cashflow.py
+          tools/fis/test_corpus_examples.py
+          tools/fis/test_firewall_sandbox.py
+          tools/fis/test_institutional_analytics.py
+          tools/fis/test_institutional_portfolio.py
+          tools/fis/test_institutional_risk.py
+          tools/fis/test_native_review.py
+          tools/fis/test_realized_gain_tax.py
+          tools/fis/test_recovery_approval.py
+          tools/fis/test_recovery_financial_invariants.py
+          tools/fis/test_recovery_security.py
+          tools/fis/test_report_review.py
+          tools/fis/test_reviewer_execution.py
+          tools/fis/test_scheduler.py
+          tools/fis/test_source_review_evidence.py
+          tools/fis/test_tournament_causality.py
+          tools/fis/test_w9_regressions.py
+          tools/fis/test_workbench.py
+          tools/pit/test_financial_documents.py
+          tools/pit/test_macro_status.py
+          tools/pit/test_pit_time_axis.py
+          tools/test_validation_taxrisk.py
+          tools/test-backtest-prediction.py
+          tools/test-calibrate-confidence.py
+          tools/test-calibration-horizons.py
+          tools/test-eval-interface.py
+          tools/test-fetch-prices.py
+          tools/test-finance-data-package.py
+          tools/test-financial-integration-controls.py
+          tools/test-fis-cross-component.py
+          tools/test-fis-defects.py
+          tools/test-gen-roles.py
+          tools/test-ledger-preservation.py
+          tools/test-mr-corrected-invariants.py
+          tools/test-no-heredoc.py
+          tools/test-outcome-confidence.py
+          tools/test-precommit.py
+          tools/test-pretrade-transcript-provenance.py
+          tools/test-relay-policy.py
+          tools/test-router-contract.py
+          tools/test-runtime-health.py
+          tools/test-score-ledger.py
+          tools/test-sector-alpha.py
+          tools/test-technicals.py
+          tools/test-vault-audit-scope.py
+          SUITES
+          echo ""
+          echo "passed: $pass   failed: $fail"
+          if [ $fail -ne 0 ]; then
+            printf "failing suites:%b\n" "$failed"
+            exit 1
+          fi

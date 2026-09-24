@@ -1,0 +1,32 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "edgar-tools": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "--from",
+        "edgartools[ai]==5.35.1",
+        "edgartools-mcp"
+      ],
+      "enabled": true
+    },
+    "openinsider": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "openinsider-mcp@0.3.3"
+      ],
+      "enabled": true
+    },
+    "vault-search": {
+      "type": "local",
+      "command": [
+        "python",
+        "/path/to/local/vault-search/server.py"
+      ],
+      "enabled": true
+    }
+  }
+}

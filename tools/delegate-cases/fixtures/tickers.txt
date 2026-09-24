@@ -1,0 +1,5 @@
+# Coverage note
+
+We reviewed MU alongside NVDA this week. AMD reported earlier, and TSM
+supplies all three. MU was mentioned again in the appendix; NVDA remains
+the largest of the four by market value.

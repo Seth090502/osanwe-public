@@ -1,0 +1,34 @@
+# Obsidian Ignore -- Project Palantir Vault
+# Keeps tooling, runtimes, build output, and frozen state invisible in Obsidian
+# while preserving knowledge/, skills, AGENTS.md, and operational state as visible vault content
+
+# Git
+.git/
+
+# Claude Code runtime
+.claude/
+
+# Frozen OpenClaw runtime state
+.openclaw/
+
+# Stale checkpoints (pre-migration)
+.checkpoints/
+
+# Config directory (GGUF model files, orchestrator scripts, modelfiles)
+config/
+
+
+# Empty directories
+archive/
+state/
+
+# Build artifacts and logs
+*.log
+*.lock
+*.7z
+
+# Data files (CSV, not knowledge content)
+data/
+
+# Templates (visible in Obsidian but excluded from graph clutter)
+# templates/
