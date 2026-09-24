@@ -8,8 +8,8 @@ be rebuilt from the typed notes it came from.
 
 **1. Contract.** `AGENTS.md` states what any agent operating the system may and may not do: where it may
 write, what evidence a numeric claim needs, which actions require explicit authorisation, and which ledgers
-are append-only. `CLAUDE.md` is a one-line stub, `@AGENTS.md`, that imports it, so every harness reads the one
-file. A router check verifies the stub and that the bootstrap document embeds the right source hash.
+are append-only. It is the only instruction file: Claude Code, Codex and OpenCode read it natively, and a
+router check refuses any CLAUDE.md and verifies that the bootstrap document embeds the right source hash.
 
 **2. Skills.** Each skill is a directory under `.agents/skills/<name>/` with a `SKILL.md` and its reference
 documents. A skill is a procedure, not a prompt fragment: it names its phases, its inputs, the tools it may

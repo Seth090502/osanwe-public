@@ -25,7 +25,7 @@ Fifteen published-eligible documents were pulled after a privacy read, because t
 portfolio rather than a method or a public market: reference documents built around their holdings, a
 held-position earnings calendar, a correlation and scoring pair that marked which names they own, a review of a
 live run containing a broker read, a sizing test whose fixture is their real book, a playbook about their own
-execution failures, and the routing fixtures that record their real prompts. `docs/audit.md` explains how they were
+trade-execution failures, and the routing fixtures that record their real prompts. `docs/audit.md` explains how they were
 found.
 
 A few files were left out because they would only be clutter here: two launcher scripts for a per-machine
