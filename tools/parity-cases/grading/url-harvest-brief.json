@@ -1,0 +1,9 @@
+{
+ "extras_audit_k": 5,
+ "judged_narrative_weight": 0.2,
+ "note": "live web data; the ONLY task with judged residue (narrative, 20% of this task via --blind-pack)",
+ "reference": "frontier",
+ "task": "url-harvest-brief",
+ "type": "claims_coverage",
+ "value_tol_rel": 0.01
+}

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="ascii">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FIS Experience Plane v1 - Local Dashboard</title>
+<style>
+:root{
+  --foreground:#e6e6e6;
+  --muted-foreground:#9a9aa5;
+  --accent:#4da3ff;
+  --border:#33333d;
+  --card:#1b1b22;
+  --bg:#121218;
+  --ok:#3fbf6f;
+  --warn:#e0b03f;
+  --bad:#e06c5f;
+}
+@media (prefers-color-scheme: light){
+  :root{
+    /* tokens stay dark-themed per spec; light scheme keeps same values */
+  }
+}
+*{box-sizing:border-box}
+html{font-size:100%}
+body{
+  margin:0;background:var(--bg);color:var(--foreground);
+  font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+  line-height:1.55;font-size:1rem;
+}
+a{color:var(--accent)}
+code,kbd,pre{font-family:Consolas,"Courier New",monospace;font-size:0.95em}
+.skip{
+  position:absolute;left:-999px;top:0;background:var(--accent);
+  color:#101014;padding:.5rem 1rem;z-index:10;
+}
+.skip:focus{left:.5rem;top:.5rem}
+header.app, nav[aria-label="Sections"], main, footer{
+  max-width:70rem;margin:0 auto;padding:0 1rem;
+}
+header.app{padding-top:1.25rem;padding-bottom:.5rem}
+h1{font-size:1.5rem;margin:.2rem 0}
+.subtitle{color:var(--muted-foreground);font-size:.95rem;margin:.2rem 0}
+nav[aria-label="Sections"] ul{
+  list-style:none;display:flex;flex-wrap:wrap;gap:.25rem;
+  padding:0;margin:.75rem 0;border-bottom:1px solid var(--border);
+}
+nav[aria-label="Sections"] a{
+  display:inline-block;padding:.35rem .65rem;text-decoration:none;
+  color:var(--foreground);border:1px solid transparent;border-radius:4px;
+}
+nav[aria-label="Sections"] a:hover{border-color:var(--border)}
+nav[aria-label="Sections"] a:focus-visible,a:focus-visible,
+button:focus-visible,input:focus-visible,[tabindex]:focus-visible{
+  outline:3px solid var(--accent);outline-offset:2px;
+}
+main{padding-top:1rem}
+section{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:8px;padding:1rem;margin:0 0 1.25rem 0;
+  overflow-wrap:break-word;
+}
+section > h2{font-size:1.15rem;margin:.1rem 0 .75rem 0;
+  border-bottom:1px solid var(--border);padding-bottom:.4rem}
+section.research-band{border-left:6px solid var(--warn)}
+.research-header{
+  color:var(--warn);font-weight:bold;letter-spacing:.05em;
+  font-family:Consolas,"Courier New",monospace;
+}
+.banner{
+  border:1px dashed var(--warn);color:var(--warn);
+  padding:.6rem .8rem;border-radius:6px;margin:.5rem 0;
+  font-weight:bold;
+}
+.sim-banner{
+  border:1px solid var(--accent);color:var(--accent);
+  padding:.6rem .8rem;border-radius:6px;margin:.5rem 0;
+  font-weight:bold;letter-spacing:.04em;
+}
+.cards{display:flex;flex-wrap:wrap;gap:.75rem;margin:.5rem 0}
+.card{
+  flex:1 1 14rem;border:1px solid var(--border);border-radius:6px;
+  padding:.75rem;background:var(--bg);min-width:12rem;
+}
+.card .k{color:var(--muted-foreground);font-size:.85rem;display:block}
+.card .v{font-size:1.35rem;font-weight:bold}
+table{border-collapse:collapse;width:100%;margin:.5rem 0;font-size:.95rem}
+th,td{text-align:left;padding:.4rem .55rem;border-bottom:1px solid var(--border);vertical-align:top}
+th{color:var(--muted-foreground);font-weight:600}
+tr:hover td{background:rgba(255,255,255,.03)}
+.tablewrap{overflow-x:auto}
+.badge{
+  display:inline-block;padding:.05rem .45rem;border-radius:4px;
+  border:1px solid var(--border);font-size:.82rem;
+  font-family:Consolas,"Courier New",monospace;
+}
+.badge.ok{color:var(--ok);border-color:var(--ok)}
+.badge.warn{color:var(--warn);border-color:var(--warn)}
+.badge.bad{color:var(--bad);border-color:var(--bad)}
+.badge.accent{color:var(--accent);border-color:var(--accent)}
+.muted{color:var(--muted-foreground);font-size:.9rem}
+.disclosure{
+  border-left:4px solid var(--border);padding:.5rem .8rem;margin:.5rem 0;
+  color:var(--muted-foreground);font-size:.92rem;
+}
+.slider-row{margin:.9rem 0}
+.slider-row label{display:block;font-weight:600;margin-bottom:.25rem}
+input[type="range"]{width:min(100%,28rem);height:2rem;accent-color:var(--accent)}
+output{font-weight:bold;color:var(--accent)}
+.kv{display:flex;gap:.5rem;flex-wrap:wrap;margin:.25rem 0}
+.kv div{min-width:10rem}
+.chain{list-style:none;padding:0;margin:.5rem 0}
+.chain li{
+  border-left:3px solid var(--accent);padding:.3rem 0 .3rem .8rem;
+  margin-left:.5rem;
+}
+.chain li::before{
+  content:"";
+}
+footer{color:var(--muted-foreground);font-size:.85rem;padding:1rem 1rem 2rem 1rem}
+@media (max-width:48rem){
+  .cards{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="app" role="banner">
+  <h1>FIS EXPERIENCE PLANE v1</h1>
+  <p class="subtitle">Local financial intelligence system dashboard.
+     Built 2026-08-26T07:38:01Z from local artifacts. Offline: no network requests.</p>
+</header>
+
+<nav aria-label="Sections">
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#household">Household</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#risk">Risk</a></li>
+    <li><a href="#decisions">Decisions</a></li>
+    <li><a href="#scenarios">Scenarios</a></li>
+    <li><a href="#shadow">Shadow Research</a></li>
+    <li><a href="#dataquality">Data Quality</a></li>
+    <li><a href="#provenance">Provenance</a></li>
+    <li><a href="#health">System Health</a></li>
+  </ul>
+</nav>
+
+<main id="main">
+
+<section id="home" aria-labelledby="h-home">
+  <h2 id="h-home">HOME</h2>
+  <div class="banner" role="note">SYNTHETIC DATA NOTICE: every figure on this
+  dashboard derives from SYNTHETIC-HOUSEHOLD fixtures and research datastores.
+  Nothing here represents a real person's finances. NOT FINANCIAL ADVICE.</div>
+  <div class="cards">
+    <div class="card">
+      <span class="k">Net worth (synthetic twin)</span>
+      <span class="v" id="nw-value">$0</span>
+      <span class="k">As of <span id="nw-asof"></span></span>
+    </div>
+    <div class="card">
+      <span class="k">Liquidity</span>
+      <span class="v" id="nw-liq"></span>
+      <span class="k">months of core spend</span>
+    </div>
+    <div class="card">
+      <span class="k">Reconciles</span>
+      <span class="v" id="nw-recon"></span>
+      <span class="k">holdings vs stated balances</span>
+    </div>
+  </div>
+  <p class="muted" id="nw-assumptions"></p>
+</section>
+
+<section id="household" aria-labelledby="h-household">
+  <h2 id="h-household">HOUSEHOLD (SYNTHETIC TWIN SUMMARY)</h2>
+  <div class="cards">
+    <div class="card"><span class="k">Members</span><span class="v" id="hh-members"></span></div>
+    <div class="card"><span class="k">Accounts</span><span class="v" id="hh-accounts"></span></div>
+    <div class="card"><span class="k">Liquidity</span><span class="v" id="hh-liq"></span></div>
+    <div class="card"><span class="k">Gross income / yr</span><span class="v" id="hh-income"></span></div>
+  </div>
+  <h3>Job-loss sensitivity (from twin_scenarios at build time)</h3>
+  <div class="tablewrap"><table>
+    <caption class="muted">Net worth impact of employment stopping for N months</caption>
+    <thead><tr>
+      <th scope="col">Months unemployed</th>
+      <th scope="col">Net worth (USD)</th>
+      <th scope="col">Delta vs baseline</th>
+      <th scope="col">Liquidity after draw (months)</th>
+      <th scope="col">Shortfall</th>
+    </tr></thead>
+    <tbody id="jl-body"></tbody>
+  </table></div>
+  <details><summary class="muted">Assumptions and data gaps</summary>
+    <ul id="hh-gaps" class="muted"></ul>
+  </details>
+</section>
+
+<section id="portfolio" aria-labelledby="h-portfolio">
+  <h2 id="h-portfolio">PORTFOLIO (SYNTHETIC HOLDINGS)</h2>
+  <p>Total market value: <strong id="pf-total"></strong>
+     at frozen synthetic price table, as of <span id="pf-asof"></span>.
+  <span id="pf-breach-badge"></span></p>
+  <div class="tablewrap"><table>
+    <thead><tr>
+      <th scope="col">Symbol</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price (USD)</th>
+      <th scope="col">Value (USD)</th>
+      <th scope="col">Weight %</th>
+      <th scope="col">Accounts</th>
+      <th scope="col">Concentration</th>
+    </tr></thead>
+    <tbody id="pf-body"></tbody>
+  </table></div>
+  <p class="muted">Concentration rule: flag any single name above
+  <span id="pf-cap"></span>% weight.</p>
+</section>
+
+<section id="risk" aria-labelledby="h-risk">
+  <h2 id="h-risk">RISK</h2>
+  <div class="cards">
+    <div class="card"><span class="k">Annualized vol (SPY proxy)</span><span class="v" id="rk-vol"></span></div>
+    <div class="card"><span class="k">Max drawdown</span><span class="v" id="rk-mdd"></span></div>
+    <div class="card"><span class="k">Top-name concentration</span><span class="v" id="rk-conc"></span></div>
+    <div class="card"><span class="k">Kill-switch</span><span class="v" id="rk-kill"></span></div>
+  </div>
+  <p class="muted" id="rk-detail"></p>
+  <h3>Model disclosure (verbatim)</h3>
+  <div class="disclosure" id="rk-disclosure"></div>
+</section>
+
+<section id="decisions" aria-labelledby="h-decisions">
+  <h2 id="h-decisions">DECISIONS QUEUE</h2>
+  <p><span id="dc-id" class="badge accent"></span>
+     <span id="dc-appr"></span>
+     confidence <output id="dc-conf" aria-label="Decision confidence"></output>,
+     reversibility: <span id="dc-rev" class="muted"></span></p>
+  <h3>Alternatives considered</h3>
+  <div class="tablewrap"><table>
+    <thead><tr>
+      <th scope="col">Alternative</th>
+      <th scope="col">Engine</th>
+      <th scope="col">Key figures</th>
+    </tr></thead>
+    <tbody id="dc-body"></tbody>
+  </table></div>
+  <h3>Constraints, cutoff, monitoring</h3>
+  <div id="dc-meta" class="muted"></div>
+  <h3>Invalidate this decision when</h3>
+  <ul id="dc-inval" class="muted"></ul>
+</section>
+
+<section id="scenarios" aria-labelledby="h-scenarios">
+  <h2 id="h-scenarios">SCENARIOS</h2>
+  <div class="sim-banner" role="note">SIMULATION NOT PREDICTION. These sliders
+  replay deterministic what-if arithmetic on the synthetic twin's frozen
+  balance sheet. They do not forecast markets or outcomes.</div>
+  <div class="slider-row">
+    <label for="sl-job">Simulated job loss duration: <output id="sl-job-out"
+      for="sl-job">0</output> months</label>
+    <input type="range" id="sl-job" min="0" max="12" step="1" value="0"
+      aria-label="Job loss duration in months, 0 to 12"
+      aria-describedby="sim-result">
+  </div>
+  <div class="slider-row">
+    <label for="sl-mkt">Simulated market decline: <output id="sl-mkt-out"
+      for="sl-mkt">0</output> percent on all non-cash assets</label>
+    <input type="range" id="sl-mkt" min="-60" max="0" step="1" value="0"
+      aria-label="Market decline percent, negative 60 to 0"
+      aria-describedby="sim-result">
+  </div>
+  <div class="cards" id="sim-result" role="status" aria-live="polite">
+    <div class="card"><span class="k">Simulated net worth</span><span class="v" id="sim-nw"></span>
+      <span class="k" id="sim-nw-delta"></span></div>
+    <div class="card"><span class="k">Simulated liquidity</span><span class="v" id="sim-liq"></span>
+      <span class="k">months of cover remaining</span></div>
+    <div class="card"><span class="k">Cash remaining</span><span class="v" id="sim-cash"></span>
+      <span class="k" id="sim-shortfall"></span></div>
+  </div>
+  <p class="muted">Method: job loss draws N x monthly core spend from cash
+  accounts only; market decline scales all non-cash assets proportionally.
+  Identical arithmetic to tools/fis/twin_scenarios.py apply_job_loss /
+  apply_market_decline.</p>
+</section>
+
+<section id="shadow" class="research-band" aria-labelledby="h-shadow">
+  <p class="research-header" id="h-shadow">RESEARCH-DIAGNOSTIC</p>
+  <h2>SHADOW RESEARCH (NOT PERSONAL DATA - MODEL DIAGNOSTICS ONLY)</h2>
+  <p class="muted">Freeze <span id="sh-freeze"></span>, model
+  <span id="sh-model"></span>, launched <span id="sh-launch"></span>,
+  horizon <span id="sh-horizon"></span> trading days,
+  predictions logged: <span id="sh-count"></span>.</p>
+  <p class="muted">Promotion path: <span id="sh-path"></span></p>
+  <div class="tablewrap"><table>
+    <thead><tr>
+      <th scope="col">Cohort</th>
+      <th scope="col">Model state</th>
+      <th scope="col">Predictions</th>
+      <th scope="col">Graded</th>
+      <th scope="col">Calibration</th>
+      <th scope="col">Excess net of costs</th>
+      <th scope="col">Promotion</th>
+    </tr></thead>
+    <tbody id="sh-body"></tbody>
+  </table></div>
+  <p class="muted">Research hygiene: <span id="sh-hygiene"></span></p>
+</section>
+
+<section id="dataquality" aria-labelledby="h-dq">
+  <h2 id="h-dq">DATA QUALITY (REGISTRY FRESHNESS)</h2>
+  <div class="tablewrap"><table>
+    <thead><tr>
+      <th scope="col">Dataset</th>
+      <th scope="col">Coverage</th>
+      <th scope="col">Stale by (days)</th>
+      <th scope="col">License</th>
+      <th scope="col">Notes</th>
+    </tr></thead>
+    <tbody id="dq-body"></tbody>
+  </table></div>
+  <p class="muted" id="dq-macro"></p>
+</section>
+
+<section id="provenance" aria-labelledby="h-prov">
+  <h2 id="h-prov">PROVENANCE (SAMPLE LINEAGE CHAIN)</h2>
+  <p class="muted" id="pv-legend"></p>
+  <ol class="chain" id="pv-chain" reversed></ol>
+  <p class="muted">Store holds <span id="pv-count"></span> artifacts. Digests
+  shown are content hashes recorded at computation time.</p>
+</section>
+
+<section id="health" aria-labelledby="h-health">
+  <h2 id="h-health">SYSTEM HEALTH (SELFTEST MATRIX)</h2>
+  <div class="tablewrap"><table>
+    <thead><tr>
+      <th scope="col">Component</th>
+      <th scope="col">Passed</th>
+      <th scope="col">Failed</th>
+      <th scope="col">Status</th>
+      <th scope="col">Detail</th>
+    </tr></thead>
+    <tbody id="hl-body"></tbody>
+  </table></div>
+  <p class="muted">Built <span id="hl-ts"></span>. Overall:
+  <span id="hl-all"></span></p>
+</section>
+
+</main>
+
+<footer>
+  FIS Experience Plane v1 | offline build, zero network calls |
+  all personal-section figures synthetic |
+  research sections are model diagnostics, not advice
+</footer>
+
+<script>
+"use strict";
+window.FIS_DATA = {"build_ts_utc": "2026-08-26T07:38:01Z", "dataquality": {"datasets": [{"coverage_end": "2026-08-25", "coverage_start": "2015-01-02", "dataset_id": "factors.db", "known_defects": ["source-risk record: _work/fis-data/yfinance-source-risk-record.md (license_status=unverified; production use blocked)"], "label": "factors.db", "license_status": "unverified", "missingness_pct": 0.0, "retrieval_timestamp": "2026-08-25T15:36:45", "sha256_prefix": "ba373202f474903d", "source_note": "sqlite bars + macro factors (bulk pull manifest)", "staleness_days": 1, "version": "3"}, {"coverage_end": "~5y to 2026-08-25 per ticker", "coverage_start": null, "dataset_id": "dual-prices", "known_defects": ["Yahoo Close under auto_adjust=False is split-adjusted; true raw reconstructed by un-splitting (dual-price-report.md)", "announcement_date externally blocked (declaration dates need paid feed)", "source-risk record: _work/fis-data/yfinance-source-risk-record.md (production use blocked)"], "label": "dual_prices", "license_status": "unverified", "missingness_pct": 0.0, "retrieval_timestamp": "2026-08-25T23:25:18.491451Z", "sha256_prefix": "<digest removed by audit: it covered a file withheld from the public copy, so nothing here can verify it>", "source_note": "dual_prices.db raw/adjusted dual bars + corporate actions", "staleness_days": 1, "version": "1.0.0-20260825"}, {"coverage_end": "2026-08-25", "coverage_start": "2021-08-24", "dataset_id": "edgar-corpus", "known_defects": ["70/5004 pilot rows show UTC acceptance-day \u003c filing_date (EDGAR after-cutoff convention); normalize to ET market sessions before any day-level PIT comparison. Evidence: rx3-edgar-pit-review.json"], "label": "edgar-pit", "license_status": "verified-open", "missingness_pct": 0.0, "retrieval_timestamp": "2026-08-25T15:08:14", "sha256_prefix": "5d569591b43e685e", "source_note": "EDGAR point-in-time corpus; checkpoint: ['tickers', 'row_quarantine']", "staleness_days": 1, "version": "1"}, {"coverage_end": "2026-08-24", "coverage_start": "2015-01-01", "dataset_id": "macro-factors", "known_defects": ["monthly series (CPIAUCSL/FEDFUNDS/UNRATE) forward-fill implicitly on join; use raw observation dates only"], "label": "macro-vintages", "license_status": "unverified", "missingness_pct": 0.0, "retrieval_timestamp": "2026-08-24", "sha256_prefix": "ba373202f474903d", "source_note": "36 actual / 0 reconstruction / 0 assumed-lag / 16 no-safe-use of 52", "staleness_days": 2, "version": "1"}], "generated_from": "dataset-registry.jsonl", "macro_counts": {"actual-vintage-history": 36, "assumed-lag": 0, "no-safe-use": 16, "release-calendar-reconstruction": 0}, "macro_generated_utc": "2026-08-25T22:44:12Z"}, "decision": {"alternatives": [{"engine": "monitoring plan", "id": "defer_decision", "review_date": "2026-08-15"}, {"engine": "S6 charitable candidates", "id": "donate_highest_basis_lot", "top_lot": "lw3"}, {"engine": "S5 metrics", "id": "hold_no_action", "var95_pre": -0.18095616904786527}, {"after_tax_proceeds_usd": 216164.41, "engine": "F2+after_tax_lot_return", "id": "trim_500_sh", "proceeds_usd": 256920.01, "tax_usd": 40755.6}], "approval_required": true, "confidence": 0.62, "constraints": {"liquidity_floor_usd": 50000.0, "max_single_name_pct": 25.0, "no_direct_to_execution_without_human_approval": true, "risk_tolerance": "moderate"}, "data_quality": {"caveats": ["yfinance-derived bars (license UNVERIFIED)", "spinoff economic ratio UNVERIFIED per notes"], "corporate_action_confidence": "MEDIUM", "price_source": "dual_prices.db stitched adjusted closes"}, "decision_id": "dec:s7-wdc-spinoff-response", "effects": {"fees": {"engine": "execution-cost-model", "note": "ECM round-trip bp charged by S4 planner; not re-estimated here (disclosure)"}, "liquidity": {"floor_respected": true, "post_trim_cash_usd": 256920.01}, "opportunity": {"engine": "S5 expected-return delta", "note": "trim gives up sleeve upside; quantified in scenario spread"}, "tax": {"engine": "after_tax_lot_return", "rates_are_caller_parameters": true, "trim_tax_usd": 40755.6}}, "evidence_links": ["ca:WDC:spinoff:2025-02-24", "fx:ee0c3bc3646f4ff091f0", "fx:286a5bc210af4e6b9fee", "artifact:s7-networth-pre-event", "artifact:s7-alternatives", "artifact:s7-risk-effects"], "expected_outcomes": {"method": "approximated by S1 scenario outputs", "note": "distribution from seeded 2000-path simulation; NOT a forecast", "scenario_median_usd": 1963916.97, "scenario_p5_usd": 1422914.97}, "human_approval_given": false, "info_cutoff": {"as_of": "2026-07-15", "knowledge_date": "2026-07-20", "late_information_excluded": "any filing accepted after cutoff (EDGAR earliest_model_availability rule)", "prices_known_through": "2026-07-15"}, "invalidation_conditions": ["corporate_actions row for WDC/SNDK changes hash", "restated statement moves sleeve value beyond +/-5%", "concentration policy ceiling changes"], "model_disagreement": {"detail": "one sanctioned model per plane; no second independent model available to disagree with", "status": "N/A-single-model-disclosed"}, "monitoring_plan": {"cadence_days": 7, "checks": ["dual_prices.db discrepancy scan", "provenance staleness of dec inputs", "SNDK listing status via security master"], "next_review": "2026-08-15"}, "objectives": {"goal_refs": ["g1:essential-2032"], "primary": "preserve household net worth across the spinoff transition", "secondary": "reduce single-name concentration toward policy ceiling"}, "professional_review_triggers": [{"action": "route to licensed tax professional before execution", "breached_by_trim_gain": true, "threshold_usd": 100000.0, "trigger": "tax_advice_threshold"}], "required_approvals": ["human"], "reversibility": "reversible-at-moderate-cost", "schema_version": "part-i-mandated-fields-1.0", "trigger": {"detected_at": "2026-08-26T05:55:34Z", "event_id": "ca:WDC:spinoff:2025-02-24", "event_ref": "ca:WDC:spinoff:2025-02-24", "type": "corporate_action"}}, "health": {"all_ok": true, "built_at_utc": "2026-08-26T07:38:01Z", "checks": [{"component": "calcs_ledger (fis-calcs-ledger-1.0.0)", "detail": "1259 property tests", "failed": 0, "ok": true, "passed": 47, "source": "_work/fis-data/calcs_ledger_selftest.json"}, {"component": "portfolio_engine", "detail": "17 cases", "failed": 0, "ok": true, "passed": 17, "source": "_work/fis-data/portfolio-engine-selftest.json"}, {"component": "architecture-fitness", "detail": "44 checks run", "failed": 0, "ok": true, "passed": 44, "source": "_work/fis-data/architecture-fitness-report.json"}, {"component": "twin_scenarios (live at build time)", "detail": "net_worth/liquidity/job_loss executed", "failed": 0, "ok": true, "passed": 1, "source": "tools/fis/twin_scenarios.py"}, {"component": "risk_engine (live at build time)", "detail": "position_risk over SPY closes", "failed": 0, "ok": true, "passed": 1, "source": "tools/fis/risk_engine.py + dual_prices.db (read-only)"}]}, "household": {"account_types": ["brokerage", "traditional_401k", "hsa", "cash"], "accounts": 4, "as_of": "2026-08-25", "assumptions": ["holdings valued at frozen synthetic price table (as_of 2026-08-25)", "cash accounts valued at stated balance", "net worth = assets minus liabilities at face value"], "cash_flow": {"assumptions": ["income = employment income_streams only (human capital excluded)", "debt service = minimum payments annualized", "no tax withholding modeled"], "data_gaps": ["living expenses not itemized in document", "bonus/equity vesting timing not modeled here"], "debt_service": 31800.0, "gross_income": 305000.0, "insurance_premiums": 7200.0, "net_cash_flow": 266000.0, "savings_rate": 0.872131}, "data_gaps": ["no intraday pricing; single frozen snapshot"], "household_name": "SYNTHETIC-HOUSEHOLD-TECH-ACCUMULATOR", "job_loss_sensitivity": [{"delta_usd": 0.0, "liquidity_months": 11.3208, "months": 0, "net_worth_usd": 452220.0, "shortfall_usd": 0.0}, {"delta_usd": -7950.0, "liquidity_months": 8.3208, "months": 3, "net_worth_usd": 444270.0, "shortfall_usd": 0.0}, {"delta_usd": -15900.0, "liquidity_months": 5.3208, "months": 6, "net_worth_usd": 436320.0, "shortfall_usd": 0.0}, {"delta_usd": -23850.0, "liquidity_months": 2.3208, "months": 9, "net_worth_usd": 428370.0, "shortfall_usd": 0.0}, {"delta_usd": -30000.0, "liquidity_months": 0.0, "months": 12, "net_worth_usd": 422220.0, "shortfall_usd": 1800.0}], "liquidity": {"assumptions": ["only type=cash accounts count as liquid", "monthly spend derived from document assumptions (2650.00)", "no credit lines counted"], "cash_total": 30000.0, "data_gaps": ["brokerage liquidation not counted though partially liquid"], "monthly_spend": 2650.0, "months_of_cover": 11.3208}, "member_names": ["SYNTH-MEMBER-T1", "SYNTH-MEMBER-T2"], "members": 2, "net_worth": {"account_sums": {"401k-zephyr-t": 147000.0, "brk-taxable-t": 683040.0, "cash-emergency-t": 30000.0, "hsa-m1-t": 12180.0}, "assumptions": ["holdings valued at frozen synthetic price table (as_of 2026-08-25)", "cash accounts valued at stated balance", "net worth = assets minus liabilities at face value"], "data_gaps": ["no intraday pricing; single frozen snapshot"], "reconciles": true, "total_assets": 872220.0, "total_liabilities": 420000.0, "value": 452220.0}, "scenario_params": {"baseline_liquidity_months": 11.3208, "baseline_net_worth_usd": 452220.0, "cash_total_usd": 30000.0, "liabilities_usd": 420000.0, "monthly_spend_usd": 2650.0, "non_cash_assets_usd": 842220.0}}, "hygiene": {"contamination_datasets": ["universe-125_2021-2026_full"], "contamination_records": 4090, "state_transitions": [{"from": "in-research", "id": "buy_and_hold_baseline/EW_TRACK2_BH", "to": "dev-rejected"}, {"from": "proposed", "id": "buy_and_hold_baseline/SECTOR_ETF_EW_BH", "to": "preregistered"}, {"from": "preregistered", "id": "buy_and_hold_baseline/SECTOR_ETF_EW_BH", "to": "in-research"}, {"from": "in-research", "id": "buy_and_hold_baseline/SECTOR_ETF_EW_BH", "to": "dev-rejected"}, {"from": "proposed", "id": "vol_target_passive/{\"max_leverage\": 2.0, \"target_ann_vol\": 0.1, \"underlying\": \"", "to": "preregistered"}, {"from": "preregistered", "id": "vol_target_passive/{\"max_leverage\": 2.0, \"target_ann_vol\": 0.1, \"underlying\": \"", "to": "in-research"}, {"from": "in-research", "id": "vol_target_passive/{\"max_leverage\": 2.0, \"target_ann_vol\": 0.1, \"underlying\": \"", "to": "dev-rejected"}, {"from": "proposed", "id": "cash/zero_return", "to": "preregistered"}, {"from": "preregistered", "id": "cash/zero_return", "to": "in-research"}, {"from": "in-research", "id": "cash/zero_return", "to": "dev-rejected"}], "tournament_summary": {"candidates": 15, "controls_clean": true, "dev_passed": [], "halted": false, "record_type": "tournament_summary"}}, "portfolio": {"as_of": "2026-08-25", "concentration_cap_pct": 30.0, "holdings": [{"accounts": ["brk-taxable-t"], "concentration_flag": true, "price_usd": 128.4, "qty": 3100.0, "symbol": "TOTMKT-SYNTH", "value_usd": 398040.0, "weight_pct": 47.26}, {"accounts": ["brk-taxable-t"], "concentration_flag": true, "price_usd": 142.5, "qty": 2000.0, "symbol": "ZPHR", "value_usd": 285000.0, "weight_pct": 33.84}, {"accounts": ["401k-zephyr-t"], "concentration_flag": false, "price_usd": 62.0, "qty": 2100.0, "symbol": "TGT2055-SYNTH", "value_usd": 130200.0, "weight_pct": 15.46}, {"accounts": ["401k-zephyr-t"], "concentration_flag": false, "price_usd": 42.0, "qty": 400.0, "symbol": "USAGG-SYNTH", "value_usd": 16800.0, "weight_pct": 1.99}, {"accounts": ["hsa-m1-t"], "concentration_flag": false, "price_usd": 58.0, "qty": 210.0, "symbol": "HSAIDX-SYNTH", "value_usd": 12180.0, "weight_pct": 1.45}], "price_table": {"HSAIDX-SYNTH": 58.0, "TGT2055-SYNTH": 62.0, "TOTMKT-SYNTH": 128.4, "USAGG-SYNTH": 42.0, "ZPHR": 142.5}, "total_market_value_usd": 842220.0, "zphr_concentration_breach": true, "zphr_weight_pct": 33.84}, "provenance": {"artifact_count": 7, "chain": [{"code_version": null, "computed_at": "2026-08-26T05:55:34Z", "digest": "d9891197812aa6d6", "id": "ca:WDC:spinoff:2025-02-24", "inputs": [], "kind": "fact", "script_path": null, "version": 3}, {"code_version": null, "computed_at": "2026-08-26T05:55:34Z", "digest": "64291a8d8177117b", "id": "fx:ee0c3bc3646f4ff091f0", "inputs": [], "kind": "fact", "script_path": null, "version": 1}, {"code_version": "g3-e2e-2", "computed_at": "2026-08-26T05:55:34Z", "digest": "583de8157a460430", "id": "artifact:s7-networth-pre-event", "inputs": ["ca:WDC:spinoff:2025-02-24", "fx:ee0c3bc3646f4ff091f0"], "kind": "artifact", "script_path": "tools/fis/ontology.py::net_worth", "version": 1}, {"code_version": "g3-e2e-2", "computed_at": "2026-08-26T05:55:34Z", "digest": "1751ba07036a922a", "id": "artifact:s7-alternatives", "inputs": ["ca:WDC:spinoff:2025-02-24", "artifact:s7-networth-pre-event"], "kind": "artifact", "script_path": "tools/fis/test_fis_e2e.py::s7-step9", "version": 1}, {"code_version": "g3-e2e-2", "computed_at": "2026-08-26T05:55:34Z", "digest": "abcb3be01e517255", "id": "artifact:s7-risk-effects", "inputs": ["ca:WDC:spinoff:2025-02-24", "artifact:s7-networth-pre-event"], "kind": "artifact", "script_path": "tools/fis/test_fis_e2e.py::s7-step8", "version": 1}, {"code_version": "g3-e2e-2", "computed_at": "2026-08-26T05:55:34Z", "digest": "fe24a2e2e2b418e4", "id": "artifact:s7-execution-request", "inputs": ["artifact:s7-alternatives", "artifact:s7-risk-effects"], "kind": "artifact", "script_path": "tools/fis/test_fis_e2e.py::s7-step11", "version": 1}, {"code_version": null, "computed_at": "2026-08-26T05:55:34Z", "digest": "b04d542f71f3f781", "id": "artifact:s7-decision-audit", "inputs": [], "kind": "fact", "script_path": null, "version": 1}], "chain_legend": "source -> fact -> calc -> decision (kind field marks each node)", "store": "g3-s7-provenance-store.json"}, "risk": {"ann_vol": 0.142264, "benchmark_series": "dual_prices.db SPY adjusted_close", "confidence": "HIGH", "data_window": "trailing", "disclosure": {"applicable_limits": {}, "assumptions": ["daily log-approx returns; vol scaled by sqrt(252)", "ES95 = mean of worst 5 percent of daily returns, sqrt-time scaled", "no dividends/corporate actions adjusted"], "confidence": "HIGH", "data_window": "trailing", "excluded_risks": ["currency", "counterparty", "intraday-liquidity"], "horizon": "1y", "included_risks": ["equity-market", "concentration", "duration-rates", "liquidity-horizon", "income-loss"], "model_id": "fis-risk-v1", "sensitivity": "univariate", "staleness": "2026-08-26"}, "es95": 0.283249, "horizon": "1y", "kill_switch": {"breached_metrics": ["top_name_conc_pct"], "limits": {"ann_vol": {"max": 0.6}, "maxdd": {"max": 0.5}, "top_name_conc_pct": {"max": 30.0}}, "metrics": {"ann_vol": 0.142264, "maxdd": 0.075072, "top_name_conc_pct": 33.84}, "status": "TRIGGERED"}, "kill_switch_limits": {"ann_vol": {"max": 0.6}, "maxdd": {"max": 0.5}}, "max_drawdown": 0.075072, "model_id": "fis-risk-v1", "n_obs": 120, "series_end": "2026-08-25", "series_start": "2026-03-04"}, "shadow": {"benchmark": "SPY_BH", "cohorts": [{"calibration_bucket": "mid", "calibration_inside_p10_p90": true, "cohort_id": "EW_TRACK2_BOOK", "direction_accuracy": 1.0, "excess_net_of_costs": -0.054204, "graded": 1, "instrument": "EW basket of eligible Track-2 names", "label": "Equal-weight Track-2 eligible book (daily rebalanced)", "model_state": "baseline", "predictions": 3, "promotion_blocked_reason": null, "promotion_eligible": true}, {"calibration_bucket": "mid", "calibration_inside_p10_p90": true, "cohort_id": "NO_ACTION_CASH", "direction_accuracy": 0.0, "excess_net_of_costs": 0.001731, "graded": 1, "instrument": "CASH", "label": "No-action cash control (zero return)", "model_state": "baseline", "predictions": 3, "promotion_blocked_reason": null, "promotion_eligible": true}, {"calibration_bucket": "mid", "calibration_inside_p10_p90": true, "cohort_id": "RSI_BASE_DIAGNOSTIC", "direction_accuracy": 1.0, "excess_net_of_costs": -0.016879, "graded": 1, "instrument": "Slot book (K=10) of RSI signals", "label": "RSI(14) MR base slot book -- DIAGNOSTIC CHALLENGER, DEV-REJECTED per FIS-MR-001", "model_state": "dev-rejected", "predictions": 3, "promotion_blocked_reason": "failed-strategies-registry FIS-MR-001: NO surviving net edge after honest accounting; shadow observation only", "promotion_eligible": false}, {"calibration_bucket": "mid", "calibration_inside_p10_p90": true, "cohort_id": "SPY_BH", "direction_accuracy": 0.0, "excess_net_of_costs": -0.000269, "graded": 1, "instrument": "SPY", "label": "SPY buy-and-hold", "model_state": "baseline", "predictions": 3, "promotion_blocked_reason": null, "promotion_eligible": true}, {"calibration_bucket": "mid", "calibration_inside_p10_p90": true, "cohort_id": "TREND_MA20_50", "direction_accuracy": 1.0, "excess_net_of_costs": -0.065965, "graded": 1, "instrument": "Signal-weighted eligible universe", "label": "Trend MA20/50 cross baseline (next-close fills)", "model_state": "baseline", "predictions": 3, "promotion_blocked_reason": null, "promotion_eligible": true}, {"calibration_bucket": "mid", "calibration_inside_p10_p90": true, "cohort_id": "VOL_TARGET_10", "direction_accuracy": 1.0, "excess_net_of_costs": -0.018522, "graded": 1, "instrument": "EW Track-2 basket scaled", "label": "Vol-target 10% annualized on EW Track-2 (1-day lag)", "model_state": "baseline", "predictions": 3, "promotion_blocked_reason": null, "promotion_eligible": true}], "freeze_hash": "20286a80d21b674ce424b1c0cb71b1f0db0f7db56cba50d2897db6339e77efce", "freeze_id": "FIS-S3-SHADOW-BASELINES-001", "horizon_trading_days": 10, "last_grade_date": "2026-08-25", "last_tick_date": "2026-07-01", "launched_utc": "2026-08-26T04:44:32Z", "model_version": "fis-shadow-s3-v1", "prediction_count": 18, "promotion_path": "dev-pass -> challenge -> shadow-only -> production-eligible (frozen tournament spec allowed_transitions; no direct-to-production)", "rejection_rule": "any cohort failing calibration coverage (p10..p90 miss rate > 30%) or negative net excess across two consecutive 60-day windows is flagged reject_candidate"}};
+(function(){
+  function $(id){return document.getElementById(id);}
+  function usd(x){
+    var neg=x<0; var v=Math.abs(Math.round(x));
+    var s="$"+v.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+    return neg?"-"+s:s;
+  }
+  function esc(s){
+    return String(s==null?"":s).replace(/&/g,"&amp;")
+      .replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  }
+  var D=window.FIS_DATA;
+
+  // HOME
+  var nw=D.household.net_worth;
+  $("nw-value").textContent=usd(nw.value);
+  $("nw-asof").textContent=D.household.as_of;
+  $("nw-liq").textContent=D.household.liquidity.months_of_cover.toFixed(1);
+  $("nw-recon").innerHTML=nw.reconciles
+    ?'<span class="badge ok">YES</span>'
+    :'<span class="badge bad">NO</span>';
+  $("nw-assumptions").textContent=
+    "Assumptions: "+D.household.assumptions.join("; ")+".";
+
+  // HOUSEHOLD
+  $("hh-members").textContent=D.household.members;
+  $("hh-accounts").textContent=D.household.accounts;
+  $("hh-liq").textContent=D.household.liquidity.months_of_cover.toFixed(1);
+  $("hh-income").textContent=usd(D.household.cash_flow.gross_income);
+  var jb=$("jl-body");
+  D.household.job_loss_sensitivity.forEach(function(r){
+    var tr=document.createElement("tr");
+    tr.innerHTML="<td>"+r.months+"</td>"
+      +"<td>"+usd(r.net_worth_usd)+"</td>"
+      +"<td>"+(r.delta_usd===0?"baseline":"-"+usd(-r.delta_usd).slice(0))+"</td>"
+      +"<td>"+r.liquidity_months.toFixed(2)+"</td>"
+      +"<td>"+(r.shortfall_usd>0?'<span class="badge bad">'+usd(r.shortfall_usd)+" shortfall</span>":'<span class="badge ok">covered</span>')+"</td>";
+    jb.appendChild(tr);
+  });
+  var gapsUl=$("hh-gaps");
+  D.household.data_gaps.concat(D.household.cash_flow.data_gaps||[])
+    .forEach(function(g){
+      var li=document.createElement("li");li.textContent=g;gapsUl.appendChild(li);
+    });
+
+  // PORTFOLIO
+  var pf=D.portfolio;
+  $("pf-total").textContent=usd(pf.total_market_value_usd);
+  $("pf-asof").textContent=pf.as_of;
+  $("pf-cap").textContent=pf.concentration_cap_pct.toFixed(0);
+  var pb=$("pf-body");
+  pf.holdings.forEach(function(h){
+    var tr=document.createElement("tr");
+    tr.innerHTML="<td>"+esc(h.symbol)+"</td>"
+      +"<td>"+h.qty.toLocaleString("en-US")+"</td>"
+      +"<td>"+usd(h.price_usd)+"</td>"
+      +"<td>"+usd(h.value_usd)+"</td>"
+      +"<td>"+h.weight_pct.toFixed(2)+"</td>"
+      +"<td>"+h.accounts.map(esc).join(", ")+"</td>"
+      +"<td>"+(h.concentration_flag
+        ?'<span class="badge bad">CONCENTRATION '+h.weight_pct.toFixed(2)+'% &gt; '+pf.concentration_cap_pct+'%</span>'
+        :'<span class="badge ok">within cap</span>')+"</td>";
+    pb.appendChild(tr);
+  });
+  $("pf-breach-badge").innerHTML=pf.zphr_concentration_breach
+    ?'<span class="badge bad">ZPHR CONCENTRATION BREACH: '+pf.zphr_weight_pct.toFixed(2)+'%</span>'
+    :'<span class="badge ok">ZPHR within cap ('+pf.zphr_weight_pct.toFixed(2)+'%)</span>';
+
+  // RISK
+  var rk=D.risk;
+  $("rk-vol").textContent=(100*rk.ann_vol).toFixed(1)+"%";
+  $("rk-mdd").textContent=(100*rk.max_drawdown).toFixed(1)+"%";
+  $("rk-conc").textContent=pf.zphr_weight_pct.toFixed(2)+"%";
+  var killEl=$("rk-kill");
+  killEl.innerHTML=rk.kill_switch.status==="TRIGGERED"
+    ?'<span class="badge bad">TRIGGERED</span>'
+    :'<span class="badge ok">CLEAR</span>';
+  var det="Benchmark series "+rk.benchmark_series+", "+rk.series_start
+    +" to "+rk.series_end+" ("+rk.n_obs+" daily returns). ES95="
+    +(100*rk.es95).toFixed(1)+"%. Kill-switch limits: "
+    +Object.keys(rk.kill_switch.limits).map(function(k){
+      return k+" <= "+rk.kill_switch.limits[k].max;
+    }).join(", ")
+    +". Breached: "+(rk.kill_switch.breached_metrics.length
+      ?rk.kill_switch.breached_metrics.join(", "):"none")+".";
+  $("rk-detail").textContent=det;
+  var dl=document.createElement("dl");
+  Object.keys(rk.disclosure).forEach(function(k){
+    var dt=document.createElement("dt");
+    dt.style.fontWeight="bold";dt.textContent=k.toUpperCase();
+    dl.appendChild(dt);
+    var dd=document.createElement("dd");
+    dd.style.marginLeft="1rem";
+    var v=rk.disclosure[k];
+    if(v instanceof Array){dd.textContent=v.join(" | ");}
+    else if(v instanceof Object){dd.textContent=JSON.stringify(v);}
+    else{dd.textContent=String(v);}
+    dl.appendChild(dd);
+  });
+  $("rk-disclosure").appendChild(dl);
+
+  // DECISIONS
+  var dc=D.decision;
+  $("dc-id").textContent=dc.decision_id;
+  $("dc-conf").value=(100*dc.confidence).toFixed(0)+"%";
+  $("dc-rev").textContent=dc.reversibility;
+  $("dc-appr").innerHTML=dc.approval_required
+    ?'<span class="badge warn">APPROVAL REQUIRED: human sign-off before any execution</span>'
+    :'<span class="badge ok">no human approval pending</span>';
+  var db=$("dc-body");
+  dc.alternatives.forEach(function(a){
+    var figs=[];
+    ["proceeds_usd","after_tax_proceeds_usd","tax_usd","var95_pre",
+     "review_date","top_lot"].forEach(function(k){
+      if(a[k]!==undefined){
+        var val=a[k];
+        figs.push(k+": "+(typeof val==="number"&&(k.indexOf("_usd")>=0)
+          ?usd(val):val));
+      }
+    });
+    var tr=document.createElement("tr");
+    tr.innerHTML='<td>'+esc(a.id)
+      +(a.id==="hold_no_action"?' <span class="badge accent">no-action option</span>':'')
+      +'</td><td>'+esc(a.engine)+'</td><td>'
+      +(figs.length?esc(figs.join("; ")):'<span class="muted">-</span>')
+      +"</td>";
+    db.appendChild(tr);
+  });
+  var meta=[];
+  meta.push("Objectives: "+dc.objectives.primary+" (secondary: "
+    +dc.objectives.secondary+")");
+  meta.push("Constraints: max single name "+dc.constraints.max_single_name_pct
+    +"%; liquidity floor "+usd(dc.constraints.liquidity_floor_usd)
+    +"; risk tolerance "+dc.constraints.risk_tolerance);
+  meta.push("Info cutoff: as-of "+dc.info_cutoff.as_of+", knowledge date "
+    +dc.info_cutoff.knowledge_date+"; prices known through "
+    +dc.info_cutoff.prices_known_through);
+  meta.push("Expected outcomes ("+dc.expected_outcomes.note+"): median "
+    +usd(dc.expected_outcomes.scenario_median_usd)+", p5 "
+    +usd(dc.expected_outcomes.scenario_p5_usd));
+  meta.push("Monitoring: every "+dc.monitoring_plan.cadence_days
+    +" days - "+dc.monitoring_plan.checks.join("; ")
+    +". Next review "+dc.monitoring_plan.next_review);
+  meta.push("Data quality caveats: "+dc.data_quality.caveats.join("; "));
+  var metaEl=$("dc-meta");
+  meta.forEach(function(m){
+    var p=document.createElement("p");p.textContent="- "+m;metaEl.appendChild(p);
+  });
+  var inv=$("dc-inval");
+  (dc.invalidation_conditions||[]).forEach(function(c){
+    var li=document.createElement("li");li.textContent=c;inv.appendChild(li);
+  });
+
+  // SCENARIOS (client-side recompute)
+  var sp=D.household.scenario_params;
+  var slJob=$("sl-job"), slMkt=$("sl-mkt");
+  function recompute(){
+    var months=parseInt(slJob.value,10);
+    var declinePct=parseInt(slMkt.value,10)/100;
+    $("sl-job-out").value=String(months);
+    $("sl-mkt-out").value=String(parseInt(slMkt.value,10));
+    var spend=sp.monthly_spend_usd;
+    var draw=months*spend;
+    var cashAfter=Math.max(sp.cash_total_usd-draw,0);
+    var unspent=Math.max(draw-sp.cash_total_usd,0);
+    var noncash=sp.non_cash_assets_usd*(1+declinePct);
+    var simNW=cashAfter+noncash-sp.liabilities_usd;
+    var liqMonths=spend>0?cashAfter/spend:0;
+    $("sim-nw").textContent=usd(simNW);
+    var d=simNW-sp.baseline_net_worth_usd;
+    $("sim-nw-delta").textContent=(d>=0?"+":"")+usd(d)+" vs baseline";
+    $("sim-liq").textContent=liqMonths.toFixed(2);
+    $("sim-cash").textContent=usd(cashAfter);
+    $("sim-shortfall").textContent=unspent>0
+      ?"SHORTFALL: draw exceeds cash by "+usd(unspent):"no shortfall";
+  }
+  slJob.addEventListener("input",recompute);
+  slMkt.addEventListener("input",recompute);
+  recompute();
+
+  // SHADOW RESEARCH
+  var sh=D.shadow, hy=D.hygiene;
+  $("sh-freeze").textContent=sh.freeze_id;
+  $("sh-model").textContent=sh.model_version;
+  $("sh-launch").textContent=sh.launched_utc;
+  $("sh-horizon").textContent=sh.horizon_trading_days;
+  $("sh-count").textContent=sh.prediction_count;
+  $("sh-path").textContent=sh.promotion_path;
+  var sb=$("sh-body");
+  sh.cohorts.forEach(function(c){
+    var promo;
+    if(c.promotion_eligible===false&&c.promotion_blocked_reason){
+      promo='<span class="badge bad" title="'+esc(c.promotion_blocked_reason)
+        +'">PROMOTION-BLOCKED</span>';
+    }else if(c.promotion_eligible){
+      promo='<span class="badge ok">eligible (shadow-only)</span>';
+    }else{promo='<span class="badge">n/a</span>';}
+    var calib=c.calibration_inside_p10_p90===null||c.calibration_inside_p10_p90===undefined
+      ?'<span class="muted">not graded yet</span>'
+      :(c.calibration_inside_p10_p90
+        ?'<span class="badge ok">inside p10-p90 ('+esc(c.calibration_bucket)+')</span>'
+        :'<span class="badge bad">OUTSIDE p10-p90</span>');
+    var excess=c.excess_net_of_costs===undefined||c.excess_net_of_costs===null
+      ?'-'
+      :(100*c.excess_net_of_costs).toFixed(2)+"%";
+    var stateBadge=c.model_state==="dev-rejected"
+      ?'<span class="badge warn">'+esc(c.model_state)+'</span>'
+      :'<span class="badge">'+esc(c.model_state)+'</span>';
+    var tr=document.createElement("tr");
+    tr.innerHTML="<td><strong>"+esc(c.cohort_id)+"</strong><br><span class="muted">"
+      +esc(c.label)+"</span></td>"
+      +"<td>"+stateBadge+"</td>"
+      +"<td>"+c.predictions+"</td>"
+      +"<td>"+c.graded+"</td>"
+      +"<td>"+calib+"</td>"
+      +"<td>"+excess+"</td>"
+      +"<td>"+promo+"</td>";
+    sb.appendChild(tr);
+  });
+  $("sh-hygiene").textContent=hy.contamination_records
+    +" contamination-ledger records spanning "
+    +hy.contamination_datasets.length+" datasets; tournament: "
+    +hy.tournament_summary.candidates+" candidates, controls_clean="
+    +hy.tournament_summary.controls_clean+", dev_passed="
+    +(hy.tournament_summary.dev_passed||[]).length;
+
+  // DATA QUALITY
+  var qb=$("dq-body");
+  D.dataquality.datasets.forEach(function(d){
+    var stale=d.staleness_days;
+    var staleHtml=stale===null?'<span class="muted">unknown</span>'
+      :'<span class="badge '+(stale>3?"warn":stale>1?"accent":"ok")+'">'
+        +stale+" day"+(stale===1?"":"s")+"</span>";
+    var notes=[d.source_note].concat(d.known_defects).filter(Boolean)
+      .join(" | ");
+    var tr=document.createElement("tr");
+    tr.innerHTML="<td><strong>"+esc(d.dataset_id)+"</strong>"
+      +(d.version?'<br><span class="muted">'+esc(d.version)+"</span>":"")
+      +"</td>"
+      +"<td>"+esc(String(d.coverage_start||"?"))+" .. "
+        +esc(String(d.coverage_end||"?"))+"</td>"
+      +"<td>"+staleHtml+"</td>"
+      +"<td>"+(d.license_status
+        ?'<span class="badge '+(d.license_status==="unverified"?"warn":"ok")
+          +'">'+esc(d.license_status)+"</span>"
+        :'<span class="muted">-</span>')+"</td>"
+      +'<td class="muted">'+esc(notes)+"</td>";
+    qb.appendChild(tr);
+  });
+  var mc=D.dataquality.macro_counts;
+  if(mc){
+    $("dq-macro").textContent="Macro vintages ("+D.dataquality.macro_generated_utc
+      +"): actual-vintage-history="+mc["actual-vintage-history"]
+      +", reconstruction="+mc["release-calendar-reconstruction"]
+      +", assumed-lag="+mc["assumed-lag"]
+      +", no-safe-use="+mc["no-safe-use"]+".";
+  }
+
+  // PROVENANCE
+  var pv=D.provenance;
+  $("pv-legend").textContent=pv.chain_legend;
+  $("pv-count").textContent=pv.artifact_count;
+  var pc=$("pv-chain");
+  pv.chain.slice().reverse().forEach(function(n){
+    var kindLabel={fact:"FACT/SOURCE",artifact:"CALC"}[n.kind]||String(n.kind);
+    var li=document.createElement("li");
+    li.innerHTML='<code>'+esc(n.id)+'</code> '
+      +'<span class="badge '+(n.kind==="fact"?"accent":"")+'">'
+      +esc(kindLabel)+"</span>"
+      +'<br><span class="muted">digest='+esc(n.digest||"-")
+      +" version="+esc(n.version==null?"-":n.version)
+      +" computed_at="+esc(n.computed_at||"-")
+      +(n.script_path?" via "+esc(n.script_path):"")
+      +(n.inputs&&n.inputs.length?"<br>inputs: "+n.inputs.map(esc).join(", "):"")
+      +"</span>";
+    pc.appendChild(li);
+  });
+
+  // SYSTEM HEALTH
+  var hl=D.health;
+  var hb=$("hl-body");
+  hl.checks.forEach(function(c){
+    var tr=document.createElement("tr");
+    tr.innerHTML="<td>"+esc(c.component)+"</td>"
+      +"<td>"+c.passed+"</td>"
+      +"<td>"+c.failed+"</td>"
+      +"<td>"+(c.ok?'<span class="badge ok">PASS</span>'
+               :'<span class="badge bad">FAIL</span>')+"</td>"
+      +'<td class="muted">'+esc(c.detail)+"</td>";
+    hb.appendChild(tr);
+  });
+  $("hl-ts").textContent=hl.built_at_utc;
+  $("hl-all").innerHTML=hl.all_ok
+    ?'<span class="badge ok">ALL GREEN</span>'
+    :'<span class="badge bad">FAILURES PRESENT</span>';
+})();
+</script>
+</body>
+</html>

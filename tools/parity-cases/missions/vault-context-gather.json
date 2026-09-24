@@ -1,0 +1,23 @@
+{
+  "objective": "Gather everything the vault holds on the theme-alpha concentration doctrine via jailed reads: the tiered cap levels and dates, the single-name caps, the exit ladder, and which decision documents ratified them. One claim per fact with prov vault:<path>.",
+  "questions": [
+    "What are the tiered theme-alpha cap levels (amber/red) and their phase-in dates?",
+    "What are the single-name concentration caps?",
+    "Which decision document ratified the doctrine and when?",
+    "What does the exit ladder prescribe?"
+  ],
+  "budgets": {
+    "max_fetches": 0,
+    "max_mcp_calls": 0
+  },
+  "must_not": [
+    "fetch web pages",
+    "call MCP servers"
+  ],
+  "deliverable": "claims",
+  "_composed": {
+    "ts": "2026-08-17T00:00:00",
+    "leg": "research:vault-context",
+    "by": "parity-freeze (tools/parity-cases; FROZEN -- do not edit)"
+  }
+}

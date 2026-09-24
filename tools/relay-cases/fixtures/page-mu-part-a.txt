@@ -1,0 +1,5 @@
+Micron Technology (MU) Financials part A -- fixture page (hermetic; not live data)
+Quarterly Income Statement (FY2026 Q3, ended 2026-05-28)
+Revenue: $8,050 million, up 12% sequentially.
+Gross margin: 41.5% (GAAP).
+Operating income: $1,940 million.

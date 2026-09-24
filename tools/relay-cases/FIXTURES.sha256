@@ -1,0 +1,13 @@
+# sha256 pins: fixtures AND cases.json. A case edit requires a
+# deliberate --repin -- that is what makes 'no quiet edits to
+# manufacture a win' mechanical rather than a promise.
+d4bacb0bde6479371ec08a6523d3d1ab90a673bfc993b441cfb285d18dbd5ab9  cases.json
+813e25c2d2a9a1b24e7b52eda9589da4ce759a7a94a95edbdde91defc08cd565  fixtures/mcp-insider-mu.json
+2949cd9085cd93d39c631b649d83385472b066e8e665722a3cd0b7e0bb562166  fixtures/page-dram-july-a.txt
+01530e3ae138cf1afb934757f219e72716be4299329e529540137b583e4506e4  fixtures/page-dram-july-b.txt
+0f92fdd49283a998098e37d5a14d3084fb364bae5f849d3096944debb2b1c5e0  fixtures/page-editor-target.md
+ba921998a19844549bb70876479d78a9052af9f377413293ab46a50d4175ef74  fixtures/page-empty-result.txt
+ce8fe794b9566e56a435aebf29438e8f62e1828c0753a968784ef83678a376b9  fixtures/page-injection-c7.txt
+ba3de00f0dd8f61b268c3bd57ccf3b03315f284490b8560ed3325121247da81a  fixtures/page-mu-financials.txt
+854dea5d0207dcdb3e65b0d20a4315d51fe6773f2498ec6457b91f23d51c1dce  fixtures/page-mu-part-a.txt
+fc91d8cfd8ac280d309a7e358cf5c5c57c52a8f734dcb5ebc7fc428a4248cfb0  fixtures/page-mu-part-b.txt

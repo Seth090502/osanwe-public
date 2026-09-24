@@ -1,0 +1,60 @@
+// Frozen BEFORE native comparison inference. Development controls, not holdouts.
+// Deliberately covers evidence sufficiency and disconfirmation; no model answer grading.
+import {fixtures} from './retrieval-fixtures.mjs';
+export const specification = Object.freeze({
+  schema:'osanwe.retrieval-comparison-specification/1', frozen_at:'2026-09-13',
+  classification:'SYNTHETIC', seed:130926, top_k:3, maximum_characters:3600,
+  primary_measure:'fraction of independently specified evidence obligations present in returned passages',
+  task_measure:'all necessary evidence, applicability, and disconfirmation obligations present',
+  comparison:['narrow-lexical','legacy-preview-hybrid','repaired-hybrid'],
+  resource_rule:'Same admitted input documents, narrow topic scope, top-k and output character limit. No query retries or tuning after scores.',
+  legacy_control:'Preserved legacy chunker, 300-character preview BM25, native truncated BGE embeddings, top-25 dense and BM25, RRF60 then top-12 dense-cosine rerank.',
+  evidence_views:['as-delivered','common-full-passage-expansion'],
+  expansion_rule:'Expand every selected candidate to its original whole chunk before applying the same budget. Legacy expansion is a generous diagnostic unavailable in the old API; no unselected neighboring passage is added.',
+  decision_rule:'Retain lexical default. Any hybrid benefit is development-only and must be reported with failures and added latency. Do not infer bank-level reasoning quality or promote strategies.',
+  inference_rule:'Only the already cached native BGE model, offline. No frontier model or account access.',
+});
+export const comparisonDocuments = Object.freeze([
+  {id:'c1',scope:'costs',text:fixtures.lateTerm},
+  {id:'c2',scope:'costs',text:'# Implementation alternatives\n\nA passive benchmark uses identical starting capital and market exposure. Its quoted expense ratio also excludes commissions and execution spread.\n\nIf turnover rises during stressed liquidity, compare net returns after spread and market impact, not merely quoted fees.\n'},
+  {id:'c3',scope:'costs',text:'# Introductory fee primer\n\nFee comparison, cost comparison, expense comparison: a glossary lists the words transaction and turnover, but does not specify the components of this synthetic strategy cost estimate.\n'},
+  {id:'t1',scope:'table',text:fixtures.longTable},
+  {id:'t2',scope:'table',text:'# Annual reporting primer\n\nRevenue and operating income appear in annual financial statements. A year label is not sufficient to identify reporting units or the accounting treatment of a negative amount.\n'},
+  {id:'r1',scope:'cyclicality',text:fixtures.currentAuthority+'\nThis is the active synthetic sign-mixed rule. Check each year of observations; a positive average alone is insufficient.\n'},
+  {id:'r2',scope:'cyclicality',text:fixtures.oldAuthority+'\nStatus: superseded. Retained solely to explain the revision; it cannot establish the current applicability rule.\n'},
+  {id:'r3',scope:'cyclicality',text:'# Mixed sample\n\nSynthetic observations are -4, 6, and 7 in consistent units. Their arithmetic mean is 3. Both a negative and a positive observation are present.\n\nA sample containing 2, 6, and 7 has no negative observation even though its mean is positive.\n'},
+  {id:'m1',scope:'margin',text:'# Margin reconciliation\n\nSynthetic revenue is 100 USD and operating cost is 75 USD for the same annual period. Operating profit is 25 USD and operating margin is 25 percent.\n\nA 25 percent return on invested capital cannot be inferred without a capital denominator. Margin is a flow divided by revenue.\n'},
+  {id:'m2',scope:'margin',text:'# Scope of a margin comparison\n\nReported revenue is 100 EUR for a different period in this second synthetic company. Direct comparison with a USD amount needs an explicit currency conversion and aligned reporting periods.\n'},
+  {id:'p1',scope:'portfolio',text:'# Portfolio loss scenario\n\nTwo synthetic equal-dollar positions each lose 10 percent in the coupled stress scenario, so their combined portfolio loses 10 percent. Equal weights do not establish independence.\n\nCalm-period low correlation does not rule out correlated losses during stress. Rebalancing costs are excluded from these illustrative losses.\n'},
+  {id:'p2',scope:'portfolio',text:'# Concentration scope\n\nThis synthetic snapshot includes equities only. It excludes cash and liabilities. The equity-only allocation denominator is not a complete household net-worth denominator.\n\nA separate cash reserve can affect liquidity needs without changing the equity-only percentages.\n'},
+  {id:'d1',scope:'discount',text:'# Discounted scenario\n\nA synthetic single future payment is 110 USD one year from now. At a 10 percent annual discount rate, present value is 100 USD. A lower 5 percent rate gives about 104.761905 USD.\n\nThis illustration excludes default risk, fees, and taxes. Do not label the future payment certain when those risks are not modeled.\n'},
+  {id:'d2',scope:'discount',text:'# Forecast alternatives\n\nCompare a fixed payment with a lower payment in a adverse scenario. If the payment falls to 88 USD at the same 10 percent discount rate, present value is 80 USD.\n\nChanging only the rate can conceal coupled changes in the payment and discount assumptions.\n'},
+]);
+// Each obligation is a separate inspectable passage fact, never a preferred filename.
+// Whitespace is normalized identically for all variants; no numerical truth is inferred.
+export const comparisonCases = Object.freeze([
+  {id:'cost-components',family:'costs',scope:'costs',query:'What does the quoted cost omit for turnover and market impact?',
+    obligations:[{kind:'evidence',contains:['reported fee excludes turnover and market impact']},{kind:'applicability',contains:['identical starting capital and market exposure']},{kind:'disconfirmation',contains:['stressed liquidity','net returns after spread and market impact']}]},
+  {id:'cost-benchmark',family:'costs',scope:'costs',query:'How should I compare this strategy expense with a passive benchmark?',
+    obligations:[{kind:'evidence',contains:['passive benchmark','commissions and execution spread']},{kind:'disconfirmation',contains:['reported fee excludes turnover and market impact']}]},
+  {id:'table-last-row',family:'table',scope:'table',query:'What are revenue and operating income in 1989, in what units?',
+    obligations:[{kind:'evidence',contains:['| 1989 | 189 | 44 |']},{kind:'applicability',contains:['Units: USD millions.','| Year | Revenue | Operating income |']},{kind:'disconfirmation',contains:['no currency conversion applied']}]},
+  {id:'table-loss',family:'table',scope:'table',query:'Is operating income in 1901 a loss, and what is its reporting basis?',
+    obligations:[{kind:'evidence',contains:['| 1901 | 101 | -44 |']},{kind:'applicability',contains:['Units: USD millions.']},{kind:'disconfirmation',contains:['negative operating income is a loss']}]},
+  {id:'rule-current',family:'cyclicality',scope:'cyclicality',query:'What is the active applicability rule for a sign-mixed cyclical sample?',
+    obligations:[{kind:'evidence',contains:['At least one positive and one negative year are required']},{kind:'disconfirmation',contains:['positive average alone is insufficient']},{kind:'applicability',contains:['Status: superseded','cannot establish the current applicability rule']}]},
+  {id:'rule-counterexample',family:'cyclicality',scope:'cyclicality',query:'Does a positive sample mean prove the sign-mixed rule applies?',
+    obligations:[{kind:'evidence',contains:['Their arithmetic mean is 3']},{kind:'applicability',contains:['At least one positive and one negative year are required']},{kind:'disconfirmation',contains:['2, 6, and 7 has no negative observation']}]},
+  {id:'margin-meaning',family:'margin',scope:'margin',query:'Does a 25 percent operating margin prove a 25 percent return on invested capital?',
+    obligations:[{kind:'evidence',contains:['Operating profit is 25 USD','operating margin is 25 percent']},{kind:'disconfirmation',contains:['cannot be inferred without a capital denominator']}]},
+  {id:'margin-comparability',family:'margin',scope:'margin',query:'Can the two reported revenue amounts be compared directly?',
+    obligations:[{kind:'evidence',contains:['revenue is 100 USD','same annual period']},{kind:'disconfirmation',contains:['explicit currency conversion and aligned reporting periods']}]},
+  {id:'portfolio-coupled',family:'portfolio',scope:'portfolio',query:'Are equal weights sufficient protection against correlated stress losses?',
+    obligations:[{kind:'evidence',contains:['combined portfolio loses 10 percent']},{kind:'disconfirmation',contains:['Calm-period low correlation does not rule out correlated losses during stress']},{kind:'applicability',contains:['Rebalancing costs are excluded']}]},
+  {id:'portfolio-scope',family:'portfolio',scope:'portfolio',query:'Does the equity allocation percentage establish household concentration and liquidity?',
+    obligations:[{kind:'evidence',contains:['snapshot includes equities only','excludes cash and liabilities']},{kind:'disconfirmation',contains:['not a complete household net-worth denominator']},{kind:'applicability',contains:['cash reserve can affect liquidity needs']}]},
+  {id:'discount-sensitivity',family:'discount',scope:'discount',query:'What discount-rate change raises the present value of the 110 USD payment?',
+    obligations:[{kind:'evidence',contains:['10 percent annual discount rate, present value is 100 USD','5 percent rate gives about 104.761905 USD']},{kind:'disconfirmation',contains:['excludes default risk, fees, and taxes']}]},
+  {id:'discount-coupled',family:'discount',scope:'discount',query:'What if both future payment and discount assumptions change adversely?',
+    obligations:[{kind:'evidence',contains:['88 USD at the same 10 percent discount rate','present value is 80 USD']},{kind:'disconfirmation',contains:['Changing only the rate can conceal coupled changes']},{kind:'applicability',contains:['Do not label the future payment certain']}]},
+]);

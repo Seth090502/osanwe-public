@@ -1,0 +1,6 @@
+interface:
+  display_name: "Osanwe Finance and Data"
+  short_description: "Check financial evidence and connect it to Data"
+  default_prompt: "Use $finance-data to analyze financial evidence and prepare a traceable Data handoff."
+policy:
+  allow_implicit_invocation: true

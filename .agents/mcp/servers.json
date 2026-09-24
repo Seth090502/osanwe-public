@@ -1,0 +1,263 @@
+{
+ "_doc": "MCP server registry of record (cross-harness migration D9, 2026-08-10). Env vars are NAMES only -- never literals (validate.py rejects '@' or path-like literal env values). Generators (.agents/scripts/gen-mcp-configs.py) REFUSE to emit any write_surface=present server into a harness config without a proven per-tool filter; omission, not scanning, is the control. scope: project = safe to commit into every clone (.mcp.json); user = stays in per-user config only.",
+ "updated": "2026-09-21",
+ "provenance": "phase1-mcp-index-tests.md (opus worker, 2026-08-10) + live Claude session surface 2026-08-10 (robinhood 54 = 34 read + 20 mutator; claudewatch 32). SUPERSEDED for robinhood-trading on 2026-09-21 by a full harness-listing re-count with no broker call: 61 tools = 51 read + 10 write; see that server's canary field. The claudewatch figure of 32 still matches (31 read + set_session_project).",
+ "servers": {
+  "openinsider": {
+   "transport": "stdio",
+   "command": "npx",
+   "args": [
+    "-y",
+    "openinsider-mcp@0.3.3"
+   ],
+   "env": {},
+   "auth": "none",
+   "scope": "project",
+   "write_surface": "none",
+   "read_tools": [
+    "activist_filings",
+    "cluster_buys",
+    "daily_short_volume",
+    "dilution_filings",
+    "failures_to_deliver",
+    "get_quote",
+    "late_filings",
+    "latest_trades",
+    "officer_buys",
+    "recent_sec_filings",
+    "screen",
+    "search_by_insider",
+    "search_by_ticker",
+    "short_interest",
+    "top_buys",
+    "top_sells"
+   ],
+   "write_tools": [],
+   "canary": "spawnable",
+   "notes": "Auth-free, zero local state. Designated conformance server (S5)."
+  },
+  "vault-search": {
+   "transport": "stdio",
+   "command": "python",
+   "args": [
+    "/path/to/local/vault-search/server.py"
+   ],
+   "env": {},
+   "auth": "none",
+   "scope": "project",
+   "write_surface": "none",
+   "read_tools": [
+    "search"
+   ],
+   "write_tools": [],
+   "canary": "spawnable",
+   "notes": "Hand-rolled JSON-RPC 2.0; needs the local 40MB HNSW index (machine-bound, stale-by-design per the 2026-07-12 idle-gate). CLI alternatives documented in AGENTS.md (D10)."
+  },
+  "edgar-tools": {
+   "transport": "stdio",
+   "command": "uvx",
+   "args": [
+    "--from",
+    "edgartools[ai]==5.35.1",
+    "edgartools-mcp"
+   ],
+   "env": {
+    "EDGAR_IDENTITY": "REQUIRED-FROM-ENVIRONMENT (SEC User-Agent courtesy string; PII moved out of committed configs 2026-08-10 per D9)"
+   },
+   "auth": "env-courtesy-string",
+   "scope": "project",
+   "write_surface": "none",
+   "read_tools": [],
+   "read_tools_unverified": true,
+   "read_tools_expected_count": 13,
+   "write_tools": [],
+   "canary": "spawnable-with-env",
+   "notes": "13 read tools per phase1 audit; roster names unverified (server not connected in the audit session). Canary enumerates and pins the roster at first live connection. BROKEN as committed (verified 2026-09-21, audit defect D24): the pinned uvx entry point crashes at import with AttributeError 'Server' object has no attribute 'list_tools', and the harness reports CONNECTION_CLOSED for this server at every session start, so no roster has ever been pinned and the subagents that declare mcp__edgar-tools__* cannot use it. Evidence: _audit/evidence/E12-mcp-handshake-edgar-tools.txt."
+  },
+  "fred": {
+   "transport": "stdio",
+   "command": "node",
+   "args": [
+    "/path/to/home/.local/share/fred-mcp/launch.mjs"
+   ],
+   "env": {
+    "FRED_API_KEY": "REQUIRED-FROM-ENVIRONMENT (launcher falls back to HKCU registry query)"
+   },
+   "auth": "api-key",
+   "scope": "user",
+   "write_surface": "none",
+   "read_tools": [
+    "fred_browse",
+    "fred_get_series",
+    "fred_search"
+   ],
+   "write_tools": [],
+   "canary": "spawnable-with-env",
+   "notes": "Keyed + local launcher shim -- stays user-scope (never committed into clones)."
+  },
+  "robinhood-trading": {
+   "transport": "http",
+   "url": "https://agent.robinhood.com/mcp/trading",
+   "env": {
+    "RH_MCP_TOKEN": "OPTIONAL non-interactive fallback token env var name (Codex bearer_token_env_var)"
+   },
+   "auth": "oauth-interactive",
+   "scope": "user",
+   "write_surface": "present",
+   "read_tools": [
+    "get_accounts",
+    "get_advanced_orders",
+    "get_alert_log",
+    "get_alerts",
+    "get_crypto_account_onboarding_info",
+    "get_crypto_orders",
+    "get_crypto_positions",
+    "get_crypto_quotes",
+    "get_currency_pairs",
+    "get_earnings_calendar",
+    "get_earnings_results",
+    "get_equity_analyst_ratings",
+    "get_equity_fundamentals",
+    "get_equity_historicals",
+    "get_equity_news",
+    "get_equity_orders",
+    "get_equity_positions",
+    "get_equity_price_book",
+    "get_equity_quotes",
+    "get_equity_tax_lots",
+    "get_equity_technical_indicators",
+    "get_equity_tradability",
+    "get_financials",
+    "get_index_historicals",
+    "get_index_quotes",
+    "get_indexes",
+    "get_limited_margin_upgrade_info",
+    "get_option_chains",
+    "get_option_historicals",
+    "get_option_instruments",
+    "get_option_level_upgrade_info",
+    "get_option_orders",
+    "get_option_positions",
+    "get_option_quotes",
+    "get_option_watchlist",
+    "get_pnl_trade_history",
+    "get_politician_trades",
+    "get_popular_watchlists",
+    "get_portfolio",
+    "get_realized_pnl",
+    "get_scanner_datapoints",
+    "get_scanner_filter_specs",
+    "get_scans",
+    "get_sec_filing",
+    "get_sec_filing_facts",
+    "get_sec_filing_facts_catalog",
+    "get_sec_filing_index",
+    "get_watchlist_items",
+    "get_watchlists",
+    "preview_scan",
+    "search"
+   ],
+   "write_tools": [
+    "cancel_advanced_order",
+    "cancel_crypto_order",
+    "create_alert",
+    "delete_alert",
+    "mark_alerts_read",
+    "place_advanced_order",
+    "place_crypto_order",
+    "preview_crypto_order",
+    "review_advanced_order",
+    "update_alert"
+   ],
+   "tool_filter": {
+    "claude": "proven (permissions.deny 20 mutators + pretrade-token-gate hook; deny extended with the 2 exercise tools 2026-08-10)",
+    "codex": "unproven-pending-live-probe (M2: enabled_tools allowlist exists in codex-rs source but repo config was authored against the 45-tool surface; probe after auth at S5)",
+    "opencode": "unsupported-unverified",
+    "goose": "unsupported-unverified",
+    "crush": "unsupported-unverified",
+    "cline": "unsupported-unverified"
+   },
+   "canary": "full-surface re-verification 2026-09-21 from the harness tool listing, no broker call: 61 tools = 51 read + 10 write (8 state-changing + 2 order-construction). The 2026-08-10 figure of 54 = 34 read + 20 mutator was the previous surface; those 20 names are kept in legacy_write_tools_not_on_the_live_surface and stay denied, because a name the connector drops can come back. Re-verify at any sighting of an unlisted mcp__robinhood-trading__* name.",
+   "notes": "D-SEC-1: order tools mechanically denied Claude-side; EXECUTE ORDER phrase requirement on any write path. Default-refuse: NO harness receives this server generated without a proven filter -- omission stubs instead.",
+   "legacy_write_tools_not_on_the_live_surface": [
+    "add_option_to_watchlist",
+    "add_to_watchlist",
+    "cancel_equity_order",
+    "cancel_option_exercise",
+    "cancel_option_order",
+    "create_scan",
+    "create_watchlist",
+    "exercise_option",
+    "follow_watchlist",
+    "place_equity_order",
+    "place_option_order",
+    "remove_from_watchlist",
+    "remove_option_from_watchlist",
+    "review_equity_order",
+    "review_option_order",
+    "run_scan",
+    "unfollow_watchlist",
+    "update_scan_config",
+    "update_scan_filters",
+    "update_watchlist"
+   ],
+   "enforcement_note": "The pre-trade hook's READ allowlist is a hardcoded 34-name subset in tools/pretrade_lib.py. This registry now lists 51 live read tools, so 17 live READ tools are blocked fail-closed by the hook. That is a capability limit, not a safety hole: the hook errs towards blocking. Widening the hook's allowlist to match is proposed in _audit/FIX-PLAN.md and deliberately NOT done as part of the deny-list change, because it would alter what the order gate permits. Verified 2026-09-21 by _audit/evidence/E25-pretrade-hook-probe-2026-09-21.txt: of 61 live names, 34 allow and 27 block, and no write tool is allowed."
+  },
+  "claudewatch": {
+   "transport": "stdio",
+   "command": "/path/to/home/.local/bin/claudewatch.exe",
+   "args": [
+    "mcp",
+    "--budget",
+    "20"
+   ],
+   "env": {},
+   "auth": "none",
+   "scope": "user",
+   "write_surface": "present",
+   "read_tools": [
+    "extract_current_session_memory",
+    "get_agent_performance",
+    "get_blockers",
+    "get_causal_insights",
+    "get_commit_attempt_ratio",
+    "get_context",
+    "get_context_pressure",
+    "get_cost_attribution",
+    "get_cost_budget",
+    "get_cost_summary",
+    "get_cost_velocity",
+    "get_drift_signal",
+    "get_effectiveness",
+    "get_live_friction",
+    "get_live_tool_errors",
+    "get_project_anomalies",
+    "get_project_comparison",
+    "get_project_health",
+    "get_recent_sessions",
+    "get_regression_status",
+    "get_saw_sessions",
+    "get_saw_wave_breakdown",
+    "get_session_dashboard",
+    "get_session_friction",
+    "get_session_projects",
+    "get_session_stats",
+    "get_stale_patterns",
+    "get_suggestions",
+    "get_task_history",
+    "get_token_velocity",
+    "search_transcripts"
+   ],
+   "write_tools": [
+    "set_session_project"
+   ],
+   "tool_filter": {
+    "claude": "n/a (session-metadata write only; never writes inside /path/to/vault)",
+    "codex": "unsupported-semantically-claude-only",
+    "opencode": "unsupported-semantically-claude-only"
+   },
+   "canary": "manual",
+   "notes": "Semantically Claude-only (reads Claude transcripts/telemetry). Never generated into any non-Claude harness config."
+  }
+ }
+}

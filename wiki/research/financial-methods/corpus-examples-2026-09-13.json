@@ -1,0 +1,391 @@
+{
+  "schema": "osanwe.public-corpus-examples/1",
+  "classification": "SYNTHETIC",
+  "verified_at": "2026-09-13T19:03:04.129188+00:00",
+  "passed": true,
+  "tests_run": 17,
+  "failures": 0,
+  "errors": 0,
+  "result_log": "test_attribution_missing_segment_refuses (__main__.CorpusExamples.test_attribution_missing_segment_refuses) ... ok\ntest_bond_and_liability_against_discounted_flows (__main__.CorpusExamples.test_bond_and_liability_against_discounted_flows) ... ok\ntest_brinson_against_independent_fraction_totals (__main__.CorpusExamples.test_brinson_against_independent_fraction_totals) ... ok\ntest_cashflow_return_reconciles (__main__.CorpusExamples.test_cashflow_return_reconciles) ... ok\ntest_covariance_and_joint_shocks (__main__.CorpusExamples.test_covariance_and_joint_shocks) ... ok\ntest_currency_interaction (__main__.CorpusExamples.test_currency_interaction) ... ok\ntest_dcf_against_perpetuity_oracle (__main__.CorpusExamples.test_dcf_against_perpetuity_oracle) ... ok\ntest_discrete_kelly_is_not_universal_three_quarters (__main__.CorpusExamples.test_discrete_kelly_is_not_universal_three_quarters) ... ok\ntest_duration_and_restated_information (__main__.CorpusExamples.test_duration_and_restated_information) ... ok\ntest_etf_cost_and_reset (__main__.CorpusExamples.test_etf_cost_and_reset) ... ok\ntest_household_scope_and_tax_arithmetic (__main__.CorpusExamples.test_household_scope_and_tax_arithmetic) ... ok\ntest_reverse_margin_against_algebra (__main__.CorpusExamples.test_reverse_margin_against_algebra) ... ok\ntest_sbc_reconciliation_direction (__main__.CorpusExamples.test_sbc_reconciliation_direction) ... ok\ntest_selection_and_small_sample_limits (__main__.CorpusExamples.test_selection_and_small_sample_limits) ... ok\ntest_terminal_growth_boundary_refuses (__main__.CorpusExamples.test_terminal_growth_boundary_refuses) ... ok\ntest_tips_and_compounded_inflation (__main__.CorpusExamples.test_tips_and_compounded_inflation) ... ok\ntest_withdrawal_order_of_returns_matters (__main__.CorpusExamples.test_withdrawal_order_of_returns_matters) ... ok\n\n----------------------------------------------------------------------\nRan 17 tests in 0.001s\n\nOK\n",
+  "examples": [
+    {
+      "example_id": "E2-ttm",
+      "expression": "42 + 33 - 27",
+      "expected_fraction": {
+        "numerator": 48,
+        "denominator": 1
+      },
+      "result": 48.0,
+      "unit": "million",
+      "currency": "USD",
+      "basis": "annual revenue",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "E2-restated-ttm",
+      "expression": "40 + 33 - 27",
+      "expected_fraction": {
+        "numerator": 46,
+        "denominator": 1
+      },
+      "result": 46.0,
+      "unit": "million",
+      "currency": "USD",
+      "basis": "annual revenue",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "E2-quarter",
+      "expression": "42 - 30",
+      "expected_fraction": {
+        "numerator": 12,
+        "denominator": 1
+      },
+      "result": 12.0,
+      "unit": "million",
+      "currency": "USD",
+      "basis": "quarter revenue",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "V2-fcff",
+      "expression": "1000 * 0.2 * (1 - 0.25)",
+      "expected_fraction": {
+        "numerator": 150,
+        "denominator": 1
+      },
+      "result": 150.0,
+      "unit": "million",
+      "currency": "USD",
+      "basis": "annual cash flow",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "V2-equity",
+      "expression": "150 / 0.1 + 100 - 300 - 50",
+      "expected_fraction": {
+        "numerator": 1250,
+        "denominator": 1
+      },
+      "result": 1250.0,
+      "unit": "million",
+      "currency": "USD",
+      "basis": "equity value",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "V2-per-share",
+      "expression": "1250 / 100",
+      "expected_fraction": {
+        "numerator": 25,
+        "denominator": 2
+      },
+      "result": 12.5,
+      "unit": "per_share",
+      "currency": "USD",
+      "basis": "equity per diluted share",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "V2-sbc",
+      "expression": "240 - 40",
+      "expected_fraction": {
+        "numerator": 200,
+        "denominator": 1
+      },
+      "result": 200.0,
+      "unit": "million",
+      "currency": "USD",
+      "basis": "annual GAAP EBIT",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "R2-variance",
+      "expression": "0.25 * 0.04 + 0.25 * 0.01 + 0.5 * 0.005",
+      "expected_fraction": {
+        "numerator": 3,
+        "denominator": 200
+      },
+      "result": 0.015,
+      "unit": "return_squared",
+      "currency": null,
+      "basis": "annual",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "R2-stress",
+      "expression": "0.5 * (-0.4) + 0.5 * (-0.1)",
+      "expected_fraction": {
+        "numerator": -1,
+        "denominator": 4
+      },
+      "result": -0.25,
+      "unit": "return",
+      "currency": null,
+      "basis": "joint one-step shock",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "P2-twr",
+      "expression": "1.1 * 0.9 - 1",
+      "expected_fraction": {
+        "numerator": -1,
+        "denominator": 100
+      },
+      "result": -0.01,
+      "unit": "return",
+      "currency": null,
+      "basis": "two-year cumulative",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "P2-pnl",
+      "expression": "180 - 100 - 90",
+      "expected_fraction": {
+        "numerator": -10,
+        "denominator": 1
+      },
+      "result": -10.0,
+      "unit": "dollar",
+      "currency": "USD",
+      "basis": "two-year net investment change",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "P3-portfolio-return",
+      "expression": "0.6 * 0.1 + 0.4 * 0.02",
+      "expected_fraction": {
+        "numerator": 17,
+        "denominator": 250
+      },
+      "result": 0.068,
+      "unit": "return",
+      "currency": null,
+      "basis": "single period",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "P3-active-return",
+      "expression": "0.068 - 0.06",
+      "expected_fraction": {
+        "numerator": 1,
+        "denominator": 125
+      },
+      "result": 0.008,
+      "unit": "return",
+      "currency": null,
+      "basis": "single period",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "P3-fx",
+      "expression": "1.1 * 0.95 - 1",
+      "expected_fraction": {
+        "numerator": 9,
+        "denominator": 200
+      },
+      "result": 0.045,
+      "unit": "return",
+      "currency": null,
+      "basis": "single period",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "F2-cost-a",
+      "expression": "10000 * (0.002 + 0.001)",
+      "expected_fraction": {
+        "numerator": 30,
+        "denominator": 1
+      },
+      "result": 30.0,
+      "unit": "dollar",
+      "currency": "USD",
+      "basis": "one year and one round trip",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "F2-cost-b",
+      "expression": "10000 * (0.0002 + 0.008)",
+      "expected_fraction": {
+        "numerator": 82,
+        "denominator": 1
+      },
+      "result": 82.0,
+      "unit": "dollar",
+      "currency": "USD",
+      "basis": "one year and one round trip",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "F2-break-even",
+      "expression": "(80 - 10) / (20 - 2)",
+      "expected_fraction": {
+        "numerator": 35,
+        "denominator": 9
+      },
+      "result": 3.888888888888889,
+      "unit": "year",
+      "currency": null,
+      "basis": "constant exposure and spreads",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "F2-reset",
+      "expression": "1.2 * (1 - 2 / 11) - 1",
+      "expected_fraction": {
+        "numerator": -1,
+        "denominator": 55
+      },
+      "result": -0.01818181818181818,
+      "unit": "return",
+      "currency": null,
+      "basis": "two daily reset periods",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "B2-bond",
+      "expression": "5 / 1.06 + 105 / (1.06 * 1.06)",
+      "expected_fraction": {
+        "numerator": 275750,
+        "denominator": 2809
+      },
+      "result": 98.16660733357067,
+      "unit": "dollar",
+      "currency": "USD",
+      "basis": "annual coupon-date full price",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "B2-liability",
+      "expression": "100 / (1.05 * 1.05)",
+      "expected_fraction": {
+        "numerator": 40000,
+        "denominator": 441
+      },
+      "result": 90.70294784580499,
+      "unit": "dollar",
+      "currency": "USD",
+      "basis": "two-year present value",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "B2-tips-coupon",
+      "expression": "1000 * 1.03 * 0.01 / 2",
+      "expected_fraction": {
+        "numerator": 103,
+        "denominator": 20
+      },
+      "result": 5.15,
+      "unit": "dollar",
+      "currency": "USD",
+      "basis": "semiannual coupon",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "B2-inflation",
+      "expression": "1.05 / 1.02 - 1",
+      "expected_fraction": {
+        "numerator": 1,
+        "denominator": 34
+      },
+      "result": 0.029411764705882353,
+      "unit": "rate",
+      "currency": null,
+      "basis": "annual compounded break-even",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "H1-surplus",
+      "expression": "5000 - 3000 - 500 - 500",
+      "expected_fraction": {
+        "numerator": 1000,
+        "denominator": 1
+      },
+      "result": 1000.0,
+      "unit": "dollar",
+      "currency": "USD",
+      "basis": "monthly",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "H1-shock",
+      "expression": "5000 * 0.8 - 3000 - 500 - 500",
+      "expected_fraction": {
+        "numerator": 0,
+        "denominator": 1
+      },
+      "result": 0.0,
+      "unit": "dollar",
+      "currency": "USD",
+      "basis": "monthly",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "H1-transfer",
+      "expression": "(-1000) + 1000",
+      "expected_fraction": {
+        "numerator": 0,
+        "denominator": 1
+      },
+      "result": 0.0,
+      "unit": "dollar",
+      "currency": "USD",
+      "basis": "household net internal transfer",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "H1-reserve",
+      "expression": "9000 / 3000",
+      "expected_fraction": {
+        "numerator": 3,
+        "denominator": 1
+      },
+      "result": 3.0,
+      "unit": "month",
+      "currency": null,
+      "basis": "essential expense coverage",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "H2-basis",
+      "expression": "850 + (1000 - 800)",
+      "expected_fraction": {
+        "numerator": 1050,
+        "denominator": 1
+      },
+      "result": 1050.0,
+      "unit": "dollar",
+      "currency": "USD",
+      "basis": "taxable replacement basis under stated conditions",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "H3-adverse-first",
+      "expression": "((100 - 10) * 0.8 - 10) * 1.25",
+      "expected_fraction": {
+        "numerator": 155,
+        "denominator": 2
+      },
+      "result": 77.5,
+      "unit": "dollar",
+      "currency": "USD",
+      "basis": "two annual start-of-year withdrawals",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "example_id": "H3-adverse-last",
+      "expression": "((100 - 10) * 1.25 - 10) * 0.8",
+      "expected_fraction": {
+        "numerator": 82,
+        "denominator": 1
+      },
+      "result": 82.0,
+      "unit": "dollar",
+      "currency": "USD",
+      "basis": "two annual start-of-year withdrawals",
+      "classification": "SYNTHETIC"
+    }
+  ],
+  "test_file": "tools/fis/test_corpus_examples.py",
+  "test_file_sha256": "cfa9235f1e83842ef4d9f51ff496f9d1b884cf26f1b563b21265dcb5cd36a5c7"
+}

@@ -1,0 +1,23 @@
+{
+  "objective": "NIGHTLY (scheduled-idle): insider-activity sweep via the openinsider MCP for the FROZEN ticker list (configured per deployment) (operator-edited list; worker never reads finance/). DETERMINISTIC COVERAGE (consistency dual-run compares arms): for EACH ticker record (a) the 5 most recent Form 4 trades exactly as returned (insider, role, buy/sell, shares, price, date -- one claim per trade), (b) short interest + days-to-cover, (c) cluster-buy yes/no over 90 days. Record rows in the server's returned order; do not sample beyond the 5 most recent.",
+  "allowed_mcp": [
+    "openinsider"
+  ],
+  "budgets": {
+    "max_fetches": 0,
+    "max_mcp_calls": 24
+  },
+  "must_not": [
+    "fetch any web page (MCP only)",
+    "invent a figure the server did not return",
+    "fetch any web page (MCP only)",
+    "invent a figure the server did not return",
+    "record rows beyond the 5 most recent per ticker"
+  ],
+  "deliverable": "claims",
+  "_composed": {
+    "ts": "2026-08-17T10:58:03",
+    "leg": "research:insider-sweep",
+    "by": "relay-mission.py"
+  }
+}

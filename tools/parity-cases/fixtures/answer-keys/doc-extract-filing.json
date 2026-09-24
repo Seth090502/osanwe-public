@@ -1,0 +1,26 @@
+{
+  "task": "doc-extract-filing",
+  "source_fixture": "tools/parity-cases/fixtures/filing-extract.md",
+  "frozen": "2026-08-17",
+  "value_tol_rel": 0.005,
+  "reference_claims": [
+    {"entity": "MRSD", "metric": "total debt carrying value", "value": "13010", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "senior notes outstanding", "value": "12354", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "finance lease obligations", "value": "656", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "weighted average interest rate", "value": "4.19", "unit": "%"},
+    {"entity": "MRSD", "metric": "maturities fy2027", "value": "1050", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "maturities fy2028", "value": "1853", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "maturities fy2029", "value": "2201", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "maturities fy2030 and thereafter", "value": "7250", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "shares repurchased nine months", "value": "4.8", "unit": "million shares"},
+    {"entity": "MRSD", "metric": "repurchase aggregate cost", "value": "416", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "repurchase authorization remaining", "value": "2384", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "shares outstanding", "value": "1109", "unit": "million"},
+    {"entity": "MRSD", "metric": "purchase obligations total", "value": "6420", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "purchase obligations within 12 months", "value": "4102", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "joint venture commitment", "value": "150", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "joint venture funded", "value": "61", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "restructuring cumulative charges", "value": "234", "unit": "USD million"},
+    {"entity": "MRSD", "metric": "restructuring accrued remaining", "value": "19", "unit": "USD million"}
+  ]
+}

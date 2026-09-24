@@ -1,0 +1,8 @@
+# Acme Semiconductor -- segment overview
+
+Acme reports results in three segments. The Data Center segment sells
+accelerators and networking. The Client segment covers consumer CPUs. The
+Embedded segment serves industrial customers.
+
+Peer companies typically report five or more segments, including Gaming and
+Automotive lines, but Acme folded those units into Client in fiscal 2024.

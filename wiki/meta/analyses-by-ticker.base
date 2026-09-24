@@ -1,0 +1,156 @@
+# wiki/meta/analyses-by-ticker.base
+# Entity ## Analyses section embeds ![[wiki/meta/analyses-by-ticker.base#<TKR>]]
+# View name = bare ticker symbol (matches canary convention).
+
+filters:
+  - file.inFolder("wiki/investing/analyses")
+  - type == "analysis"
+
+views:
+  - type: table
+    name: NVDA
+    filters: [file.tags.contains("ticker/NVDA")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: AMD
+    filters: [file.tags.contains("ticker/AMD")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: AMZN
+    filters: [file.tags.contains("ticker/AMZN")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: DTCR
+    filters: [file.tags.contains("ticker/DTCR")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: HIMS
+    filters: [file.tags.contains("ticker/HIMS")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: MSFT
+    filters: [file.tags.contains("ticker/MSFT")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: MU
+    filters: [file.tags.contains("ticker/MU")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: SNDK
+    filters: [file.tags.contains("ticker/SNDK")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: VGT
+    filters: [file.tags.contains("ticker/VGT")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: AMAT
+    filters: [file.tags.contains("ticker/AMAT")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: GOOGL
+    filters: [file.tags.contains("ticker/GOOGL")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: HBAR
+    filters: [file.tags.contains("ticker/HBAR")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: LINK
+    filters: [file.tags.contains("ticker/LINK")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: LRCX
+    filters: [file.tags.contains("ticker/LRCX")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: META
+    filters: [file.tags.contains("ticker/META")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: PLTR
+    filters: [file.tags.contains("ticker/PLTR")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: TSLA
+    filters: [file.tags.contains("ticker/TSLA")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: VOLT
+    filters: [file.tags.contains("ticker/VOLT")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: VOO
+    filters: [file.tags.contains("ticker/VOO")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: XLM
+    filters: [file.tags.contains("ticker/XLM")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC
+  - type: table
+    name: XRP
+    filters: [file.tags.contains("ticker/XRP")]
+    order: [file.name, confidence, updated]
+    sort:
+      - column: updated
+        direction: DESC

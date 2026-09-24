@@ -1,0 +1,25 @@
+{
+  "objective": "NIGHTLY (scheduled-idle): refresh key stats + latest headlines for the configured names from the FROZEN seed pages (operator-edited list). One claim per figure/headline with exact values and dates.",
+  "budgets": {
+    "max_mcp_calls": 0,
+    "max_fetches": 6
+  },
+  "must_not": [
+    "call MCP servers (web only)",
+    "call MCP servers (web only)"
+  ],
+  "deliverable": "claims",
+  "questions": [
+    "Market cap, P/E, revenue TTM, EPS TTM per ticker?",
+    "Latest 3 news headlines per ticker with dates?"
+  ],
+  "seed_urls": [
+    "https://stockanalysis.com/stocks/<configured-symbol>/",
+    "https://stockanalysis.com/stocks/<configured-symbol>/"
+  ],
+  "_composed": {
+    "ts": "2026-08-17T04:18:34",
+    "leg": "research:url-harvest",
+    "by": "relay-mission.py"
+  }
+}

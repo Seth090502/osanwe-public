@@ -1,0 +1,8 @@
+TechFlow Market Wire -- 2026-07-31
+
+DRAM CONTRACT PRICING, JULY FIX: survey of 40 module houses shows July DRAM
+contract prices ROSE 12 percent month-over-month, the steepest increase of the
+year, driven by HBM crowd-out of standard capacity at all three majors. Spot
+tracked contract closely through the month, ending the fixing week bid-only.
+
+Methodology: TechFlow channel survey, monthly contract fixings, n=40.
