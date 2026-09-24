@@ -46,4 +46,3 @@ Before launching any research run (/deep Research-mode prompt, /invest source sw
 - hot -- session cache; this playbook is surfaced in the consolidation digest
 - [[meta-skill-infrastructure-decisions-playbook]]
 - investing-decisions-playbook
-- a private file

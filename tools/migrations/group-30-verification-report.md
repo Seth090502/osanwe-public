@@ -104,8 +104,8 @@ All 6 invariants PASS unconditionally. Rebuild ready for closure.
 ## Group 30 interstitial lineage
 
 - `553600b rebuild(frontmatter): Group 30.1 -- close Group 29 R2 scope-boundary`
-- `bee0103 rebuild(frontmatter): Group 30.2 -- a private file canonicalization`
-- `cc6d514 rebuild(links): Group 30.3 -- sessions-log a private file remove-brackets`
+- `bee0103 rebuild(frontmatter): Group 30.2 -- private-note canonicalization`
+- `cc6d514 rebuild(links): Group 30.3 -- sessions-log private-note remove-brackets`
 
 ## Rebuild closure record
 
