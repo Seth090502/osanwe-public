@@ -16,10 +16,10 @@ when it was run against an independently computed expected value -- not when it 
 
 | Scope | Checked | Pass | Mismatch | Not checkable |
 |---|---|---|---|---|
-| `/invest` path, code | 27 (26 with synthetic inputs, 1 via a tamper test) | 26 | 1 | 0 |
+| `/invest` path, code | 26, with synthetic inputs | 25 | 1 | 0 |
 | `/invest` path, prompt-only | 38 | 34 | 4 | 0 |
 | Remainder, first pass (a seeded 20% sample of the other 128) | 26 | 19 | 7 | 0 |
-| Remainder, second pass (every formula the first pass had not reached) | 103 | 88 | 9 | 6 |
+| Second pass (every formula the first pass had not reached, including the 27th `/invest` code formula, checked by a tamper test) | 103 | 88 | 9 | 6 |
 | **Not checked** | **0** | -- | -- | -- |
 
 **Every formula in the inventory now has a verdict.** The second pass closed the 103 that had never been
@@ -93,5 +93,7 @@ A specification gap is a documentation fault and shows up as an unassigned or am
 defect will produce a plausible-looking number that is wrong, which is the more dangerous kind: nothing in the
 output signals it. Each affected formula carries a one-line note beside it in the published source.
 
-None of these were repaired before publication. The audit that produced this copy recorded defects rather than
-fixing them, so that what is published matches what was actually running.
+These verdicts record what the check found at the time. The audit recorded defects rather than fixing them, but
+the working system has fixed some since, and the code published here carries those fixes: all five computational
+defects in the first table are fixed (the line numbers above are from the check and may have moved). The second-pass
+findings and the specification gaps have not been re-checked; read the code for their current state.
