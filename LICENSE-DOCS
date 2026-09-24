@@ -1,0 +1,15 @@
+Documentation and prose licence
+===============================
+
+Everything in this repository that is prose rather than code -- the contents of Atlas/, wiki/, docs/, this
+file, the research exemplars under examples/, and the Markdown portions of the skills and agent definitions --
+is Copyright (c) 2026 Seth Young, all rights reserved. It is shared for demonstration.
+
+You may read it and quote it with attribution. You may not redistribute it as a corpus, republish it as your
+own work, or use it as training data.
+
+Third-party material keeps its own licence and its own attribution. Quoted passages from filings, papers and
+public data belong to their sources; citations are given in place.
+
+Code is MIT (see LICENSE). Where a single file mixes both -- a skill document with fenced code, for example --
+the code blocks are MIT and the surrounding prose is under the terms above.
