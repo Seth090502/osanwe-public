@@ -24,15 +24,15 @@ tags:
   - ticker/FLNC
 related:
   - "[[ref-ai-power-grid-deep-dive]]"
-  - "*AEP* (not published)"
-  - "*NRG* (not published)"
-  - "*NEE* (not published)"
-  - "*DUK* (not published)"
-  - "*SO* (not published)"
-  - "*PPL* (not published)"
-  - "*FLNC* (not published)"
-  - "*investing-moc* (not published)"
-  - "*thesis-theme-gamma* (not published)"
+  - "AEP"
+  - "NRG"
+  - "NEE"
+  - "DUK"
+  - "SO"
+  - "PPL"
+  - "FLNC"
+  - "investing-moc"
+  - "thesis-theme-gamma"
 ---
 
 # Ingested: ref-ai-power-grid-deep-dive
@@ -173,7 +173,7 @@ Round-2 invocation re-ran /ingest on the same source. Phase E.0 dispatched `clai
 
 ### Tier-3 reject (flagged for human reconciliation)
 
-- **CEG Crane Clean Energy Center MW capacity**: existing line in CEG.md states 837 MW (per *ref-ai-supply-chain-deep-dive* (not published) HIGH); incoming claim states 835 MW (per Constellation 2025 10-K filed 2026-02-24 via [[ref-ai-power-grid-deep-dive]] HIGH). Both HIGH-grade primary sources; +/-2 MW likely reflects post-FERC interconnection adjustment. Both claims retained until human reconciles against canonical primary source. CEG.md `## Risks` section has explicit reconciliation flag inserted.
+- **CEG Crane Clean Energy Center MW capacity**: existing line in CEG.md states 837 MW (per ref-ai-supply-chain-deep-dive HIGH); incoming claim states 835 MW (per Constellation 2025 10-K filed 2026-02-24 via [[ref-ai-power-grid-deep-dive]] HIGH). Both HIGH-grade primary sources; +/-2 MW likely reflects post-FERC interconnection adjustment. Both claims retained until human reconciles against canonical primary source. CEG.md `## Risks` section has explicit reconciliation flag inserted.
 
 ### Tier-1 augment notes (no reject; section-target distinct)
 

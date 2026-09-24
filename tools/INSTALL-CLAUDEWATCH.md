@@ -26,15 +26,15 @@ Both scripts are idempotent and halt-on-fail. Read them first if you like:
 What it does (each step echoes EXPECT vs ACTUAL and halts on first mismatch):
 1. `gh release download` v0.15.0 windows_amd64.zip + checksums.txt.
 2. SHA256-verify the zip against checksums.txt (HALT on mismatch -- refuses to extract).
-3. Extract + place `claudewatch.exe` in `<HOME>\.local\bin\` (already on PATH).
+3. Extract + place `claudewatch.exe` in `~\.local\bin\` (already on PATH).
 4. Smoke `claudewatch --version`.
 5. Register the MCP server MCP-ONLY: primary `claudewatch install --mcp-only`; if that
    flag is absent in this build, surgical fallback `claude mcp add -s user claudewatch
    -- <bin> mcp`. Backs up `~/.claude.json` first. GUARDS that zero
    `~/.claude/rules/claudewatch-*.md` were written (MCP-only invariant) -- HALTS if a
    full install leaked global rules.
-6. Best-effort (non-fatal): add `<VAULT_ROOT>` to `~/.config/claudewatch/config.yaml`
-   scan paths. `<VAULT_ROOT>` sessions are covered via `~/.claude/projects` transcripts
+6. Best-effort (non-fatal): add the vault root to `~/.config/claudewatch/config.yaml`
+   scan paths. the vault root sessions are covered via `~/.claude/projects` transcripts
    regardless, so this step only warns if it cannot find the schema.
 
 Expect: a final `=== install-claudewatch.ps1 COMPLETE ===` and exit 0.
@@ -82,7 +82,7 @@ Dry-run first to see the plan with no writes:
 
 - claudewatch is MIT/Apache-2.0, local-only, read-only MCP (no network, no API keys).
 - The SQLite DB lives out-of-tree at `~/.config/claudewatch/claudewatch.db` -- never
-  under `<VAULT_ROOT>`, never auto-committed. No built-in retention; prune manually if
+  under the vault root, never auto-committed. No built-in retention; prune manually if
   it grows large.
 - DEFERRED on purpose (revisit after ~1 week of baseline data): the global behavioral
   rules and the blocking PostToolUse hook. They would collide with the vault's

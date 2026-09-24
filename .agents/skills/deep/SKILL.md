@@ -119,8 +119,8 @@ F11 Phase C discipline (set flag before Write). Canonical frontmatter on the pro
       - topic/`<primary-topic>`
       - topic/deep-research
     related:
-      - "*`<domain-moc-stem>`* (not published)"
-      - "*`<matching-thesis-stem-if-any>`* (not published)"
+      - "`<domain-moc-stem>`"
+      - "`<matching-thesis-stem-if-any>`"
     ---
 
     # Deep Research prompt -- `<target>`
@@ -211,12 +211,12 @@ Produce a comprehensive `<topic>` reference with the structure below. Depth over
       - <natural alias 1>
       - <natural alias 2>
     related:
-      - "*`<domain-moc-stem>`* (not published)"
-      - "*thesis-`<matching-if-any>`* (not published)"
-      - "*ref-`<peer-1>`* (not published)"
-      - "*ref-`<peer-2>`* (not published)"
+      - "`<domain-moc-stem>`"
+      - "thesis-`<matching-if-any>`"
+      - "ref-`<peer-1>`"
+      - "ref-`<peer-2>`"
       <for each substantive entity with existing vault note:>
-      - "*`<TICKER>`* (not published)"
+      - "`<TICKER>`"
     ---
 
 The `target_path:` field is CRITICAL -- /enrich v9 reads it to place the file at the exact intended path without autonomous slug derivation. Emit it verbatim with the value specified in ROLE.

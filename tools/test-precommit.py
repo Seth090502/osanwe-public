@@ -51,7 +51,6 @@ def mk_scratch():
     shutil.copy(VAULT / "tools" / "precommit.py", tmp / "tools" / "precommit.py")
     shutil.copy(VAULT / "tools" / "frontmatter-check.py", tmp / "tools" / "frontmatter-check.py")
     (tmp / "AGENTS.md").write_bytes(b"# Complete test contract\n")
-    (tmp / "CLAUDE.md").write_bytes(b"@AGENTS.md\n")
     sh(["git", "add", "-A"], cwd=tmp)
     sh(["git", "commit", "-q", "-m", "cage seed"], cwd=tmp)
     return tmp
@@ -205,7 +204,7 @@ def t_r6_work_scratch_exempt(tmp):
     rc, out, _ = run_check(tmp)
     return rc == 0, f"rc={rc} out={out[:200]}"
 
-# ---------------------------------------------------------------- R7 the contract and its stub
+# ---------------------------------------------------------------- R7 one contract, no CLAUDE.md
 
 
 def t_r7_claude_md_mirror_blocked(tmp):
@@ -215,7 +214,7 @@ def t_r7_claude_md_mirror_blocked(tmp):
     return rc == 1 and "[R7]" in out, f"rc={rc} out={out[:200]}"
 
 
-def t_r7_unstaged_stub_edit_blocked(tmp):
+def t_r7_unstaged_claude_md_blocked(tmp):
     # Not staged, but a live session loads the working copy.
     (tmp / "CLAUDE.md").write_text("@AGENTS.md\nOne more rule.\n", encoding="ascii")
     stage(tmp, "wiki/note.md", "---\ncategories: [x]\n---\n\nbody\n")
@@ -223,15 +222,16 @@ def t_r7_unstaged_stub_edit_blocked(tmp):
     return rc == 1 and "[R7]" in out, f"rc={rc} out={out[:200]}"
 
 
-def t_r7_stub_with_extra_rule_blocked(tmp):
-    stage(tmp, "CLAUDE.md", "@AGENTS.md\nOne more rule.\n")
+def t_r7_import_stub_blocked(tmp):
+    # The former one-line stub is still a CLAUDE.md; the import belongs in the local file.
+    stage(tmp, "CLAUDE.md", "@AGENTS.md\n")
     rc, out, _ = run_check(tmp)
     return rc == 1 and "[R7]" in out, f"rc={rc} out={out[:200]}"
 
 
-def t_r7_deleted_stub_blocked(tmp):
-    # Without the stub a root CLAUDE.local.md stops Claude Code reading AGENTS.md.
-    sh(["git", "rm", "-q", "--", "CLAUDE.md"], cwd=tmp)
+def t_r7_deep_claude_md_blocked(tmp):
+    # A CLAUDE.md at any depth in the index is refused, not only at the root.
+    stage(tmp, "wiki/sub/CLAUDE.md", "@../../AGENTS.md\n")
     rc, out, _ = run_check(tmp)
     return rc == 1 and "[R7]" in out, f"rc={rc} out={out[:200]}"
 
@@ -260,15 +260,23 @@ def t_r7_unstaged_contract_deletion_blocked(tmp):
     return rc == 1 and "[R7]" in out, f"rc={rc} out={out[:200]}"
 
 
-def t_r7_tree_accepts_crlf_stub(tmp):
-    # One line-ending rule everywhere: a CRLF working copy of the stub still imports the contract.
+def t_r7_tree_accepts_crlf_local_import(tmp):
+    # One line-ending rule everywhere: a CRLF first line still imports the contract.
     _tree_seed(tmp)
-    (tmp / "CLAUDE.md").write_bytes(b"@AGENTS.md\r\n")
+    (tmp / "CLAUDE.local.md").write_bytes(b"@AGENTS.md\r\n\nprivate notes\n")
     rc, out, _ = run_check(tmp, args=("--tree", "--strict-tree"))
     return rc == 0 and "[R7]" not in out, f"rc={rc} out={out[-250:]}"
 
 
-def t_r7_contract_with_stub_passes(tmp):
+def t_r7_local_file_without_import_blocked(tmp):
+    # A root CLAUDE.local.md suppresses Claude Code's native AGENTS.md read.
+    (tmp / "CLAUDE.local.md").write_bytes(b"# private notes\n@AGENTS.md\n")
+    stage(tmp, "wiki/note.md", "---\ncategories: [x]\n---\n\nbody\n")
+    rc, out, _ = run_check(tmp)
+    return rc == 1 and "[R7]" in out, f"rc={rc} out={out[:200]}"
+
+
+def t_r7_contract_alone_passes(tmp):
     stage(tmp, "AGENTS.md", "# Updated complete contract\n")
     rc, out, _ = run_check(tmp)
     return rc == 0, f"rc={rc} out={out[:200]}"
@@ -301,6 +309,57 @@ def t_r7_symlink_index_is_not_a_complete_contract(tmp):
     _, object_id, _ = sh(["git", "hash-object", "pointer-target.txt"], cwd=tmp)
     sh(["git", "update-index", "--add", "--cacheinfo",
         "120000," + object_id.strip() + ",AGENTS.md"], cwd=tmp)
+    rc, out, _ = run_check(tmp)
+    return rc == 1 and "[R7]" in out, f"rc={rc} out={out[:200]}"
+
+
+def _commit_claude_md(tmp, relpath):
+    # The scratch repository has no hooksPath, so this plain commit is not caged: it
+    # recreates a history that still tracks a CLAUDE.md.
+    stage(tmp, relpath, "@AGENTS.md\n")
+    sh(["git", "commit", "-q", "-m", "history with a CLAUDE.md"], cwd=tmp)
+
+
+def t_r7_removing_a_tracked_claude_md_passes(tmp):
+    # The migration's own shape: HEAD tracks CLAUDE.md and the commit deletes it.
+    _commit_claude_md(tmp, "CLAUDE.md")
+    sh(["git", "rm", "-q", "--", "CLAUDE.md"], cwd=tmp)
+    rc, out, _ = run_check(tmp)
+    return rc == 0 and "[R7]" not in out, f"rc={rc} out={out[:200]}"
+
+
+def t_r7_untracking_but_keeping_claude_md_blocks(tmp):
+    # Removed from the index, but the working copy still loads in a live session.
+    _commit_claude_md(tmp, "CLAUDE.md")
+    sh(["git", "rm", "-q", "--cached", "--", "CLAUDE.md"], cwd=tmp)
+    rc, out, _ = run_check(tmp)
+    return rc == 1 and "[R7]" in out, f"rc={rc} out={out[:200]}"
+
+
+def t_r7_tree_blocks_a_tracked_nested_claude_md(tmp):
+    _tree_seed(tmp)
+    _commit_claude_md(tmp, "wiki/x/CLAUDE.md")
+    rc, out, _ = run_check(tmp, args=("--tree",))
+    return rc == 1 and "[R7]" in out, f"rc={rc} out={out[-250:]}"
+
+
+def t_r7_tree_blocks_a_local_file_without_import(tmp):
+    _tree_seed(tmp)
+    (tmp / "CLAUDE.local.md").write_bytes(b"# private notes\n")
+    rc, out, _ = run_check(tmp, args=("--tree",))
+    return rc == 1 and "[R7]" in out, f"rc={rc} out={out[-250:]}"
+
+
+def t_r7_lf_local_import_passes(tmp):
+    (tmp / "CLAUDE.local.md").write_bytes(b"@AGENTS.md\n\nprivate notes\n")
+    stage(tmp, "wiki/note.md", CANONICAL_FM + "body\n")
+    rc, out, _ = run_check(tmp)
+    return rc == 0 and "[R7]" not in out, f"rc={rc} out={out[:200]}"
+
+
+def t_r7_empty_local_file_blocks(tmp):
+    (tmp / "CLAUDE.local.md").write_bytes(b"")
+    stage(tmp, "wiki/note.md", "---\ncategories: [x]\n---\n\nbody\n")
     rc, out, _ = run_check(tmp)
     return rc == 1 and "[R7]" in out, f"rc={rc} out={out[:200]}"
 
@@ -347,18 +406,25 @@ CASES = [
     ("R6 new vault md with valid frontmatter passes", t_r6_valid_fm_passes),
     ("R6 _work/ scratch md exempt by name", t_r6_work_scratch_exempt),
     ("R7 a staged CLAUDE.md mirror blocks", t_r7_claude_md_mirror_blocked),
-    ("R7 an unstaged edit to the stub blocks", t_r7_unstaged_stub_edit_blocked),
-    ("R7 a stub with an extra rule blocks", t_r7_stub_with_extra_rule_blocked),
-    ("R7 deleting the stub blocks", t_r7_deleted_stub_blocked),
+    ("R7 an unstaged root CLAUDE.md blocks", t_r7_unstaged_claude_md_blocked),
+    ("R7 a staged import stub blocks", t_r7_import_stub_blocked),
+    ("R7 a CLAUDE.md at any depth blocks", t_r7_deep_claude_md_blocked),
+    ("R7 a local file without the import blocks", t_r7_local_file_without_import_blocked),
     ("R7 a staged .claude/CLAUDE.md blocks", t_r7_nested_claude_md_blocked),
     ("R7 a symlink-mode .claude/CLAUDE.md entry blocks", t_r7_nested_symlink_entry_blocked),
     ("R7 an unstaged deletion of AGENTS.md blocks", t_r7_unstaged_contract_deletion_blocked),
-    ("R7 --tree accepts a CRLF stub", t_r7_tree_accepts_crlf_stub),
-    ("R7 AGENTS.md with the stub passes", t_r7_contract_with_stub_passes),
+    ("R7 --tree accepts a CRLF local import", t_r7_tree_accepts_crlf_local_import),
+    ("R7 AGENTS.md alone passes", t_r7_contract_alone_passes),
     ("R7 deleting the root contract blocks", t_r7_deleted_copy_blocked),
     ("R7 an empty root contract blocks", t_r7_empty_contracts_blocked),
     ("R7 LF-normalized index bytes pass", t_r7_normalized_index_bytes_pass),
     ("R7 a symlink-mode index entry is not a contract", t_r7_symlink_index_is_not_a_complete_contract),
+    ("R7 removing a tracked CLAUDE.md passes", t_r7_removing_a_tracked_claude_md_passes),
+    ("R7 untracking but keeping CLAUDE.md blocks", t_r7_untracking_but_keeping_claude_md_blocks),
+    ("R7 --tree blocks a tracked nested CLAUDE.md", t_r7_tree_blocks_a_tracked_nested_claude_md),
+    ("R7 --tree blocks a local file without the import", t_r7_tree_blocks_a_local_file_without_import),
+    ("R7 an LF local import passes", t_r7_lf_local_import_passes),
+    ("R7 an empty local file blocks", t_r7_empty_local_file_blocks),
     ("strict tree missing frontmatter blocks", t_strict_tree_missing_fm_blocks),
     ("strict tree non-ASCII blocks", t_strict_tree_nonascii_blocks),
 ]

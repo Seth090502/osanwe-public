@@ -10,10 +10,10 @@ tags:
   - topic/options
   - topic/judgment-gates
 related:
-  - "*invest* (not published)"
+  - "invest"
   - "[[ref-analysis-template]]"
   - "[[ref-kernel-sizing]]"
-  - "*ref-portfolio-doctrine* (not published)"
+  - "ref-portfolio-doctrine"
 ---
 
 # ref-options-layer -- Phase K-ter options-structure recommendation layer + prediction ledger
@@ -25,7 +25,7 @@ coherence invariant, the screens, the structure mapping table, the per-rec
 output block, the tax rules, the standing limits, the ledger record
 construction + append procedure, and worked examples. Built 2026-07-11
 (invest-enhancement-pass-v1; GATE-B BUILD-JUSTIFIED
-*gate-b-invest-enhancement-pass-2026-07-11* (not published); design twice red-team hardened,
+gate-b-invest-enhancement-pass-2026-07-11; design twice red-team hardened,
 6 Opus adversarial reviews).
 
 **What this layer answers:** after the equity verdict is final, *what is the
@@ -163,7 +163,7 @@ market's own probability, so the approximation bias nets out of the skill read.
 4. **Account scale:**
    - CASH-COLLATERAL structures (CSP): collateral = strike x 100. When it
      exceeds deployable account cash, RECOMMEND + `scale_flag:
-     not-executable-at-account-scale` (`<owner>`-ratified policy 2026-07-11: the
+     not-executable-at-account-scale` (owner-ratified policy 2026-07-11: the
      prediction still logs and scores; it becomes executable once account
      cash covers the collateral).
    - SHARE-BACKED structures (covered call, protective put, collar): require
@@ -246,7 +246,7 @@ label and every screen, collateral, tax and GATE-F requirement unchanged.
 ## 9. Ledger record construction + append (Phase M; script-owned)
 
 Records are constructed IN MEMORY at K-ter, appended at Phase M via
-`python <VAULT_ROOT>/tools/score_ledger.py --append '<record-json>'`
+`python tools/score_ledger.py --append '<record-json>'`
 (the script owns id-assignment, the point-in-time gate, the basis-coherence
 invariant, the horizon = max-leg-expiry assert, ASCII sanitization, the
 write-target whitelist, and the sha256 append-only prefix check -- validation
@@ -317,4 +317,4 @@ Key semantics:
 `ref-analysis-template.md` Sections 2.9/2.11/6.4 |
 `tools/score_ledger.py` + `tools/test-score-ledger.py` |
 `wiki/investing/options-ledger.jsonl` |
-*gate-b-invest-enhancement-pass-2026-07-11* (not published)
+gate-b-invest-enhancement-pass-2026-07-11

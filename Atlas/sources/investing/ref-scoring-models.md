@@ -12,7 +12,7 @@ tags:
   - topic/dcf
   - topic/altman-z
 aliases: [scoring-models, valuation-frameworks]
-related: ["*ref-sector-benchmarks* (not published)", "*ref-etf-evaluation* (not published)", "*ref-research-insights* (not published)", "[[ref-theme-alpha]]", "*ref-memory-storage-cycle-deep-dive* (not published)", "[[ref-earnings-playbook]]", "[[ref-valuation-methodology]]", "*ref-factor-lens* (not published)", "*decision-invest-kernel-doctrine-2026-07-06* (not published)"]
+related: ["ref-sector-benchmarks", "ref-etf-evaluation", "ref-research-insights", "[[ref-theme-alpha]]", "ref-memory-storage-cycle-deep-dive", "[[ref-earnings-playbook]]", "[[ref-valuation-methodology]]", "ref-factor-lens", "decision-invest-kernel-doctrine-2026-07-06"]
 bands:
   schema_version: 1
   block_id: forensic-bands
@@ -820,11 +820,11 @@ agreement + registered-fingerprint match). Values are transcriptions of this
 file's own prose -- the quotes below are verbatim substrings of it. The
 `red_*` keys define the kernel's FORENSIC RED-BAND (the override-lane
 cleanliness test, D14, ratified by
-*decision-invest-kernel-doctrine-2026-07-06* (not published)): a name is NOT forensically
+decision-invest-kernel-doctrine-2026-07-06): a name is NOT forensically
 clean if Piotroski <= 2, Altman Z < 1.81, Beneish M > -1.78, or Sloan
 accruals > +10%; an N/A panel (e.g. crypto) counts as NOT clean.
 
-Registered fingerprint: `48ee1308` (ratified by *decision-invest-kernel-doctrine-2026-07-06* (not published)).
+Registered fingerprint: `48ee1308` (ratified by decision-invest-kernel-doctrine-2026-07-06).
 
 | key | value | verbatim_quote | source |
 |---|---|---|---|
@@ -843,4 +843,4 @@ Registered fingerprint: `48ee1308` (ratified by *decision-invest-kernel-doctrine
 | sloan_accruals_pct.red_gt | 10 | High accruals (>10%) | self |
 
 ## Related
-*investing-moc* (not published) | *ref-sector-benchmarks* (not published) | *ref-research-insights* (not published) | [[ref-investor-frameworks-2026]] | *decision-invest-kernel-doctrine-2026-07-06* (not published)
+investing-moc | ref-sector-benchmarks | ref-research-insights | [[ref-investor-frameworks-2026]] | decision-invest-kernel-doctrine-2026-07-06

@@ -6,13 +6,13 @@ created: 2026-05-24
 updated: 2026-07-10
 tags: [topic/consolidation, topic/playbook]
 related:
-  - "*hot* (not published)"
+  - "hot"
 ---
 
 # Discipline (recurring theme) Playbook
 
 ## Pattern
-Invariant: A discipline rule changes the agent's in-session behavior durably only where a mechanical artifact evaluates it as a binding gate at the point of mutation (block-before-write, fail-closed validator, immutable authoritative variable, commit-halt, exit-2) -- a rule delivered as prose reverts silently even when MANDATORY-labeled and even immediately after a manual cleanup, and a mechanism whose own invocation is prose-governed drifts the same way; but mechanization can only bind where an in-session mutation point exists, so when the rule's terminal act is out-of-session, stacking more mechanism only relocates the gap (that axis belongs to *execution-gap-playbook* (not published)).
+Invariant: A discipline rule changes the agent's in-session behavior durably only where a mechanical artifact evaluates it as a binding gate at the point of mutation (block-before-write, fail-closed validator, immutable authoritative variable, commit-halt, exit-2) -- a rule delivered as prose reverts silently even when MANDATORY-labeled and even immediately after a manual cleanup, and a mechanism whose own invocation is prose-governed drifts the same way; but mechanization can only bind where an in-session mutation point exists, so when the rule's terminal act is out-of-session, stacking more mechanism only relocates the gap (that axis belongs to execution-gap-playbook).
 
 The corpus's cleanest proof is a one-day natural experiment: the 04-26 Vault SOTA arc cleared forbidden strings by hand (score 60 -> 100), then 04-27 retro commits silently reintroduced them and dropped the score to 35/100 with no gate at the write point (sessions-log.md:1006-1012); the fix that held was the 04-28 PreToolUse pre-write-validator blocking the mutation before disk (:1022). The same shape recurs across unrelated substrates -- invest-max phase drift ended only when --phase prose became the immutable PHASE_NUMBER variable (:66); cc-coach's advice changed behavior 0/8 times as advisory stdout and bound only once redelivered as a binding system-reminder (:963-964); hot-md-check blocked nothing until its exit code moved 1 -> 2 (:1873). The load-bearing variable is never the rule's content or its MANDATORY label -- it is whether the rule is evaluated as a binding instruction at the exact mutation point; naming a doctrine ceiling a "gate" in prose (:967) did not make it one, only tools/gate-eval.py later did.
 
@@ -35,14 +35,14 @@ Confidence: 83% -- all 5 evidence rows resolve and converge across independent s
 
 ## Recommendation
 
-Extend Atlas/sources/meta/ref-execution-discipline.md (which today scopes ONLY F11 + cascade -- F11 is one instance of the general rule) with an "Enforcement-point placement" section stating this invariant plus the 3-step test in Apply-when; Atlas is human-write-only, so the amendment rides /decide ratification. Do NOT rebuild what already gates at a mutation point (pre-write-validator, the 95-floor vault-audit GATE, ASCII byte-scan, guard-paths.sh, doctrine-lint, gate-eval.py, pretrade-token-gate + D-SEC-1 deny, PHASE_NUMBER, f11_orchestrator). The one residual in-session item still prose-enforced is the MANDATORY subagent-dispatch discipline (sessions-log.md:1822; it empirically failed under context pressure 2026-05-06, :2366/:2401) -- route it through /decide dispatch-discipline-gate (build-vs-accept; the PreToolUse hook fix is already named). For any rule whose terminal act is out-of-session, add NO in-session gate -- defer to *execution-gap-playbook* (not published).
+Extend Atlas/sources/meta/ref-execution-discipline.md (which today scopes ONLY F11 + cascade -- F11 is one instance of the general rule) with an "Enforcement-point placement" section stating this invariant plus the 3-step test in Apply-when; Atlas is human-write-only, so the amendment rides /decide ratification. Do NOT rebuild what already gates at a mutation point (pre-write-validator, the 95-floor vault-audit GATE, ASCII byte-scan, guard-paths.sh, doctrine-lint, gate-eval.py, pretrade-token-gate + D-SEC-1 deny, PHASE_NUMBER, f11_orchestrator). The one residual in-session item still prose-enforced is the MANDATORY subagent-dispatch discipline (sessions-log.md:1822; it empirically failed under context pressure 2026-05-06, :2366/:2401) -- route it through /decide dispatch-discipline-gate (build-vs-accept; the PreToolUse hook fix is already named). For any rule whose terminal act is out-of-session, add NO in-session gate -- defer to execution-gap-playbook.
 
 ## Apply-when
 
 Before writing or ratifying any new discipline mechanism (rule, MANDATORY marker, ref-doc paragraph, checklist): (1) locate the rule's mutation point; (2) if it is an in-session tool/commit call, confirm a hook/script/immutable-variable evaluates it there as a block (exit-2 / fail-closed / binding system-reminder), never advisory prose -- if none, place the gate first; (3) if the terminal act is out-of-session (broker order, send, apply, book, elevated shell), STOP -- no in-session mechanism will bind it.
 
 ## Related
-- *hot* (not published) -- session cache; this playbook is surfaced in the consolidation digest
+- hot -- session cache; this playbook is surfaced in the consolidation digest
 - [[meta-skill-infrastructure-decisions-playbook]]
-- *investing-decisions-playbook* (not published)
-- *`<private-file>`* (not published)
+- investing-decisions-playbook
+- a private file

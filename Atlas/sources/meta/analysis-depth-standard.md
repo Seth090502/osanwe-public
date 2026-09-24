@@ -9,7 +9,7 @@ tags:
   - topic/analysis-standard
   - topic/methodology
 aliases: ["depth standard", "analytical spine"]
-related: ["[[ref-research-methodology]]", "*ref-portfolio-doctrine* (not published)", "[[CLAUDE]]", "[[ref-evidence-hierarchy]]", "[[ref-briefing-structure]]"]
+related: ["[[ref-research-methodology]]", "ref-portfolio-doctrine", "CLAUDE", "[[ref-evidence-hierarchy]]", "[[ref-briefing-structure]]"]
 ---
 
 # Analysis Depth Standard
@@ -277,10 +277,10 @@ Target length:
   - trigger that would change the view
 
 ## J. Decision Discipline
-- Conclusions must be decisive enough to guide `<owner>`'s next step.
+- Conclusions must be decisive enough to guide the owner's next step.
 - Uncertainty must narrow action, not erase it.
 - "Need more data" is acceptable only when paired with the exact missing datapoint and the decision that datapoint would change.
 - Good analytical depth means more decision value per line, not more lines.
 
 ## Related
-*investing-moc* (not published) | [[ref-research-methodology]] | [[ref-scoring-models]]
+investing-moc | [[ref-research-methodology]] | [[ref-scoring-models]]

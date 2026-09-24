@@ -200,7 +200,7 @@
   }
  },
  "sanctioned_failures": {
-  "T9": "Pre-existing (BACKLOG.md:38): orphan-check exits 0 on the harness fixture, expected 2. The LIVE hook works (it blocked a real orphan-on-create write on 2026-08-10 in this very session); the TEST fixture is what is broken. T9 must remain FAIL in comparisons; T9 flipping to PASS is ALSO a delta requiring triage."
+  "T9": "Pre-existing (docs/backlog.md:38): orphan-check exits 0 on the harness fixture, expected 2. The LIVE hook works (it blocked a real orphan-on-create write on 2026-08-10 in this very session); the TEST fixture is what is broken. T9 must remain FAIL in comparisons; T9 flipping to PASS is ALSO a delta requiring triage."
  },
  "comparison_rule": "Phase-4 DoD item 2: the post-migration vector must equal this vector CELL-FOR-CELL. Any cell change (either direction, including T9) blocks until triaged. Count-matching is forbidden.",
  "neutral_suites_baseline": {

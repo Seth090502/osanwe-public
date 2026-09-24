@@ -6,7 +6,7 @@ created: 2026-05-24
 updated: 2026-07-10
 tags: [topic/consolidation, topic/playbook]
 related:
-  - "*hot* (not published)"
+  - "hot"
 ---
 
 # Research (recurring theme) Playbook
@@ -43,7 +43,7 @@ Reconcile /deep's hardcoded MANDATORY OUTPUT FORMAT with the two composition-tim
 Before launching any research run (/deep Research-mode prompt, /invest source sweep, or a docs/skill research leg): confirm the prompt already fixes output format + extraction schema + target_path placement + a named confidence/verification gate, and that its length/citation floors are right-sized to the topic's source corpus (not maxed). Self-check: "Is the deliverable's shape and confidence-cap decided in this prompt, or am I hoping to recover it after?" -- if the latter, recompose before running.
 
 ## Related
-- *hot* (not published) -- session cache; this playbook is surfaced in the consolidation digest
+- hot -- session cache; this playbook is surfaced in the consolidation digest
 - [[meta-skill-infrastructure-decisions-playbook]]
-- *investing-decisions-playbook* (not published)
-- *`<private-file>`* (not published)
+- investing-decisions-playbook
+- a private file

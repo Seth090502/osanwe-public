@@ -10,7 +10,7 @@ tags:
   - topic/macro
   - topic/rates
   - topic/fed
-related: ["*ref-yen-carry-global-liquidity* (not published)", "[[ref-inflation-rates-complex]]"]
+related: ["ref-yen-carry-global-liquidity", "[[ref-inflation-rates-complex]]"]
 ---
 
 # Fed Policy Reference (Complete)
@@ -269,7 +269,7 @@ Drawdown math (factors:RRPONTSYD):
   QT is gone. From here, any further Fed liability reduction lands one-for-one
   on bank reserves (section 3). Combined WALCL+RRP drawdown from the joint
   peak: 8,967B (2022-04-13) -> 6,746B (2026-08-19) = -2,222B (-24.8%);
-  -432B over the last 24 months (see also *ref-yen-carry-global-liquidity* (not published)
+  -432B over the last 24 months (see also ref-yen-carry-global-liquidity
   section 5 for the global-liquidity framing).
 
 ## 6. Curve analysis -- DGS10, T10Y3M, T10Y2Y (plus DGS30, DFII10)

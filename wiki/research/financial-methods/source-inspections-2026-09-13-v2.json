@@ -680,7 +680,7 @@
         "scope": "whole_document",
         "reviewed_by": "corpus_quality_plan_audit",
         "reviewed_at": "2026-09-13T19:02:06Z",
-        "sha256": "042818822325aecca3c50b12266d42e8a16aa07ce0bdf0cde97e557f548c892b"
+        "sha256": "0218667482549f9deb02030d9bf84c0ce41b6734fd6b93301c88349f7b4fd6bb"
       },
       "scope": "Newly authored method guidance with invented examples only; exact source and calculation scopes are separated in its sections.",
       "excluded_claims": [
@@ -690,7 +690,7 @@
         "independent expert certification",
         "production pipeline or portfolio outcome performance"
       ],
-      "sha256": "042818822325aecca3c50b12266d42e8a16aa07ce0bdf0cde97e557f548c892b"
+      "sha256": "0218667482549f9deb02030d9bf84c0ce41b6734fd6b93301c88349f7b4fd6bb"
     },
     {
       "path": "wiki/research/financial-methods/ref-fixed-income-liabilities.md",
@@ -724,7 +724,7 @@
         "scope": "whole_document",
         "reviewed_by": "corpus_quality_plan_audit",
         "reviewed_at": "2026-09-13T19:02:06Z",
-        "sha256": "c2992a4c65bea92df31d08e908b6c271fc0906568f9d7f9a51a948d1dcec31c4"
+        "sha256": "a9351ae26dc08a46d570d572911eefed15da09d3658be8b7e2809244d06fc90e"
       },
       "scope": "Newly authored method guidance with invented examples only; exact source and calculation scopes are separated in its sections.",
       "excluded_claims": [
@@ -734,7 +734,7 @@
         "independent expert certification",
         "production pipeline or portfolio outcome performance"
       ],
-      "sha256": "c2992a4c65bea92df31d08e908b6c271fc0906568f9d7f9a51a948d1dcec31c4"
+      "sha256": "a9351ae26dc08a46d570d572911eefed15da09d3658be8b7e2809244d06fc90e"
     }
   ],
   "validation": {

@@ -1,6 +1,6 @@
 # Phase 1 audit: instruction layer + legacy Codex layer (worker report, verbatim)
 
-Provenance: opus/max Explore worker over `<VAULT_ROOT>`, 2026-08-10. Persisted from session context 2026-08-10.
+Provenance: opus/max Explore worker over the vault root, 2026-08-10. Persisted from session context 2026-08-10.
 
 ## Part A -- Instruction Layer Inventory
 
@@ -9,10 +9,10 @@ Provenance: opus/max Explore worker over `<VAULT_ROOT>`, 2026-08-10. Persisted f
 | File | Bytes | Lines | Note |
 |---|---|---|---|
 | AGENTS.md | 17,158 | 119 | canonical router (both engines) |
-| CLAUDE.md | 996 | 13 | thin shim (@AGENTS.md + Claude-only notes + `<private-file>`.md) |
+| CLAUDE.md | 996 | 13 | thin shim (@AGENTS.md + Claude-only notes + a private file) |
 | CLAUDE.local.md | 3,482 | 47 | size only, contents not read |
 | USER.md | 25,681 | 359 | |
-| BACKLOG.md | 4,473 | 49 | |
+| docs/backlog.md | 4,473 | 49 | |
 | HOME.md | 1,869 | 59 | stale |
 | STATUS.md | 5,710 | 41 | stale (updated 2026-06-10) |
 | FABLE-REVIEW.md | 19,202 | 127 | one-off review, not instruction layer |
@@ -21,8 +21,8 @@ Provenance: opus/max Explore worker over `<VAULT_ROOT>`, 2026-08-10. Persisted f
 | .claude/skills/CLAUDE.md | 168 | 4 | nested shim, body is @AGENTS.md |
 | `<other-tool>`/AGENTS.md | 21,940 | 347 | upstream third-party, not private |
 | `<other-tool>`/CLAUDE.md | 23,601 | 377 | near-duplicate; 119 diff lines |
-| `<private-file>`.local.md | 2,809,024 | 36,818 | size only |
-| OSANWE-`<private-file>`.local.md | 56,854 | 312 | size only |
+| a private per-machine file | 2,809,024 | 36,818 | size only |
+| OSANWE-a private per-machine file | 56,854 | 312 | size only |
 | skeleton/AGENTS.md, skeleton/CLAUDE.md | ABSENT | -- | skeleton has no instruction file |
 
 Glob **/AGENTS.md + **/CLAUDE.md returns exactly the 6 non-local rows above -- no hidden instruction files.
@@ -51,15 +51,15 @@ Glob **/AGENTS.md + **/CLAUDE.md returns exactly the 6 non-local rows above -- n
 
 ### A3. CLAUDE.md shim + CLAUDE.27b-qwen36.md
 
-CLAUDE.md (996 B): exactly @AGENTS.md, an HTML comment restating the shim law, one `## Claude Code only` block (3 mechanism bullets), `<private-file>`.md. Shape mechanically enforced by router-check.py check 2 (any other content = FAIL; exact-line duplication shim<->AGENTS = FAIL).
+CLAUDE.md (996 B): exactly @AGENTS.md, an HTML comment restating the shim law, one `## Claude Code only` block (3 mechanism bullets), a private file. Shape mechanically enforced by router-check.py check 2 (any other content = FAIL; exact-line duplication shim<->AGENTS = FAIL).
 
 CLAUDE.27b-qwen36.md (11,432 B, 151 lines) -- Tier-C prior art. Structure: frontmatter + model card comment (Qwen3.6-27B Q5_K_M, thinking-token mechanics, sampler settings, ctx/output guidance); ## Mission (3 lines); ## HARD BLOCKS (7 numbered mechanical rules); ## ASK FIRST / ## PROCEED WITHOUT ASKING; ## When a hook blocks you (retry-once-then-STOP; "'Should work' is a failure report"); ## Numbers (7 numbered grounding rules incl. prov: worked example); ## Vault search citation rule; ## Market analysis 6-step spine; ## Work loop (7 steps with worked rewrites); ## Research order (incl. per-domain ref-doc table + allow/block lists); ## Writing to the vault (routing + 6 rules + literal frontmatter block); ## Skills (18 commands -> output paths, flat); ## Session protocol (3 close steps + literal example); ## Personal context (private/ paths); ## Imports. **Design signature: every rule numbered, one instruction per line, zero pointer-only sections, every abstract rule ships a literal worked example. Complete standalone, the opposite architecture from the router.**
 
 ### A4. Reference organs
 
 - docs/osanwe-runtime-reference.md -- 25,346 B, 205 lines. TOC: Vault Governance (L20+), Growth thresholds (42), Sessions-log schema (51), Decision-log schema (71), ASCII Pattern-22 (86), Reference Documents enumeration (122-160), Observability (161), **Dual-engine note (168) -- WHOLLY STALE, describes the retired mirror as current** (sync-skills.py mounts, gen-codex-agents .toml, gen-codex-config hooks, engine-detect.sh), Preferred financial data sources (172), X70 degradation (178). Second defect: L71 says decision-log is a pipe-table; live format is heading-per-entry.
-- docs/Osanwe Vault Codex.md -- 437,916 B, 2,859 lines (Section 4 skills L475-984; Section 5 hooks L1149-1913; 13.4 changelog overrides body).
-- docs/Osanwe Vault Codex.yaml -- 23,931 B, 156 lines; top-level keys: meta, folders, frontmatter_schemas, skills, agents, workflows, hooks, mcp_servers, account_connectors_claude_ai, mcp_deferred, scheduled_tasks, git, gaps.
+- docs/osanwe-vault-codex.md -- 437,916 B, 2,859 lines (Section 4 skills L475-984; Section 5 hooks L1149-1913; 13.4 changelog overrides body).
+- docs/osanwe-vault-codex.yaml -- 23,931 B, 156 lines; top-level keys: meta, folders, frontmatter_schemas, skills, agents, workflows, hooks, mcp_servers, account_connectors_claude_ai, mcp_deferred, scheduled_tasks, git, gaps.
 
 ## Part B -- Legacy Codex Layer
 
@@ -67,7 +67,7 @@ CLAUDE.27b-qwen36.md (11,432 B, 151 lines) -- Tier-C prior art. Structure: front
 
 config.toml 4,247 B **KEEP (security-critical; sole mechanical D-SEC-1 carrier Codex-side)**. 14 agents TOMLs (price-fetcher 21,617 ... playbook-author 6,169) **DELETE** -- retired-mirror artifacts (headers: generated by gen-codex-agents.py Mission Four 2026-05-15; doc says not-ported/dormant). No .codex/hooks/, state/, transcripts/ on disk.
 
-config.toml structure: L1-10 header (GATE-B provenance; trust-prompt; "PARITY = instruction-honored, deliberately NO *hooks.** (not published)"); L12-19 project_doc_max_bytes=65536 + codex-rs truncation note; L21-44 four stdio servers (edgar-tools uvx edgartools[ai]==5.35.1; fred node launcher; openinsider npx openinsider-mcp@0.3.3; vault-search python local HNSW); L46-63 robinhood-trading remote streamable-HTTP with read-only allowlist. Env-var NAMES: EDGAR_IDENTITY (set inline -- an identity string, not a secret, but a hardcoded config value), RH_MCP_TOKEN (bearer_token_env_var fallback comment).
+config.toml structure: L1-10 header (GATE-B provenance; trust-prompt; "PARITY = instruction-honored, deliberately NO hooks.*"); L12-19 project_doc_max_bytes=65536 + codex-rs truncation note; L21-44 four stdio servers (edgar-tools uvx edgartools[ai]==5.35.1; fred node launcher; openinsider npx openinsider-mcp@0.3.3; vault-search python local HNSW); L46-63 robinhood-trading remote streamable-HTTP with read-only allowlist. Env-var NAMES: EDGAR_IDENTITY (set inline -- an identity string, not a secret, but a hardcoded config value), RH_MCP_TOKEN (bearer_token_env_var fallback comment).
 
 **The broker enabled_tools allowlist -- EXACT, 27 entries, preserve verbatim:**
 ```
@@ -112,7 +112,7 @@ From .claude/skills/*/SKILL.md frontmatter (lenient line-based extractor because
 
 **Blocking-mechanical:** .claude/settings.json:108 (PostToolUse gen-codex-skill-adapters --hook); .claude/hooks/auto-commit.sh:101,105 (stale comment + live `git add .agents/skills/...` staging); tools/router-check.py:21,165,186,189,192 (check 3 shells the generator --check, check 4 parses project_doc_max_bytes default 32768); tools/wire-claudewatch-vault.py:467+ (invokes sync-skills.py as acceptance gate G10; targets archived telemetry paths -- already dead); tools/verify-overnight-mission.sh:36,37,70 (asserts .agents/skills/consolidate non-empty); tools/skill-precheck.py:63-65 (exempts .agents/skills/, .codex/agents/, nonexistent .codex/hooks/); pre-write-validator/orphan-check/frontmatter-check/wikilink-check/vault-audit EXEMPT_DIRS (.agents + .codex; AGENTS.md exemptions must survive); .claude/hooks/guard-paths.sh:70; .gitignore:48-57.
 
-**Docs/instruction:** AGENTS.md 11 hits (A2); CLAUDE.md 3; .claude/skills/AGENTS.md:3,11; create-skill SKILL.md:107,108,145; retro:140; consolidate:255; price-fetcher agent:295-296; runtime-reference:168-170 (STALE); Vault Codex MD 27 hits + YAML:20,21,110,152; wiki/hot.md:124,125,251 (Codex go-live pending item OPEN + Active Context line); BACKLOG.md:33 (upgrade codex-cli), :48 (2026-10-06 agenda). Historical/archival hits: no action.
+**Docs/instruction:** AGENTS.md 11 hits (A2); CLAUDE.md 3; .claude/skills/AGENTS.md:3,11; create-skill SKILL.md:107,108,145; retro:140; consolidate:255; price-fetcher agent:295-296; runtime-reference:168-170 (STALE); Vault Codex MD 27 hits + YAML:20,21,110,152; wiki/hot.md:124,125,251 (Codex go-live pending item OPEN + Active Context line); docs/backlog.md:33 (upgrade codex-cli), :48 (2026-10-06 agenda). Historical/archival hits: no action.
 
 **Consistency defects found:** (1) config.toml:16 claims chain ~16.6 KiB; actual 18.66 KiB (+2,551 B router drift since 2026-07-08, recorded 14,607 -> actual 17,158). (2) Changelog says 26 READ tools; config + COMPATIBILITY say 27; disk truth 27. (3) .codex/agents regenerated 2026-07-11 after retirement. (4) skill-precheck exempts nonexistent .codex/hooks/.
 

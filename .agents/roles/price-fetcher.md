@@ -73,7 +73,7 @@ and get byte-identical v4 behavior -- no historicals call, no `technicals` key).
 3. Write the raw tool JSON VERBATIM to the session scratchpad dir (Bash
    redirection; NEVER a vault path -- this is the sanctioned carve-out to the
    read-only rule: scratchpad only, vault never).
-4. Run `python <VAULT_ROOT>/tools/technicals.py --file <bars.json> --ticker <T>
+4. Run `python tools/technicals.py --file <bars.json> --ticker <T>
    --benchmark SPY` and, when a basket was passed,
    `--matrix <T>,<basket...>`. Stdlib-only; self-tested (tools/test-technicals.py).
 5. Return the panel verbatim under a top-level `technicals` key (additive) with

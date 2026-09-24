@@ -1,6 +1,6 @@
 # Harness Capability Matrix -- index (row IDs resolve into the per-worker reports in this directory)
 
-Retrieved 2026-08-10. Verification method legend: D = official docs, S = source-code read, B = binary probe, E = empirical on this machine, G = GitHub API. Full per-cell findings + source URLs live in the phase0-*.md files under the listed row IDs. COMPATIBILITY.md capability claims must cite these row IDs.
+Retrieved 2026-08-10. Verification method legend: D = official docs, S = source-code read, B = binary probe, E = empirical on this machine, G = GitHub API. Full per-cell findings + source URLs live in the phase0-*.md files under the listed row IDs. docs/compatibility.md capability claims must cite these row IDs.
 
 | Harness (version verified) | AGENTS.md | SKILL.md skills | .agents/skills | MCP | Blocking pre-tool hook | Agent roles | Local models | Windows | Liveness | Report |
 |---|---|---|---|---|---|---|---|---|---|---|

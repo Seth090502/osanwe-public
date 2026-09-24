@@ -6,7 +6,7 @@ created: 2026-07-10
 updated: 2026-07-10
 tags: [topic/consolidation, topic/playbook]
 related:
-  - "*hot* (not published)"
+  - "hot"
 ---
 
 # Bash Exit_code_1 Playbook
@@ -40,7 +40,7 @@ Primary: amend `derive_error_class` in tools/telemetry_analyzer.py (lines 100-11
 A /consolidate or /consolidate telemetry run flags Bash::Exit_code_1 as a top cluster: before opening a tool-fix playbook, grep the window's .claude/state/failures-*.jsonl for Exit code 1 records whose traceback frame is `<string>`/`<stdin>`/scratchpad. If that share exceeds 60% (it has run ~85%), classify the cluster as ad-hoc-inline-script noise and route to authoring discipline, not tool repair.
 
 ## Related
-- *hot* (not published) -- session cache; this playbook is surfaced in the consolidation digest
+- hot -- session cache; this playbook is surfaced in the consolidation digest
 - [[bash-exit-code-2-playbook]]
 - [[read-unclassified-playbook]]
 - [[webfetch-unclassified-playbook]]

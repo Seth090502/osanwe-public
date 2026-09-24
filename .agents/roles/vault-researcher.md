@@ -62,7 +62,7 @@ Vault knows <TICKER> at 12 distinct file references (all ranked in citation tabl
 
 - Relevance HIGH/MED/LOW (not numeric scores)
 - Excerpts <= 2 sentences, quoted exactly from source -- no paraphrase
-- File paths from vault root (`wiki/entities/tickers/NVDA.md`), never absolute (`<VAULT_ROOT>/...`)
+- File paths from vault root (`wiki/entities/tickers/NVDA.md`), never absolute (`...`)
 - Synthesis cites specific dates and counts -- "12 references", "2 prior analyses", "2026-04-22"
 - Identify gaps explicitly -- "no Q1-2026 forensic-scorer run yet", "no /challenge in 90 days"
 - ASCII-only

@@ -5,19 +5,19 @@ target_path: .claude/skills/brief/ref-regime-taxonomy.md
 tags: [topic/market-regimes, topic/macro, topic/briefing]
 aliases: [market regimes, regime taxonomy, regime detection]
 related:
-  - "*hot* (not published)"
+  - "hot"
   - "[[ref-evidence-hierarchy]]"
   - "[[ref-briefing-structure]]"
   - "[[ref-macro-landscape]]"
   - "[[ref-monitoring-rules]]"
-  - "*ref-portfolio-doctrine* (not published)"
-  - "*ref-market-calendar* (not published)"
-  - "*ref-geopolitical-framework* (not published)"
-  - "*thesis-theme-alpha* (not published)"
-  - "*thesis-theme-beta* (not published)"
-  - "*thesis-theme-gamma* (not published)"
-  - "*thesis-theme-delta* (not published)"
-  - "*thesis-theme-epsilon* (not published)"
+  - "ref-portfolio-doctrine"
+  - "ref-market-calendar"
+  - "ref-geopolitical-framework"
+  - "thesis-theme-alpha"
+  - "thesis-theme-beta"
+  - "thesis-theme-gamma"
+  - "thesis-theme-delta"
+  - "thesis-theme-epsilon"
 status: active
 created: 2026-04-23
 updated: 2026-04-23

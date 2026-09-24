@@ -7,10 +7,10 @@ status: active
 created: 2026-07-10
 updated: 2026-07-10
 related:
-  - "*hot* (not published)"
-  - "*FABLE-REVIEW* (not published)"
-  - "*execute-or-decline* (not published)"
-  - "*gate-b-backlog-organ-2026-07-10* (not published)"
+  - "hot"
+  - "FABLE-REVIEW"
+  - "execute-or-decline"
+  - "gate-b-backlog-organ-2026-07-10"
 ---
 
 # BACKLOG -- one-line idea ledger
@@ -29,7 +29,7 @@ untouched since creation is presumed dead and struck.
 
 ## Ideas
 
-- [2026-07-10] Wire BACKLOG.md into tools/open-loops.py as a low-weight loop class so stale ideas surface at session start (the promotion-path test case; /gate b first).
+- [2026-07-10] Wire docs/backlog.md into tools/open-loops.py as a low-weight loop class so stale ideas surface at session start (the promotion-path test case; /gate b first).
 - [2026-07-10] Retire or rescope the stale X3 CLAUDE.md count-drift classifier in tools/vault-audit.py -- the shim carries no counts since the 2026-07-08 inversion.
 - [2026-07-10] DONE 2026-08-10 (cross-harness S2): codex-cli upgraded 0.118.0 -> 0.147.0. REMAINING half: verify the GPT-5.6 picker + slugs at the first AUTHED Codex session (logged out since upgrade); correct the AGENTS.md orchestration provenance line if wrong.
 - [2026-07-10] Update wiki/research/claude-md-selftest-2026-07-07.md protocol file-list to the post-inversion chain (it still names root CLAUDE.md + .claude/skills/CLAUDE.md as the four-file read set).
@@ -45,12 +45,12 @@ untouched since creation is presumed dead and struck.
 - [2026-07-13] P2 deprecated-skill dynamic classifier: lift the /vault EXPECTED_ARCHIVED prose logic into tools/vault-audit.py, detection set derived from .claude/skills/_archive/ (/gate b; completes F050 MITIGATED-DOCUMENTED).
 - [2026-07-13] P3 commit byte-scan: ~~implement the Pattern-22 byte>127 halt in auto-commit.sh (/gate b; AGENTS.md:30 corrected to real scope until it lands).~~ DONE 2026-08-23 (OSANWE-V2): implemented harness-neutrally as pre-commit cage R4 (tools/precommit.py, ADDED-lines scan in agent-authored trees) + checkall `precommit-tree` step; supersedes the auto-commit.sh-scoped idea.
 - [2026-07-13] P4 forensic_clean deterministic recompute from numeric scorecard values vs the bands red-band keys (/gate b; closes the F012 residual model-discipline seam).
-- [2026-07-13] Full `<private-file>`.local.md refresh (~12h mission): Parts F-V stale since 2026-06-09; W2 distillate COUNTERMANDS carries the residual-staleness note until then.
+- [2026-07-13] Full a private per-machine file refresh (~12h mission): Parts F-V stale since 2026-06-09; W2 distillate COUNTERMANDS carries the residual-staleness note until then.
 - [2026-07-13] 2026-10-06 structure-review agenda adds: Codex S4 pointer-ization decision (remediation R6b) + full 13.1 fleet REGENERATE option (R5) + quarterly scoped coherence re-sweep cadence (~10 agents).
 - [2026-07-13] score-outcomes.py --horizon CLI flag: ret_1mo Brier is computable today only via module import of brier(horizon=) (first-scored 2026-07-13, Mandate-A 0a); /gate b before exposing it.
 - [2026-08-10] Muse Glimmer 30B (Meta, Apache 2.0, released 2026-08-10) as Tier-C model candidate: agentic-purpose-built, 4-bit <20GB (fits the 5090), reportedly beats qwen3.6:27b, low..xhigh reasoning knob maps to the orchestration matrix. RESOLVED 2026-08-10 evening: bake-off RUN AND GRADED same day (llama.cpp b10353 caught by release poller; Ollama 0.32.6/0.32.7 both lack the arch on Windows -- MLX-only). Result 7/7 postcondition parity vs qwen3.6:27b, ~80 t/s sustained -- pre-registered adopt rule ("only if it BEATS qwen") means the PICK HOLDS at qwen3.6:27b. Record: .agents/migration/verification/bakeoff-glimmer-2026-08-10.md. UPDATE 2026-08-11: Ollama NVIDIA support LANDED (0.32.8/0.32.9); round-2 native bake-off clean -> Tier-C pick FLIPPED to muse-glimmer (operator-directed; qwen3.6 fallback); nemotron-3.5-lightning REJECTED (discipline failures); guard-paths plugin relative-path bypass FOUND+FIXED (resolve-before-match). REMAINING: (a) Qwen 3.8 27B bake-off at weights-drop (SLIPPED its promised week; no date); (b) OpenCode headless P4 artifact (external tool-output spill + perm auto-reject) needs a config answer before MCP-heavy headless Tier-B work; (c) optional dflash draft-model speculative decode, untested. Record: .agents/migration/verification/bakeoff-round2-plugin-fix-2026-08-11.md
 - [2026-08-11] Extend tools/open-loops.py scan_review_dates() to also scan wiki/research/gates/gates-registry.md review_date column (currently decision-log.md only, so every gate sheet's review date is invisible unless mirrored by hand). Deferred deliberately: ~9 registry rows are already past review with empty outcomes and would flood the session-start digest on day one -- the extension needs an outcome-filled/`--` skip and a triage pass in the same change. /gate b first.
-- [2026-08-16] SECURITY: vault-search HNSW index LEAKS private/ (E4 probe: `<private-file>`, `<private-file>`, `<private-file>` excerpts in top hits -- the documented exclusion set binds the vault-researcher SUBAGENT, not the index). Any surface wired to the index (MCP server incl. cloud sessions, semantic-context-inject hook, qsearch CLIs) can surface private/ content into context. Remediation: rebuild the index with a proven exclusion (manual refresh cmd in memory reference_vault_search_reindex) + re-run the E4 probe (0 excluded-tree hits) + only then restore vault-search to the relay worker's mcp_allowlist. Until then the worker allowlist stays {openinsider}.
+- [2026-08-16] SECURITY: vault-search HNSW index LEAKS private/ (E4 probe: a private file, a private file, a private file excerpts in top hits -- the documented exclusion set binds the vault-researcher SUBAGENT, not the index). Any surface wired to the index (MCP server incl. cloud sessions, semantic-context-inject hook, qsearch CLIs) can surface private/ content into context. Remediation: rebuild the index with a proven exclusion (manual refresh cmd in memory reference_vault_search_reindex) + re-run the E4 probe (0 excluded-tree hits) + only then restore vault-search to the relay worker's mcp_allowlist. Until then the worker allowlist stays {openinsider}.
 - [2026-08-16] test-relay.py suite hardening (T3/T5 families): incumbent scores 100% and nemotron discriminates only on T7a determinism -- the containment architecture (sentinel+tagging) now shields even weak models from the C7-shape, so model-side discrimination needs harder recovery/relay cases before the suite can adjudicate MODEL swaps (containment + acceptance use is fine as-is).
 - [2026-08-16] E2 attribution-header A/B rerun with a process-TREE-kill runner (taskkill /T): the -p mode-3 sessions wedge client-side in the post-generation delay and orphan claude.exe children, starving a sequential A/B. Mode-3-only concern; does not gate the relay program.
 - [2026-08-16] Relay v1.1: edgar-tools + fred into the worker allowlist (E5 re-probe each: 3/3 cold <60s + key handling review; edgar has a recorded >500s cold spawn) + relay-mcpd warm pool at lane-arm time (ships WITH edgar, whose cold start is the reason it exists). delegate.py lane-mutex acquisition (6 lines, deferred from v1 to avoid touching the fixture-pinned tool mid-program). Statusline relay chip after 10 real legs (Fable-review cut).

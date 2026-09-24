@@ -5,21 +5,21 @@ target_path: .claude/skills/brief/ref-briefing-structure.md
 tags: [topic/briefing-structure, topic/analytic-tradecraft, topic/briefing]
 aliases: [briefing structure, briefing format, morning note structure, PDB structure, composition doctrine]
 related:
-  - "*hot* (not published)"
+  - "hot"
   - "[[ref-regime-taxonomy]]"
   - "[[ref-evidence-hierarchy]]"
   - "[[ref-research-methodology]]"
   - "[[analysis-depth-standard]]"
   - "[[ref-macro-landscape]]"
   - "[[ref-monitoring-rules]]"
-  - "*ref-portfolio-doctrine* (not published)"
-  - "*ref-market-calendar* (not published)"
-  - "*ref-geopolitical-framework* (not published)"
-  - "*thesis-theme-alpha* (not published)"
-  - "*thesis-theme-beta* (not published)"
-  - "*thesis-theme-gamma* (not published)"
-  - "*thesis-theme-delta* (not published)"
-  - "*thesis-theme-epsilon* (not published)"
+  - "ref-portfolio-doctrine"
+  - "ref-market-calendar"
+  - "ref-geopolitical-framework"
+  - "thesis-theme-alpha"
+  - "thesis-theme-beta"
+  - "thesis-theme-gamma"
+  - "thesis-theme-delta"
+  - "thesis-theme-epsilon"
 status: active
 created: 2026-04-23
 updated: 2026-04-23

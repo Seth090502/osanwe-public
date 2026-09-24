@@ -18,7 +18,7 @@ hooks:
   pre_tool_call:
     - match:
         tools: [write_file, patch, terminal]
-      run: python <VAULT_ROOT>/tools/precommit.py --pretool
+      run: python tools/precommit.py --pretool
       fail_closed: true
 ```
 

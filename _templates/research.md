@@ -14,7 +14,7 @@ related:
 
 # <% tp.file.title %>
 
-Confidence Rating: 
+Confidence Rating:
 
 ## Executive Summary
 

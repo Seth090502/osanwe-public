@@ -52,7 +52,7 @@ EXEMPT_DIRS = {"_archive", "_quarantine", ".claude", ".agents", ".codex", ".git"
                "data"}  # data/ = gitignored non-vault data files (S10 FP source; tenfold-t10)
 EXEMPT_PATHS = {
     "CLAUDE.md", "CLAUDE.local.md",
-    "AGENTS.md", "AGENTS.override.md", "AGENTS.override.md.template",
+    "AGENTS.md", "AGENTS.override.md", "docs/agents-override-template.md",
     "docs/PROJECT-OSANWE-PACKET.md", "docs/VAULT-HANDOFF-V16.md",
     "docs/fs-watcher.md",  # docs file, no frontmatter required; precheck false-positive
     "tools/migrations/README.md",

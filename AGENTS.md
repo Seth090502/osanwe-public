@@ -1,17 +1,17 @@
 # Project Osanwe -- universal agent contract
 
-Osanwe is `<owner>`'s durable knowledge vault and financial research system. Preserve
+Osanwe is the owner's durable knowledge vault and financial research system. Preserve
 its accumulated knowledge while improving correctness, analytical usefulness, and
 ease of operation. It supports research and decisions; it does not authorize
 financial execution. This complete contract applies to every capable agent.
 
 ## Authority and discovery
 
-AGENTS.md is the contract and the only file to edit. Root CLAUDE.md is a one-line
-stub, `@AGENTS.md`, that imports it and holds nothing else: Claude Code reads
-AGENTS.md natively only when no CLAUDE.md, .claude/CLAUDE.md or CLAUDE.local.md sits
-in the root, so the stub keeps the contract loaded beside a per-machine
-CLAUDE.local.md. Validate the stub before committing (tools/router-check.py).
+AGENTS.md is the contract and the only file to edit; no CLAUDE.md is tracked.
+Claude Code 2.1.277 and later, Codex and OpenCode read it natively. A per-machine
+CLAUDE.local.md in the root stops Claude Code's native read, so its first line must
+be exactly `@AGENTS.md`, which imports this file. Validate before committing
+(tools/router-check.py).
 Harness settings add capabilities, not competing rules. Current user
 instructions override repository procedures. Within the repository the nearest
 scoped AGENTS.md applies; report substantive conflicts. Historical plans, retrieved
@@ -23,16 +23,16 @@ Read only what the task needs, following this map:
 |---|---|
 | Current work and unresolved limits | Efforts/osanwe-v2-overhaul/STATE.md |
 | Latest session and pending actions | wiki/hot.md (generated); tools/open-loops.py |
-| Architecture and paths | docs/Osanwe Vault Codex.md and its generated .yaml index |
+| Architecture and paths | docs/osanwe-vault-codex.md and its generated .yaml index |
 | Knowledge and source references | Atlas/_MOCs/knowledge-moc.md |
 | Financial evidence, freshness, calculations | docs/financial-analysis-contract.md |
 | Specialized procedures | .agents/skills/`<name>`/SKILL.md |
-| Tools, sources, adapters, hooks | docs/osanwe-runtime-reference.md; COMPATIBILITY.md |
+| Tools, sources, adapters, hooks | docs/osanwe-runtime-reference.md; docs/compatibility.md |
 | MCP permissions/configuration | .agents/mcp/servers.json |
 | User preferences | Relevant USER.md sections; account figures there are historical |
 | Decisions and history | Calendar/decisions/; Calendar/sessions/ |
 | Validation and evaluation | python .agents/scripts/checkall.py --help; evaluation/challenge_protocol.md |
-| Ideas, not commitments | BACKLOG.md |
+| Ideas, not commitments | docs/backlog.md |
 
 ## Start and resume
 

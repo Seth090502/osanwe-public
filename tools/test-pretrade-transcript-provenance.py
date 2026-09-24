@@ -27,7 +27,7 @@ day; it is printed, counted and attributed on every single run instead. Deleting
 an XFAIL case to quieten the output is the one thing that must not happen -- the
 defect list below is the honest state of this control.
 
-OPEN DEFECTS THIS SUITE DOCUMENTS (see AUDIT.md / the audit's DEFECTS.md)
+OPEN DEFECTS THIS SUITE DOCUMENTS (see docs/audit.md)
 
     D70  machine-written turns are treated as turns a person typed
     D72  the authorization is bound to an order id the MODEL chooses, not to the

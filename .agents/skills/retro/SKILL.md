@@ -48,7 +48,7 @@ Check before any action:
 4. Inspect changes on the four targets. Preserve unrelated changes and checkpoint the baseline. Changes authored by this same authorized session belong in its atomic close; do not force an extra commit or permission loop. Unattributable changes require reconciliation before writing.
 5. Load vault indexes: TICKERS, COMPANIES, MOC_STEMS, THESIS_STEMS, ALL_BASENAMES (for Related wikilinks derivation)
 6. Compute pre-edit sha256 for each of the 4 target files (baseline for body preservation)
-7. **Fills-reconcile gate (X47p, MANDATORY when orders exist):** if this session placed, staged, or modified any equity order (a the broker order tool was invoked, a staged-order JSON exists under the T11 action-staircase convention, or an *execute-or-decline* (not published) row whose action is a trade execution flipped this session), reconcile fills FIRST -- query `get_equity_orders` (the broker read MCP) for executed state and record each fill (price, qty, timestamp) into the relevant execute-or-decline Resolution + the position/entity note BEFORE composing the session record. An unreconciled fill is the dead-`reconcile-orders`-organ failure (X47): a placed trade with no artifact. If NO order was touched this session this check is a no-op -- do not fabricate a reconcile line.
+7. **Fills-reconcile gate (X47p, MANDATORY when orders exist):** if this session placed, staged, or modified any equity order (a the broker order tool was invoked, a staged-order JSON exists under the T11 action-staircase convention, or an execute-or-decline row whose action is a trade execution flipped this session), reconcile fills FIRST -- query `get_equity_orders` (the broker read MCP) for executed state and record each fill (price, qty, timestamp) into the relevant execute-or-decline Resolution + the position/entity note BEFORE composing the session record. An unreconciled fill is the dead-`reconcile-orders`-organ failure (X47): a placed trade with no artifact. If NO order was touched this session this check is a no-op -- do not fabricate a reconcile line.
 
 ### Phase B -- Session boundary detection (v2.1 ordered fallback)
 
@@ -155,7 +155,7 @@ If `wiki/research/test-tmp/fills-cache-<today>.json` exists (written this sessio
 
 **Body-scope wikilink validation (v2.2 -- 95-floor architecture)**:
 
-Conversation transcripts often contain `[[X]]` wikilink syntax in prose (e.g., `[[Project-Osanwe]]` referring to the vault codename, `[[<private-file>]]` referring to an auto-memory file). When extracted decision/learning/follow-up/insight text is composed verbatim into sessions-log + decision-log, those wikilinks become broken references in the audit-trail files. This was the primary regression vector in the 04-27 incident (vault score 100 -> 35 in 24h).
+Conversation transcripts often contain `[[X]]` wikilink syntax in prose (e.g., `[[Project-Osanwe]]` referring to the vault codename, `[[a private file]]` referring to an auto-memory file). When extracted decision/learning/follow-up/insight text is composed verbatim into sessions-log + decision-log, those wikilinks become broken references in the audit-trail files. This was the primary regression vector in the 04-27 incident (vault score 100 -> 35 in 24h).
 
 **Fence-awareness pin (HI-4 fix; Reviewer C F4):** the body-scope scan MUST mirror tools/vault-audit.py v2.1.1 extract_wikilinks() semantics: code-fence-aware (skip lines inside ` ``` ` fenced blocks; up to 3 spaces of indent allowed before fence open per CommonMark), inline-backtick-aware (strip ` `inline code` ` spans before scanning), 4-space-indent code-block-aware (skip wikilinks inside indented code blocks). Wikilinks inside fenced or inline code are PRESERVED verbatim (they are illustrative, not navigational). This prevents over-stripping of decision-text examples that legitimately reference wikilink syntax.
 
@@ -238,7 +238,7 @@ Canonical sessions-log schema:
     - Commit `<SHA>`: `<subject>`
     ...
 
-    **Related:** *`<link-1>`* (not published), *`<link-2>`* (not published), ...
+    **Related:** `<link-1>`, `<link-2>`, ...
 
 Find end of sessions-log.md as insertion anchor. Compose and append new entry with blank-line separator.
 
@@ -264,7 +264,7 @@ Entry format:
     - **Decision:** <decision text>
     - **Rationale:** `<rationale>`
     - **Source:** `<session-title>`; commit `<SHA-if-applicable>`
-    - **Related:** *`<wikilinks>`* (not published)
+    - **Related:** `<wikilinks>`
 
 Find end of decision-log.md; append. Per-file body preservation gate same as Phase F.
 
@@ -455,7 +455,7 @@ Phase E derives:
 
 - Title: "Skill SOTA development (/enrich v9 + /ingest v2 + /deep v2)"
 - Domain: meta/skill-infrastructure
-- Related: [[knowledge-moc]], *hot* (not published), *sessions-log* (not published), *decision-log* (not published), *geopolitics-playbook* (not published), *LMT* (not published), *RTX* (not published), *investing-moc* (not published), ...
+- Related: [[knowledge-moc]], hot, sessions-log, decision-log, geopolitics-playbook, LMT, RTX, investing-moc, ...
 
 Phases F-I apply atomically. Phase J commits 4-file atomic. Phase K clears F11.
 

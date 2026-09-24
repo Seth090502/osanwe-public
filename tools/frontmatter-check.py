@@ -25,7 +25,7 @@ Bypass: CLAUDE_VAULT_BYPASS_VALIDATOR=1 in env (logged to
 Skipped directories (anywhere in the path): .claude/, .agents/, .codex/, _archive/,
 _quarantine/, .git/, node_modules/, .checkpoints/, and any directory named
 maintenance. Per-file exempts: CLAUDE.md, CLAUDE.local.md, AGENTS.md,
-AGENTS.override.md, AGENTS.override.md.template, docs/PROJECT-OSANWE-PACKET.md,
+AGENTS.override.md, docs/agents-override-template.md, docs/PROJECT-OSANWE-PACKET.md,
 docs/VAULT-HANDOFF-V16.md, docs/CODEX-COMPATIBILITY.md, tools/migrations/README.md.
 Validates only Markdown writes under wiki/, Calendar/, Efforts/, Atlas/
 (VALIDATE_DIRS). Also skipped, silently: a payload that is not JSON or has no
@@ -44,7 +44,7 @@ VAULT_ROOT = Path(r"/path/to/vault")
 EXEMPT_DIRS = {"_archive", "_quarantine", ".claude", ".agents", ".codex", ".git", "node_modules", ".checkpoints"}
 EXEMPT_PATHS = {
     "CLAUDE.md", "CLAUDE.local.md",
-    "AGENTS.md", "AGENTS.override.md", "AGENTS.override.md.template",
+    "AGENTS.md", "AGENTS.override.md", "docs/agents-override-template.md",
     "docs/PROJECT-OSANWE-PACKET.md", "docs/VAULT-HANDOFF-V16.md",
     "docs/CODEX-COMPATIBILITY.md",
     "tools/migrations/README.md",

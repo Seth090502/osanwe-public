@@ -165,7 +165,7 @@ sets `BROKERAGE_WARN = "UNVERIFIED: <missing scope>"` for the header and
 Intelligence Gaps. Public-market briefing work continues, but affected dollar
 impact, P&L and whole-book claims remain unavailable; no saved-file fallback.
 
-A.5 -- Same-day collision detection: if `Calendar/decisions/briefings/briefing-<today>.md` exists AND no `--replace`, default output to `briefing-<today>-<HHMM>.md` (HHMM from clock). If same-HHMM file also exists, HALT (sub-minute re-run ambiguous; ask `<owner>`).
+A.5 -- Same-day collision detection: if `Calendar/decisions/briefings/briefing-<today>.md` exists AND no `--replace`, default output to `briefing-<today>-<HHMM>.md` (HHMM from clock). If same-HHMM file also exists, HALT (sub-minute re-run ambiguous; ask the owner).
 
 A.6 -- Validate `tools/fetch-prices.py` exists; HALT if missing (script is load-bearing for Phase D).
 
@@ -218,7 +218,7 @@ PROCEED? Abort now = pre-F11, zero writes.
 
 If `--preview`: stop after Phase N (composition complete in memory); render briefing + meta + audit to stdout; SKIP O-P; F11 never set; exit clean.
 
-If `--confirm`: block for `<owner>` `yes` before Phase C; also block before each Phase P write.
+If `--confirm`: block for the owner `yes` before Phase C; also block before each Phase P write.
 
 Else: autonomously proceed.
 
@@ -231,7 +231,7 @@ C.2 -- Parallel context load (READ-only):
 - **Portfolio**: obtain current {ticker, shares, cost_basis, account} from available broker read tools. Reconcile account coverage and overlapping positions; unavailable basis/quantities stay UNVERIFIED. Apply corporate-action normalization only when supported by dated evidence. Never read private/ or *.local.md.
 - **Constraints/caveats**: current-session user instructions and dated authoritative corporate-action/basis evidence; unresolved basis means no P&L.
 - **Refs**: `Atlas/sources/investing/ref-{macro-landscape,monitoring-rules,portfolio-doctrine,geopolitical-framework,market-calendar}.md`. Macro outlook + watchlist + investing-research-log from `Atlas/concepts/investing/`.
-- **Theses**: all 5 `Atlas/concepts/investing/theses/thesis-*.md` essays. Extract per-thesis invalidation-triggers list. HALT Phase H if any thesis file missing (structural gap; ask `<owner>`).
+- **Theses**: all 5 `Atlas/concepts/investing/theses/thesis-*.md` essays. Extract per-thesis invalidation-triggers list. HALT Phase H if any thesis file missing (structural gap; ask the owner).
 - **hot.md**: full body. Extract Last Session + Pending Items + Active Context. Capture `last_briefing:` ISO for continuity context.
 - **Entity recency**: `git log --since='7 days ago' --name-only -- 'wiki/entities/tickers/*.md' | sort -u`. For each, Read; extract any thesis-status shifts in body + recent Financial signals entries. Surface in Phase H input.
 - **Challenge recency**: `git log --since='14 days ago' --name-only -- 'wiki/research/challenges/*.md' | sort -u`. For each, Read; extract invalidation verdict.
@@ -274,7 +274,7 @@ D.1 -- Build ticker lists from Phase C portfolio + watchlist:
 D.2 -- Execute (Windows: `python`, never `python3`):
 
 ```
-python <VAULT_ROOT>/tools/fetch-prices.py \
+python tools/fetch-prices.py \
   --equities "<comma-separated EQUITIES>" \
   --crypto "<comma-separated CRYPTO>"
 ```
@@ -398,7 +398,7 @@ Binary per Pattern 7. Definitions:
 - Render per-trigger state in the Status Board Evidence cell (e.g. `<trigger-id>: FIRED <date>, /decide pending`) + a staleness line per thesis: `manual: N unevaluated (oldest review <date>)`.
 - **Write-back of `fired:` is Pattern-20-gated**: /brief NEVER edits Atlas. A newly-observed fire emits a FOLLOWUPS:skills line (`/decide -- trigger <id> fired; ratify fired-date write-back`) and the write lands in the confirmed session. Evaluation itself is read-only.
 - Back-compat: thesis essay without a `triggers:` block -> prose-judgment evaluation exactly as before (zero behavior change).
-- **GATE-T adjudication (judgment-gates kit, 2026-07-06)**: `manual:` rows and evidence-interpretation triggers (`source: manual` / `window: earnings_window`) are never machine-evaluated. When the prose judgment layer proposes a thesis-status change (either direction) resting on such a trigger, a same-day GATE-T sheet is REQUIRED: run the GATE-T procedure per `.agents/skills/gate/ref-gate-tables.md` (fill evidence markers with provenance, `python <VAULT_ROOT>/tools/gate-eval.py --compute` -- never judge the verdict -- write the sheet to `wiki/research/gates/`, `--check`, registry row), and cite the sheet in the Evidence cell. FIRED backs the status floor (the `fired:` write-back stays Pattern-20-gated via /decide FOLLOWUP; the sheet is its evidence record). INSUFFICIENT-EVIDENCE -> status unchanged + evidence-collection EOD row. NOT-FIRED -> status unchanged; the sheet prevents re-litigating the same evidence daily. N/A in --quick (H-lite has no prose judgment layer). Enforced by HALT item 22a.
+- **GATE-T adjudication (judgment-gates kit, 2026-07-06)**: `manual:` rows and evidence-interpretation triggers (`source: manual` / `window: earnings_window`) are never machine-evaluated. When the prose judgment layer proposes a thesis-status change (either direction) resting on such a trigger, a same-day GATE-T sheet is REQUIRED: run the GATE-T procedure per `.agents/skills/gate/ref-gate-tables.md` (fill evidence markers with provenance, `python tools/gate-eval.py --compute` -- never judge the verdict -- write the sheet to `wiki/research/gates/`, `--check`, registry row), and cite the sheet in the Evidence cell. FIRED backs the status floor (the `fired:` write-back stays Pattern-20-gated via /decide FOLLOWUP; the sheet is its evidence record). INSUFFICIENT-EVIDENCE -> status unchanged + evidence-collection EOD row. NOT-FIRED -> status unchanged; the sheet prevents re-litigating the same evidence daily. N/A in --quick (H-lite has no prose judgment layer). Enforced by HALT item 22a.
 
 **Alert emission (T4 push channel one; 2026-07-04)**: after trigger evaluation, compute `alerts_fired` = newly-observed fires ONLY (condition evaluates true AND no `fired:` date recorded in the essay frontmatter; recorded-fired rows re-render in the board but NEVER re-alert -- alarm-fatigue guard). For each entry `{id: "<thesis>-<trigger-id>-<YYYY-MM-DD>", trigger, thesis, class, detail, push}`:
 - Send PushNotification: one line, trigger id + thesis + observed value vs threshold (+ dollar exposure when in hand). Tool unavailable/failed -> `push: "failed"`, continue (never HALT the briefing on the alert leg). Interactive sessions may return not-sent/terminal-active (harness dedup; the alert reaches the user in-session) -> `push: "skipped-active"`, delivery-equivalent.
@@ -411,7 +411,7 @@ Frontmatter: `thesis_statuses: {theme-alpha: HEALTHY, theme-beta: WATCH, ...}`.
 
 Action: any thesis shifting HEALTHY -> WATCH (or worse) emits `/challenge thesis-<slug>` to FOLLOWUPS:skills + Warning Problems entry.
 
-Failure: all 5 thesis files missing -> HALT Phase H with explicit error; ask `<owner>` (structural gap).
+Failure: all 5 thesis files missing -> HALT Phase H with explicit error; ask the owner (structural gap).
 
 ## Phase I: Overnight Earnings + Geopolitical (conditional; skip when absent)
 
@@ -606,7 +606,7 @@ Assert each item below before any Write. Any failure -> HALT, report which item 
 - Script fallback mode active -> cap 60%
 - Price provenance (C5 mirror of /invest Pre-Output Gate 6a): if the quote feeding any dollar-impact line was non-broker (price-fetcher `broker_authoritative: false`) during `market_session == regular` -> cap 60% + flag "price-unconfirmed (non-broker)" in the briefing header. N/A outside regular session; applies to every harness with a regular-session quote.
 
-If frontmatter `confidence:` exceeds applicable cap: HALT; `<owner>` must authorize override explicitly.
+If frontmatter `confidence:` exceeds applicable cap: HALT; the owner must authorize override explicitly.
 
 **ASCII pre-write scan (Pattern 22)**: apply Part III sec 3.4 replacement table to all NEW content; byte-scan; HALT on any byte > 127 (modulo pre-existing legacy in unmodified body sections).
 
@@ -732,7 +732,7 @@ Validate subagent return per its contract; on failure fall through to direct `py
 
 ### Phase P.1: Peripheral atomic updates (continues unchanged below)
 
-All four non-briefing updates MUST succeed. Mid-batch failure -> Pattern 13 F.halt: abort remaining writes, F11 stays on, structured report (succeeded / failed / not-attempted), `<owner>` decides (rollback via `git checkout -- <paths>` or fix-and-retry with idempotency).
+All four non-briefing updates MUST succeed. Mid-batch failure -> Pattern 13 F.halt: abort remaining writes, F11 stays on, structured report (succeeded / failed / not-attempted), the owner decides (rollback via `git checkout -- <paths>` or fix-and-retry with idempotency).
 
 **Update 1: `Calendar/daily/<today>.md` `## Market Pulse` section**
 
@@ -809,11 +809,11 @@ Peripheral atomic updates:
 
 **F14 narrow stage** each file explicitly. **Never** `git add -A` / `git add .`.
 
-**Post-commit F17 verify**: `git log -1 --format='%B' HEAD | grep -c '^Co-Authored-By:'` must equal 0. If found, HALT; ask `<owner>` (do NOT silently proceed).
+**Post-commit F17 verify**: `git log -1 --format='%B' HEAD | grep -c '^Co-Authored-By:'` must equal 0. If found, HALT; ask the owner (do NOT silently proceed).
 
 **Clear F11**: `rm .claude/state/auto-commit-disabled`. Assert absence.
 
-**Audit Report** (stdout to `<owner>`):
+**Audit Report** (stdout to the owner):
 
 ```
 ## /brief v2 run complete

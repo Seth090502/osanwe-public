@@ -154,7 +154,7 @@ On dispatch success: queue the returned `edits[]` for Phase F atomic apply. Cont
    - For each new claim:
      - **Dedup (marker signature + text)**: signature-match OR substring-match -> SKIP (log "already present")
      - **Contradiction detection** (same entity+metric, different value):
-       - Tier 1 auto-resolve: new claim has strictly newer date AND equal-or-higher authority -> append new + mark existing with "(superseded `<new-date>` per *source-stem* (not published))"
+       - Tier 1 auto-resolve: new claim has strictly newer date AND equal-or-higher authority -> append new + mark existing with "(superseded `<new-date>` per source-stem)"
        - Tier 2 flag: similar authority -> append both visibly + NOTE
        - Tier 3 reject: new claim has clearly lower authority -> skip + add to "rejected claims" in report
      - **Claim-to-section mapping (deterministic routing)**:
@@ -163,7 +163,7 @@ On dispatch success: queue the returned `edits[]` for Phase F atomic apply. Cont
        - Risk mentions (customer concentration, regulatory, supply chain) -> "## Risks"
        - Catalyst / earnings / product launch / policy event -> "## Catalysts"
        - Dated event (acquisition, strike, partnership) -> "## Recent" with date subheader
-       - Fallback (unmapped): "## Claims from *source-stem* (not published) (`<date>`)"
+       - Fallback (unmapped): "## Claims from source-stem (`<date>`)"
      - If target section absent in entity body: CREATE section header + insert claim
      - If target section present: APPEND claim under existing section (preserve ordering within section: newest first)
 
@@ -193,19 +193,19 @@ Validate subagent return per its contract; on contract violation or dispatch fai
 - Pre-edit: read entity_body_bytes -> before_sha256
 - Compose Edit per section_target; inline provenance format:
 
-      - {claim_text} ({grade}, per *{source-stem}* (not published))
+      - {claim_text} ({grade}, per {source-stem})
 
   For contradiction Tier-1 resolution:
 
-      - {new_claim_text} ({grade}, per *{source-stem}* (not published))
-        (supersedes prior: {old_claim_text} per *{old-source-stem}* (not published))
+      - {new_claim_text} ({grade}, per {source-stem})
+        (supersedes prior: {old_claim_text} per {old-source-stem})
 
 - Apply Edit tool
 - Post-edit gates (MECHANICAL):
   - before_sha256 != after_sha256
   - Each new claim_text appears exactly once post-edit
   - Diff strictly additive (except Tier-1 supersede annotations which are text additions)
-  - Frontmatter `updated:` bumped; `related:` extended with *source-stem* (not published) if absent (idempotent); other fields byte-exact
+  - Frontmatter `updated:` bumped; `related:` extended with source-stem if absent (idempotent); other fields byte-exact
 
 **F.2 Entity creations** (for each new entity meeting substantive threshold):
 - Compose canonical frontmatter grounded in _templates/entity.md:
@@ -225,9 +225,9 @@ Validate subagent return per its contract; on contract violation or dispatch fai
         - {ticker|company}/`<NAME>`
         - topic/`<primary-topic>`
       related:
-        - "*{source-stem}* (not published)"
-        - "*{domain-moc-stem}* (not published)"
-        - "*{relevant-ref-doc-stem-if-any}* (not published)"
+        - "{source-stem}"
+        - "{domain-moc-stem}"
+        - "{relevant-ref-doc-stem-if-any}"
       ---
 
 - Body: H1 + overview paragraph synthesized from HIGH/MEDIUM claims + section placeholders matching template (canonical strict order: ## Financial signals, ## Thesis Fit, ## Risks, ## Catalysts, ## Recent, ## Position, ## Sources) + initial claims populated under appropriate sections per Phase E mapping
@@ -249,9 +249,9 @@ Validate subagent return per its contract; on contract violation or dispatch fai
     created: 2026-04-21
     updated: 2026-04-21
     related:
-      - "*geopolitics-playbook* (not published)"
-      - "*investing-moc* (not published)"
-      - "*ref-geopolitical-framework* (not published)"
+      - "geopolitics-playbook"
+      - "investing-moc"
+      - "ref-geopolitical-framework"
     ticker: LMT
     sector: Defense (Aerospace & Defense)
     ---
@@ -265,12 +265,12 @@ Validate subagent return per its contract; on contract violation or dispatch fai
     <synthesized from HIGH/MEDIUM claims: 1-paragraph framing>
 
     ## Financial signals
-    - Backlog trajectory: $150B pre-2022-invasion -> $176B end-2024 -> $194B end-2025 (HIGH, per *geopolitics-playbook* (not published))
-    - Book-to-bill ratio: 1.6 in Q4 2024 (HIGH, per *geopolitics-playbook* (not published))
-    - Sales growth: 6% (MEDIUM, per *geopolitics-playbook* (not published))
+    - Backlog trajectory: $150B pre-2022-invasion -> $176B end-2024 -> $194B end-2025 (HIGH, per geopolitics-playbook)
+    - Book-to-bill ratio: 1.6 in Q4 2024 (HIGH, per geopolitics-playbook)
+    - Sales growth: 6% (MEDIUM, per geopolitics-playbook)
 
     ## Thesis Fit
-    - Backlog-to-revenue conversion locked through 2030 regardless of political outcome (HIGH, per *geopolitics-playbook* (not published))
+    - Backlog-to-revenue conversion locked through 2030 regardless of political outcome (HIGH, per geopolitics-playbook)
 
     ## Risks
     <populated if source has risk claims>
@@ -285,7 +285,7 @@ Validate subagent return per its contract; on contract violation or dispatch fai
     <current shares + cost-basis snapshot; last decision date; doctrine-ceiling proximity>
 
     ## Sources
-    - *geopolitics-playbook* (not published) (2026-04-21)
+    - geopolitics-playbook (2026-04-21)
 
 Post-write: ruamel.yaml parse gate + tag-vocabulary guardrail assertion + sha256 record for future idempotency comparison.
 
@@ -317,8 +317,8 @@ Write to `wiki/research/<source-stem>-ingest-<date>.md` with canonical frontmatt
         - topic/`<primary-topic-2>`
         ...
       related:
-        - "*`<source-stem>`* (not published)"
-        - "*`<each-entity-stem>`* (not published)"
+        - "`<source-stem>`"
+        - "`<each-entity-stem>`"
         ...
       ---
 
@@ -468,7 +468,7 @@ After both skills run on a single source:
 
 **Phase E (dedup + contradiction detection):** dedup skips ~30 claims already in existing entities (matched by marker_signature despite text variance from prior sources). 2 Tier-1 auto-resolutions: NVDA Q3 2024 backlog $480B superseded by Q4 2024 $500B (newer date, higher authority primary source); AMD MI300 revenue Q2-2024 superseded by Q3-2024 figure. No Tier-2 or Tier-3 contradictions. ~50 net-new claims remain for Phase F.
 
-**Phase F (atomic apply):** 7 entity Edits (each entity's body gets new claims appended under section_target headers per claim-to-section mapping); each entity's `updated:` bumped; each entity's `related:` extends with *ref-theme-alpha-deep-dive* (not published) if absent. Source `related:` extends with ingest-report wikilink (audit chain closure). Ingest report written to wiki/research/ref-theme-alpha-deep-dive-ingest-2026-04-22.md. No MOC back-links fire (all 7 entities already exist in investing-moc.md from prior work).
+**Phase F (atomic apply):** 7 entity Edits (each entity's body gets new claims appended under section_target headers per claim-to-section mapping); each entity's `updated:` bumped; each entity's `related:` extends with ref-theme-alpha-deep-dive if absent. Source `related:` extends with ingest-report wikilink (audit chain closure). Ingest report written to wiki/research/ref-theme-alpha-deep-dive-ingest-2026-04-22.md. No MOC back-links fire (all 7 entities already exist in investing-moc.md from prior work).
 
 **Phase G (commit):** atomic commit, 9 paths staged (ingest report + 7 entity updates + source). Commit title: `vault(ingest): ref-theme-alpha-deep-dive -- 50 claims distributed across 7 entities + 2 Tier-1 supersedes`.
 
@@ -478,7 +478,7 @@ After both skills run on a single source:
 
 **Phase D:** 41 claims across 7 thematic clusters (oil / gold / defense / chokepoints / nuclear / escalation / portfolio rules). 7 substantive entities identified (LMT, RTX, XAR, ITA, PPA, VDE, IAU), each with >=2 mentions + dedicated section coverage. Tier 1 analytical synthesis source quality.
 
-**Phase E:** 7 new entities created (all substantive-threshold met); no existing entity updates (zero overlap with pre-existing vault tickers since defense/energy/precious-metals entities did not exist pre-ingest); zero contradictions (playbook covers territory complementary to *ref-geopolitical-framework* (not published)'s US-China+crypto scope).
+**Phase E:** 7 new entities created (all substantive-threshold met); no existing entity updates (zero overlap with pre-existing vault tickers since defense/energy/precious-metals entities did not exist pre-ingest); zero contradictions (playbook covers territory complementary to ref-geopolitical-framework's US-China+crypto scope).
 
 **Phase F:** 7 new entity notes created at `wiki/entities/tickers/{LMT,RTX,XAR,ITA,PPA,VDE,IAU}.md`, each grounded in `_templates/entity.md` with canonical frontmatter (categories: [entity], type: ticker, sector derived from claim context, topic tags only per vocabulary guardrail) + section placeholders populated with initial claims per claim-to-section mapping. `Atlas/_MOCs/investing-moc.md` `related:` extended with 7 new entity stems (v2 F.3 MOC back-linking rule). Source `related:` extended with 7 entity stems (symmetric) + ingest-report stem (v2 audit chain closure). Ingest report written to `wiki/research/geopolitics-playbook-ingest-2026-04-21.md`.
 

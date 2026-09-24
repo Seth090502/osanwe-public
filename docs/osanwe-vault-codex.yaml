@@ -182,7 +182,7 @@ gaps: []
 entry_points:
   contract: AGENTS.md
   current_state: Efforts/osanwe-v2-overhaul/STATE.md
-  architecture: docs/Osanwe Vault Codex.md
+  architecture: docs/osanwe-vault-codex.md
   financial_methodology: docs/financial-analysis-contract.md
   knowledge: Atlas/_MOCs/knowledge-moc.md
   evaluation: evaluation/challenge_protocol.md

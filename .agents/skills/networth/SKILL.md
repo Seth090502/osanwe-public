@@ -78,7 +78,7 @@ Latest prior `wiki/investing/snapshots/networth-*.md`: change since ($ and %), b
 
 ### Phase 3 -- Compose snapshot
 
-Writes to `wiki/investing/snapshots/networth-<YYYY-MM-DD>.md` (plus the Phase 4 peripherals: wiki/hot.md bump, daily note, sessions-log); same-day collision -> `-HHMM` variant (archival rule). Frontmatter: canonical + `type: snapshot` + `valuation_session: <regular|after-hours|pre-market|closed>` + `related:` *investing-moc* (not published).
+Writes to `wiki/investing/snapshots/networth-<YYYY-MM-DD>.md` (plus the Phase 4 peripherals: wiki/hot.md bump, daily note, sessions-log); same-day collision -> `-HHMM` variant (archival rule). Frontmatter: canonical + `type: snapshot` + `valuation_session: <regular|after-hours|pre-market|closed>` + `related:` investing-moc.
 
 Body: `# Portfolio Snapshot -- <date>`; combined value + prices-as-of timestamp + source mix (broker-authoritative count / script / fallback); `## By Account` table; `## All Positions` table (Ticker | Account | Shares | Price | Value | Weight | Gain/Loss -- CROSS_ACCOUNT_SET rows shown combined with per-account sub-rows; caveat-flagged rows show current value only); `## By Thesis` table (rows = the DERIVED thesis map; dual-basis: Strict Value/Weight + Effective Value/Weight | Positions); `## Concentration` (top name %, top-5 %, crypto % -- each vs its doctrine ceiling with headroom, both bases where they differ); `## Change vs prior snapshots` (Phase 2.5 output: delta $/%, best/worst performer, drift, reserve progress); `## Notes` (every applicable CAVEAT_MAP line + reserve status + crypto-reconciliation result + UNVERIFIED coverage / `price-unconfirmed` disclosures). Every quantitative claim carries `prov:` (`mcp:*` > `script:*` > `file:*` > `web:*`).
 

@@ -6,7 +6,7 @@ fees, slippage) for a given (ticker, order_size_usd), classified into six
 instrument classes. Includes a break-even alpha calculator: the minimum
 expected return advantage a trade must have to justify paying its costs.
 
-Methodology (summary -- full write-up in docs/EXECUTION-COST-MODEL.md):
+Methodology (summary -- full write-up in docs/execution-cost-model.md):
 
   * Spread cost per side = half the quoted bid-ask spread (class-level
     prior, cross-checked against published effective-spread studies).

@@ -30,25 +30,25 @@ tags:
   - ticker/LRCX
   - ticker/KLAC
 related:
-  - "*ref-memory-storage-cycle-deep-dive* (not published)"
-  - "*WDC* (not published)"
-  - "*PSTG* (not published)"
-  - "*ALAB* (not published)"
-  - "*MRAM* (not published)"
-  - "*Kioxia* (not published)"
-  - "*MU* (not published)"
-  - "*SNDK* (not published)"
-  - "*NVDA* (not published)"
-  - "*AMD* (not published)"
-  - "*AVGO* (not published)"
-  - "*MRVL* (not published)"
-  - "*AMAT* (not published)"
-  - "*LRCX* (not published)"
-  - "*KLAC* (not published)"
-  - "*SK-Hynix* (not published)"
-  - "*Samsung* (not published)"
-  - "*investing-moc* (not published)"
-  - "*thesis-theme-alpha* (not published)"
+  - "ref-memory-storage-cycle-deep-dive"
+  - "WDC"
+  - "PSTG"
+  - "ALAB"
+  - "MRAM"
+  - "Kioxia"
+  - "MU"
+  - "SNDK"
+  - "NVDA"
+  - "AMD"
+  - "AVGO"
+  - "MRVL"
+  - "AMAT"
+  - "LRCX"
+  - "KLAC"
+  - "SK-Hynix"
+  - "Samsung"
+  - "investing-moc"
+  - "thesis-theme-alpha"
 ---
 
 # Ingested: ref-memory-storage-cycle-deep-dive
@@ -130,7 +130,7 @@ T1 fact density: 65.3 markers/1000w (4.4x HIGH threshold).
 
 #### SK-Hynix -- SK Hynix (company)
 - 11 inserts queued: Q1-26 HBM revenue share 57% / DRAM 78% / NAND 21% / cash 54.3T KRW; 2026 capex $20.5B (+17% YoY); HBM4 12-Hi mass production Sept-2025; custom HBM4E TSMC base-die collab Nov-2025; 9th-Gen 4D NAND 321-layer; $8B EUV order; DDR4 Wuxi China fab ramp; HBM5 roadmap 80GB/stack 2031; LPDDR6 1cnm world-first 2026; Kioxia 14% stake re-rated 14x; LTAs 1-yr->3-5 yr with hyperscalers; NVIDIA One Team >50% NVDA HBM share 2026
-- **Tier-1 SUPERSEDE**: 2026 capex $20.5B/+17% supersedes prior MEDIUM-grade `mid-30% level of sales 3-yr moving average` qualitative guidance (line 47); annotation: "(superseded 2026-05-06 per *ref-memory-storage-cycle-deep-dive* (not published) -- concrete figure $20.5B/+17% now disclosed)"
+- **Tier-1 SUPERSEDE**: 2026 capex $20.5B/+17% supersedes prior MEDIUM-grade `mid-30% level of sales 3-yr moving average` qualitative guidance (line 47); annotation: "(superseded 2026-05-06 per ref-memory-storage-cycle-deep-dive -- concrete figure $20.5B/+17% now disclosed)"
 - **Tier-2 FLAG**: bundled Q1-26 metrics insert (revenue + operating profit + operating margin + net margin) where most are dup of lines 44-45; recommendation: split to net-margin-only insert
 - 2 dedup-skips (Q1-26 revenue exact match line 45; HBM4E samples H2-2026 exact match line 54)
 
@@ -161,11 +161,11 @@ T1 fact density: 65.3 markers/1000w (4.4x HIGH threshold).
 
 ## MOC back-link applied (Phase F.3)
 
-- `Atlas/_MOCs/investing-moc.md`: `related:` extended with 4 new ticker stems (*WDC* (not published), *PSTG* (not published), *ALAB* (not published), *MRAM* (not published)). *Kioxia* (not published) is a company entity and is back-linked from this ingest report's `related:` and from the source `related:` (audit chain closure) but not added to the investing-moc which is ticker-focused.
+- `Atlas/_MOCs/investing-moc.md`: `related:` extended with 4 new ticker stems (WDC, PSTG, ALAB, MRAM). Kioxia is a company entity and is back-linked from this ingest report's `related:` and from the source `related:` (audit chain closure) but not added to the investing-moc which is ticker-focused.
 
 ## Source audit-chain closure (Phase F.4)
 
-- `Atlas/sources/investing/ref-memory-storage-cycle-deep-dive.md` `related:` extended with 5 new entity stems (*WDC* (not published), *PSTG* (not published), *ALAB* (not published), *MRAM* (not published), *Kioxia* (not published)) + this ingest-report stem.
+- `Atlas/sources/investing/ref-memory-storage-cycle-deep-dive.md` `related:` extended with 5 new entity stems (WDC, PSTG, ALAB, MRAM, Kioxia) + this ingest-report stem.
 
 ## Sub-threshold deferred (~12 entities; not auto-created)
 

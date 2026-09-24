@@ -174,6 +174,6 @@ detective check; `gate-eval.py --calibrate` catches them after the fact via git.
 2. Every marker present as {value, prov}; vault-path provs exist on disk.
 3. Verdict + mandates + review_date transcribed VERBATIM from --compute.
 4. --check exits 0.
-5. related: carries *gates-registry* (not published) + the touched entity/thesis.
+5. related: carries gates-registry + the touched entity/thesis.
 6. Registry row appended; mandated EOD rows appended.
 7. ASCII clean; no dollar values / share counts / position sizes.

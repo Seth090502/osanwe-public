@@ -10,7 +10,7 @@ tags:
   - topic/macro
   - topic/rates
   - topic/inflation
-related: ["[[ref-fed-policy-complete]]", "*ref-yen-carry-global-liquidity* (not published)"]
+related: ["[[ref-fed-policy-complete]]", "ref-yen-carry-global-liquidity"]
 ---
 
 # Inflation & Rates Complex Reference
@@ -199,7 +199,7 @@ Cross-market confirmation (trailing 365d, daily diffs): SPY return vs
 delta-OAS r = -0.628; delta-VIX vs delta-OAS r = +0.528. Equity drawdowns
 and credit widening remain one trade. An OAS break above ~3.50 (the
 store's 83rd-percentile-plus zone) would be an early systemic tell long
-before VIX confirms; see *ref-yen-carry-global-liquidity* (not published) sections 4-5
+before VIX confirms; see ref-yen-carry-global-liquidity sections 4-5
 for the stress-index side.
 
 ## 4. Historical context tables

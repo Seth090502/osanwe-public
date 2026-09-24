@@ -151,7 +151,7 @@ redaction having worked**, rather than on there being nothing private to redact.
 | Four independent full readings | What a careful human recognises as personal | What a reader does not recognise as personal |
 | Re-identification attempt | Whether placeholders can be inverted from the tree alone | Inference from outside the repository |
 
-*Evidence (executed).* Every row was run on the exact tree in this repository. `AUDIT.md` carries the counts
+*Evidence (executed).* Every row was run on the exact tree in this repository. `docs/audit.md` carries the counts
 and the findings.
 
 ### B3. What the re-identification attempt actually recovered

@@ -139,7 +139,7 @@ re-arm via `lane-arm.ps1`.
 Asset: `ollama-windows-amd64.zip` from release `v0.32.13` (published 2026-08-14T19:16:07Z),
 1459437863 bytes, 71 entries, `zipfile.testzip()` -> None.
 
-Rollback artifact kept at `<HOME>\AppData\Local\Programs\Ollama-rollback-0.32.9`
+Rollback artifact kept at `~\AppData\Local\Programs\Ollama-rollback-0.32.9`
 (2950440748 bytes, robocopy /MIR exit 1 = files copied, success).
 
 ```
@@ -610,7 +610,7 @@ bare `claude --model qwen3.8:27b -p` with no banner and no settings overlay (err
 release, so there was no upstream fix to upgrade into.
 
 Fix: `tools/mode3-normalize-proxy.py`, gated BUILD-JUSTIFIED
-(*gate-b-mode3-system-message-normalizer-2026-08-14* (not published), `--check` PASS). It merges
+(gate-b-mode3-system-message-normalizer-2026-08-14, `--check` PASS). It merges
 system-role messages into the single leading system block and forwards everything else
 verbatim; `claude-launcher.ps1` starts it and points `ANTHROPIC_BASE_URL` at it. It carries
 a REMOVAL trigger: the first Ollama release that fixes the renderer retires it.
@@ -623,7 +623,7 @@ thinking-block and tool-call formatting -- hand-authoring a replacement is the
 END-TO-END PROOF (the operator's actual acceptance criterion):
 
 ```
-$ pwsh -Command "claude --mode 3 -p 'Use the Read tool on <VAULT_ROOT>\config\local-lane.json and report the exact value of the ctx field. Reply with only that number.'"
+$ pwsh -Command "claude --mode 3 -p 'Use the Read tool on config\local-lane.json and report the exact value of the ctx field. Reply with only that number.'"
   starting FULLY LOCAL session on qwen3.8:27b (first load can take 30-60s) ...
 262144
 [exited with code 0]
@@ -655,7 +655,7 @@ real    0m11.040s
 
 | Workspace | turn-1 prompt | turn-2 prompt | wall clock |
 |---|---|---|---|
-| `<VAULT_ROOT>` (vault) | 55,687-56,031 tokens | 55,746-58,191 tokens (no reuse) | 5-12 min |
+| the vault root (vault) | 55,687-56,031 tokens | 55,746-58,191 tokens (no reuse) | 5-12 min |
 | bare scratch dir | 24,060 tokens | **676 tokens** (cache HIT) | **11 s** |
 
 Two effects, both large. The vault's instruction surface (CLAUDE.md -> AGENTS.md +
@@ -671,7 +671,7 @@ vault run, so it stays a hypothesis. What IS established is the table above.
 
 > **CORRECTION 2026-08-15 -- the hook hypothesis above is DISPROVEN. Do not cite it.**
 > Measured directly: the entire SessionStart chain runs in **0.12 s** (session-start.sh
-> 0.043, inject-`<private-file>`.py 0.020, session-integrity-check.sh 0.027,
+> 0.043, inject-a private file.py 0.020, session-integrity-check.sh 0.027,
 > semantic-context-inject.py 0.029), bare python startup is 0.017 s, and all 14 per-tool-call
 > hook spawns total ~0.24 s. Hook *token* volume was then blamed instead and is also wrong:
 > measured hook stdout is 2,764 bytes (~767 tokens) total.

@@ -11,8 +11,8 @@ tags:
   - topic/hot-md-schema
 aliases: [hot-md-schema, hot-schema]
 related:
-  - "*hot* (not published)"
-  - "*sessions-log* (not published)"
+  - "hot"
+  - "sessions-log"
   - "[[ref-research-methodology]]"
 ---
 
@@ -272,4 +272,4 @@ Or copy `wiki/_archive/hot-2026-05-02-pre-v2.md` back to `wiki/hot.md` for manua
 
 ## Related
 
-*hot* (not published) | *sessions-log* (not published) | [[knowledge-moc]] | [[ref-research-methodology]]
+hot | sessions-log | [[knowledge-moc]] | [[ref-research-methodology]]

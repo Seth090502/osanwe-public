@@ -9,62 +9,62 @@ tags:
   - topic/ai-supply-chain
   - topic/ingest-report
 related:
-  - "*ref-ai-supply-chain-deep-dive* (not published)"
-  - "*1X-Technologies* (not published)"
-  - "*AMBA* (not published)"
-  - "*AMKR* (not published)"
-  - "*ARM* (not published)"
-  - "*ASE-Technology* (not published)"
-  - "*Accelink* (not published)"
-  - "*Agility-Robotics* (not published)"
-  - "*Alchip* (not published)"
-  - "*Apptronik* (not published)"
-  - "*Asetek* (not published)"
-  - "*Boston-Dynamics* (not published)"
-  - "*CDNS* (not published)"
-  - "*CEG* (not published)"
-  - "*COHR* (not published)"
-  - "*CRWV* (not published)"
-  - "*Cerebras* (not published)"
-  - "*Cohere* (not published)"
-  - "*CoolIT-Systems* (not published)"
-  - "*Crusoe* (not published)"
-  - "*DELL* (not published)"
-  - "*Eoptolink* (not published)"
-  - "*FN* (not published)"
-  - "*Figure-AI* (not published)"
-  - "*GFS* (not published)"
-  - "*GUC* (not published)"
-  - "*Groq* (not published)"
-  - "*HPE* (not published)"
-  - "*HUBB* (not published)"
-  - "*Hailo* (not published)"
-  - "*Hitachi-Energy* (not published)"
-  - "*Horizon-Robotics* (not published)"
-  - "*INTC* (not published)"
-  - "*Imagination-Technologies* (not published)"
-  - "*Innolight* (not published)"
-  - "*JetCool* (not published)"
-  - "*LITE* (not published)"
-  - "*Lambda-Labs* (not published)"
-  - "*MBLY* (not published)"
-  - "*Mistral-AI* (not published)"
-  - "*Powertech-Technology* (not published)"
-  - "*QCOM* (not published)"
-  - "*SMCI* (not published)"
-  - "*SNPS* (not published)"
-  - "*SambaNova* (not published)"
-  - "*Sanctuary-AI* (not published)"
-  - "*Schneider-Electric* (not published)"
-  - "*Siemens-EDA* (not published)"
-  - "*Siemens-Energy* (not published)"
-  - "*Socionext* (not published)"
-  - "*TLN* (not published)"
-  - "*Tenstorrent* (not published)"
-  - "*Tokyo-Electron* (not published)"
-  - "*Unitree* (not published)"
-  - "*VST* (not published)"
-  - "*xAI* (not published)"
+  - "ref-ai-supply-chain-deep-dive"
+  - "1X-Technologies"
+  - "AMBA"
+  - "AMKR"
+  - "ARM"
+  - "ASE-Technology"
+  - "Accelink"
+  - "Agility-Robotics"
+  - "Alchip"
+  - "Apptronik"
+  - "Asetek"
+  - "Boston-Dynamics"
+  - "CDNS"
+  - "CEG"
+  - "COHR"
+  - "CRWV"
+  - "Cerebras"
+  - "Cohere"
+  - "CoolIT-Systems"
+  - "Crusoe"
+  - "DELL"
+  - "Eoptolink"
+  - "FN"
+  - "Figure-AI"
+  - "GFS"
+  - "GUC"
+  - "Groq"
+  - "HPE"
+  - "HUBB"
+  - "Hailo"
+  - "Hitachi-Energy"
+  - "Horizon-Robotics"
+  - "INTC"
+  - "Imagination-Technologies"
+  - "Innolight"
+  - "JetCool"
+  - "LITE"
+  - "Lambda-Labs"
+  - "MBLY"
+  - "Mistral-AI"
+  - "Powertech-Technology"
+  - "QCOM"
+  - "SMCI"
+  - "SNPS"
+  - "SambaNova"
+  - "Sanctuary-AI"
+  - "Schneider-Electric"
+  - "Siemens-EDA"
+  - "Siemens-Energy"
+  - "Socionext"
+  - "TLN"
+  - "Tenstorrent"
+  - "Tokyo-Electron"
+  - "Unitree"
+  - "VST"
+  - "xAI"
 ---
 
 # Ingested: ref-ai-supply-chain-deep-dive (2026-05-06)
@@ -85,90 +85,90 @@ Mapped to entity stems: 82
 ## Entity actions
 
 ### Created (55 new entity notes)
-- *1X-Technologies* (not published) -- company at `wiki/entities/companies/1X-Technologies.md` (0 initial claims populated)
-- *AMBA* (not published) -- ticker at `wiki/entities/tickers/AMBA.md` (2 initial claims populated)
-- *AMKR* (not published) -- ticker at `wiki/entities/tickers/AMKR.md` (7 initial claims populated)
-- *ARM* (not published) -- ticker at `wiki/entities/tickers/ARM.md` (1 initial claims populated)
-- *ASE-Technology* (not published) -- company at `wiki/entities/companies/ASE-Technology.md` (3 initial claims populated)
-- *Accelink* (not published) -- company at `wiki/entities/companies/Accelink.md` (0 initial claims populated)
-- *Agility-Robotics* (not published) -- company at `wiki/entities/companies/Agility-Robotics.md` (0 initial claims populated)
-- *Alchip* (not published) -- company at `wiki/entities/companies/Alchip.md` (3 initial claims populated)
-- *Apptronik* (not published) -- company at `wiki/entities/companies/Apptronik.md` (0 initial claims populated)
-- *Asetek* (not published) -- company at `wiki/entities/companies/Asetek.md` (0 initial claims populated)
-- *Boston-Dynamics* (not published) -- company at `wiki/entities/companies/Boston-Dynamics.md` (0 initial claims populated)
-- *CDNS* (not published) -- ticker at `wiki/entities/tickers/CDNS.md` (2 initial claims populated)
-- *CEG* (not published) -- ticker at `wiki/entities/tickers/CEG.md` (3 initial claims populated)
-- *COHR* (not published) -- ticker at `wiki/entities/tickers/COHR.md` (4 initial claims populated)
-- *CRWV* (not published) -- ticker at `wiki/entities/tickers/CRWV.md` (9 initial claims populated)
-- *Cerebras* (not published) -- company at `wiki/entities/companies/Cerebras.md` (4 initial claims populated)
-- *Cohere* (not published) -- company at `wiki/entities/companies/Cohere.md` (1 initial claims populated)
-- *CoolIT-Systems* (not published) -- company at `wiki/entities/companies/CoolIT-Systems.md` (0 initial claims populated)
-- *Crusoe* (not published) -- company at `wiki/entities/companies/Crusoe.md` (0 initial claims populated)
-- *DELL* (not published) -- ticker at `wiki/entities/tickers/DELL.md` (3 initial claims populated)
-- *Eoptolink* (not published) -- company at `wiki/entities/companies/Eoptolink.md` (3 initial claims populated)
-- *FN* (not published) -- ticker at `wiki/entities/tickers/FN.md` (3 initial claims populated)
-- *Figure-AI* (not published) -- company at `wiki/entities/companies/Figure-AI.md` (0 initial claims populated)
-- *GFS* (not published) -- ticker at `wiki/entities/tickers/GFS.md` (0 initial claims populated)
-- *GUC* (not published) -- company at `wiki/entities/companies/GUC.md` (0 initial claims populated)
-- *Groq* (not published) -- company at `wiki/entities/companies/Groq.md` (2 initial claims populated)
-- *HPE* (not published) -- ticker at `wiki/entities/tickers/HPE.md` (1 initial claims populated)
-- *HUBB* (not published) -- ticker at `wiki/entities/tickers/HUBB.md` (0 initial claims populated)
-- *Hailo* (not published) -- company at `wiki/entities/companies/Hailo.md` (0 initial claims populated)
-- *Hitachi-Energy* (not published) -- company at `wiki/entities/companies/Hitachi-Energy.md` (0 initial claims populated)
-- *Horizon-Robotics* (not published) -- company at `wiki/entities/companies/Horizon-Robotics.md` (0 initial claims populated)
-- *INTC* (not published) -- ticker at `wiki/entities/tickers/INTC.md` (2 initial claims populated)
-- *Imagination-Technologies* (not published) -- company at `wiki/entities/companies/Imagination-Technologies.md` (0 initial claims populated)
-- *Innolight* (not published) -- company at `wiki/entities/companies/Innolight.md` (3 initial claims populated)
-- *JetCool* (not published) -- company at `wiki/entities/companies/JetCool.md` (0 initial claims populated)
-- *LITE* (not published) -- ticker at `wiki/entities/tickers/LITE.md` (6 initial claims populated)
-- *Lambda-Labs* (not published) -- company at `wiki/entities/companies/Lambda-Labs.md` (0 initial claims populated)
-- *MBLY* (not published) -- ticker at `wiki/entities/tickers/MBLY.md` (6 initial claims populated)
-- *Mistral-AI* (not published) -- company at `wiki/entities/companies/Mistral-AI.md` (4 initial claims populated)
-- *Powertech-Technology* (not published) -- company at `wiki/entities/companies/Powertech-Technology.md` (0 initial claims populated)
-- *QCOM* (not published) -- ticker at `wiki/entities/tickers/QCOM.md` (1 initial claims populated)
-- *SMCI* (not published) -- ticker at `wiki/entities/tickers/SMCI.md` (2 initial claims populated)
-- *SNPS* (not published) -- ticker at `wiki/entities/tickers/SNPS.md` (2 initial claims populated)
-- *SambaNova* (not published) -- company at `wiki/entities/companies/SambaNova.md` (2 initial claims populated)
-- *Sanctuary-AI* (not published) -- company at `wiki/entities/companies/Sanctuary-AI.md` (0 initial claims populated)
-- *Schneider-Electric* (not published) -- company at `wiki/entities/companies/Schneider-Electric.md` (0 initial claims populated)
-- *Siemens-EDA* (not published) -- company at `wiki/entities/companies/Siemens-EDA.md` (0 initial claims populated)
-- *Siemens-Energy* (not published) -- company at `wiki/entities/companies/Siemens-Energy.md` (0 initial claims populated)
-- *Socionext* (not published) -- company at `wiki/entities/companies/Socionext.md` (0 initial claims populated)
-- *TLN* (not published) -- ticker at `wiki/entities/tickers/TLN.md` (2 initial claims populated)
-- *Tenstorrent* (not published) -- company at `wiki/entities/companies/Tenstorrent.md` (3 initial claims populated)
-- *Tokyo-Electron* (not published) -- company at `wiki/entities/companies/Tokyo-Electron.md` (1 initial claims populated)
-- *Unitree* (not published) -- company at `wiki/entities/companies/Unitree.md` (0 initial claims populated)
-- *VST* (not published) -- ticker at `wiki/entities/tickers/VST.md` (5 initial claims populated)
-- *xAI* (not published) -- company at `wiki/entities/companies/xAI.md` (4 initial claims populated)
+- 1X-Technologies -- company at `wiki/entities/companies/1X-Technologies.md` (0 initial claims populated)
+- AMBA -- ticker at `wiki/entities/tickers/AMBA.md` (2 initial claims populated)
+- AMKR -- ticker at `wiki/entities/tickers/AMKR.md` (7 initial claims populated)
+- ARM -- ticker at `wiki/entities/tickers/ARM.md` (1 initial claims populated)
+- ASE-Technology -- company at `wiki/entities/companies/ASE-Technology.md` (3 initial claims populated)
+- Accelink -- company at `wiki/entities/companies/Accelink.md` (0 initial claims populated)
+- Agility-Robotics -- company at `wiki/entities/companies/Agility-Robotics.md` (0 initial claims populated)
+- Alchip -- company at `wiki/entities/companies/Alchip.md` (3 initial claims populated)
+- Apptronik -- company at `wiki/entities/companies/Apptronik.md` (0 initial claims populated)
+- Asetek -- company at `wiki/entities/companies/Asetek.md` (0 initial claims populated)
+- Boston-Dynamics -- company at `wiki/entities/companies/Boston-Dynamics.md` (0 initial claims populated)
+- CDNS -- ticker at `wiki/entities/tickers/CDNS.md` (2 initial claims populated)
+- CEG -- ticker at `wiki/entities/tickers/CEG.md` (3 initial claims populated)
+- COHR -- ticker at `wiki/entities/tickers/COHR.md` (4 initial claims populated)
+- CRWV -- ticker at `wiki/entities/tickers/CRWV.md` (9 initial claims populated)
+- Cerebras -- company at `wiki/entities/companies/Cerebras.md` (4 initial claims populated)
+- Cohere -- company at `wiki/entities/companies/Cohere.md` (1 initial claims populated)
+- CoolIT-Systems -- company at `wiki/entities/companies/CoolIT-Systems.md` (0 initial claims populated)
+- Crusoe -- company at `wiki/entities/companies/Crusoe.md` (0 initial claims populated)
+- DELL -- ticker at `wiki/entities/tickers/DELL.md` (3 initial claims populated)
+- Eoptolink -- company at `wiki/entities/companies/Eoptolink.md` (3 initial claims populated)
+- FN -- ticker at `wiki/entities/tickers/FN.md` (3 initial claims populated)
+- Figure-AI -- company at `wiki/entities/companies/Figure-AI.md` (0 initial claims populated)
+- GFS -- ticker at `wiki/entities/tickers/GFS.md` (0 initial claims populated)
+- GUC -- company at `wiki/entities/companies/GUC.md` (0 initial claims populated)
+- Groq -- company at `wiki/entities/companies/Groq.md` (2 initial claims populated)
+- HPE -- ticker at `wiki/entities/tickers/HPE.md` (1 initial claims populated)
+- HUBB -- ticker at `wiki/entities/tickers/HUBB.md` (0 initial claims populated)
+- Hailo -- company at `wiki/entities/companies/Hailo.md` (0 initial claims populated)
+- Hitachi-Energy -- company at `wiki/entities/companies/Hitachi-Energy.md` (0 initial claims populated)
+- Horizon-Robotics -- company at `wiki/entities/companies/Horizon-Robotics.md` (0 initial claims populated)
+- INTC -- ticker at `wiki/entities/tickers/INTC.md` (2 initial claims populated)
+- Imagination-Technologies -- company at `wiki/entities/companies/Imagination-Technologies.md` (0 initial claims populated)
+- Innolight -- company at `wiki/entities/companies/Innolight.md` (3 initial claims populated)
+- JetCool -- company at `wiki/entities/companies/JetCool.md` (0 initial claims populated)
+- LITE -- ticker at `wiki/entities/tickers/LITE.md` (6 initial claims populated)
+- Lambda-Labs -- company at `wiki/entities/companies/Lambda-Labs.md` (0 initial claims populated)
+- MBLY -- ticker at `wiki/entities/tickers/MBLY.md` (6 initial claims populated)
+- Mistral-AI -- company at `wiki/entities/companies/Mistral-AI.md` (4 initial claims populated)
+- Powertech-Technology -- company at `wiki/entities/companies/Powertech-Technology.md` (0 initial claims populated)
+- QCOM -- ticker at `wiki/entities/tickers/QCOM.md` (1 initial claims populated)
+- SMCI -- ticker at `wiki/entities/tickers/SMCI.md` (2 initial claims populated)
+- SNPS -- ticker at `wiki/entities/tickers/SNPS.md` (2 initial claims populated)
+- SambaNova -- company at `wiki/entities/companies/SambaNova.md` (2 initial claims populated)
+- Sanctuary-AI -- company at `wiki/entities/companies/Sanctuary-AI.md` (0 initial claims populated)
+- Schneider-Electric -- company at `wiki/entities/companies/Schneider-Electric.md` (0 initial claims populated)
+- Siemens-EDA -- company at `wiki/entities/companies/Siemens-EDA.md` (0 initial claims populated)
+- Siemens-Energy -- company at `wiki/entities/companies/Siemens-Energy.md` (0 initial claims populated)
+- Socionext -- company at `wiki/entities/companies/Socionext.md` (0 initial claims populated)
+- TLN -- ticker at `wiki/entities/tickers/TLN.md` (2 initial claims populated)
+- Tenstorrent -- company at `wiki/entities/companies/Tenstorrent.md` (3 initial claims populated)
+- Tokyo-Electron -- company at `wiki/entities/companies/Tokyo-Electron.md` (1 initial claims populated)
+- Unitree -- company at `wiki/entities/companies/Unitree.md` (0 initial claims populated)
+- VST -- ticker at `wiki/entities/tickers/VST.md` (5 initial claims populated)
+- xAI -- company at `wiki/entities/companies/xAI.md` (4 initial claims populated)
 
 ### Updated (27 existing entity notes)
-- *ABB* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *AMAT* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *AMD* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *ANET* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *ASML* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *AVGO* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *Anthropic* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *CSCO* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *DLR* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *EQIX* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *ETN* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *GEV* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *GOOGL* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *KLAC* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *LRCX* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *MRVL* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *MSFT* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *MU* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *NBIS* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *NVDA* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *OpenAI* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *SK-Hynix* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *SNDK* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *Samsung* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *TSLA* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *TSM* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
-- *VRT* (not published) -- back-link present via /enrich; skip body append per dedup conservatism
+- ABB -- back-link present via /enrich; skip body append per dedup conservatism
+- AMAT -- back-link present via /enrich; skip body append per dedup conservatism
+- AMD -- back-link present via /enrich; skip body append per dedup conservatism
+- ANET -- back-link present via /enrich; skip body append per dedup conservatism
+- ASML -- back-link present via /enrich; skip body append per dedup conservatism
+- AVGO -- back-link present via /enrich; skip body append per dedup conservatism
+- Anthropic -- back-link present via /enrich; skip body append per dedup conservatism
+- CSCO -- back-link present via /enrich; skip body append per dedup conservatism
+- DLR -- back-link present via /enrich; skip body append per dedup conservatism
+- EQIX -- back-link present via /enrich; skip body append per dedup conservatism
+- ETN -- back-link present via /enrich; skip body append per dedup conservatism
+- GEV -- back-link present via /enrich; skip body append per dedup conservatism
+- GOOGL -- back-link present via /enrich; skip body append per dedup conservatism
+- KLAC -- back-link present via /enrich; skip body append per dedup conservatism
+- LRCX -- back-link present via /enrich; skip body append per dedup conservatism
+- MRVL -- back-link present via /enrich; skip body append per dedup conservatism
+- MSFT -- back-link present via /enrich; skip body append per dedup conservatism
+- MU -- back-link present via /enrich; skip body append per dedup conservatism
+- NBIS -- back-link present via /enrich; skip body append per dedup conservatism
+- NVDA -- back-link present via /enrich; skip body append per dedup conservatism
+- OpenAI -- back-link present via /enrich; skip body append per dedup conservatism
+- SK-Hynix -- back-link present via /enrich; skip body append per dedup conservatism
+- SNDK -- back-link present via /enrich; skip body append per dedup conservatism
+- Samsung -- back-link present via /enrich; skip body append per dedup conservatism
+- TSLA -- back-link present via /enrich; skip body append per dedup conservatism
+- TSM -- back-link present via /enrich; skip body append per dedup conservatism
+- VRT -- back-link present via /enrich; skip body append per dedup conservatism
 
 ## Methodology / Phase E.0 dispatch DEVIATION (documented per skill audit rule)
 

@@ -11,7 +11,7 @@ tags:
   - topic/rotation
   - topic/momentum
 aliases: [sector-rotation-model, rotation-model]
-related: ["*ref-sector-benchmarks* (not published)", "*ref-factor-lens* (not published)", "[[ref-macro-landscape]]", "*ref-etf-evaluation* (not published)"]
+related: ["ref-sector-benchmarks", "ref-factor-lens", "[[ref-macro-landscape]]", "ref-etf-evaluation"]
 ---
 
 # Reference: Sector Rotation Model (factor-store derived)
@@ -164,7 +164,7 @@ Mobility/Auto-AI, Networking (3m), Grid Equipment, Utilities, Defense/Space.
   further downside follow-through.
 - Hedge posture: with utilities AND power both lagging while crypto accelerates, the
   tape is risk-on but narrow -- respect the concentration risk flagged in
-  *ref-sector-benchmarks* (not published) (a concentrated AI-capex portfolio is effectively one long factor).
+  ref-sector-benchmarks (a concentrated AI-capex portfolio is effectively one long factor).
 
 ## 7. Caveats
 
