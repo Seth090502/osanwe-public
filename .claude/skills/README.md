@@ -22,10 +22,10 @@ Of the 52 withheld files, 36 are byte-identical copies of their canonical source
 that `sync.py` transforms, chiefly by re-materialising the harness's `allowed-tools` list from canonical
 metadata. Nothing is in the generated copies that is not in the source or the generator.
 
-## Two files here are not generated, and they are published
+## One file here is not generated, and it is published
 
-`AGENTS.md` and `CLAUDE.md` in this directory are hand-written and sit on `sync.py`'s never-touch list: the
-generator neither writes nor deletes them. They are in the repository.
+`AGENTS.md` in this directory is hand-written and sits on `sync.py`'s never-touch list: the generator neither
+writes nor deletes it. It is in the repository.
 
 ## If you followed a link here
 
