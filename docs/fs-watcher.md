@@ -30,7 +30,7 @@ On Windows, hidden Start-Process or Task Scheduler at-logon:
 
     Start-Process -WindowStyle Hidden python -ArgumentList "tools\dev\fs-watcher.py","--start"
 
-Or Task Scheduler trigger At-log-on with action: python.exe with args "`<VAULT_ROOT>`\tools\dev\fs-watcher.py --start"
+Or Task Scheduler trigger At-log-on with action: python.exe with args "tools\dev\fs-watcher.py --start"
 
 Linux/macOS systemd user service: TBD; vault is currently Windows-primary.
 
@@ -49,7 +49,7 @@ Reads PID file, sends SIGTERM, removes PID file.
 ## What it watches
 
 - Files matching suffixes: .md, .base, .py
-- Under `<VAULT_ROOT>`, recursive
+- Under the vault root, recursive
 - Excludes: .git/, _archive/, _quarantine/, node_modules/, .checkpoints/, wiki/research/test-tmp/, .claude/state/ (state files churn during normal operation; would generate noise)
 
 ## What gets logged

@@ -6,7 +6,7 @@ tags: [topic/vault-architecture, topic/claude-code]
 status: active
 created: 2026-06-28
 updated: 2026-09-21
-related: ["[[knowledge-moc]]", "*vault-prevention-architecture-2026-04-27* (not published)"]
+related: ["[[knowledge-moc]]", "vault-prevention-architecture-2026-04-27"]
 ---
 
 
@@ -32,15 +32,15 @@ evidence. Unknown/mixed material is excluded before indexing. The metadata-only
 inventory is discovery evidence and cannot supply text or approve itself.
 
 The active external owners remain
-`<HOME>/.vault-substrate/index-vault.mjs`, `qsearch.mjs`,
-`reindex-runner.mjs`, and `<LOCAL_PATH>/vault-search/server.py`.
+`~/.vault-substrate/index-vault.mjs`, `qsearch.mjs`,
+`reindex-runner.mjs`, and `vault-search/server.py`.
 `tools/retrieval-core.mjs` owns immutable generation construction/validation;
 `retrieval-provider.mjs` at the external substrate owns native embedding behavior.
 Each query binds lexical records, metadata, model identity and vectors to the same
 manifest. Its default lexical path runs without loading embeddings. Hybrid stays
 explicit experimental; old preview benchmarks are historical development only.
 
-`node <HOME>/.vault-substrate/reindex-runner.mjs --inspect` is read-only
+`node ~/.vault-substrate/reindex-runner.mjs --inspect` is read-only
 and returns passed, stale or unavailable with generation/dependency identity.
 The existing scheduled reindex owner detects edits from all harnesses. It preserves
 missed-slot history, bounded execution and one current catch-up. checkall adds
@@ -50,7 +50,7 @@ External source rollback bytes and current validation receipts are retained with
 the dated financial-corpus release. Older already-running MCP processes need a
 separate current-process observation before their state can be upgraded.
 
-Root AGENTS.md is the single universal contract; root CLAUDE.md is only the stub `@AGENTS.md` that imports it. This file
+Root AGENTS.md is the single universal contract and no CLAUDE.md is tracked; a per-machine CLAUDE.local.md imports it with the first line `@AGENTS.md`. This file
 provides adapter details and reference policies. Historical model/tier labels and
 mechanism descriptions below are not permission rules or current runtime receipts.
 Select capabilities by task and risk; preserve existing local-lane ratification.
@@ -65,14 +65,14 @@ financial model owners; compile the reviewed portable subset with
 execution, storage or full-vault permissions. The dated integration report records
 the actual local Data runtime build and portable replay acceptance.
 
-Current host capability evidence: *HOST-CAPABILITIES-2026-09-13* (not published). Companion
+Current host capability evidence: HOST-CAPABILITIES-2026-09-13. Companion
 report review is owned by `tools/fis/report_review.py` through the existing
 workbench. Hosted reasoning evaluation is documented in [[REASONING-EVALUATOR]];
 local development scoring is not independent custody. Runtime observation is
 owned by `tools/runtime-health.py` and the existing scheduled-job manifest.
 Structured checkall results distinguish failed, stale and unavailable evidence.
 An expired local observation cannot establish current host health or successful
-notification delivery. Current program acceptance remains in *STATE* (not published).
+notification delivery. Current program acceptance remains in STATE.
 
 The September 13 runtime repair uses `tools/scheduled-job.py` as a waiting,
 bounded wrapper for nightly health, weekly calibration and vault reindexing.
@@ -97,7 +97,7 @@ any remote missing-heartbeat observer remains a separate unverified capability.
 
 > Relocated from the root contract on 2026-06-28 (best-practices audit R4) to keep the
 > always-loaded contract lean. AGENTS.md retains the operational summary of each item
-> below and points here. (The contract lived in CLAUDE.md, latterly as a byte-identical mirror of AGENTS.md, until CLAUDE.md became a one-line import stub on 2026-09-22.)
+> below and points here. (The contract lived in CLAUDE.md, latterly as a byte-identical mirror of AGENTS.md, until CLAUDE.md became a one-line import stub on 2026-09-22; the stub was removed on 2026-09-24 and the import moved into the per-machine CLAUDE.local.md.)
 > Nothing was dropped -- this is the full detail, Read on demand. These mechanisms are
 > MECHANICALLY ENFORCED BY HOOKS regardless of whether this prose is in context, so relocating
 > the documentation does not change runtime behavior.
@@ -227,7 +227,7 @@ PowerShell equivalent: `git log --format=%B -1 HEAD | python -c "import sys; dat
 
 ## Reference Documents (full enumeration)
 
-Pre-researched context docs at `<VAULT_ROOT>\Atlas\sources\`. Load relevant ones BEFORE web searches to prime analysis. Knowledge index (read on demand; not globally imported): `Atlas/_MOCs/knowledge-moc.md`.
+Pre-researched context docs at `Atlas\sources\`. Load relevant ones BEFORE web searches to prime analysis. Knowledge index (read on demand; not globally imported): `Atlas/_MOCs/knowledge-moc.md`.
 
 ### Investing
 - `Atlas/sources/investing/ref-macro-landscape.md` (6,299w) -- Macro environment, rates, Fed policy
@@ -290,14 +290,14 @@ costs the frontier zero turns, which is the shape to reach for.
 
 ## Observability (full)
 
-Two complementary layers (claudewatch never writes inside `<VAULT_ROOT>`):
+Two complementary layers (claudewatch never writes inside the vault root):
 
 - **Post-hoc -- `/synthesis consolidate` telemetry mode + `tools/telemetry_analyzer.py`:** the standalone `/telemetry` skill was merged into `/consolidate` on 2026-07-06 and `/consolidate` into `/synthesis` on 2026-08-23, so neither skill directory exists any more. It reads the vault's `.claude/state/*.jsonl` sinks (SubagentStart/Stop + PostToolUseFailure + PostCompact) into a derived SQLite index; answers "what failed in the last N days" (orphan pairs, failure clusters, duration outliers). Offline, vault-local.
 - **Live -- claudewatch (MCP-only):** a local Go binary (github.com/blackwell-systems/claudewatch, MIT/Apache-2.0) that reads `~/.claude/projects` transcripts into an out-of-tree SQLite DB at `~/.config/claudewatch/claudewatch.db` and exposes 32 MCP tools (`get_drift_signal`, `get_session_dashboard`, `get_project_health`, ...): 31 read plus one session-labelling write, `set_session_project`, counted from `.agents/mcp/servers.json` and confirmed against the live session tool listing on 2026-09-21 so Claude can query its own mid-session metrics; answers "am I drifting right now". Installed 2026-05-25 MCP-ONLY: the global behavioral rules and the blocking PostToolUse hook are DEFERRED -- they would collide with the PostToolUse chain and override the SessionStart protocol. No network, no API keys. Codex parity: N/A (CC-specific binary + MCP). Install/runbook: `tools/INSTALL-CLAUDEWATCH.md`.
 
 ## Cross-harness note (2026-08-10 cutover; supersedes the Mission Four dual-engine note)
 
-This vault is cross-harness. `/AGENTS.md` is the single canonical instruction layer for EVERY harness and the only copy of it (Claude Code loads it through the one-line `CLAUDE.md` stub `@AGENTS.md`, which replaced the byte-identical mirror on 2026-09-22 and keeps the contract loaded beside a per-machine CLAUDE.local.md; Codex CLI, OpenCode, Goose, Crush, Cline, and Pi read it natively too). Canon skills live at `.agents/skills/<name>/SKILL.md` (native discovery for the non-Claude harnesses); `.claude/skills/` holds sync-generated derived copies (`python .agents/scripts/sync.py`). MCP configs are generated from the `.agents/mcp/servers.json` registry via `.agents/scripts/gen-mcp-configs.py` (default-refuse for write-capable servers). Per-tier capability + losses: `COMPATIBILITY.md`; Tier-C local-model primer: `BOOTSTRAP.md` (generated, hash-pinned). One consistency command: `python .agents/scripts/checkall.py`. The Mission Four generator layer (Codex TOML subagent mirror, per-engine detection shims, mirror-direction skill sync) was deleted at the cutover; single-revert restore point is the isolated deletion commit in main history; the retired branch tip is recorded in GIT-RECOVERY-REPORT-2026-09-12.md.
+This vault is cross-harness. `/AGENTS.md` is the single canonical instruction layer for EVERY harness and the only copy of it (Claude Code 2.1.277 and later, Codex CLI, OpenCode, Goose, Crush, Cline and Pi read it natively; because a per-machine CLAUDE.local.md suppresses Claude Code's native read, that file's first line is `@AGENTS.md`, which imports the contract; no CLAUDE.md is tracked). Canon skills live at `.agents/skills/<name>/SKILL.md` (native discovery for the non-Claude harnesses); `.claude/skills/` holds sync-generated derived copies (`python .agents/scripts/sync.py`). MCP configs are generated from the `.agents/mcp/servers.json` registry via `.agents/scripts/gen-mcp-configs.py` (default-refuse for write-capable servers). Per-tier capability + losses: `docs/compatibility.md`; Tier-C local-model primer: `BOOTSTRAP.md` (generated, hash-pinned). One consistency command: `python .agents/scripts/checkall.py`. The Mission Four generator layer (Codex TOML subagent mirror, per-engine detection shims, mirror-direction skill sync) was deleted at the cutover; single-revert restore point is the isolated deletion commit in main history; the retired branch tip is recorded in GIT-RECOVERY-REPORT-2026-09-12.md.
 
 ## Preferred Financial Data Sources -- full detail
 
@@ -339,7 +339,7 @@ coverage and source bindings before launch, keeping originals inspectable.
 
 stockanalysis.com, sec.gov/cgi-bin/browse-edgar, cnbc.com, reuters.com, etf.com, fred.stlouisfed.org, macroaxis.com, companiesmarketcap.com, coinmarketcap.com, company IR sites, dataroma.com (renowned-investor 13F aggregation, 65 managers, free no-auth, Q+45d update), capitoltrades.com (congressional STOCK Act trade disclosures, 3-yr history, free), openinsider.com (Form 4 corporate-insider transactions with 10b5-1 filter; cluster-buy detection per ref-investor-frameworks-2026; use curl with User-Agent, not WebFetch). Dataroma + CapitolTrades + OpenInsider integrated into /invest Phase J-bis institutional-positioning workflow per [[ref-investor-frameworks-2026]] (audit 2026-04-28 5th-pass). **Extended-hours pricing** (pre-market 04:00-09:30 ET + after-hours 16:00-20:00 ET) integrated 2026-05-05 via yfinance prepost=True; surfaced in fetch-prices.py + price-fetcher subagent + /brief + /networth (Mission Three; see ref-monitoring-rules "Extended-hours signal thresholds" section); ah_mover signal at `AH_MOVER_THRESHOLD_PCT` env var (default 3.0%); `extended_hours_movers[]` aggregation. /invest dispatch queued for Mission Four-bis; concentration math + trim trigger evaluation REMAIN regular_market_close anchored per ref-portfolio-doctrine doctrine note.
 
-**Structured-data MCP tier (2026-06-05, read-only local-stdio; tools register at session start -- a mid-session `claude mcp add` needs a reload):** FRED (`fred_get_series` macro series -- 10Y/DGS10, CPI, etc.; runs via a node launcher that works around a Windows main-guard bug in `fred-mcp-server@1.0.2`), EDGAR/edgartools (`edgar_company` XBRL financials + `recent_filings` accession_number/CIK provenance -- NOT a literal sec.gov URL), OpenInsider (`cluster_buys` / Form 4 / 13D / short interest) are installed as MCP servers feeding /invest (forensic-scorer + institutional-positioning-scout Tier-0), /brief macro, and /networth. CoinGecko DEFERRED (v6.0.0 routes through a Stainless-hosted remote code-execution sandbox; re-eval via a CoinGecko REST helper, fetch-prices.py-style, for niche tokens the primary quote source does not cover + market-cap/supply not covered by yfinance). The broker's mutating order tools are mechanically denied (permissions.deny, .claude/settings.json). See *decision-log* (not published) 2026-06-05.
+**Structured-data MCP tier (2026-06-05, read-only local-stdio; tools register at session start -- a mid-session `claude mcp add` needs a reload):** FRED (`fred_get_series` macro series -- 10Y/DGS10, CPI, etc.; runs via a node launcher that works around a Windows main-guard bug in `fred-mcp-server@1.0.2`), EDGAR/edgartools (`edgar_company` XBRL financials + `recent_filings` accession_number/CIK provenance -- NOT a literal sec.gov URL), OpenInsider (`cluster_buys` / Form 4 / 13D / short interest) are installed as MCP servers feeding /invest (forensic-scorer + institutional-positioning-scout Tier-0), /brief macro, and /networth. CoinGecko DEFERRED (v6.0.0 routes through a Stainless-hosted remote code-execution sandbox; re-eval via a CoinGecko REST helper, fetch-prices.py-style, for niche tokens the primary quote source does not cover + market-cap/supply not covered by yfinance). The broker's mutating order tools are mechanically denied (permissions.deny, .claude/settings.json). See decision-log 2026-06-05.
 
 ## X70 degradation doctrine (scheduled lanes; TENFOLD T3/T4, 2026-07-04)
 
@@ -347,8 +347,8 @@ Applies to every Task Scheduler lane (T3 qualification-gate verdict: Task Schedu
 
 **Lane inventory:**
 - `osanwe-sunday-scorer` (SUN 08:17) + one-shot `osanwe-t3-harddate-scorer` (2026-07-06 08:17) -> `tools/run-score-outcomes.cmd` -> `.claude/state/score-outcomes-runs.log`. Zero-LLM (python direct); immune to rate limits.
-- `osanwe-morning-brief` (MON-FRI 08:10) -> `tools/run-morning-brief.cmd` (reindex-if-stale poll, then headless `claude -p "/brief --quick"`) -> `.claude/state/morning-brief-runs.log`. Registration script: `tools/register-brief-task.ps1`, which was consumed and then deleted on 2026-07-04 (commit db5dbe7d) and is recoverable only from git history (STAGED FOR `<owner>`; agent registration + agent wrapper-execution both classifier-denied 2026-07-04 -- unauthorized persistence / unattended agent spawn; respected per X70a, not tool-shopped).
-- `osanwe-vault-reindex` (every 2 min; repaired 2026-09-13) -> `pythonw.exe tools/scheduled-job.py vault-reindex` from `<VAULT_ROOT>` -> waiting, bounded Node runner. The former VBS returned before its child completed. Registration now uses IgnoreNew, no idle requirement, no wake and a 65-minute task bound; existing triggers and principals are preserved. The source-safe build and next automatic poll have separate receipts. See the current manifest for exact installed executable paths and observed versions.
+- `osanwe-morning-brief` (MON-FRI 08:10) -> `tools/run-morning-brief.cmd` (reindex-if-stale poll, then headless `claude -p "/brief --quick"`) -> `.claude/state/morning-brief-runs.log`. Registration script: `tools/register-brief-task.ps1`, which was consumed and then deleted on 2026-07-04 (commit db5dbe7d) and is recoverable only from git history (STAGED FOR THE OWNER; agent registration + agent wrapper-execution both classifier-denied 2026-07-04 -- unauthorized persistence / unattended agent spawn; respected per X70a, not tool-shopped).
+- `osanwe-vault-reindex` (every 2 min; repaired 2026-09-13) -> `pythonw.exe tools/scheduled-job.py vault-reindex` from the vault root -> waiting, bounded Node runner. The former VBS returned before its child completed. Registration now uses IgnoreNew, no idle requirement, no wake and a 65-minute task bound; existing triggers and principals are preserved. The source-safe build and next automatic poll have separate receipts. See the current manifest for exact installed executable paths and observed versions.
 
 **Subscription-pool dependency (named risk):** headless `claude -p` draws the STANDARD subscription pool. A rate-limited or over-limit morning fires as a logged non-zero exit and an unbriefed weekday -- never a retry storm. The zero-LLM scorer lane is deliberately claude-independent so calibration survives any LLM outage.
 
@@ -358,7 +358,7 @@ Applies to every Task Scheduler lane (T3 qualification-gate verdict: Task Schedu
 
 **Checkpoint/resume convention (standing, from TENFOLD-0):** long orchestrations persist the workflow script + args at launch; recovery = relaunch with `resumeFromRunId` (unchanged agent-call prefix returns cached). Scheduled lanes are stateless by design (each fire is a fresh session); a killed morning brief (45-min ExecutionTimeLimit) is NOT resumed -- the next weekday fire supersedes, and a same-day manual `/brief --quick` is always safe (same-day collision writes `-HHMM` variant).
 
-**Hard-date guarantee (X70a, standing):** every hard date carries a manual-run guarantee; never rests on a never-fired scheduler. Manual lane equivalents: `tools/run-score-outcomes.cmd` (scorer), in-session `/brief --quick` (brief; the wrapper's headless spawn is agent-denied, `<owner>` can run `tools/run-morning-brief.cmd` by hand).
+**Hard-date guarantee (X70a, standing):** every hard date carries a manual-run guarantee; never rests on a never-fired scheduler. Manual lane equivalents: `tools/run-score-outcomes.cmd` (scorer), in-session `/brief --quick` (brief; the wrapper's headless spawn is agent-denied, the owner can run `tools/run-morning-brief.cmd` by hand).
 
 **Local model lane -- DELEGATION form (current; supersedes the whole-session qwen backend, 2026-08-11):** the orchestrator (Fable/Opus, on the subscription, in whatever harness) stays in charge and hands a bounded, checkable leg to a local model via ONE command:
 
@@ -373,7 +373,7 @@ access -- Nemotron 3.5 Lightning, 2026-08-11 -- appended past a blocking gate an
 evidence of a `private/` write. That is why this lane stays tool-free.)
 
 **THE RESEARCHER LANE (`tools/relay.py`) is TOOL-CAPABLE and MECHANICALLY CONTAINED**
-(shipped 2026-08-16; GATE-B *gate-b-relay-worker-2026-08-16* (not published); operator-ratified,
+(shipped 2026-08-16; GATE-B gate-b-relay-worker-2026-08-16; operator-ratified,
 named+specific, reversal of the blanket tool-free rule -- Calendar/daily/2026-08-16.md).
 The local model runs as a RESEARCHER: acquires via an allowlist executor
 (`tools/lib/relay_exec.py`: fetch_url with AGENTS.md-parsed domain blocklist + SSRF guard
@@ -405,7 +405,7 @@ re-check cheap. A fourth ROUTE-LOCAL class exists for this lane: (d) TOOL-USING-
 (operator-ratified 2026-08-16).
 
 **Mid-leg escalation (`ask_frontier`, shipped 2026-08-17; GATE-B
-*gate-b-ask-frontier-2026-08-16* (not published)).** The worker may ask the orchestrator ONE
+gate-b-ask-frontier-2026-08-16).** The worker may ask the orchestrator ONE
 validated question mid-leg: the EXECUTOR refuses any escalation that fails to cite
 resolving `[R-nn]` refs or to state what was attempted (lazy punting is
 structurally unexpressible), budget 3 per leg (missions may lower to 0). On a
@@ -443,7 +443,7 @@ extraction) plus executor validation and the full pause/resume round-trip.
 
 **/local is the per-query routing surface** (skill; GATE-B gate-b-local-skill-2026-08-17). It packages the whole loop -- route decision, mission compose, dispatch with `CLAUDE_LANE_TRIGGER=operator-phrase`, escalation guidance, MANDATORY `relay-verify` before consumption (fabrication-grade = quarantine), prov-labeled consumption, receipts + orchestrator-share JSONL. Scope: mode-2 selection-is-consent + operator-phrase invocations ONLY; all-sessions default routing stays CLOSED until the pre-registered parity rule passes and a /decide ratifies the flip.
 
-**Scheduled idle-gated legs** (staged 2026-08-17; task registration is `<owner>`-ONLY, X70a): `tools/run-local-worker.cmd` (daily 03:30 once registered) sets `CLAUDE_LANE_TRIGGER=scheduled-idle` -- LOAD-BEARING, frozen into leg state at creation so unattended legs NEVER count toward promotion -- and calls `relay-batch --if-idle` (lane.lock + double GPU sample + daemon reachability, fail-closed skip). Every fire logs run-or-skip to `.claude/state/local-worker-runs.log`; that log is the X70 heartbeat (silent >= 2 days surfaces LANE SILENT in the open-loops footer). Results wait as distillates surfaced via `scheduled-worker-pending.json`; escalations PARK for next-session guidance; `consistency: true` missions run twice and mechanically diff claim sets (divergence telemetry, F-10 both-arms-ok rule).
+**Scheduled idle-gated legs** (staged 2026-08-17; task registration is owner-ONLY, X70a): `tools/run-local-worker.cmd` (daily 03:30 once registered) sets `CLAUDE_LANE_TRIGGER=scheduled-idle` -- LOAD-BEARING, frozen into leg state at creation so unattended legs NEVER count toward promotion -- and calls `relay-batch --if-idle` (lane.lock + double GPU sample + daemon reachability, fail-closed skip). Every fire logs run-or-skip to `.claude/state/local-worker-runs.log`; that log is the X70 heartbeat (silent >= 2 days surfaces LANE SILENT in the open-loops footer). Results wait as distillates surfaced via `scheduled-worker-pending.json`; escalations PARK for next-session guidance; `consistency: true` missions run twice and mechanically diff claim sets (divergence telemetry, F-10 both-arms-ok rule).
 
 **Parity rule (promotion gate):** the pre-registered promotion AND demotion standard for all-sessions default routing lives at `wiki/research/parity-eval-rule-2026-08-17.md` (frozen with `tools/parity-eval.py` + `tools/parity-cases/`). The rule text is NOT restated here -- read the file before touching `default_delegation`, the manifest, or the grader.
 
@@ -456,15 +456,15 @@ extraction) plus executor validation and the full pause/resume round-trip.
 - ROUTE LOCAL (deterministic or checker-validated). Three classes, general to every skill: (a) SCRIPT-COMPUTED -- a CLI produces the answer and the model only relays it; (b) MECHANICAL-CHECKABLE -- reformatting, ASCII/frontmatter normalization sweeps, table composition, extraction into a fixed schema, test-fixture generation, where a gate or checker validates the result; (c) PROVENANCE-CHECKED EXTRACTION -- pulling figures out of text the ORCHESTRATOR ALREADY FETCHED, where every figure must carry a `prov:` the orchestrator verifies anyway. The per-skill leg map lives in `config/local-lane.json` and is printed by `python tools/delegate.py --legs <skill>`.
 - NEVER LOCAL (frontier only, no exceptions): the `/invest` verdict spine and scoring-path routing; thesis-status calls; ratings, conviction and kill criteria; ALL dissent/skeptic/verification legs (a weak verifier that rubber-stamps is worse than no verifier); the mandatory subagent dispatches (price-fetcher, the Wave-1 template workers -- tool-using dispatches the lane structurally cannot perform, and pre-emptive skipping is FORBIDDEN); anything touching live positions, doctrine math or the security perimeter; any decision record; and any write the 95/100 honest floor scores on nuance. Delegation changes WHO RUNS A LEG, never the standard it must meet -- and the tool refuses a NEVER-LOCAL leg id outright (exit 3).
 
-Prior form (ARCHIVED-2026-08-12, non-functional; record: *local-qwen-lane-archive-2026-08-12* (not published) -- archives the IMPLEMENTATION, not the capability, and changes NO gate marker; note `<LOCAL_PATH>/vault-search/` is LIVE and carved out there): the whole-session backend `pwsh <LOCAL_PATH>/claude-local.ps1` (Qwen3.6-27B @ llama-server on an isolated `<VAULT_ROOT>-local` worktree; champion profile ratified 2026-07-04, build detail *local-qwen-optimization-2026-06-13* (not published)). Its GGUF is absent from disk as of 2026-08-11 and it has been idle since ~2026-06-14. Cause of non-use, operator-stated: a whole-session local model is not capable enough to be worth opening. The delegation form exists because it does not share that failure mode. Do not revive the backend without a fresh /gate b.
+Prior form (ARCHIVED-2026-08-12, non-functional; record: local-qwen-lane-archive-2026-08-12 -- archives the IMPLEMENTATION, not the capability, and changes NO gate marker; note `vault-search/` is LIVE and carved out there): the whole-session backend `pwsh claude-local.ps1` (Qwen3.6-27B @ llama-server on an isolated `the vault root-local` worktree; champion profile ratified 2026-07-04, build detail local-qwen-optimization-2026-06-13). Its GGUF is absent from disk as of 2026-08-11 and it has been idle since ~2026-06-14. Cause of non-use, operator-stated: a whole-session local model is not capable enough to be worth opening. The delegation form exists because it does not share that failure mode. Do not revive the backend without a fresh /gate b.
 
-Git cleanup 2026-09-12 retired the archived `<VAULT_ROOT>`-local worktree after a
+Git cleanup 2026-09-12 retired the archived the vault root-local worktree after a
 complete verified ZIP plus Git-bundle recovery test. Unique evaluation notes are
 under _archive/2026-09-git-recovery/; the branch tip remains at
 archive/local-mode-2026-09-12. This did not alter the active local routing or
-`<LOCAL_PATH>`/vault-search service. See *GIT-RECOVERY-REPORT-2026-09-12* (not published).
+vault-search service. See GIT-RECOVERY-REPORT-2026-09-12.
 
-**Subagent-model env-jail governance (X12, standing; canonical record):** ROOT CAUSE of the 2026-06/07 fleet mislabeling -- a persistent User-scope `CLAUDE_CODE_SUBAGENT_MODEL=claude-sonnet-4-6` (seeded by an in-vault /corpus SKILL "defensive env var" instruction) silently OUTRANKED every per-call model pin, Agent-tool model param, agentType definition, workflow `opts.model`, and frontmatter pin -- jailing ALL vault fleets to Sonnet 4.6 for weeks. June fleets logged as all-Opus actually ran Sonnet from the 2026-06-19..06-20 onset (per-message census, *tenfold0-evidence-2026-07-03* (not published)).
+**Subagent-model env-jail governance (X12, standing; canonical record):** ROOT CAUSE of the 2026-06/07 fleet mislabeling -- a persistent User-scope `CLAUDE_CODE_SUBAGENT_MODEL=claude-sonnet-4-6` (seeded by an in-vault /corpus SKILL "defensive env var" instruction) silently OUTRANKED every per-call model pin, Agent-tool model param, agentType definition, workflow `opts.model`, and frontmatter pin -- jailing ALL vault fleets to Sonnet 4.6 for weeks. June fleets logged as all-Opus actually ran Sonnet from the 2026-06-19..06-20 onset (per-message census, tenfold0-evidence-2026-07-03).
 - STANDING RULE: NEVER set `CLAUDE_CODE_SUBAGENT_MODEL` at any persistent scope. Production roles and workflows inherit authorized session settings (2026-09-13 user directive); fixed evaluation configurations retain their separate owners. Compare requested settings with observable runtime metadata and disclose uncertainty. A model's self-identification alone does not verify its identity or effort. Historical frontmatter floors above are preserved history, not current dispatch defaults.
 - Scrubbed (TENFOLD T1): the /corpus SKILL + README + `.claude/agents/corpus-extractor.md` (and their `.agents`/`.codex` mirrors) carried the anti-guidance instead of the old defensive var (5-file scrub verified at T6). The three `.claude` files were moved into `_archive/` folders with the /corpus skill on 2026-07-06 (commit 840acc93); their `.agents`/`.codex` mirrors had already moved to `_archive/codex-mirror-2026-07-04/` in commit 02d6915b on 2026-07-04. All six are still tracked and still carry the anti-guidance, and Claude Code still registers the archived corpus-extractor agent, so this record -- not the archived files -- is the statement of the rule.
 - Detection wiring (the one-shot applier `tools/apply-t6-config.py` was deleted as consumed on 2026-07-04 in commit db5dbe7d; the session-integrity tripwire itself landed in commit f6baec44, labelled "T7 repair"; the wiring is live and was re-read 2026-09-21): a SessionStart tripwire in `session-integrity-check.sh` warns if the var is set in the session env; `subagent-telemetry.py` passes a `model` + `label` field per dispatch into `.claude/state/subagent-telemetry-*.jsonl` so a future jail is visible in the telemetry trail, not merely inferrable post-hoc from a transcript census.

@@ -28,7 +28,7 @@ the session inside a turn the filter called human. That is precisely the attack 
 Four patches were written. The fourth turned a turn the person typed to *cancel* an order into one that was
 stepped over, promoting an older approval in its place. **None of the four shipped.** The work stopped
 rather than producing a fifth patch under review pressure, and the gate in this tree is still the original
-denylist. Its open design flaws are D70, D72, D73 and D74, described in `../THREAT-MODEL.md`.
+denylist. Its open design flaws are D70, D72, D73 and D74, described in [docs/threat-model.md](threat-model.md#open-defects-in-stair-1).
 
 **The test:** `tools/test-pretrade-transcript-provenance.py`, 28 cases, run in CI on every push. Ten pass;
 **eighteen are known-open and print their defect id on every run** -- never skipped. It exits non-zero only
@@ -61,7 +61,7 @@ the scoring path, reviewer controls, and the tests that cover them. 35 files are
 test files.
 
 **What it cannot support:** any claim about model quality. It has been exercised on development cases; it
-has not been run as a graded evaluation whose result is reported here. `CAPABILITIES.md` marks what was
+has not been run as a graded evaluation whose result is reported here. `docs/capabilities.md` marks what was
 executed and what was only read, and this is in the second group for its end-to-end path.
 
 ## 4. The prior-calls record, which is too small to calibrate
@@ -69,7 +69,7 @@ executed and what was only read, and this is in the second group for its end-to-
 Every `/invest` run records its rating, the confidence it stated, and the reasoning behind both. Later runs
 on the same company grade the earlier ones and list, row by row, where new evidence changed a prior claim.
 You can read one in `examples/01-equity-analysis-end-to-end.md`, which grades the two earlier runs on the
-same company. Those two runs are withheld (see `WITHHELD.md`).
+same company. Those two runs are withheld (see `docs/withheld.md`).
 
 That per-analysis discipline is real and it is visible. **What it does not yet support is a calibration
 claim**, and this section exists to say so with the numbers rather than to imply otherwise.

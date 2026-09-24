@@ -95,22 +95,8 @@ at speed. That is the point, and it is the wrong design for anything that needs 
 tested and are demonstrated end to end by `demo/run_staircase_demo.py`. Stair 1 was attacked in three rounds of
 independent adversarial review and failed each time; four patches were written and the third review showed
 the fourth was a regression on the third, so the work was stopped rather than patched again. Four defects
-remain open in this tree:
-
-- **D72 -- the authorization names an id, not an order.** `EXECUTE ORDER <order_id>` binds a person's
-  approval to an identifier the *model* invents. The canonical hash comparison at stair 4 stops an order
-  being altered after a pass is issued, but the gate can be re-run for the same id against a different
-  order. The phrase constrains no symbol, side, quantity or notional.
-- **D73 -- the authorising phrase never expires.** No transcript entry's `timestamp` is read anywhere; the
-  15-minute TTL governs the pass, not the approval. In real sessions the backwards scan routinely steps
-  over dozens of entries to find the phrase it accepts.
-- **D70 -- machine-written entries read as typed.** A compaction summary, a subagent's hand-back,
-  hook-injected text, a slash-command expansion or command output can sit where the filter looks for the
-  person, and it reads them as the person. The fourth patch meant to fix this stepped past a typed
-  revocation instead, and was retired.
-- **D74 -- four parsing and filter bugs.** The first id in a turn wins, so a quoted one beats the person's;
-  a phrase or a marker can be assembled across two text blocks; an unreadable provenance field authorises;
-  a falsy subagent flag is accepted.
+remain open in this tree -- D70, D72, D73 and D74 -- and the table in
+[docs/threat-model.md](docs/threat-model.md#open-defects-in-stair-1) states each one.
 
 The replacement is described under decision 2. It is not in this tree. **Meanwhile the operative control is
 the harness permission layer: every order, cancel and alert tool the connector exposes is denied, among 30
@@ -142,7 +128,7 @@ driving the real hook. Each broke. The first reviewer found eight shapes that au
 second showed the first patch's premise was false; the third broke the fourth patch in seven ways and showed
 it was a regression on the third -- a turn the person typed to *cancel* was stepped over and an older
 approval promoted. None of the four shipped. **The code in this tree is still the original denylist**, with
-the open flaws D70, D72, D73 and D74 listed under decision 1 and in `THREAT-MODEL.md`.
+the open flaws D70, D72, D73 and D74 named under decision 1 and stated in `docs/threat-model.md`.
 
 **The choice.** Stop patching. Write the security properties down first, have a fresh reviewer attack the
 *specification* before any code exists, implement, then attack the implementation end to end with the
@@ -201,7 +187,7 @@ bootstrap document's source hash, so the copies cannot quietly diverge.
 document is weaker than one stated in the contract. Anything load-bearing therefore stays in the contract
 itself, which keeps it longer than a summary would be.
 
-**Check it:** `AGENTS.md`, `tools/router-check.py`, `COMPATIBILITY.md`.
+**Check it:** `AGENTS.md`, `tools/router-check.py`, `docs/compatibility.md`.
 
 ### 5. Context is re-injected after compaction, because a summary is not the contract
 
@@ -307,4 +293,4 @@ producing one whose inputs, transformations and failure conditions are all inspe
 ## What this copy cannot do
 
 The data directories are empty, the credentials are absent, the paths are placeholders, and the ledgers are
-withheld. The code and the procedures are complete; the state they operated on is not. See `AUDIT.md`.
+withheld. The code and the procedures are complete; the state they operated on is not. See `docs/audit.md`.

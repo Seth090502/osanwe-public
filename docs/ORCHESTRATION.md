@@ -84,7 +84,7 @@ records which are spent and which stand. A spent exception does not generalise t
 The pass that produced this repository ran under that structure: a brief, two approval gates, a verbatim
 log, a state file, and a pipeline that could be re-run from one command.
 
-What it produced is in `AUDIT.md`. What is worth reading here is where the method caught something.
+What it produced is in `docs/audit.md`. What is worth reading here is where the method caught something.
 
 ### Where the agent stopped itself
 
@@ -138,8 +138,8 @@ every order tool sits in the harness permission deny list, so each finding was a
 a permission layer that held. Knowing which layer was load-bearing is what made "stop" the calm answer instead
 of the alarming one.
 
-The open defects are published rather than quietly carried: see `../THREAT-MODEL.md` and the regression
-suite `../tools/test-pretrade-transcript-provenance.py`, which prints every open shape against its defect id
+The open defects are published rather than quietly carried: see [docs/threat-model.md](threat-model.md#open-defects-in-stair-1) and the
+regression suite `tools/test-pretrade-transcript-provenance.py`, which prints every open shape against its defect id
 on every run.
 
 ### Where the method failed, and what changed

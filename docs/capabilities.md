@@ -117,18 +117,16 @@ that another hour would not remove:
 | Needs a continuous-integration runner | 1 |
 
 The fifth row is the interesting one. "Hardcodes the root path" is not a fact about the audit; it is a defect
-in the system, and it is recorded as such. `AUDIT.md` explains
+in the system, and it is recorded as such. `docs/audit.md` explains
 separately why the published copy could not be executed end to end.
 
 ## Known weak points
 
 - **11 BROKEN components**, including one MCP configuration whose server fails to start.
 - **6 STALE components**, including a retired commit hook that is still registered.
-- **The brokerage deny list had drifted, and nothing detected it.** It named 20 tool names the connector no
-  longer offers and none of the 8 live ones, so for a period the pre-trade gate's default-deny was the only
-  layer standing between the agent and an order. It held. The list has since been completed and the whole
-  61-tool surface re-checked without calling anything; `THREAT-MODEL.md` tells that story properly, because the
-  detection failure matters more than the configuration error.
+- **The brokerage deny list had drifted, and nothing detected it.** For a period the pre-trade gate's
+  default-deny was the only layer between the agent and an order; it held, and the list has since been
+  completed. [docs/threat-model.md](threat-model.md#open-risks) tells the story, open risk 2.
 - **One documented multi-agent verification wave never runs**: its entry point fail-closes on every call.
 - **Retrieval is lexical, not vector**, despite an embedding index being present: only a small admitted subset
   of documents is searchable, and ranking is lexical.

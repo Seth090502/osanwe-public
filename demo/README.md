@@ -48,7 +48,7 @@ demo over a flawed control is exactly the failure mode worth seeing once.
 Steps 7 to 11 exercise stairs 2, 3 and 4, which held in every case tested. Steps 4 and 5 exercise stair 1,
 which has the open defects above.
 
-Read [`../THREAT-MODEL.md`](../THREAT-MODEL.md) before drawing any conclusion about what this system
+Read [`../docs/threat-model.md`](../docs/threat-model.md) before drawing any conclusion about what this system
 prevents. It records what was attacked, what got through, and what is protecting the account meanwhile --
 which is the harness permission deny list, not this code.
 
