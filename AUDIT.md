@@ -105,7 +105,7 @@ Three different statements, which are easy to blur and are kept apart here.
    a redaction that broke a literal the code parses is invisible to it; the test run below found one.
 3. **The published test files WERE executed, from a fresh copy of this repository, and they do not all pass.**
    50 of 72 exit 0; 22 do not. 49 of the 50 are also run by continuous integration on a clean Linux runner --
-   `.github/workflows/tests.yml`, read-only token, no secrets, four packages installed -- so the figure can
+   `.github/workflows/tests.yml`, read-only token, no secrets, five packages installed -- so the figure can
    be checked by anyone rather than believed. The 50th, `tools/test-delegate.py`, grades a local language
    model and passed here only because one was running; CI has none. The 22 that fail are named in the table
    below with the reason each gave. They were recorded, not repaired, with two exceptions that were the
