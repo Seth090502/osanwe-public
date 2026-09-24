@@ -76,16 +76,29 @@ in three independent rounds of adversarial review. **It failed every round.**
   the person typed to cancel an order was stepped over and an older approval promoted in its place.
 
 Four patches were written. The fourth was retired unmerged and the work was stopped rather than producing a
-fifth under review pressure. **Four defects remain open in the code published here:** machine-written
-entries -- compaction summaries, subagent hand-backs, hook-injected text, slash-command expansions, command
-output -- are read as turns a person typed (D70); the authorization is bound to an id the model chooses
-rather than to the order's contents (D72); the authorising phrase never expires, because no transcript
-timestamp is read anywhere (D73); and four parsing and filter bugs, which the regression suite demonstrates
-in five cases (D74). The fourth patch's own regression -- stepping past a typed revocation -- died with it.
+fifth under review pressure. The fourth patch's own regression -- stepping past a typed revocation -- died
+with it.
+
+#### Open defects in stair 1
+
+Four defects remain open in the code published here. Every shape any review found is a named case in
+`tools/test-pretrade-transcript-provenance.py`, which runs in CI and prints each open defect as a known
+failure on every run rather than skipping it.
+
+| Defect | The flaw |
+|---|---|
+| D70 | Machine-written entries -- a compaction summary, a subagent's hand-back, hook-injected text, a slash-command expansion, command output -- are read as turns **a person typed**. The fourth patch meant to fix this instead stepped past a typed revocation, and was retired. |
+| D72 | Authorization is bound to an id **the model chooses**, not to the order's contents. Nothing in the phrase constrains symbol, side or size. |
+| D73 | The authorising phrase **never expires**, because no transcript timestamp is read anywhere. The 15-minute TTL protects the pass, not the approval. |
+| D74 | Four parsing and filter bugs, shown in five cases: the first id in a turn wins, so a quoted one beats the person's; a phrase or a marker can be assembled across two text blocks; an unreadable provenance field authorises; a falsy subagent flag is accepted. |
 
 So the sentence above -- "provenance, not pattern matching" -- describes the intent, and the intent is right.
-It is not yet what the code achieves. A replacement is specified and attacked before any code
-is written; it is held on a branch outside this tree.
+It is not yet what the code achieves. A replacement is specified from stated properties rather than patched a
+fifth time: the person types the order itself -- side, quantity, symbol, type, price, account -- and only
+exactly that can execute, and the scan stops at the newest entry that is not a known machine artifact, so
+anything the person does after authorising revokes it. The design was attacked before it was implemented, and
+it is held on a branch outside this tree until a full attack round finds nothing (`ARCHITECTURE.md`
+decision 2).
 
 **What is actually preventing an order today** is not this filter but the harness permission layer: every
 order, cancel and alert tool the connector exposes is in the deny list, among 30 denied broker tools with
@@ -110,6 +123,10 @@ omitted. So today no other runtime can reach the broker, with or without a hook.
 The risk is not today's configuration. It is that a future runtime, or a copy of this repository configured
 by someone else, connects the broker without a gate, because the gate is not portable: it depends on a
 per-turn human-versus-ingested provenance record that other harnesses do not expose.
+
+*Scope, stated plainly:* the staircase defends against a model confused or misled by text it read. It does
+not defend against an agent induced to run shell commands against the control files; the one control outside
+that reach is on the broker's side: a setting that decides whether an agent may trade at all.
 
 ---
 
