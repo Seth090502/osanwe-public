@@ -6,7 +6,7 @@ tags: [topic/meta]
 status: active
 created: 2026-09-12
 updated: 2026-09-12
-related: ["[[financial-analysis-contract]]", "*STATE* (not published)"]
+related: ["[[financial-analysis-contract]]", "STATE"]
 ---
 
 # Institutional financial methods -- implementation and use

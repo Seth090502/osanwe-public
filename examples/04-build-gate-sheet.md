@@ -5,6 +5,11 @@
 
 How a change to the system itself is authorised before it is built, including the mandates the verdict carries.
 
+**Reading guide.** This is a `/gate b` sheet, the check run before building a new skill, script, hook or
+workflow ([`.agents/skills/gate/SKILL.md`](../.agents/skills/gate/SKILL.md)). GATE-B is that gate; the verdict
+comes only from `tools/gate-eval.py`. **Mandates** are the conditions the verdict attaches to the build, such
+as a review after thirty days of use, which later work must discharge.
+
 ---
 
 <details>

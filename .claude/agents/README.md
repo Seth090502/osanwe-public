@@ -25,7 +25,7 @@ none is withheld here.
 
 Three of these wrappers -- `lane-editor`, `lane-extractor` and `lane-researcher` -- are generated with an
 empty frontmatter block and cannot be registered as agents. The fault is in the generator's handling of a
-role file with no frontmatter, not in the definitions. It is recorded in `AUDIT.md` and repaired on a branch
+role file with no frontmatter, not in the definitions. It is recorded in `docs/audit.md` and repaired on a branch
 that is not part of this repository.
 
 ## If you followed a link here

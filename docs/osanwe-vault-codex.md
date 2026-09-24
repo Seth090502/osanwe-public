@@ -6,7 +6,7 @@ status: active
 created: 2026-07-06
 updated: 2026-09-22
 tags: [topic/meta]
-related: ["[[COMPATIBILITY]]", "*hot* (not published)"]
+related: ["[[compatibility|COMPATIBILITY]]", "hot"]
 ---
 
 # Osanwe Vault Codex -- LEAN EDITION (v2, 2026-08-23)
@@ -16,7 +16,7 @@ GENERATED-replacement under OSANWE-V2 ADR-09. The exhaustive prose edition (450 
 consult it for historical architecture narrative; it is NOT maintained. This file holds
 only what AGENTS.md routes here: the glossary, the routing law, the maintenance
 protocol, and the append-only changelog. Machine counts live in
-`docs/Osanwe Vault Codex.yaml` (generated from disk by `tools/gen-codex-yaml.py`;
+`docs/osanwe-vault-codex.yaml` (generated from disk by `tools/gen-codex-yaml.py`;
 hand edits to that file are overwritten).
 
 
@@ -26,7 +26,7 @@ This map supersedes status claims in the historical glossary and wave reports.
 
 | Layer | Current authority | Evidence boundary |
 |---|---|---|
-| Contract | root AGENTS.md, single copy | Full bytes; root CLAUDE.md is the one-line stub `@AGENTS.md`, which keeps it loaded beside a CLAUDE.local.md; router-check and the pre-commit cage refuse any other CLAUDE.md content or a .claude/CLAUDE.md |
+| Contract | root AGENTS.md, single copy | Full bytes; no CLAUDE.md is tracked; a per-machine CLAUDE.local.md must begin with `@AGENTS.md`, which imports it; router-check, the pre-commit cage and the session integrity hook refuse any CLAUDE.md and a CLAUDE.local.md without the import |
 | State | Efforts/osanwe-v2-overhaul/STATE.md | Current queue and limitations; dated reports are history |
 | Knowledge | Atlas/_MOCs/knowledge-moc.md (whole vault); wiki/meta/knowledge-moc.md (finance); wiki/entities/; wiki/investing/ | Select existing primers/methods with applicability and source review; historical research does not establish current account facts |
 | Research | docs/financial-analysis-contract.md; .agents/skills/ | Modular source/period/basis/freshness checks; explicit unresolved evidence |
@@ -72,19 +72,19 @@ Full table: AGENTS.md "Writes" + Section 8.3 of the frozen edition.
 
 Osanwe-specific terms a cold model trips on. Definitions are 1-2 sentences; paths in backticks, never wikilinks.
 
-- Osanwe -- the project codename for the cross-harness financial research system plus the Obsidian vault at `<VAULT_ROOT>\`.
+- Osanwe -- the project codename for the cross-harness financial research system plus the Obsidian vault at ``.
 - ACE -- Milo's "Agentic Context Engineering" pattern (hooks + injected context) the runtime is built on.
 - Milo / kepano / Okhlopkov / AgriciDaniel / Evgeny / Piotr1215 -- the named source patterns the vault fuses: ACE runtime, file formats, reader/writer stance, LLM-wiki structure, PR-write discipline, and MCP practice respectively.
 - Atlas / wiki (tiers) -- Atlas is human-write-only knowledge; wiki is the agent-maintained LLM-wiki; the routing test decides which.
 - hot.md -- `wiki/hot.md`, the session-cache continuity file (schema `hot-md-v2`); generated from session nodes and the resolution-aware action ledger; current authority is STATE.md.
-- distillate -- `OSANWE-<private-file>.local.md`, a pointer-mode structural map emitted at SessionStart (gitignored, local-only).
-- master-doc -- `<private-file>.local.md`, the ~2.8 MB Parts A-X master context document the distillate points at.
+- distillate -- `OSANWE-a private per-machine file`, a pointer-mode structural map emitted at SessionStart (gitignored, local-only).
+- master-doc -- `a private per-machine file`, the ~2.8 MB Parts A-X master context document the distillate points at.
 - SENTINEL-1 / SENTINEL-2 -- distillate freshness checks (doc-baseline drift; master-doc sha).
 - ARC TENFOLD -- the 14-mission arc (T0..T13) run 2026-07-03..2026-07-05, all closed (tag `tenfold-arc-complete`).
 - T0..T13 / tenfold-`<id>`-close -- the individual missions and their git close-tags.
 - arc-state.md -- `wiki/research/tenfold/arc-state.md`, the live execution ledger of an arc.
 - X## (X12, X37, X56, X59, X67, X70, X70a, X72, X75, X77, X83) -- arc-internal work-item / decision identifiers used across notes.
-- X70a / staging pattern -- when the permission classifier denies an autonomous config/persistence edit, stage it to an `apply-*.ps1|py` for `<owner>` to run, and keep a manual-run guarantee.
+- X70a / staging pattern -- when the permission classifier denies an autonomous config/persistence edit, stage it to an `apply-*.ps1|py` for the owner to run, and keep a manual-run guarantee.
 - X12 -- the subagent-model env-jail root cause; the standing rule NEVER to set `CLAUDE_CODE_SUBAGENT_MODEL` at a persistent scope (it silently outranks every per-call model pin).
 - X67 -- the growth/archival threshold doctrine (a growing vault makes a naive staleness metric only rise; archival-by-design paths are excluded from the HARD count).
 - MOC -- Map of Content, a domain index note (`<domain>-moc.md`); `knowledge-moc.md` is the index of indexes.
@@ -104,7 +104,7 @@ Osanwe-specific terms a cold model trips on. Definitions are 1-2 sentences; path
 - EOD / execute-or-decline -- `Calendar/decisions/execute-or-decline.md`, the escalating action queue (EOD-N rows) surfaced by the open-loops digest.
 - open-loops digest -- `tools/open-loops.py`, the SessionStart top-5 stale-loop ranker that enforces EOD escalation dates.
 - DW topology / Dynamic Workflow -- a fan-out of read-only worker agents (concurrency <= 6) that a DW-worker skill detects per Phase A.7; the sequential spine is the permanent universal fallback.
-- Wave-1/2/3 / invest-verify / brief-research -- the DW waves; Wave-3 is the adversarial skeptic wave in `/invest` (`invest-verify.js`, which the skill calls for every material rating conclusion, fail-closed). DISABLED IN PRACTICE: `invest-verify.js` returns `status: withheld, dispatched_agents: 0` for every valid call, because the Workflow agent API supplies no verified per-call read-only boundary, so the gate resolves to a Phase N withheld acceptance and no skeptic is dispatched (see COMPATIBILITY.md "Validation profiles"). `brief-research.js` is the `/brief` Wave-1 acquirer bundle.
+- Wave-1/2/3 / invest-verify / brief-research -- the DW waves; Wave-3 is the adversarial skeptic wave in `/invest` (`invest-verify.js`, which the skill calls for every material rating conclusion, fail-closed). DISABLED IN PRACTICE: `invest-verify.js` returns `status: withheld, dispatched_agents: 0` for every valid call, because the Workflow agent API supplies no verified per-call read-only boundary, so the gate resolves to a Phase N withheld acceptance and no skeptic is dispatched (see docs/compatibility.md "Validation profiles"). `brief-research.js` is the `/brief` Wave-1 acquirer bundle.
 - *_DW_TOKEN_BUDGET -- per-skill env budgets read by the main loop (e.g. BRIEF_DW_TOKEN_BUDGET default 150K); the workflow sandbox has no `process.env`.
 - sequential spine -- the deterministic non-DW fallback path every DW-worker skill retains verbatim; no skill conditions behavior on model identity (topology doctrine).
 - shadow rating -- a parallel "what the model would say" rating tracked for calibration.
@@ -118,7 +118,7 @@ Osanwe-specific terms a cold model trips on. Definitions are 1-2 sentences; path
 - body-preservation / sha256 invariant -- the guarantee that content outside intended insertion sites stays byte-exact across an Edit.
 - marker signature -- the (entity, metric, value, date) dedup key that makes idempotent re-runs produce zero diff.
 - Tier 1/2/3 contradiction resolution -- the `/ingest` contradiction ladder: Tier 1 auto-resolve, Tier 2 flag, Tier 3 reject.
-- .vault-substrate / vault-search / server.py -- the out-of-tree semantic-retrieval engine (HNSW index at `~/.vault-substrate/`, server at `<LOCAL_PATH>/vault-search/`), rebuilt every 2 minutes by a scheduled task.
+- .vault-substrate / vault-search / server.py -- the out-of-tree semantic-retrieval engine (HNSW index at `~/.vault-substrate/`, server at `vault-search/`), rebuilt every 2 minutes by a scheduled task.
 - semantic-context-inject -- the SessionStart/UserPromptSubmit hook that calls `server.py --oneshot` to inject top-5 vault chunks.
 - qwen36 / legacy local worktree -- archived whole-session experiment; its obsolete worktree was retired after verified backup on 2026-09-12. History is retained by `archive/local-mode-2026-09-12`; current per-query local routing follows config/local-lane.json and /local.
 - D-SEC-1 / D-SEC-2 -- the two security decisions: mechanical the broker order deny; Gmail/playwright session isolation.
@@ -131,7 +131,7 @@ Osanwe-specific terms a cold model trips on. Definitions are 1-2 sentences; path
 - regular_market_close anchor -- the doctrine that concentration and trim-trigger math anchors to the regular-session close even when extended-hours prices are shown.
 - archival rule -- the never-overwrite discipline for dated files (new file per run; `-HHMM` on same-day collision).
 - Bases / Tasks / .base -- Obsidian plugins; `.base` is a structured-view file used instead of Dataview and carries no frontmatter.
-- Codex mirror (.agents / .codex) / AGENTS.md -- REVIVED-INVERTED 2026-07-08 (see 13.4). `AGENTS.md` is now the CANONICAL router (Codex CLI auto-loads it; Claude Code imports it via the `CLAUDE.md` shim); `.agents/skills/` holds thin pointer-adapters (bodies single-source in `.claude/skills/`, never forked) and `.codex/config.toml` holds read-only MCP config. The prior T7-RETIRED Mission-Four mirror (forked bodies + ported hooks) stays archived at `_archive/codex-mirror-2026-07-04/`. SUPERSEDED by the 2026-08-10 cross-harness cutover, per the authority map above: `.agents/skills/` is now the CANON tree and `.claude/skills/` the sync-generated derived copy (`.agents/scripts/sync.py`), not the reverse. `CLAUDE.md` became a byte-identical copy of `AGENTS.md` at that cutover, and on 2026-09-22 went back to a one-line import stub, `@AGENTS.md`, because Claude Code does not read AGENTS.md natively beside a root CLAUDE.local.md.
+- Codex mirror (.agents / .codex) / AGENTS.md -- REVIVED-INVERTED 2026-07-08 (see 13.4). `AGENTS.md` is now the CANONICAL router (Codex CLI auto-loads it; Claude Code imports it via the `CLAUDE.md` shim); `.agents/skills/` holds thin pointer-adapters (bodies single-source in `.claude/skills/`, never forked) and `.codex/config.toml` holds read-only MCP config. The prior T7-RETIRED Mission-Four mirror (forked bodies + ported hooks) stays archived at `_archive/codex-mirror-2026-07-04/`. SUPERSEDED by the 2026-08-10 cross-harness cutover, per the authority map above: `.agents/skills/` is now the CANON tree and `.claude/skills/` the sync-generated derived copy (`.agents/scripts/sync.py`), not the reverse. `CLAUDE.md` became a byte-identical copy of `AGENTS.md` at that cutover, and on 2026-09-22 went back to a one-line import stub; the stub was removed on 2026-09-24 and the import moved into the per-machine CLAUDE.local.md, `@AGENTS.md`, because Claude Code does not read AGENTS.md natively beside a root CLAUDE.local.md.
 
 ---
 
@@ -185,3 +185,4 @@ edition's table width -- the full row text is present there and is not duplicate
 | 2026-09-21 | agent | Correct four historical-glossary entries that named components the disk does not hold | Brier-ledger path corrected to Calendar/decisions/briefings/; /enrich described as the /ingest file mode; Wave-3 marked disabled in practice per invest-verify.js; canon/derived skill direction and the CLAUDE.md "shim" wording marked superseded by the 2026-08-10 cutover. Documentation only; no disk or YAML change |
 | 2026-09-22 | agent | Record that the order gate's phrase condition does not hold, and what the publication privacy gate missed | Three adversarial rounds drove condition 1 of `pretrade-token-gate` end to end with synthetic transcripts and found shapes it authorised; no broker call was made and no order placed. Four patches retired unmerged; D70, D72, D73 and D74 open; the gate brief no longer calls condition 1 a guarantee, and its matcher and dead-code statements are corrected (the matcher has been the whole broker server since 2026-08-10). A property-based replacement exists only as a design under adversarial review, outside the repository; the deny list and the hook's refusal of unrecognised robinhood-trading tools remain the controls in force. The claude.ai the broker connector, which reached sessions outside the vault with no rule covering it, is denied server-wide at user scope. A PreToolUse guard that refuses heredocs on the Bash tool is registered in both harnesses and has been seen firing only in Claude Code. Publication pipeline, outside the vault: D71 its privacy gate reported failure without stopping a build (fixed to gate); D75 its denylist had no rule for a concentration figure or a roster written in prose (an ownership scan now gates); D76 a replacement public repository inherited private facts through history (a fresh root was chosen). Documentation only. The YAML is NOT regenerated here: `gen-codex-yaml.py` takes its own location as the vault root and counts files on that disk, so run from a worktree it writes the worktree's path and counts into the index; it must be run from the live vault, which is a follow-up rather than part of this merge |
 | 2026-09-22 | agent | Resolve the single-contract merge blocker: root CLAUDE.md stays as a one-line stub that imports AGENTS.md | Measured on Claude Code 2.1.280 with synthetic files: AGENTS.md beside a CLAUDE.local.md loads only the local file, and a CLAUDE.md holding only `@AGENTS.md` loads the contract with or without it; a headless worktree session then read a canary through the stub. router-check and the pre-commit cage require exactly the stub and refuse a .claude/CLAUDE.md; the session integrity hook alerts on a wrong stub and drops the version-floor check an import does not need. The YAML is not regenerated here, for the reason in the row above |
+| 2026-09-24 | agent | Move the contract import out of the tracked tree: AGENTS.md is the only instruction file, and a per-machine CLAUDE.local.md imports it | The root CLAUDE.md stub and .claude/skills/CLAUDE.md are removed; router-check, the pre-commit cage (R7) and the session integrity hook now refuse any CLAUDE.md and a root CLAUDE.local.md whose first line is not `@AGENTS.md`. Proved on Claude Code 2.1.281 with a canary in AGENTS.md: loaded with an importing CLAUDE.local.md and with none; a local file without the import still suppresses the contract, so the import line is load-bearing |

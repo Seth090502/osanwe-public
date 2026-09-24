@@ -6,23 +6,23 @@ linked notes that the next analysis reads first. Research compounds instead of e
 *Designed and directed by Seth Young, as architect, orchestrator and evaluator of the agents that built it.*
 
 In the working system (this repository is a partial copy): 17 skills, 14 subagents, 27 hook registrations on
-10 lifecycle events, 193 formulas in nine domains, 662 research outputs, and 3,062 commits from April to
-21 September 2026, 2,564 of them by AI agents. Here, 49 test suites pass in CI on every push:
+10 lifecycle events, 193 formulas in nine domains, 662 research outputs, and 3,062 commits from 2026-04-02
+to 2026-09-21, 2,564 of them by AI agents. Here, 49 test suites pass in CI on every push:
 [![tests](https://github.com/Seth090502/osanwe-public/actions/workflows/tests.yml/badge.svg)](https://github.com/Seth090502/osanwe-public/actions/workflows/tests.yml)
 
 ## What this demonstrates, and where to check it
 
 | Capability | Evidence |
 |---|---|
-| Guarding irreversible actions: fail-closed gates, injection cases in CI, red-teaming | [demo](demo/README.md); [threat model A2](THREAT-MODEL.md#a2-fetched-content-that-carries-instructions) |
+| Guarding irreversible actions: fail-closed gates, injection cases in CI, red-teaming | [demo](demo/README.md); [threat model A2](docs/threat-model.md#a2-fetched-content-that-carries-instructions) |
 | Multi-agent orchestration: parallel specialist subagents, an adversarial critic | [example 1](examples/01-equity-analysis-end-to-end.md#subagent-audit); [Phase K.5](.agents/skills/invest/SKILL.md#phase-k5-variant-view----thesis-critic-adversarial-cross-check-delegated-phase-c-wiring-2026-05-02) |
-| Evals: a call record with its denominator, a shadow of the old logic, a rollback trigger | [evals 4](docs/EVALS.md#4-the-prior-calls-record-which-is-too-small-to-calibrate); [Phase R](.agents/skills/invest/SKILL.md#phase-r-calibration-continuity-monitor-verdict-redesign-2026-06-06-conditional-ratify-rolling-check) |
+| Evals: a call record with its denominator, a shadow of the old logic, a rollback trigger | [evals 4](docs/evals.md#4-the-prior-calls-record-which-is-too-small-to-calibrate); [Phase R](.agents/skills/invest/SKILL.md#phase-r-calibration-continuity-monitor-verdict-redesign-2026-06-06-conditional-ratify-rolling-check) |
 | Context engineering: typed notes as memory, progressive disclosure, re-injection after compaction | [architecture 4-5](ARCHITECTURE.md#4-one-contract-disclosed-progressively) |
 | Deterministic control: a pre-write schema hook, recorded gate verdicts, append-only ledgers | [control points](ARCHITECTURE.md#control-points); [validator](tools/pre-write-validator.py) |
 | Tool integration over MCP: filings, macro series, a brokerage, point-in-time records | [registry](.agents/mcp/servers.json); [PIT records](tools/pit/financial_documents.py) |
 | Quantitative finance: 193 formulas in nine domains, each with a checked verdict | [formula index](docs/quant-formula-index.md#check-results) |
-| Governing long-running agent work: briefs, approval gates, a verbatim log, worktrees | [orchestration](docs/ORCHESTRATION.md#the-parts) (method only) |
-| Reproducibility: 49 suites in CI, a one-command demo, one contract for Claude Code and Codex | [CI](.github/workflows/tests.yml); [receipts](COMPATIBILITY.md#september-recovery-runtime-receipts) |
+| Governing long-running agent work: briefs, approval gates, a verbatim log, worktrees | [orchestration](docs/orchestration.md#the-parts) (method only) |
+| Reproducibility: 49 suites in CI, a one-command demo, one contract for Claude Code and Codex | [CI](.github/workflows/tests.yml); [receipts](docs/compatibility.md#september-recovery-runtime-receipts) |
 
 ## The idea
 
@@ -93,8 +93,8 @@ session as an approval through its own compaction summary. When successive patch
 work stopped rather than ship another, and stair one is being redesigned from stated properties: the person
 types the order itself, and only exactly that order can execute. Until the redesign survives a full attack,
 the deny list keeps every order tool closed. The four open defects are tabled in
-[THREAT-MODEL.md](THREAT-MODEL.md#open-defects-in-stair-1); how the stop was decided is in
-[docs/ORCHESTRATION.md](docs/ORCHESTRATION.md#the-worked-case-four-patches-and-the-decision-not-to-write-a-fifth).
+[docs/threat-model.md](docs/threat-model.md#open-defects-in-stair-1); how the stop was decided is in
+[docs/orchestration.md](docs/orchestration.md#the-worked-case-four-patches-and-the-decision-not-to-write-a-fifth).
 
 ### 2. Every formula in the quantitative layer carries a checked verdict
 
@@ -119,15 +119,15 @@ logs both ratings, and a pre-committed rollback trigger compares their Brier sco
 have three months of realized returns. The call record is reported with its denominator rather than as a
 track record: 5 scored BUY calls are too few to calibrate, and the evals page says so. Of the 467 components
 the audit tracked, 352 were run and did what they should; the other 115 are counted and explained. See
-[docs/EVALS.md](docs/EVALS.md#4-the-prior-calls-record-which-is-too-small-to-calibrate),
-[tools/score-outcomes.py](tools/score-outcomes.py) and [CAPABILITIES.md](CAPABILITIES.md#the-headline).
+[docs/evals.md](docs/evals.md#4-the-prior-calls-record-which-is-too-small-to-calibrate),
+[tools/score-outcomes.py](tools/score-outcomes.py) and [docs/capabilities.md](docs/capabilities.md#the-headline).
 
 ### 4. Long-running agent work is governed rather than supervised turn by turn
 
 The audit that produced this release ran as agent work under a written brief, with approval gates keyed to
 literal words, a verbatim decision log, state on disk that survives session resets, and worktree isolation
 from the live system. Agents inventoried and classified 25,478 files, verified 352 components by running
-them, and built this sanitized mirror. [docs/ORCHESTRATION.md](docs/ORCHESTRATION.md#where-the-agent-stopped-itself)
+them, and built this sanitized mirror. [docs/orchestration.md](docs/orchestration.md#where-the-agent-stopped-itself)
 records where the agents stopped for a human decision and where the method failed.
 
 ## Run the staircase yourself
@@ -146,6 +146,18 @@ four conditions together, allowed and the token consumed; and the same order rep
 with a count and exits non-zero on any mismatch. The allowed case is the point: a demo where everything
 blocks cannot tell a working defence from a gate that blocks everything.
 [`demo/README.md`](demo/README.md) says what the run shows and what it does not.
+
+## Run the tests
+
+The suites CI runs, run the same way:
+
+```
+pip install -r requirements.txt
+python tools/run-ci-suites.py
+```
+
+The list is [`.github/ci-suites.txt`](.github/ci-suites.txt); the files not on it, and why, are in
+[docs/audit.md](docs/audit.md#what-was-executed-and-what-was-not).
 
 ## What it models
 
@@ -167,18 +179,35 @@ Every formula in the system, by domain, with how it is implemented and how it ch
 What "prompt-only" means, and what sits underneath the formulas, is in
 [point 2](#2-every-formula-in-the-quantitative-layer-carries-a-checked-verdict) above.
 
+## Repository layout
+
+| Directory | What it holds |
+|---|---|
+| `.agents/` | The canonical, harness-neutral layer: skills (`skills/<name>/SKILL.md`), subagent roles, hook specifications, the MCP server registry and the generators. Edit here. |
+| `.claude/`, `.codex/` | Thin adapters for Claude Code and Codex: settings, hook scripts and workflows, plus copies generated from `.agents/`. |
+| `.github/`, `.githooks/` | The CI workflow and its suite list; the pre-commit hook, which delegates to `tools/precommit.py`. |
+| `Atlas/` | Durable reference notes: methods, doctrine and maps of content. |
+| `wiki/` | Research outputs: analyses, research notes, playbooks and maintenance reports. |
+| `examples/` | Four worked outputs, each with a note for an outside reader. |
+| `demo/` | The runnable order-gate demo. |
+| `docs/` | The audit, the threat model, evaluations, the formula index, orchestration and runtime references. |
+| `tools/` | The code the skills call -- scoring, sizing, point-in-time data, validation, hooks -- and its tests. |
+| `evaluation/` | The reasoning-evaluation harness and its tests. |
+| `config/`, `registry/` | Local-model lane and scheduler configuration; dataset and model registries. |
+| `research/`, `fis-app/`, `_templates/` | Experiment write-ups; an offline HTML dashboard; templates for new notes. |
+
 ## If you have five more minutes
 
-- [`AUDIT.md`](AUDIT.md) -- every check run over this repository, what it found, and **what each check cannot
+- [`docs/audit.md`](docs/audit.md) -- every check run over this repository, what it found, and **what each check cannot
   detect**, including the audit's own worst mistake.
-- [`docs/ORCHESTRATION.md`](docs/ORCHESTRATION.md) -- how long-horizon agent work is governed here: a
+- [`docs/orchestration.md`](docs/orchestration.md) -- how long-horizon agent work is governed here: a
   governing brief, approval gates with literal words, a verbatim decision log, state on disk so sessions
   resume, worktree isolation.
-- [`docs/EVALS.md`](docs/EVALS.md) -- what is evaluated and how, including a call record that is too small to
+- [`docs/evals.md`](docs/evals.md) -- what is evaluated and how, including a call record that is too small to
   calibrate and is reported with its denominator instead of as a hit rate.
 - [`examples/02-factor-backtest-rejected.md`](examples/02-factor-backtest-rejected.md) -- a backtest whose
   answer was "reject", kept because the negative result is the useful one.
-- [`WITHHELD.md`](WITHHELD.md) -- what is not in this copy and why.
+- [`docs/withheld.md`](docs/withheld.md) -- what is not in this copy and why.
 
 ## How this was built
 
@@ -195,15 +224,15 @@ process and judge it accordingly.
 
 ## Limitations you should know before using any of it
 
-1. **A mirror, not a deployment:** it has never been run end to end from a clean clone; paths are placeholders, secrets are absent, data directories are empty. [THREAT-MODEL.md, open risks](THREAT-MODEL.md#open-risks)
+1. **A mirror, not a deployment:** it has never been run end to end from a clean clone; paths are placeholders, secrets are absent, data directories are empty. [docs/threat-model.md, open risks](docs/threat-model.md#open-risks)
 2. **Most `/invest` rating rules are prompt text, not code:** 38 of the 65 formulas on its scoring path, and 112 of 193 overall, have no implementation. [docs/quant-formula-index.md, coverage](docs/quant-formula-index.md#coverage)
-3. **Retrieval is keyword search over a small admitted set, not a vector index.** [CAPABILITIES.md, known weak points](CAPABILITIES.md#known-weak-points)
-4. **50 of the 72 published test files pass from a clean copy,** one of them only with a local model running; the other 22 are named with their causes, not loosened. [AUDIT.md](AUDIT.md#what-was-executed-and-what-was-not)
-5. **Execution evidence comes from the originals;** the published copies were checked for equivalence instead. [AUDIT.md](AUDIT.md#execution-evidence-and-what-replaced-it-here)
-6. **The `/invest` skeptic wave never runs:** its entry point fails closed on every call. [CAPABILITIES.md, known weak points](CAPABILITIES.md#known-weak-points)
-7. **The vault root is hardcoded:** in the working system, 132 of 500 tracked code files carry an absolute path; here it is a placeholder. [CAPABILITIES.md, known weak points](CAPABILITIES.md#known-weak-points)
+3. **Retrieval is keyword search over a small admitted set, not a vector index.** [docs/capabilities.md, known weak points](docs/capabilities.md#known-weak-points)
+4. **50 of the 72 published test files pass from a clean copy,** one of them only with a local model running; the other 22 are named with their causes, not loosened. [docs/audit.md](docs/audit.md#what-was-executed-and-what-was-not)
+5. **Execution evidence comes from the originals;** the published copies were checked for equivalence instead. [docs/audit.md](docs/audit.md#execution-evidence-and-what-replaced-it-here)
+6. **The `/invest` skeptic wave never runs:** its entry point fails closed on every call. [docs/capabilities.md, known weak points](docs/capabilities.md#known-weak-points)
+7. **The vault root is hardcoded:** in the working system, 132 of 500 tracked code files carry an absolute path; here it is a placeholder. [docs/capabilities.md, known weak points](docs/capabilities.md#known-weak-points)
 8. **Formula defects are published as found:** 21 formulas did not match their definitions when checked; the five computational defects are fixed since. [docs/quant-formula-index.md](docs/quant-formula-index.md#the-findings-tagged)
-9. **Nothing here places an order:** order tools are denied by configuration, the gate blocks any unknown tool name, and no credential is present. [THREAT-MODEL.md, A1](THREAT-MODEL.md#a1-the-agent-has-broker-tools-and-the-account-is-real)
+9. **Nothing here places an order:** order tools are denied by configuration, the gate blocks any unknown tool name, and no credential is present. [docs/threat-model.md, A1](docs/threat-model.md#a1-the-agent-has-broker-tools-and-the-account-is-real)
 
 ## Licence
 
