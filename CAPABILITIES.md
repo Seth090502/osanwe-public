@@ -102,7 +102,8 @@ validator that refuses malformed vault Markdown.
 
 ## What is present but unproven
 
-44 components have still not been run, down from 261. They are not a residue of effort; each one has a reason
+44 components have still not been run, down from 261. With the 6 STALE and 10 ORPHANED components, they make
+up the 60 that never ran in the headline table. They are not a residue of effort; each one has a reason
 that another hour would not remove:
 
 | Why it stayed unrun | Count |
@@ -115,8 +116,8 @@ that another hour would not remove:
 | Registers operating-system scheduled tasks | 2 |
 | Needs a continuous-integration runner | 1 |
 
-The third and fifth rows are the interesting ones. "No consumer available" and "hardcodes the root path" are
-not facts about the audit; they are defects in the system, and they are recorded as such. `AUDIT.md` explains
+The fifth row is the interesting one. "Hardcodes the root path" is not a fact about the audit; it is a defect
+in the system, and it is recorded as such. `AUDIT.md` explains
 separately why the published copy could not be executed end to end.
 
 ## Known weak points

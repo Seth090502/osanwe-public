@@ -4,10 +4,8 @@
 python demo/run_staircase_demo.py
 ```
 
-No arguments, no network, no credentials, no configuration. Standard library only; CI runs it on Python
-3.12, which is the version pinned in the workflow.
-It finishes in about a second and exits non-zero if any step does not behave as documented. It runs in CI
-on Linux and Windows.
+No arguments, no network, no credentials, no configuration. Standard library only. It finishes in about a
+second and exits non-zero if any step does not behave as documented.
 
 ## What it is
 
@@ -47,7 +45,8 @@ inputs; it does not mean no twelfth input gets through. That distinction is not 
 and this demo passes anyway, because none of the eleven steps is the shape that breaks it. A green
 demo over a flawed control is exactly the failure mode worth seeing once.
 
-Steps 7 to 11 exercise stairs 2, 3 and 4, which are sound. Steps 4 and 5 exercise stair 1, which is not.
+Steps 7 to 11 exercise stairs 2, 3 and 4, which held in every case tested. Steps 4 and 5 exercise stair 1,
+which has the open defects above.
 
 Read [`../THREAT-MODEL.md`](../THREAT-MODEL.md) before drawing any conclusion about what this system
 prevents. It records what was attacked, what got through, and what is protecting the account meanwhile --
