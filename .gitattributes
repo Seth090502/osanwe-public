@@ -1,75 +1,20 @@
-# Default: treat all files as text, enforce LF on checkout
+# Normalize line endings: every text file is stored with LF, whatever the checkout platform.
 * text=auto eol=lf
 
-# Explicit text files (user canon)
-*.md        text eol=lf
-*.base      text eol=lf
-*.json      text eol=lf
-*.yaml      text eol=lf
-*.yml       text eol=lf
-*.toml      text eol=lf
-*.sh        text eol=lf
-*.py        text eol=lf
-*.js        text eol=lf
-*.ts        text eol=lf
-*.canvas    text eol=lf
-*.svg       text eol=lf
-
-# Vault-present additions (Group 1 audit 2026-04-17)
-*.html      text eol=lf
-*.ps1       text eol=lf
-*.txt       text eol=lf
-*.csv       text eol=lf
-*.modelfile text eol=lf
-Modelfile*  text eol=lf
-.gitignore  text eol=lf
-.gitattributes text eol=lf
-.obsidianignore text eol=lf
-
-# Binary files — never convert
-*.png       binary
-*.jpg       binary
-*.jpeg      binary
-*.gif       binary
-*.pdf       binary
-*.zip       binary
-*.webp      binary
-*.7z        binary
-*.tar       binary
-*.gz        binary
-*.mp3       binary
-*.mp4       binary
-*.wav       binary
-*.woff      binary
-*.woff2     binary
-*.ttf       binary
-*.otf       binary
-*.exe       binary
-*.dll       binary
-*.so        binary
-
-# Hash-sealed experiment evidence: retain the exact bytes recorded by the run.
-Efforts/osanwe-v2-overhaul/INSTITUTIONAL-BENCHMARK-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
-Efforts/osanwe-v2-overhaul/INSTITUTIONAL-VALIDATION-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
-# Exact source bytes bound by the September 13 release receipts and evaluator.
-# Do not normalize these observed bytes during Git clean/checkout.
-config/scheduled-jobs.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
-tools/fis/test_report_review.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
-evaluation/reports/cohort-controls-2026-09-13.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
-evaluation/request_access.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
-tools/eval-interface.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
-# Exact corpus inspection and computation receipts; admission binds these bytes.
-wiki/research/financial-methods/source-inspections-2026-09-13-v2.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
-wiki/research/financial-methods/corpus-examples-2026-09-13.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
-# Preserve the observed scheduled adapter/control bytes sealed with this release.
-tools/scheduled-job.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
-tools/test-runtime-health.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
-# Observed public receipts retain their exact run-time bytes.
-Efforts/osanwe-v2-overhaul/reports/financial-corpus-2026-09-13/*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
-Efforts/osanwe-v2-overhaul/reports/retrieval-runtime-20260913193305Z/*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
-Efforts/osanwe-v2-overhaul/reports/native-review-20260913T200436Z/*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
-
-# Exact bytes for the reviewed public AI-slowdown research case.
-Efforts/osanwe-v2-overhaul/reports/ai-slowdown-2026-09-13/*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
-Efforts/osanwe-v2-overhaul/reports/ai-slowdown-2026-09-13/*.txt -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
-wiki/research/gates/gate-f-*-add-*.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+# Binary files are never converted.
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
+*.pdf   binary
+*.zip   binary
+*.gz    binary
+*.7z    binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
+*.exe   binary
+*.dll   binary
+*.so    binary
