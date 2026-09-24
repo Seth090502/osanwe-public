@@ -13,32 +13,40 @@ VAULT="${OSANWE_VAULT_ROOT:-/path/to/vault}"
 STATE="$VAULT/.claude/state"
 mkdir -p "$STATE" 2>/dev/null || true
 
-# --- X56: root-contract assertions (stub layout, 2026-09-22) ---
-# AGENTS.md is the contract. Root CLAUDE.md is a one-line stub, '@AGENTS.md', that
-# imports it and holds nothing else. Claude Code reads AGENTS.md natively only when
-# the project root carries none of CLAUDE.md, .claude/CLAUDE.md or CLAUDE.local.md,
-# so without the stub a per-machine CLAUDE.local.md would leave the session with
-# no contract at all (measured 2026-09-22 on Claude Code 2.1.280: AGENTS.md beside
-# a CLAUDE.local.md loaded only the local file). The stub makes the contract load
-# either way, on any version that honours @-imports. A session with no contract
-# has no financial boundaries, so each failure gets a loud line; every check stays
-# non-fatal per X77: this script detects, it never blocks.
+# --- X56: root-contract assertions (AGENTS.md only, 2026-09-24) ---
+# AGENTS.md is the contract and the only instruction file; no CLAUDE.md is tracked.
+# Claude Code reads AGENTS.md natively only when the project root carries none of
+# CLAUDE.md, .claude/CLAUDE.md or CLAUDE.local.md (measured 2026-09-22 on Claude Code
+# 2.1.280: AGENTS.md beside a CLAUDE.local.md loaded only the local file), so a
+# per-machine CLAUDE.local.md must begin with the line '@AGENTS.md', which imports
+# the contract. A session with no contract has no financial boundaries, so each
+# failure gets a loud line; every check stays non-fatal per X77: this script
+# detects, it never blocks.
 #   a. AGENTS.md is missing or opens with the wrong first line. The qwen36 local
 #      lane used to swap a model profile over the root contract, and a launcher
 #      crash could leave it in place; this still catches that shape.
-#   b. CLAUDE.md is missing or is anything but the stub -- a restored mirror, a
-#      swapped-in profile, an edit -- so the rules may not be the contract's.
-#   c. .claude/CLAUDE.md exists: a second project instruction file.
+#   b. CLAUDE.md, .claude/CLAUDE.md or .claude/skills/CLAUDE.md exists: a second
+#      set of rules beside the contract -- a restored stub or mirror, a
+#      swapped-in profile.
+#   c. CLAUDE.local.md exists but its first line is not '@AGENTS.md', so Claude
+#      Code loads the local file and not the contract. Only that line is read.
 EXPECTED='# Project Osanwe -- universal agent contract'
 first_line=$(head -1 "$VAULT/AGENTS.md" 2>/dev/null || echo "")
 if [ "$first_line" != "$EXPECTED" ]; then
     echo "INTEGRITY ALERT (X56a): $VAULT/AGENTS.md is missing, or its first line is not the contract title -- this session may be running under a local-model profile left behind by a launcher crash, or with no contract at all. Inspect: git -C $VAULT status AGENTS.md; git -C $VAULT diff AGENTS.md"
 fi
-if [ "$(cat "$VAULT/CLAUDE.md" 2>/dev/null)" != "@AGENTS.md" ]; then
-    echo "INTEGRITY ALERT (X56b): $VAULT/CLAUDE.md is missing or is not exactly the one-line stub '@AGENTS.md'. Without the stub a root CLAUDE.local.md stops Claude Code reading AGENTS.md, and anything else in CLAUDE.md is a second set of rules. Inspect: git -C $VAULT status CLAUDE.md; git -C $VAULT diff CLAUDE.md"
-fi
-if [ -f "$VAULT/.claude/CLAUDE.md" ]; then
-    echo "INTEGRITY ALERT (X56c): $VAULT/.claude/CLAUDE.md exists -- a second project instruction file beside the contract. Remove it: AGENTS.md is the contract and CLAUDE.md only imports it."
+# Same path list as tools/router-check.py and tools/precommit.py; a dangling symlink
+# counts, a directory named CLAUDE.md does not (it is never loaded).
+for extra in CLAUDE.md .claude/CLAUDE.md .claude/skills/CLAUDE.md; do
+    if [ -f "$VAULT/$extra" ] || [ -L "$VAULT/$extra" ]; then
+        echo "INTEGRITY ALERT (X56b): $VAULT/$extra exists -- a second set of rules beside AGENTS.md, which is the only contract. Remove it; a per-machine CLAUDE.local.md imports the contract instead."
+    fi
+done
+if [ -f "$VAULT/CLAUDE.local.md" ]; then
+    local_first=$(head -1 "$VAULT/CLAUDE.local.md" 2>/dev/null | tr -d '\r')
+    if [ "$local_first" != "@AGENTS.md" ]; then
+        echo "INTEGRITY ALERT (X56c): $VAULT/CLAUDE.local.md does not begin with the line '@AGENTS.md'. A root CLAUDE.local.md stops Claude Code reading AGENTS.md natively, so this session may have no contract. Make '@AGENTS.md' its first line."
+    fi
 fi
 
 # --- X12/X77: subagent-model env-jail tripwire (SessionStart model-assert) ---

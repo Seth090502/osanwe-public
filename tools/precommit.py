@@ -25,13 +25,12 @@ Rules (each has a failing test in tools/test-precommit.py):
                        `domain/` / `type/` namespaced tag.
   R6 frontmatter       NEW .md files in wiki/, Calendar/, Efforts/ carry canonical
                        frontmatter (validated with tools/frontmatter-check.py).
-  R7 contract-stub     AGENTS.md is the contract and must be staged as a regular,
-                       nonempty file; CLAUDE.md must be staged as exactly the
-                       one-line stub `@AGENTS.md`, which imports it; and
-                       .claude/CLAUDE.md may not exist in the index or the worktree.
-                       Without the stub a root CLAUDE.local.md stops Claude Code
-                       reading AGENTS.md; anything more in CLAUDE.md is a second
-                       set of rules.
+  R7 one-contract      AGENTS.md is the contract and must be staged as a regular,
+                       nonempty file. No CLAUDE.md may exist anywhere in the index,
+                       nor at the root or in .claude/ of the worktree: any one is a
+                       second set of rules. A root CLAUDE.local.md suppresses
+                       Claude Code's native AGENTS.md read, so when one exists its
+                       first line must be exactly `@AGENTS.md`.
 
 Exit codes: 0 clean, 1 blocked (commit refused), 2 internal error.
 """
@@ -53,14 +52,33 @@ LEDGERS = (
     "wiki/insight-stream.md",
 )
 ATLAS_PREFIX = "atlas/"
-# The whole of root CLAUDE.md: an import of the contract and nothing else (R7).
-CONTRACT_STUB = b"@AGENTS.md\n"
-# A second project instruction file beside the contract; R7 refuses it.
-SECOND_CONTRACTS = (".claude/CLAUDE.md",)
+# A CLAUDE.md in the worktree at these paths is a second contract a live session
+# would load (R7); the same list as tools/router-check.py and the session integrity
+# hook. The index is checked for a CLAUDE.md at any depth, in any letter case.
+SECOND_CONTRACTS = ("CLAUDE.md", ".claude/CLAUDE.md", ".claude/skills/CLAUDE.md")
+# The first line a root CLAUDE.local.md must carry (R7): it imports the contract.
+LOCAL_FILE = "CLAUDE.local.md"
+LOCAL_IMPORT = b"@AGENTS.md"
 ASCII_SCOPES = ("wiki/", "calendar/", "efforts/", ".agents/", "tools/", "docs/")
 NEW_MD_SCOPES = ("wiki/", "calendar/", "efforts/")
 DOMAIN_FIELD_RE = re.compile(r"^\s*domain\s*:", re.MULTILINE)
+
+
+def local_imports_contract(path):
+    """True when the file's first line is exactly '@AGENTS.md'. Reads that line only;
+    the rest of the per-machine file is private and never read."""
+    with path.open("rb") as f:
+        return f.readline(256).rstrip(b"\r\n") == LOCAL_IMPORT
+
+
+def is_claude_md(path):
+    """A CLAUDE.md at any depth, in any letter case (Windows checkouts fold case)."""
+    return path.replace("\\", "/").rsplit("/", 1)[-1].lower() == "claude.md"
+
+
 NAMESPACED_TAG_RE = re.compile(r"^\s*-\s*(domain|type)/", re.MULTILINE)
+
+
 def strict_active():
     return (VAULT_ROOT / ".githooks" / "STRICT").exists()
 
@@ -193,29 +211,28 @@ def check(violations):
         violations.append(("R7", "AGENTS.md",
                            "the root contract must be staged as a regular, nonempty file; "
                            "stage AGENTS.md"))
-    stub = staged_content("CLAUDE.md") if staged_regular_file("CLAUDE.md") else None
-    if stub != CONTRACT_STUB:
-        violations.append(("R7", "CLAUDE.md",
-                           "must be staged as exactly the one-line stub '@AGENTS.md'; without it a "
-                           "root CLAUDE.local.md stops Claude Code reading AGENTS.md, and anything "
-                           "more is a second set of rules"))
+    # Any CLAUDE.md in the index, at any depth and in any mode, is a second contract.
+    index = [row.split(b"\t", 1)[1].decode("utf-8", "replace")
+             for row in _git("ls-files", "--stage", "-z").split(b"\0") if b"\t" in row]
+    for path in sorted({p for p in index if is_claude_md(p)}):
+        violations.append(("R7", path,
+                           "a CLAUDE.md is a second set of rules beside AGENTS.md; remove it"))
     # The working copies are what a live session loads, staged or not.
     live_canon = VAULT_ROOT / "AGENTS.md"
     if live_canon.is_symlink() or not live_canon.is_file() or not live_canon.read_bytes().strip():
         violations.append(("R7", "AGENTS.md (worktree)",
                            "the working copy of the contract is missing, empty or a symbolic link; a "
                            "live session loads it whether or not it is staged"))
-    live_stub = VAULT_ROOT / "CLAUDE.md"
-    if (live_stub.is_symlink() or not live_stub.is_file()
-            or live_stub.read_bytes().replace(b"\r\n", b"\n") != CONTRACT_STUB):
-        violations.append(("R7", "CLAUDE.md (worktree)",
-                           "the working copy is not exactly the one-line stub '@AGENTS.md'; a live "
-                           "session loads it whether or not it is staged"))
     for extra in SECOND_CONTRACTS:
         path = VAULT_ROOT / extra
-        if staged_any(extra) or path.is_file() or path.is_symlink():
-            violations.append(("R7", extra,
-                               "a second project instruction file beside the contract; delete it"))
+        if (path.is_file() or path.is_symlink()) and extra not in index:
+            violations.append(("R7", extra + " (worktree)",
+                               "a CLAUDE.md a live session would load beside AGENTS.md; delete it"))
+    local = VAULT_ROOT / LOCAL_FILE
+    if local.is_file() and not local_imports_contract(local):
+        violations.append(("R7", LOCAL_FILE,
+                           "a root CLAUDE.local.md stops Claude Code reading AGENTS.md natively; "
+                           "make its first line exactly '@AGENTS.md'"))
 
     # R1 protected paths
     for status, path in files:
@@ -334,7 +351,8 @@ def check_tree(strict_tree=False):
     BLOCKS on: any tracked file under protected prefixes; a missing ledger.
     REPORTS by default (BLOCKS with --strict-tree): missing-frontmatter files in
     wiki/Calendar/Efforts (non-_work), files containing bytes>127 in agent
-    trees. Always blocks a missing, empty, or divergent root contract pair.
+    trees. Always blocks a missing or empty contract, any tracked CLAUDE.md, a
+    CLAUDE.md at the root or in .claude/, or a CLAUDE.local.md without the import.
     """
     problems = []
     # tracked files must never include protected paths
@@ -349,13 +367,18 @@ def check_tree(strict_tree=False):
     canon = VAULT_ROOT / "AGENTS.md"
     if not canon.is_file() or canon.is_symlink() or not canon.read_bytes().strip():
         problems.append(("R7", "AGENTS.md", "root contract missing, empty, or a symbolic link"))
-    stub = VAULT_ROOT / "CLAUDE.md"
-    if (stub.is_symlink() or not stub.is_file()
-            or stub.read_bytes().replace(b"\r\n", b"\n") != CONTRACT_STUB):
-        problems.append(("R7", "CLAUDE.md", "not exactly the one-line stub '@AGENTS.md'"))
+    tracked = [p.decode("utf-8", "replace") for p in _git("ls-files", "-z").split(b"\0") if p]
+    for p in tracked:
+        if is_claude_md(p):
+            problems.append(("R7", p, "a tracked CLAUDE.md is a second set of rules beside AGENTS.md"))
     for extra in SECOND_CONTRACTS:
+        if extra in tracked:
+            continue
         if (VAULT_ROOT / extra).is_file() or (VAULT_ROOT / extra).is_symlink():
-            problems.append(("R7", extra, "a second project instruction file beside the contract"))
+            problems.append(("R7", extra, "a CLAUDE.md a live session would load beside AGENTS.md"))
+    local = VAULT_ROOT / LOCAL_FILE
+    if local.is_file() and not local_imports_contract(local):
+        problems.append(("R7", LOCAL_FILE, "first line is not exactly '@AGENTS.md'"))
     counts = {"missing_frontmatter": [], "non_ascii_files": []}
     fm_mod = _fm_module()
     for scope in ("wiki", "Calendar", "Efforts"):
