@@ -249,8 +249,8 @@ The score does not punish them, but the action recommendation is preserved. This
 10. EXPECTED_ARCHIVED exclude-list applied (no false-positive deprecation flags)
 11. CANONICAL_DAILY_SCHEMA reference embedded for template-drift Classifier 9
 12. ASCII-only on report body + sidecar (Pattern 22)
-13. `related:` field has 3-5 wikilinks (*hot* (not published), [[knowledge-moc]], peer audit reports if any)
-14. Symmetric back-link plan (*hot* (not published) last_audit bump; sessions-log entry)
+13. `related:` field has 3-5 wikilinks (hot, [[knowledge-moc]], peer audit reports if any)
+14. Symmetric back-link plan (hot last_audit bump; sessions-log entry)
 15. Path-guard: no proposed Write targets `.raw/`, `private/`, `finance/`, `credentials/`
 16. Sessions-log entry composed per canonical schema
 17. hot.md `last_audit` field present (add if missing)
@@ -291,8 +291,8 @@ Re-read composed body; re-run gate items 4, 7, 12; confirm internal references.
        - **Domain:** meta/skill-infrastructure
        - **Findings:** <C> CRITICAL, <W> WARNING, <I> INFO
        - **Followup skills:** `<count>` (`<comma-list>`)
-       - **Artifacts:** *audit-`<date>`[-HHMM* (not published)]
-       - **Related:** *hot* (not published) | [[knowledge-moc]]
+       - **Artifacts:** audit-`<date>`[-HHMM]
+       - **Related:** hot | [[knowledge-moc]]
 
 2. **hot.md frontmatter bump:** `last_audit: <today>` (add if absent).
 

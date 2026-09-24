@@ -49,4 +49,4 @@ views:
 ## Notes
 > Quick observations, linked from daily notes
 
-Related: 
+Related:

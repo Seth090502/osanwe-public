@@ -6,7 +6,7 @@ status: complete
 created: 2026-08-23
 updated: 2026-08-23
 tags: [topic/meta]
-related: ["[[COMPATIBILITY]]", "*osanwe-v2-hermes-mission* (not published)"]
+related: ["[[compatibility|COMPATIBILITY]]", "osanwe-v2-hermes-mission"]
 ---
 
 # Conformance record -- Hermes Desktop (OSANWE-V2-2026-08)

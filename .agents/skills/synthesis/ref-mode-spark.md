@@ -50,7 +50,7 @@ Skill-level semantic retrieval over the local HNSW vault index (covers `wiki/` +
 `"<T>"`, `"<T> cross-domain examples"`, `"<T> related patterns"`, `"<T> contradictions"`, `"<T> historical instances"`, `"<T> applications"`, `"<T> meta-patterns"`, `"<T> failure modes"`, `"<T> evolution"`, `"<T> alternative framings"`, `"<T> related theses"`, `"<T> known instances"`.
 
 0.3 -- Fire `query-skill.mjs` TWICE via Bash (stdin JSON heredoc; no temp file; ~1-1.5s each):
-- BROAD (cross-vault, no filter): `{"queries":[<the 12>],"top_k":100,"threshold":0.60}` piped to `node <HOME>\.vault-substrate\query-skill.mjs`
+- BROAD (cross-vault, no filter): `{"queries":[<the 12>],"top_k":100,"threshold":0.60}` piped to `node ~\.vault-substrate\query-skill.mjs`
 - FOCUSED (consolidated theme/decision doctrine): `{"queries":[<the 12>],"top_k":25,"threshold":0.60,"filter_path_prefix":"wiki/playbooks/"}` piped to the same script.
 
 Each returns a JSON array `[{path,line,score,text}]`. The script always exits 0 (emits `[]` on any error), so Phase 0 never crashes the run. (wiki/playbooks/ holds the distilled cross-domain theme + decision playbooks -- the highest-signal prior-pattern record; it is NOT among Phase C's reads, so this pass is additive. Prior spark reports are already covered by Phase C/D.)
@@ -330,7 +330,7 @@ Atomic with Phase O (single coherent commit covers all):
        - **Continuity score:** `<prior_calibration_score>`
        - **Followup skills:** `<count>` (`<comma-list>`)
        - **Artifacts:** `spark-<date>[-HHMM]`
-       - **Related:** *hot* (not published) | *insight-stream* (not published)
+       - **Related:** hot | insight-stream
 
 2. **Daily note `## Insights` linkback** -- append:
 

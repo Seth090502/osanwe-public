@@ -7,7 +7,7 @@ copy was made and, more usefully, what each check can and cannot detect. Nothing
 ## Order of operations
 
 1. **Inventory.** Every file in the working system was classified, with no file left unclassified.
-2. **Verification.** Components were run, or exercised by a passing test, or read. `CAPABILITIES.md` keeps
+2. **Verification.** Components were run, or exercised by a passing test, or read. `docs/capabilities.md` keeps
    those three states apart and never merges them.
 3. **Publish decision.** Each file was assigned PUBLISH, PUBLISH-SANITIZED or withheld by a first-match rule
    set.

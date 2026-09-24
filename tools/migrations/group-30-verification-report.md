@@ -104,8 +104,8 @@ All 6 invariants PASS unconditionally. Rebuild ready for closure.
 ## Group 30 interstitial lineage
 
 - `553600b rebuild(frontmatter): Group 30.1 -- close Group 29 R2 scope-boundary`
-- `bee0103 rebuild(frontmatter): Group 30.2 -- <private-file> canonicalization`
-- `cc6d514 rebuild(links): Group 30.3 -- sessions-log <private-file> remove-brackets`
+- `bee0103 rebuild(frontmatter): Group 30.2 -- a private file canonicalization`
+- `cc6d514 rebuild(links): Group 30.3 -- sessions-log a private file remove-brackets`
 
 ## Rebuild closure record
 
@@ -113,4 +113,3 @@ All 6 invariants PASS unconditionally. Rebuild ready for closure.
 - Permanent anchors: `pre-rebuild-20260416`, `pre-group-25`, `pre-group-26`, `pre-group-27`, `pre-group-28`, `pre-group-29`.
 - Methodology findings encoded: F1-F19 (F12 CORRECTED v13; F15 extended v13+v14).
 - Total commits in rebuild: 58
-

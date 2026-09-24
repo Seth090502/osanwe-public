@@ -6,7 +6,7 @@ status: active
 created: 2026-09-12
 updated: 2026-09-13
 tags: [topic/meta]
-related: ["[[financial-analysis-contract]]", "[[institutional-methods]]", "*STATE* (not published)"]
+related: ["[[financial-analysis-contract]]", "[[institutional-methods]]", "STATE"]
 ---
 
 # Finance and Data integration
@@ -63,7 +63,7 @@ synthetic context, not live account or full-harness certification.
 
 ## Current capability evidence
 
-Current host-specific evidence is in *HOST-CAPABILITIES-2026-09-13* (not published). The public
+Current host-specific evidence is in HOST-CAPABILITIES-2026-09-13. The public
 Microsoft FY2026 workflow exercised source retrieval, connected issuer facts,
 deterministic and independent calculations, actual Data rendering, filter and
 tooltip inspection, and offline export. Personal Finances access remains

@@ -52,7 +52,7 @@ EXEMPT_PATH_PREFIXES_HOOK = (
     "CLAUDE.local.md",
     "AGENTS.md",
     "AGENTS.override.md",
-    "AGENTS.override.md.template",
+    "docs/agents-override-template.md",
     "docs/PROJECT-OSANWE-PACKET.md",
     "docs/VAULT-HANDOFF-V16.md",
     "tools/migrations/README.md",

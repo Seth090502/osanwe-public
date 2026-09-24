@@ -5,6 +5,12 @@
 
 How a thesis change is decided: the trigger, the evidence required, and the verdict, recorded so a later reader can tell what would have changed the answer.
 
+**Reading guide.** This is a `/gate t` sheet, the check run before a thesis changes status on a manual
+trigger ([`.agents/skills/gate/SKILL.md`](../.agents/skills/gate/SKILL.md)). GATE-T is that gate; the
+verdict comes only from `tools/gate-eval.py`, never from the model. **Mandates** are the conditions a verdict
+carries forward, which later runs must discharge. `theme-alpha` is a neutral label that replaces the name of a
+thesis; Phase H is the briefing step that watches such triggers.
+
 ---
 
 <details>

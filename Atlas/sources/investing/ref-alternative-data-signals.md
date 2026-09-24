@@ -38,7 +38,7 @@ vault file; no network, no external data.
 ## REGENERATE
 
 ```
-python <HOME>/_build_dash.py        # recompute k8 spikes + streaks from stores
+python ~/_build_dash.py        # recompute k8 spikes + streaks from stores
 ```
 Curated evidence rows were hand-mined this session; re-mine after any new
 /invest cycle. Factor-store rules are close-only (bars carry no volume column),
@@ -307,4 +307,4 @@ distribution signal), RKLB (discretionary director sells + down-streak).
    do not read S1 direction without opening the documents.
 
 *Additive data layer. Qualitative context lives in [[ref-scoring-models]],
-[[ref-monitoring-rules]], *ref-factor-lens* (not published), and per-ticker entity notes.*
+[[ref-monitoring-rules]], ref-factor-lens, and per-ticker entity notes.*

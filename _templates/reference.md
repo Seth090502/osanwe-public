@@ -13,25 +13,25 @@ related: []
 
 # Reference: <% tp.file.title %>
 
-**Source count:** 
+**Source count:**
 **Refresh cadence:** quarterly / monthly / as-needed
-**Purpose:** 
+**Purpose:**
 
 ## Trigger Conditions
 Load this document when:
-- 
+-
 
 ---
 
-## 1. 
+## 1.
 
-## 2. 
+## 2.
 
-## 3. 
+## 3.
 
 ---
 
 ## Update Triggers
 - Update when:
 
-Related: 
+Related:

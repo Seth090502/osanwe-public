@@ -18,16 +18,16 @@ tags:
 aliases:
   - earnings playbook
 related:
-  - "*investing-moc* (not published)"
-  - "*ref-portfolio-doctrine* (not published)"
+  - "investing-moc"
+  - "ref-portfolio-doctrine"
   - "[[ref-investor-frameworks-2026]]"
   - "[[ref-scoring-models]]"
-  - "*ref-market-calendar* (not published)"
-  - "*MU* (not published)"
-  - "*AVGO* (not published)"
-  - "*SNDK* (not published)"
-  - "*NVDA* (not published)"
-  - "*SK-Hynix* (not published)"
+  - "ref-market-calendar"
+  - "MU"
+  - "AVGO"
+  - "SNDK"
+  - "NVDA"
+  - "SK-Hynix"
   - "[[ref-earnings-playbook-ingest-2026-06-10]]"
 ---
 
@@ -36,11 +36,11 @@ related:
 ## Table of Contents
 1. [Consensus Formation Mechanics](#1-consensus-formation-mechanics)
 2. [Estimate-Revision Momentum](#2-estimate-revision-momentum)
-3. [Pre-Print Checklist (T-10 -> T-0)](#3-pre-print-checklist-t-10--t-0)
+3. [Pre-Print Checklist (T-10 -> T-0)](#3-pre-print-checklist-t-10---t-0)
 4. [Implied Move Interpretation](#4-implied-move-interpretation)
 5. [Print-Night Decomposition Protocol](#5-print-night-decomposition-protocol)
 6. [Guidance Weighting](#6-guidance-weighting)
-7. [PEAD -- The Academic Core](#7-pead--the-academic-core)
+7. [PEAD -- The Academic Core](#7-pead----the-academic-core)
 8. [Beat-and-Drop Anatomy](#8-beat-and-drop-anatomy)
 9. [Peer-Constellation Signal Mechanics](#9-peer-constellation-signal-mechanics)
 10. [Cyclical-Name Earnings Specifics](#10-cyclical-name-earnings-specifics)

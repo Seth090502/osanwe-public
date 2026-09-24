@@ -74,42 +74,42 @@ aliases:
   - ai power grid deep dive
   - theme-gamma supply-side
 related:
-  - "*investing-moc* (not published)"
-  - "*thesis-theme-gamma* (not published)"
-  - "*thesis-theme-alpha* (not published)"
+  - "investing-moc"
+  - "thesis-theme-gamma"
+  - "thesis-theme-alpha"
   - "[[ref-theme-alpha]]"
-  - "*ref-ai-supply-chain-deep-dive* (not published)"
-  - "*ref-portfolio-doctrine* (not published)"
+  - "ref-ai-supply-chain-deep-dive"
+  - "ref-portfolio-doctrine"
   - "[[ref-macro-landscape]]"
-  - "*ref-sector-benchmarks* (not published)"
+  - "ref-sector-benchmarks"
   - "[[ref-investor-frameworks-2026]]"
-  - "*VST* (not published)"
-  - "*CEG* (not published)"
-  - "*TLN* (not published)"
-  - "*BWXT* (not published)"
-  - "*SMR* (not published)"
-  - "*OKLO* (not published)"
-  - "*GEV* (not published)"
-  - "*ETN* (not published)"
-  - "*ABB* (not published)"
-  - "*HUBB* (not published)"
-  - "*DTCR* (not published)"
-  - "*VOLT* (not published)"
-  - "*Hitachi-Energy* (not published)"
-  - "*Siemens-Energy* (not published)"
-  - "*AEP* (not published)"
-  - "*NRG* (not published)"
-  - "*NEE* (not published)"
-  - "*DUK* (not published)"
-  - "*SO* (not published)"
-  - "*PPL* (not published)"
-  - "*FLNC* (not published)"
+  - "VST"
+  - "CEG"
+  - "TLN"
+  - "BWXT"
+  - "SMR"
+  - "OKLO"
+  - "GEV"
+  - "ETN"
+  - "ABB"
+  - "HUBB"
+  - "DTCR"
+  - "VOLT"
+  - "Hitachi-Energy"
+  - "Siemens-Energy"
+  - "AEP"
+  - "NRG"
+  - "NEE"
+  - "DUK"
+  - "SO"
+  - "PPL"
+  - "FLNC"
   - "[[ref-ai-power-grid-deep-dive-ingest-2026-05-06]]"
 ---
 
 # AI Power + Grid Infrastructure -- Exhaustive Company Enumeration
 
-Cross-reference: this is the SUPPLY-SIDE companion to *ref-ai-supply-chain-deep-dive* (not published) (DEMAND-side compute / silicon / networking / cooling / REITs / neoclouds). Together the two refs map the full AI value chain from electrons to inference. This document enumerates every meaningful public utility, IPP, nuclear operator, SMR developer, gas-peaker OEM, transformer/grid-equipment vendor, BESS pure-play, geothermal/emerging-baseload company, and ISO/RTO market participant relevant to AI datacenter power buildout. Scope spans 22 layers from hyperscaler demand profile through emerging displacers + bottlenecks. Every public company carries ticker; private companies with >$200M cumulative funding receive structured H3s.
+Cross-reference: this is the SUPPLY-SIDE companion to ref-ai-supply-chain-deep-dive (DEMAND-side compute / silicon / networking / cooling / REITs / neoclouds). Together the two refs map the full AI value chain from electrons to inference. This document enumerates every meaningful public utility, IPP, nuclear operator, SMR developer, gas-peaker OEM, transformer/grid-equipment vendor, BESS pure-play, geothermal/emerging-baseload company, and ISO/RTO market participant relevant to AI datacenter power buildout. Scope spans 22 layers from hyperscaler demand profile through emerging displacers + bottlenecks. Every public company carries ticker; private companies with >$200M cumulative funding receive structured H3s.
 
 ## 1. Hyperscaler power demand profile
 
@@ -125,7 +125,7 @@ Microsoft is the largest single corporate power offtaker globally; it has signed
 - MSFT: CEG Crane Clean Energy Center 835 MW 20yr PPA TMI Unit 1 restart 2028 ~$16B contract value (per Constellation 8-K 2024-09-20)
 - MSFT: 6 partners with >1 GW contracted each; 20+ partners with 5+ projects each (per Microsoft 2026-02-18)
 #### Thesis Fit
-Largest single demand counterparty for IPPs (CEG, BEPC) and renewables developers (NEE Energy Resources). Sets the price benchmark for nuclear PPAs (~$110-130/MWh range implied at TMI). Cross-ref: see *ref-ai-supply-chain-deep-dive* (not published) §1 for compute/Azure context.
+Largest single demand counterparty for IPPs (CEG, BEPC) and renewables developers (NEE Energy Resources). Sets the price benchmark for nuclear PPAs (~$110-130/MWh range implied at TMI). Cross-ref: see ref-ai-supply-chain-deep-dive §1 for compute/Azure context.
 #### Risks
 2025 100% match goal achieved via offsets, not 24/7 physical matching; carbon-negative 2030 path requires CDR scale-up. Reported emissions rose 23.4% since 2020 baseline per 2025 Sustainability Report.
 #### Catalysts
@@ -144,7 +144,7 @@ AWS is the second-largest hyperscaler power buyer with a uniquely concentrated n
 - AWS: Entergy Mississippi $10B AWS data center investment Madison County (per Entergy IR 2024)
 - AWS: $38B multi-year cloud deal with OpenAI 2025 (per DCD 2025)
 #### Thesis Fit
-TLN is the highest-purity AWS nuclear proxy. VST diversifies AWS exposure into ERCOT. Cross-ref: see *ref-ai-supply-chain-deep-dive* (not published) §1.
+TLN is the highest-purity AWS nuclear proxy. VST diversifies AWS exposure into ERCOT. Cross-ref: see ref-ai-supply-chain-deep-dive §1.
 #### Risks
 FERC continues reviewing co-location framework; Fifth Circuit appeal pending. Susquehanna full ramp depends on transmission upgrades.
 #### Catalysts
@@ -180,7 +180,7 @@ Google has built the broadest small-reactor + geothermal portfolio: Kairos Herme
 - GOOGL: $40B Texas data center investment through 2027; 36 GW AEP Texas large-load Q4-25 attributable (per Utility Dive 2026-02-12)
 - GOOGL: Ormat 150 MW 15yr Nevada geothermal portfolio PPA new capacity 2028-2030 (per Ormat Q4-25 release 2026-02-26)
 #### Thesis Fit
-Highest-diversity power strategy with deepest advanced-tech tilt (Kairos, Fervo, Ormat). Cross-ref: *ref-ai-supply-chain-deep-dive* (not published) §1.
+Highest-diversity power strategy with deepest advanced-tech tilt (Kairos, Fervo, Ormat). Cross-ref: ref-ai-supply-chain-deep-dive §1.
 #### Risks
 Kairos Hermes 2 first-of-a-kind 2030 schedule; Fervo Cape Station phase II execution.
 #### Catalysts
@@ -208,7 +208,7 @@ Lordstown Ohio operations 2026; Wisconsin Vantage site disclosure.
 - 2025-09-23: Five-site expansion to ~7 GW
 
 ### Anthropic power profile
-Anthropic relies on Google Cloud TPU and AWS infrastructure with no direct PPAs disclosed. Reported 1 GW Google TPU commitment per *ref-ai-supply-chain-deep-dive* (not published). Indirect counterparty to GOOGL/AMZN power deals.
+Anthropic relies on Google Cloud TPU and AWS infrastructure with no direct PPAs disclosed. Reported 1 GW Google TPU commitment per ref-ai-supply-chain-deep-dive. Indirect counterparty to GOOGL/AMZN power deals.
 
 ### Apple power profile
 Apple's ACDC datacenter strategy is narrower in scope; 100% renewable since 2018 but uses smaller-scale renewable PPAs. Less material to AI-power thesis than the top six.
@@ -222,7 +222,7 @@ Oracle is both Stargate operator (4.5 GW) and a hyperscaler in its own right. Po
 - ORCL: 4.5 GW Stargate sites Texas/New Mexico/Midwest (per OpenAI 2025-09-23)
 - ORCL: DTE Energy Michigan 1.4 GW data center approved (per DTE 8-K 2026)
 #### Thesis Fit
-Cross-ref: *ref-ai-supply-chain-deep-dive* (not published) §1 for compute backlog.
+Cross-ref: ref-ai-supply-chain-deep-dive §1 for compute backlog.
 
 ## 2. Independent Power Producers
 
@@ -259,7 +259,7 @@ Largest US unregulated nuclear operator (~22 GW capacity). MSFT TMI restart and 
 - CEG: TVA + ENTRA1 Energy nonbinding MOU up to 6 GW NuScale SMR fleet (per NuScale Q4-25 2026-02-26)
 - CEG: ~$16B life-of-contract MSFT PPA estimated value (per industry reports)
 #### Thesis Fit
-Highest-quality nuclear baseload counterparty for hyperscalers; pricing power on subsequent license renewals. Cross-ref: *ref-ai-supply-chain-deep-dive* (not published) §10 for thin-stub reference.
+Highest-quality nuclear baseload counterparty for hyperscalers; pricing power on subsequent license renewals. Cross-ref: ref-ai-supply-chain-deep-dive §10 for thin-stub reference.
 #### Risks
 TMI 2028 restart schedule (transmission interconnection); subsequent renewal timing.
 #### Catalysts
@@ -275,7 +275,7 @@ Pure-play unregulated nuclear (Susquehanna 2.5 GW) + gas peaker fleet. AWS count
 - TLN: Brandon Shores + H.A. Wagner RMR through May 2029 FERC-approved (per Talen 8-K 2025-05-08)
 - TLN: 840-1,200 MW delivery 2029; 1,680-1,920 MW 2032 ramp (per Utility Dive 2025-06)
 #### Thesis Fit
-Most leveraged single-customer nuclear IPP. RMR settlement provides Maryland/Baltimore reliability bridge through 2029. Cross-ref: *ref-ai-supply-chain-deep-dive* (not published) §10 thin stub.
+Most leveraged single-customer nuclear IPP. RMR settlement provides Maryland/Baltimore reliability bridge through 2029. Cross-ref: ref-ai-supply-chain-deep-dive §10 thin stub.
 #### Risks
 Single-customer (AWS) concentration. Fifth Circuit appeal pending re: prior co-location FERC ruling.
 #### Catalysts
@@ -469,7 +469,7 @@ First and only NRC-certified SMR design (50 MWe Jan-2023; 77 MWe SDA approved Ma
 - SMR: Estonia Fermi Energia MOU 2031 deployment evaluation
 - SMR: 77 MWe SDA approval ahead of original timeline
 #### Thesis Fit
-First-mover NRC certification advantage; international order book primary near-term revenue path. Cross-ref: *ref-ai-supply-chain-deep-dive* (not published) §10.
+First-mover NRC certification advantage; international order book primary near-term revenue path. Cross-ref: ref-ai-supply-chain-deep-dive §10.
 #### Risks
 US first deployment customer commitment unresolved; commercial scale-up risk.
 
@@ -482,7 +482,7 @@ Aurora fast-spectrum microreactor (15-75 MWe scalable to 100+ MWe). Sells power 
 - OKLO: DOE INL site use permit; Idaho National Lab fuel award
 - OKLO: 700+ MWe non-binding indications of interest
 #### Thesis Fit
-Highest-narrative SMR equity post-Meta deal; lithium-cooled design differentiates from PWR-based peers. Cross-ref: *ref-ai-supply-chain-deep-dive* (not published) §10.
+Highest-narrative SMR equity post-Meta deal; lithium-cooled design differentiates from PWR-based peers. Cross-ref: ref-ai-supply-chain-deep-dive §10.
 #### Risks
 Pre-revenue; cash burn flagged; NRC custom COL review timeline.
 #### Catalysts
@@ -497,7 +497,7 @@ Nuclear fuel + components manufacturer; Project Pele DoD microreactor; supplier 
 - BWXT: Rolls-Royce SMR steam generator design contract Q3-25 + manufacturing agreement
 - BWXT: ~$300M Pele original cost contract
 #### Thesis Fit
-Picks-and-shovels nuclear-component play; broadest customer set across SMR designs. Cross-ref: *ref-ai-supply-chain-deep-dive* (not published) §10.
+Picks-and-shovels nuclear-component play; broadest customer set across SMR designs. Cross-ref: ref-ai-supply-chain-deep-dive §10.
 
 ### NNE (NANO Nuclear)
 Pre-revenue micro-reactor developer; primarily narrative trade. Promote-to-entity: yes.
@@ -528,7 +528,7 @@ Largest US gas-turbine OEM + Prolec GE transformer integration post-Q1-26.
 - GEV: NRG-Kiewit JV 5.4 GW gas through 2032
 - GEV: Total theme-gamma + gas data-center backlog visibility through 2030
 #### Thesis Fit
-Highest-leverage AI gas + grid equipment play. Prolec consolidation = transformer pricing power. 20% of 100 GW gas backlog explicit data-center support. Cross-ref: *ref-ai-supply-chain-deep-dive* (not published) §11.
+Highest-leverage AI gas + grid equipment play. Prolec consolidation = transformer pricing power. 20% of 100 GW gas backlog explicit data-center support. Cross-ref: ref-ai-supply-chain-deep-dive §11.
 
 ### Siemens Energy
 - SIE: Q1 FY26 orders €17.6B (+34% YoY); record (per Siemens Energy Q1 FY26 2026-02-11)
@@ -537,7 +537,7 @@ Highest-leverage AI gas + grid equipment play. Prolec consolidation = transforme
 - SIE: Grid Technologies orders +21.8% YoY; 17.6% margin
 - SIE: FY26 revenue +11-13% guide; 9-11% margin; €3-4B net income; €4-5B FCF
 - SIE: Q1 region: 40% US / 35% Europe / 15% MidEast+China
-Cross-ref: *ref-ai-supply-chain-deep-dive* (not published) §11.
+Cross-ref: ref-ai-supply-chain-deep-dive §11.
 
 ### Mitsubishi Heavy Industries (MHI)
 Third largest gas turbine OEM globally; Texas Energy Fund participation; Fervo Series E investor.
@@ -592,7 +592,7 @@ The transformer + grid-equipment tier is the binding bottleneck of AI-power buil
 - ETN: Data-center orders +240% Q1; revenue +50%; negotiations pipeline +81% YoY
 - ETN: Electrical Americas 25.6% margin Q1; 32% target by 2030
 - ETN: 12-year data-center backlog at current build rates
-Cross-ref: *ref-ai-supply-chain-deep-dive* (not published) §11.
+Cross-ref: ref-ai-supply-chain-deep-dive §11.
 
 ### Hitachi Energy (private; Hitachi 6501.T parent)
 - Hitachi Energy: $1B+ US grid-infrastructure investment Sept-2025 (per Hitachi Energy 2025-09-04)
@@ -604,15 +604,15 @@ Cross-ref: *ref-ai-supply-chain-deep-dive* (not published) §11.
 - $250M+ March-2025 component-manufacturing expansion
 - Hitachi DOC MoU Oct-2025 (Japan-US strategic investment)
 - Order backlog 3x+ since 2020
-Cross-ref: *ref-ai-supply-chain-deep-dive* (not published) §11.
+Cross-ref: ref-ai-supply-chain-deep-dive §11.
 
 ### ABB (private ADR ABBNY)
-Global power-electronics + grid-automation leader. Cross-ref: *ref-ai-supply-chain-deep-dive* (not published) §11 thin stub.
+Global power-electronics + grid-automation leader. Cross-ref: ref-ai-supply-chain-deep-dive §11 thin stub.
 
 ### HUBB (Hubbell)
 - HUBB: Utility Solutions transformer + meter + grid-controls business
 - HUBB: Aclara distribution products
-Cross-ref: *ref-ai-supply-chain-deep-dive* (not published) §11 thin stub.
+Cross-ref: ref-ai-supply-chain-deep-dive §11 thin stub.
 
 ### POWL (Powell Industries)
 - POWL: Q1 FY26 revenue $251.2M; net income $41.4M (per Powell 10-Q 2025-12-31)
@@ -623,7 +623,7 @@ Cross-ref: *ref-ai-supply-chain-deep-dive* (not published) §11 thin stub.
 Promote-to-entity: yes.
 
 ### Schneider Electric (SU.PA / SBGSY)
-European grid + datacenter UPS leader. Cross-ref: *ref-ai-supply-chain-deep-dive* (not published) §11.
+European grid + datacenter UPS leader. Cross-ref: ref-ai-supply-chain-deep-dive §11.
 
 ### Hammond Power Solutions (HPS.TO)
 Canadian distribution-transformer manufacturer; Q3-25 backlog growth.
@@ -655,7 +655,7 @@ Promote-to-entity: yes (high-leverage).
 - FLNC: $8.5B data-center opportunity through 2030 (Q3 FY25 estimate)
 - FLNC: 41% revenue concentration top-2 customers FY25
 - FLNC: ~$200M FY26 capex incl. $100M domestic supply chain
-Cross-ref: *ref-ai-supply-chain-deep-dive* (not published) §11.
+Cross-ref: ref-ai-supply-chain-deep-dive §11.
 
 ### STEM (Stem Inc)
 Smaller AI-software-tilted BESS player. Promote-to-entity: yes.
@@ -796,7 +796,7 @@ PPA template taxonomy emerging:
 ## 16. Datacenter-grid co-location strategies
 
 DLR / EQIX / IRM / Vantage / CyrusOne (KKR/Stonepeak) / QTS (Blackstone) / Switch (DigitalBridge) / Aligned / Compass private peers:
-- Cross-ref: *ref-ai-supply-chain-deep-dive* (not published) §6 for REIT power-shell vs power-skip strategy detail
+- Cross-ref: ref-ai-supply-chain-deep-dive §6 for REIT power-shell vs power-skip strategy detail
 - QTS-Blackstone backed PPL CCGTs across Pennsylvania
 - DLR ringfences power via developer-led PPAs in Northern VA
 - EQIX retail colocation power-skip / customer-owned power

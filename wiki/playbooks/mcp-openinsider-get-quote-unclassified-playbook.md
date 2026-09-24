@@ -6,7 +6,7 @@ created: 2026-07-10
 updated: 2026-07-10
 tags: [topic/consolidation, topic/playbook]
 related:
-  - "*hot* (not published)"
+  - "hot"
 ---
 
 # Mcp__openinsider__get_quote unclassified Playbook
@@ -29,14 +29,14 @@ Confidence: 85% -- 7/7 source records read directly with timestamps confirmed da
 
 ## Recommendation
 
-Add a one-line routing guard to docs/osanwe-runtime-reference.md "Preferred Financial Data Sources" (the section AGENTS.md Data-sources already points to): openinsider MCP = Form-4/insider data ONLY; its get_quote leg proxies Yahoo, errors on marketState whenever US sessions are closed, and cannot resolve ETFs (e.g. DTCR) -- NEVER route a price through it; all quotes -> price-fetcher (the broker MCP Tier 0 / tools/fetch-prices.py Tier 1). Mirror the prohibition as one anti-pattern line in .claude/agents/price-fetcher.md ("never fall back to mcp__openinsider__get_quote for a price; Tier 2 is fetch-prices.py single-ticker retry only") and annotate the openinsider row in docs/Osanwe Vault Codex.yaml. Ratify via /decide openinsider-get-quote-not-a-price-source.
+Add a one-line routing guard to docs/osanwe-runtime-reference.md "Preferred Financial Data Sources" (the section AGENTS.md Data-sources already points to): openinsider MCP = Form-4/insider data ONLY; its get_quote leg proxies Yahoo, errors on marketState whenever US sessions are closed, and cannot resolve ETFs (e.g. DTCR) -- NEVER route a price through it; all quotes -> price-fetcher (the broker MCP Tier 0 / tools/fetch-prices.py Tier 1). Mirror the prohibition as one anti-pattern line in .claude/agents/price-fetcher.md ("never fall back to mcp__openinsider__get_quote for a price; Tier 2 is fetch-prices.py single-ticker retry only") and annotate the openinsider row in docs/osanwe-vault-codex.yaml. Ratify via /decide openinsider-get-quote-not-a-price-source.
 
 ## Apply-when
 
 About to call mcp__openinsider__get_quote for a price -- or reaching for it because the broker MCP is absent, or it is outside market hours: STOP and reroute to price-fetcher or python tools/fetch-prices.py --equities `<TICKER>`. openinsider is insider-filing data only; it has no valid quote when US sessions are closed.
 
 ## Related
-- *hot* (not published) -- session cache; this playbook is surfaced in the consolidation digest
+- hot -- session cache; this playbook is surfaced in the consolidation digest
 - [[bash-exit-code-1-playbook]]
 - [[bash-exit-code-2-playbook]]
 - [[read-unclassified-playbook]]

@@ -12,7 +12,7 @@ tags:
   - topic/filings
   - topic/alternative-data
   - topic/signals
-related: ["*ref-institutional-flow-analysis* (not published)", "*ref-factor-lens-ingest-2026-06-10* (not published)", "[[ref-composite-scoring]]", "*investing-moc* (not published)"]
+related: ["ref-institutional-flow-analysis", "ref-factor-lens-ingest-2026-06-10", "[[ref-composite-scoring]]", "investing-moc"]
 ---
 
 # Alternative data signals -- non-price mining reference (GENERATED)
@@ -321,7 +321,7 @@ signal type | strength | direction | evidence.
 | **MKSI** (net -2) | GAP-MOVES>3PCT | HIGH | MIXED | 12 >3% day-moves in 20 sessions (6 dn/6 up); latest 2026-08-19 -6.21% |
 |   | FORM4-ACTIVITY | MEDIUM | DIRECTION-UNKNOWN (dates only) | 13 Form 4s/92d, 2 in last 14d, 3 in last 30d; latest 2026-08-18 (6d ago) |
 |   | INSIDER-NET-SELL (note-sourced) | MEDIUM | NEGATIVE | 1 insider-sale refs; e.g. "insider selling)" |
-| **RTX** (net +2) | BACKLOG-DISCLOSED | HIGH | POSITIVE-VISIBILITY | 2 backlog refs; e.g. "backlog** at end-2024 (superseded 2026-04-29 per *voo-analysis-2026-04-29* (not published) -- see Claims from voo-" |
+| **RTX** (net +2) | BACKLOG-DISCLOSED | HIGH | POSITIVE-VISIBILITY | 2 backlog refs; e.g. "backlog** at end-2024 (superseded 2026-04-29 per voo-analysis-2026-04-29 -- see Claims from voo-" |
 |   | FORM4-ACTIVITY | LOW | DIRECTION-UNKNOWN (dates only) | 5 Form 4s/92d, 1 in last 14d, 4 in last 30d; latest 2026-08-19 (5d ago) |
 |   | GAP-MOVES>3PCT | LOW | DOWN | 1 >3% day-moves in 20 sessions (1 dn/0 up); latest 2026-08-20 -3.66% |
 | **GEV** (net -2) | BACKLOG-DISCLOSED | MEDIUM | POSITIVE-VISIBILITY | 1 backlog refs; e.g. "backlog contribution Q1-26 GEV consolidation $5B (HIGH, per [[ref-ai-power-grid-deep-dive]])" |
@@ -332,7 +332,7 @@ signal type | strength | direction | evidence.
 | **SMH** (net -2) | GAP-MOVES>3PCT | MEDIUM | DOWN | 5 >3% day-moves in 20 sessions (3 dn/2 up); latest 2026-08-18 -4.09% |
 | **TSLA** (net +2) | GAP-MOVES>3PCT | MEDIUM | UP | 5 >3% day-moves in 20 sessions (0 dn/5 up); latest 2026-08-21 +5.14% |
 | **GD** (net +1) | 8K-FREQ-SPIKE | MEDIUM | NEUTRAL/CATALYST-CLOCK | 3 8-Ks in 92d vs 1/92d baseline; latest 2026-08-07 (17d ago) |
-|   | BACKLOG-DISCLOSED | MEDIUM | POSITIVE-VISIBILITY | 1 backlog refs; e.g. "backlog ~$50B (HIGH, per *ref-defense-aerospace-space-economy-deep-dive* (not published))" |
+|   | BACKLOG-DISCLOSED | MEDIUM | POSITIVE-VISIBILITY | 1 backlog refs; e.g. "backlog ~$50B (HIGH, per ref-defense-aerospace-space-economy-deep-dive)" |
 |   | FORM4-ACTIVITY | MEDIUM | DIRECTION-UNKNOWN (dates only) | 20 Form 4s/92d, 6 in last 14d, 10 in last 30d; latest 2026-08-17 (7d ago) |
 |   | GAP-MOVES>3PCT | LOW | DOWN | 1 >3% day-moves in 20 sessions (1 dn/0 up); latest 2026-07-29 -3.11% |
 | **NVDA** (net -1) | DIRECTION-STREAK | HIGH | DOWN | 7 consecutive down closes through 2026-08-24 (-6.7% over run) |

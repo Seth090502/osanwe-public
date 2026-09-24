@@ -2,7 +2,7 @@
 """resident-surface.py -- pre-turn instruction-surface accounting.
 
 Computes what a session loads BEFORE the first user turn, per harness:
-  Claude Code: AGENTS.md (imported by the CLAUDE.md stub) + CLAUDE.local.md size-only
+  Claude Code: AGENTS.md (native, or imported by CLAUDE.local.md) + CLAUDE.local.md size-only
                + memory MEMORY.md size + subagent descriptions + skill
                descriptions + SessionStart injection estimate.
   Hermes:      merged AGENTS.md chain + skill index estimate.
@@ -68,11 +68,9 @@ def main():
         rows.append((component, b, round(b / 3.6)))
 
     add("AGENTS.md (root contract)", size_or_none("AGENTS.md") or 0)
-    stub = size_or_none("CLAUDE.md")
-    if stub:
-        is_stub = (ROOT / "CLAUDE.md").read_bytes().replace(b"\r\n", b"\n") == b"@AGENTS.md\n"
-        add("CLAUDE.md (stub importing AGENTS.md)" if is_stub
-            else "CLAUDE.md (NOT the stub -- a second set of rules)", stub)
+    stray = size_or_none("CLAUDE.md")
+    if stray:
+        add("CLAUDE.md (should not exist -- a second set of rules)", stray)
     cl_local = size_or_none("CLAUDE.local.md")
     if cl_local:
         add("CLAUDE.local.md (size only; contents NOT read)", cl_local)

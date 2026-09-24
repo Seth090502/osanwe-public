@@ -314,7 +314,7 @@ The first native attempt failed 47/48 because one report ID was mistyped.
 A separately versioned development correction used short blinded handles and
 native required-key JSON Schema; it passed 48/48 on reordered exposed controls.
 Both attempts and their distinct denominators are preserved in
-*native-reviewer-controls-2026-09-13* (not published). The reusable `reviewer_schema.py` helper
+native-reviewer-controls-2026-09-13. The reusable `reviewer_schema.py` helper
 rejects missing or unknown coverage; it never repairs an identifier by guessing.
 
 `protocol_statistics.py` groups shared scenario OR source families before binary outcomes,

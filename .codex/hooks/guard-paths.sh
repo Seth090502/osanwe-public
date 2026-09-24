@@ -66,9 +66,9 @@ case "$file_path" in
     */.claude/hooks/*) config_guard=true ;;
     */.claude/settings.json|*/.claude/settings.local.json) config_guard=true ;;
     */.claude.json) config_guard=true ;;
-    # AGENTS.md is the root contract and root CLAUDE.md is its one-line import
-    # stub; editing either changes what every session loads, and
-    # .claude/skills/CLAUDE.md exists too -- so every one of these names stays guarded.
+    # AGENTS.md is the root contract and a per-machine CLAUDE.local.md imports it;
+    # editing either changes what every session loads, and a CLAUDE.md anywhere
+    # would add a second set of rules -- so every one of these names stays guarded.
     */CLAUDE.md|*/CLAUDE.local.md|*/AGENTS.md) config_guard=true ;;
     */tools/session-start.sh|*/tools/vault-score-check.py|*/tools/pre-write-validator.py|*/tools/wikilink-check.py|*/tools/frontmatter-check.py|*/tools/orphan-check.py|*/tools/hot-md-check.py|*/tools/bump-updated.sh) config_guard=true ;;
     # 2026-08-13 (staged via apply-sota-config): the launcher/lane security surface.

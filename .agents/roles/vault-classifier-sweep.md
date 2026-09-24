@@ -110,7 +110,7 @@ Coverage note: the `tools/vault-audit.py --json` wrapper actually populates only
 - JSON only -- no markdown, no prose, no narrative
 - Severity tier strict: `GATE | HARD DRIFT | SOFT DRIFT` (uppercase, exact spelling)
 - ISO timestamps (Z-suffixed UTC)
-- Absolute paths from vault root (e.g., `wiki/entities/tickers/NVDA.md`, not `<VAULT_ROOT>/wiki/...`)
+- Absolute paths from vault root (e.g., `wiki/entities/tickers/NVDA.md`, not `wiki/...`)
 - Empty arrays explicit (`"orphan_detection": []`), never omit keys
 - `failures` array captures script errors; empty when clean run
 

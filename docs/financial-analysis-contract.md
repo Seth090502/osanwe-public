@@ -6,7 +6,7 @@ status: active
 created: 2026-09-12
 updated: 2026-09-13
 tags: [topic/meta]
-related: ["[[Osanwe Vault Codex]]", "*STATE* (not published)"]
+related: ["[[osanwe-vault-codex|Osanwe Vault Codex]]", "STATE"]
 ---
 
 # Financial analysis contract

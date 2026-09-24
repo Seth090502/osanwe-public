@@ -6,7 +6,7 @@ created: 2026-07-10
 updated: 2026-07-10
 tags: [topic/consolidation, topic/playbook]
 related:
-  - "*hot* (not published)"
+  - "hot"
 ---
 
 # Mcp__fred__fred_get_series unclassified Playbook
@@ -37,7 +37,7 @@ Confidence: 84% -- 5/5 sources resolved; three distinct error strings plus the 0
 On any FRED API error, read the code before skipping: 400 api_key-not-registered -> config regression, fix the key (do not silent-skip); 400 series-does-not-exist -> caller typo, fix the series_id; 500/timeout -> transient, retry once then silent-skip is fine. Before trusting a briefing's regime or NetLiq line, confirm the last FRED pull actually SUCCEEDED and was not --quick-skipped.
 
 ## Related
-- *hot* (not published) -- session cache; this playbook is surfaced in the consolidation digest
+- hot -- session cache; this playbook is surfaced in the consolidation digest
 - [[bash-exit-code-1-playbook]]
 - [[bash-exit-code-2-playbook]]
 - [[read-unclassified-playbook]]

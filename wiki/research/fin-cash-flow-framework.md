@@ -26,7 +26,7 @@ aliases:
 related:
   - "[[fin-tax-aware-investing]]"
   - "[[fin-fixed-income-framework]]"
-  - "*fin-retirement-planning* (not published)"
+  - "fin-retirement-planning"
   - "[[fin-risk-transfer]]"
 
 ---
@@ -288,7 +288,7 @@ Notes:
   more than 6 months, solve it with disability/LTC coverage structure
   ([[fin-risk-transfer]]) rather than more cash.
 - Retirees/coasters: the emergency fund merges into the cash wedge of
-  the withdrawal strategy (*fin-retirement-planning* (not published) section 2).
+  the withdrawal strategy (fin-retirement-planning section 2).
 
 ### 4.3 Tiered construction
 
@@ -310,7 +310,7 @@ match capture (free money outranks rebuild speed).
 Counts toward target: cash, HYSA, T-bills held expressly for emergencies.
 Does NOT count: Roth contribution basis (it is accessible but raiding it
 destroys retirement compounding -- treat as last-resort layer documented
-in *fin-retirement-planning* (not published), never as the plan), HELOC capacity
+in fin-retirement-planning, never as the plan), HELOC capacity
 (a lender can freeze it exactly when needed), brokerage margin, RSUs
 (unvested), sinking funds (they have owners).
 
@@ -375,7 +375,7 @@ sf_balance_total, ef_balance_total, fcf_actual, notes
 
 This section is the interface contract between personal cash flow and the
 portfolio engine (calibration engine, deployment bands, doctrine in
-*fin-governance-framework* (not published)).
+fin-governance-framework).
 
 ### 6.1 The handoff quantity
 
@@ -401,7 +401,7 @@ Rules:
 
 The vault's deployment doctrine (decision record
 0197-2026-07-06 invest-kernel-doctrine ratification; see also
-*research-dgs10-band-2026-07-18* (not published)) scales tranche sizes by regime state.
+research-dgs10-band-2026-07-18) scales tranche sizes by regime state.
 New-money flow integrates as follows:
 
 ```
@@ -588,7 +588,7 @@ Signatures/review dates: <OI>
   lot decisions when rebalancing the deployment sleeve.
 - [[fin-fixed-income-framework]]: T-bill ladder mechanics for EF Tier 3
   and sinking fund placement; DGS10/DGS30 context from the factor store.
-- *fin-retirement-planning* (not published): what happens to E, EF, and FCF at the
+- fin-retirement-planning: what happens to E, EF, and FCF at the
   retirement transition; withdrawal sequencing replaces FCF accumulation.
 - [[fin-risk-transfer]]: disability and life coverage adjust M (sec 4.2);
   premium costs are E4 lines.

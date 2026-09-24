@@ -38,18 +38,18 @@ rewritten rulebook scored 10/10 on the first run.
 
 - **Claude Code:** nothing to do. (Next session start picks up the new `.mcp.json`.)
 - **Codex CLI (0.147.0, upgraded tonight):** `codex login`, then run `codex` in
-  `<VAULT_ROOT>` once and ACCEPT the trust prompt (loads `.codex/config.toml`).
+  the vault root once and ACCEPT the trust prompt (loads `.codex/config.toml`).
   Brokerage tools are absent until a verification probe passes -- deliberate.
 - **OpenCode (1.18.16, installed tonight):** works today with the local model:
   `set OPENCODE_DISABLE_CLAUDE_CODE_SKILLS=1` then `opencode` in the vault. That env
   var stops skills being listed twice (15, not 30). For a cloud model:
   `opencode auth login` with any compliant key -- NEVER the Claude subscription.
 - **Goose / Crush / Cline / Pi:** configs and porting briefs ship; none has been run
-  yet (honestly marked UNRUN in COMPATIBILITY.md).
+  yet (honestly marked UNRUN in docs/compatibility.md).
 - **Local-only (Tier C):** point any harness at Ollama `qwen3.6:27b` (pulled tonight,
   17 GB; Ollama upgraded to 0.32.6). The standalone rulebook is `BOOTSTRAP.md`.
 
-## What you lose per tier (full table: COMPATIBILITY.md)
+## What you lose per tier (full table: docs/compatibility.md)
 
 Off Claude: no subagent fleet or parallel workflows (each skill runs its documented
 inline path instead -- same steps, sequential), no auto-commit/PR (you commit
@@ -65,7 +65,7 @@ hook does NOT travel by design -- other harnesses simply never get order tools.
   mark read/write surface), run `python .agents/scripts/gen-mcp-configs.py`, commit.
   Write-capable servers are auto-refused from harness configs until proven -- that is
   the point.
-- **Add a harness:** read COMPATIBILITY.md tiers; give it AGENTS.md + `.agents/skills/`
+- **Add a harness:** read docs/compatibility.md tiers; give it AGENTS.md + `.agents/skills/`
   + a generated MCP config; port hooks from `.agents/hooks/briefs/` if it supports them.
 
 ## The two things waiting on YOU
@@ -83,7 +83,7 @@ hook does NOT travel by design -- other harnesses simply never get order tools.
 ## Rollback
 
 Everything pre-cutover is additive commits on the branch: any batch reverts with one
-`git revert` of its commit. The conformance clone at `<LOCAL_PATH>\` cannot reach
+`git revert` of its commit. The conformance clone at `` cannot reach
 the real vault (separate object store, no remotes, hooks neutralized). Installs
 tonight (uninstallable): OpenCode 1.18.16 (npm), Ollama 0.32.6 (winget), qwen3.6:27b
 (`ollama rm qwen3.6:27b` frees 17 GB), Codex upgrade (npm), skills-ref (pip).

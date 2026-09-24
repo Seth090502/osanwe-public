@@ -26,7 +26,7 @@ aliases:
 related:
   - "[[fin-cash-flow-framework]]"
   - "[[fin-fixed-income-framework]]"
-  - "*fin-retirement-planning* (not published)"
+  - "fin-retirement-planning"
   - "[[fin-risk-transfer]]"
 
 ---
@@ -337,7 +337,7 @@ K-1 items, or big municipal-bond private-activity interest appear.
 
 ## 6. Calibration engine integration
 
-The calibration engine (doctrine in *fin-governance-framework* (not published);
+The calibration engine (doctrine in fin-governance-framework;
 bands referenced by [[fin-cash-flow-framework]] sec 6) consumes tax
 state as CONSTRAINTS and INPUTS, not as objectives:
 
@@ -522,7 +522,7 @@ De minimis .. market-discount rule affecting cheap munis (FI doc 4.2).
   dividends/interest lines feed MAGI projection.
 - [[fin-fixed-income-framework]]: muni vs Treasury placement detail;
   TIPS wrapper taxation (phantom income) handling.
-- *fin-retirement-planning* (not published): Roth conversions, QCDs, RMD-MAGI
+- fin-retirement-planning: Roth conversions, QCDs, RMD-MAGI
   interaction with IRMAA and NIIT.
 - [[fin-risk-transfer]]: insurance premiums and P&C structure do not
   generate NII; disability benefit taxability depends on who paid

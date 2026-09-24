@@ -6,7 +6,7 @@ created: 2026-07-10
 updated: 2026-07-10
 tags: [topic/consolidation, topic/playbook]
 related:
-  - "*hot* (not published)"
+  - "hot"
 ---
 
 # Bash Exit_code_127 Playbook
@@ -30,14 +30,14 @@ Confidence: 88% -- root cause unambiguous in 11/15 error strings and matched by 
 
 ## Recommendation
 
-Extend the existing Bash invariant at the AGENTS.md Tool-mechanics line ("Bash paths Unix-style (`<VAULT_ROOT>`)") with an explicit dialect clause: the Bash tool is Git Bash -- emit POSIX only; never PowerShell cmdlets (Get-Content, Select-Object, Select-String, Measure-Object, Format-List, any Get-*/Set-* verb) or 2>$null; use cat/grep/sed/awk/wc and 2>/dev/null. If any post-fix sink file shows a PowerShell cmdlet in a Bash call again, escalate via /decide bash-dialect-scan-hook to a PreToolUse Bash hook that scans tool_input.command for those tokens -- one hook covers BOTH this cluster and the mirror PowerShell::Exit_code_1, so it is GATE-B-scored once.
+Extend the existing Bash invariant at the AGENTS.md Tool-mechanics line ("Bash paths Unix-style (the vault root)") with an explicit dialect clause: the Bash tool is Git Bash -- emit POSIX only; never PowerShell cmdlets (Get-Content, Select-Object, Select-String, Measure-Object, Format-List, any Get-*/Set-* verb) or 2>$null; use cat/grep/sed/awk/wc and 2>/dev/null. If any post-fix sink file shows a PowerShell cmdlet in a Bash call again, escalate via /decide bash-dialect-scan-hook to a PreToolUse Bash hook that scans tool_input.command for those tokens -- one hook covers BOTH this cluster and the mirror PowerShell::Exit_code_1, so it is GATE-B-scored once.
 
 ## Apply-when
 
 Before sending any Bash call on this machine, scan the pending command for PowerShell tokens -- Get-Content, Select-Object, Select-String, Measure-Object, Format-List, any Get-*/Set-* verb, or 2>$null. Any hit means imminent exit 127: rewrite in POSIX (cat/grep/sed/awk/wc -l, 2>/dev/null) before sending.
 
 ## Related
-- *hot* (not published) -- session cache; this playbook is surfaced in the consolidation digest
+- hot -- session cache; this playbook is surfaced in the consolidation digest
 - [[bash-exit-code-1-playbook]]
 - [[bash-exit-code-2-playbook]]
 - [[read-unclassified-playbook]]

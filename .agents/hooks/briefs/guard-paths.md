@@ -75,7 +75,7 @@ and the offending path. Allow: exit 0, no output required.
   the Pattern-20 stamp paths the human ratifies.
 - No content inspection, no frontmatter validation, no vault scoring: separate hooks own those.
 - The arm-flag path is hardcoded to the repo root in the reference. A port SHOULD resolve it from
-  the repo root it is bound to rather than copying the literal `<VAULT_ROOT>/...` string.
+  the repo root it is bound to rather than copying the literal `...` string.
 - STALE MEMBERSHIP (noted 2026-09-21; the brief body is left as the cold record it was written as).
   The config-surface list in (a) class 2 names nine guard scripts and stops there. The reference
   implementation has grown twice since: on 2026-08-13 it added the launcher and lane surface

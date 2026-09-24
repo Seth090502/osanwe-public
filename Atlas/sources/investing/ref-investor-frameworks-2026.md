@@ -13,15 +13,15 @@ aliases:
   - investor frameworks
   - renowned investor checklists
 related:
-  - "*investing-moc* (not published)"
+  - "investing-moc"
   - "[[ref-scoring-models]]"
-  - "*ref-portfolio-doctrine* (not published)"
+  - "ref-portfolio-doctrine"
   - "[[ref-monitoring-rules]]"
   - "[[ref-theme-alpha]]"
-  - "*ref-ai-supply-chain-deep-dive* (not published)"
-  - "*ref-theme-beta-institutional-crypto-deep-dive* (not published)"
-  - "*ref-defense-aerospace-space-economy-deep-dive* (not published)"
-  - "*ref-memory-storage-cycle-deep-dive* (not published)"
+  - "ref-ai-supply-chain-deep-dive"
+  - "ref-theme-beta-institutional-crypto-deep-dive"
+  - "ref-defense-aerospace-space-economy-deep-dive"
+  - "ref-memory-storage-cycle-deep-dive"
   - "[[ref-ai-power-grid-deep-dive]]"
   - "[[ref-earnings-playbook]]"
   - "[[ref-valuation-methodology]]"

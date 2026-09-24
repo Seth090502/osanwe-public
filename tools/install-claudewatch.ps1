@@ -7,7 +7,7 @@ the READ-ONLY MCP server MCP-ONLY (no global behavioral rules, no blocking hook)
 and best-effort adds /path/to/vault to claudewatch scan paths.
 
 This script EXECUTES a third-party binary (claudewatch.exe install / mcp). It is
-meant to be run by the user (<owner>), by hand, in the morning -- not autonomously.
+meant to be run by the user, by hand, in the morning -- not autonomously.
 
 Companion (run AFTER this succeeds):  python tools/wire-claudewatch-vault.py
 Runbook:                              tools/INSTALL-CLAUDEWATCH.md

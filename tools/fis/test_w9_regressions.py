@@ -229,7 +229,7 @@ def test_a6_13():
         check("A6-13 empty registry approves nobody",
               exc.code == "NO_HUMAN_REGISTERED", exc.code)
 
-    auth.registry.register("<owner>@household", "<owner>",
+    auth.registry.register("owner@household", "owner",
                            registered_by="operator-setup",
                            when_utc="2025-12-01T00:00:00Z")
 
@@ -249,9 +249,9 @@ def test_a6_13():
     # The registered human can still approve.
     r = approval.DecisionRecord(
         binding=b, state=approval.STATE_HUMAN_APPROVAL_REQUIRED)
-    g = auth.issue(r, "<owner>@household", ttl_seconds=3600)
+    g = auth.issue(r, "owner@household", ttl_seconds=3600)
     check("A6-13 registered human can approve",
-          g.approver_identity == "<owner>@household"
+          g.approver_identity == "owner@household"
           and r.state == approval.STATE_APPROVED_FOR_SIMULATION)
 
     # A machine-shaped identity cannot be registered either.
@@ -282,11 +282,11 @@ def test_a6_06():
 
         a1 = approval.ApprovalAuthority(key, clock=clock,
                                         consumption_path=ledger)
-        a1.registry.register("<owner>@household", "<owner>", registered_by="setup",
+        a1.registry.register("owner@household", "owner", registered_by="setup",
                              when_utc="2025-12-01T00:00:00Z")
         r1 = approval.DecisionRecord(
             binding=b, state=approval.STATE_HUMAN_APPROVAL_REQUIRED)
-        g1 = a1.issue(r1, "<owner>@household", ttl_seconds=3600)
+        g1 = a1.issue(r1, "owner@household", ttl_seconds=3600)
         first = a1.verify(r1, grant=g1, now="2026-01-01T00:20:00Z")
         check("A6-06 first presentation accepted", first.ok, str(first.codes))
 

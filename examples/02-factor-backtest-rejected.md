@@ -136,4 +136,3 @@ Sharpe is n/m (not meaningful) with fewer than 2 quarters.
   factor (Novy-Marx GP/TA, ROE).
 - Quarterly granularity ignores intra-quarter timing; no transaction
   costs modeled.
-

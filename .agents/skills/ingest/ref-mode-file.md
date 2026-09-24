@@ -212,7 +212,7 @@ Each rule specifies REQUIRED markers (all must match) and IDENTIFYING markers (r
 **Rule 17 -- Thesis essay** (ALWAYS CONFIRM).
 - REQUIRED: first-person conviction voice AND argues-for-a-position structure (Why, Evidence, Invalidation, Current Read sections) AND length LONG
 - TARGET: `Atlas/concepts/investing/theses/thesis-<slug>.md`
-- CONFIRMATION REQUIRED: thesis essays are `<owner>`'s conviction voice; single categorical exception to autonomous routing. Prompt: "Rule 17 matched (thesis essay). Target: `<path>`. Proceed? [y/N]"
+- CONFIRMATION REQUIRED: thesis essays are the owner's conviction voice; single categorical exception to autonomous routing. Prompt: "Rule 17 matched (thesis essay). Target: `<path>`. Proceed? [y/N]"
 
 **Rule 18 -- Concept playbook/strategy.**
 - REQUIRED: playbook/framework-definition structure AND not time-bound AND not first-person-conviction
@@ -289,7 +289,7 @@ Compute ratio = source_body_bytes / target_file_bytes. Apply:
         Autonomous action would be surprising for this size ratio.
         Intent: [R]eplace anyway / Re[F]resh (additive, likely intent) / [C]ancel
 
-- **0.8x <= ratio < 1.0x** -> AUTONOMOUS REPLACE with report note ("similar-size replacement: size-ratio <X>x"). Edge case but `<owner>` has full rollback via git.
+- **0.8x <= ratio < 1.0x** -> AUTONOMOUS REPLACE with report note ("similar-size replacement: size-ratio <X>x"). Edge case but the owner has full rollback via git.
 
 Report for every autonomous replacement:
 
@@ -638,9 +638,9 @@ Property: `--refresh` twice with no vault changes between produces zero diff aft
 
 ### Example 1: Research-mode reference doc (autonomous end-to-end, v8 with /ingest recommendation)
 
-`<owner>` attaches a 7,182-word theme-alpha deep-dive Research output + `/enrich`.
+The owner attaches a 7,182-word theme-alpha deep-dive Research output + `/enrich`.
 
-Rule 1 matches. Placement: `Atlas/sources/investing/ref-theme-alpha-deep-dive.md`. No collision. Body sha256 verified. F11 set in Phase C. Detected related: *investing-moc* (not published), *thesis-theme-alpha* (not published), *ref-sector-benchmarks* (not published), [[ref-macro-landscape]], *ref-portfolio-doctrine* (not published) (all exist).
+Rule 1 matches. Placement: `Atlas/sources/investing/ref-theme-alpha-deep-dive.md`. No collision. Body sha256 verified. F11 set in Phase C. Detected related: investing-moc, thesis-theme-alpha, ref-sector-benchmarks, [[ref-macro-landscape]], ref-portfolio-doctrine (all exist).
 
 Symmetric back-links applied: 5 primary + knowledge-moc row + 7 entity back-links (NVDA, AMD, MU, AVGO, VRT, AMAT, LRCX). Total 14 paths in atomic commit.
 
@@ -659,17 +659,17 @@ User input: ONE interaction (attach + /enrich). If /ingest recommendation is act
 
 ### Example 2: Autonomous replacement of existing thin ref
 
-`<owner>` attaches 7,182-word geopolitical-framework Research output + `/enrich`.
+The owner attaches 7,182-word geopolitical-framework Research output + `/enrich`.
 
 Rule 1 fires. Target: `Atlas/sources/investing/ref-geopolitical-framework.md`. Collision (385w exists). Ratio 18.7x >= 1.0x -> AUTONOMOUS REPLACE (report per section 3e format). Write proceeds. Symmetric back-link pass + type-specific additions + substantive entity back-links as in Example 1. Applied atomically. ONE user interaction.
 
 ### Example 3: Concept playbook routing (v7 symmetric pass + v8 /ingest recommendation)
 
-`<owner>` attaches a 2,820-word geopolitics playbook + `/enrich`.
+The owner attaches a 2,820-word geopolitics playbook + `/enrich`.
 
 Rule 18 matches. Placement: `Atlas/concepts/investing/geopolitics-playbook.md`. No collision.
 
-Detected related: *investing-moc* (not published), *thesis-theme-epsilon* (not published), *ref-geopolitical-framework* (not published), [[ref-macro-landscape]], *macro-outlook* (not published) (all exist).
+Detected related: investing-moc, thesis-theme-epsilon, ref-geopolitical-framework, [[ref-macro-landscape]], macro-outlook (all exist).
 
 Symmetric back-links applied: 5 primary (all in BACKLINKABLE_CATEGORIES). Total 6 paths in atomic commit.
 
@@ -684,7 +684,7 @@ Substantive entity gaps: LMT, XAR, VDE, IAU, ITA, PPA (mentions in dedicated sec
       /ingest Atlas/concepts/investing/geopolitics-playbook.md
   - Running /ingest will create 6 entity notes at wiki/entities/tickers/{LMT,XAR,VDE,IAU,ITA,PPA}.md from playbook content, serving as back-link targets and accretion points for future doc content. Content per entity is playbook-level (thin one-liners to one-paragraph framing); /invest `<ticker>` or further /enrich cycles will deepen them over time. Aligned with SOTA compounding: thin stubs > missing entities.
 
-User input: ONE interaction (attach + /enrich). The /ingest recommendation is surfaced for `<owner>`'s judgment call on entity-creation leverage.
+User input: ONE interaction (attach + /enrich). The /ingest recommendation is surfaced for the owner's judgment call on entity-creation leverage.
 
 ### Example 4: Target override
 
@@ -696,7 +696,7 @@ User input: ONE interaction (attach + /enrich). The /ingest recommendation is su
 
 ### Example 6: Thesis essay routing (Rule 17 confirm exception)
 
-`<owner>` attaches a conviction essay + `/enrich`.
+The owner attaches a conviction essay + `/enrich`.
 
 Rule 17 matches (first-person conviction voice; argues-for-position; length LONG). All REQUIRED met. Rule 17 is the categorical confirmation exception -- requires explicit y before write regardless of match strength.
 
@@ -723,13 +723,13 @@ Rule 17 matches (first-person conviction voice; argues-for-position; length LONG
 
 ### Example 8: Retroactive back-link re-evaluation (--backlink-only)
 
-`<owner>` notices an existing concept playbook lacks back-links to peer refs added to the vault since its onboarding. Runs:
+The owner notices an existing concept playbook lacks back-links to peer refs added to the vault since its onboarding. Runs:
 
     /enrich Atlas/concepts/investing/geopolitics-playbook.md --backlink-only
 
 Skill reads target; extracts current related: (investing-moc, thesis-theme-epsilon, ref-geopolitical-framework, ref-macro-landscape, macro-outlook); for each, check if the reciprocal back-link exists:
 
-- investing-moc.md: related already contains *geopolitics-playbook* (not published) -> SKIP (already linked)
+- investing-moc.md: related already contains geopolitics-playbook -> SKIP (already linked)
 - thesis-theme-epsilon.md: already linked -> SKIP
 - ref-geopolitical-framework.md: already linked -> SKIP
 - ref-macro-landscape.md: already linked -> SKIP
@@ -745,7 +745,7 @@ If new peer files were added to the vault since original enrich OR related: evol
 
 ### Example 10: /deep-generated Research output with target_path (v9 explicit placement)
 
-`<owner>` downloads a claude.ai Research mode output (generated from a /deep v2 prompt) and attaches + types /enrich. Source frontmatter includes:
+The owner downloads a claude.ai Research mode output (generated from a /deep v2 prompt) and attaches + types /enrich. Source frontmatter includes:
 
     ---
     categories: [sources]
@@ -760,8 +760,8 @@ If new peer files were added to the vault since original enrich OR related: evol
       - topic/semiconductor-cycles
       ...
     related:
-      - "*investing-moc* (not published)"
-      - "*thesis-theme-alpha* (not published)"
+      - "investing-moc"
+      - "thesis-theme-alpha"
       ...
     ---
 

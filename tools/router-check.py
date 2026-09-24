@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 """Check complete cross-harness contracts, bootstrap and canon skill adapters.
 
-Default and --quick are read-only and fail on drift. AGENTS.md is the contract.
-Root CLAUDE.md must be exactly the one-line stub `@AGENTS.md`, which imports it:
-Claude Code reads AGENTS.md natively only when the project root carries none of
-CLAUDE.md, .claude/CLAUDE.md or CLAUDE.local.md, so without the stub a per-machine
-CLAUDE.local.md would leave a session with no contract. Anything else in CLAUDE.md,
-or any .claude/CLAUDE.md, is a FINDING. There is no --sync mode: nothing is
-mirrored, so nothing is copied.
+Default and --quick are read-only and fail on drift. AGENTS.md is the contract and
+the only instruction file: a CLAUDE.md at the root, in .claude/ or in .claude/skills/
+is a FINDING. Claude Code reads AGENTS.md natively only when
+the project root carries none of CLAUDE.md, .claude/CLAUDE.md or CLAUDE.local.md, so
+a per-machine CLAUDE.local.md must begin with the line `@AGENTS.md`; one that does not
+is a FINDING. There is no --sync mode: nothing is mirrored, so nothing is copied.
 This checker never calls checkall, so checkall may invoke it without recursion.
 """
 import argparse
@@ -20,15 +19,23 @@ import sys
 ROOT = Path(os.environ.get("OSANWE_VAULT_ROOT") or Path(__file__).resolve().parents[1])
 sys.dont_write_bytecode = True
 
-# The whole of root CLAUDE.md (compared after CRLF -> LF, the same rule as the
-# pre-commit cage, so a Windows checkout does not turn checks red while commits
-# pass). It imports the contract and holds nothing else, so
-# the contract loads whether or not a per-machine CLAUDE.local.md sits in the root
-# (measured 2026-09-22 on Claude Code 2.1.280: AGENTS.md beside CLAUDE.local.md with
-# no CLAUDE.md loaded only the local file; with this stub both loaded).
-CONTRACT_STUB = b"@AGENTS.md\n"
-# A second project instruction file beside the contract.
-SECOND_CONTRACTS = (".claude/CLAUDE.md",)
+# Instruction files a live session would load beside the contract. The pre-commit
+# cage also refuses a CLAUDE.md at any depth in the index; this checker spawns no
+# processes, so it checks the paths Claude Code reads.
+SECOND_CONTRACTS = ("CLAUDE.md", ".claude/CLAUDE.md", ".claude/skills/CLAUDE.md")
+# A per-machine CLAUDE.local.md suppresses Claude Code's native AGENTS.md read
+# (measured 2026-09-22 on 2.1.280: AGENTS.md beside CLAUDE.local.md loaded only the
+# local file), so its first line must import the contract. CRLF is accepted, the
+# same line-ending rule as the pre-commit cage.
+LOCAL_FILE = "CLAUDE.local.md"
+LOCAL_IMPORT = b"@AGENTS.md"
+
+
+def local_imports_contract(path):
+    """True when the file's first line is exactly '@AGENTS.md'. Reads that line only;
+    the rest of the per-machine file is private and never read."""
+    with path.open("rb") as f:
+        return f.readline(256).rstrip(b"\r\n") == LOCAL_IMPORT
 
 
 def contract_findings(root=ROOT):
@@ -41,20 +48,14 @@ def contract_findings(root=ROOT):
     raw = canon.read_bytes()
     if not raw.strip():
         findings.append("AGENTS.md empty")
-    stub = root / "CLAUDE.md"
-    if stub.is_symlink():
-        findings.append("CLAUDE.md must be a regular file holding the one-line stub '@AGENTS.md', "
-                        "not a symbolic link")
-    elif not stub.is_file():
-        findings.append("CLAUDE.md stub missing: it must be a regular file containing exactly '@AGENTS.md' "
-                        "-- without it a root CLAUDE.local.md stops Claude Code reading AGENTS.md")
-    elif stub.read_bytes().replace(b"\r\n", b"\n") != CONTRACT_STUB:
-        findings.append("CLAUDE.md must be exactly the one-line stub '@AGENTS.md'; the contract lives in "
-                        "AGENTS.md alone, and anything else here is a second set of rules")
     for extra in SECOND_CONTRACTS:
         path = root / extra
         if path.is_file() or path.is_symlink():
             findings.append("%s exists: a second project instruction file beside the contract; delete it" % extra)
+    local = root / LOCAL_FILE
+    if local.is_file() and not local_imports_contract(local):
+        findings.append("%s does not begin with the line '@AGENTS.md': a root CLAUDE.local.md stops "
+                        "Claude Code reading AGENTS.md natively, so it must import the contract" % LOCAL_FILE)
     if any(b > 127 for b in raw):
         findings.append("AGENTS.md contains non-ASCII bytes")
     return findings

@@ -9,7 +9,7 @@ tags:
   - topic/investing
   - topic/datacenter
   - topic/theme-alpha
-related: ["[[ref-financial-statements]]", "[[ref-theme-alpha]]", "*ref-ai-supply-chain-deep-dive* (not published)", "[[ref-semiconductor-value-chain]]", "[[ref-energy-power-complex]]"]
+related: ["[[ref-financial-statements]]", "[[ref-theme-alpha]]", "ref-ai-supply-chain-deep-dive", "[[ref-semiconductor-value-chain]]", "[[ref-energy-power-complex]]"]
 ---
 
 # Data-Center Infrastructure Reference

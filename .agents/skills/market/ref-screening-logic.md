@@ -39,7 +39,7 @@ EOF
   NetCashProvidedByUsedInOperatingActivities, PaymentsToAcquirePropertyPlantAndEquipment,
   ShareIssued}, FreeCashFlow_computed list).
 - Market caps for P/S and P/E: `wiki/research/ref-financial-statements.md`
-  table column "Mkt cap" (cache: `<HOME>`/edgar-ref-mcaps.json, outside
+  table column "Mkt cap" (cache: ~/edgar-ref-mcaps.json, outside
   the vault). No network pulls from a screen run.
 - Ratings + zones: frontmatter of `Efforts/osanwe-v2-overhaul/_work/wave*-analysis.md`;
   fallback glob `wiki/investing/analyses/<ticker>-analysis*.md`.

@@ -34,38 +34,38 @@ aliases:
   - semiconductor stack
   - theme-alpha framework
 related:
-  - "*investing-moc* (not published)"
-  - "*thesis-theme-alpha* (not published)"
+  - "investing-moc"
+  - "thesis-theme-alpha"
   - "[[ref-macro-landscape]]"
-  - "*ref-sector-benchmarks* (not published)"
+  - "ref-sector-benchmarks"
   - "[[ref-scoring-models]]"
-  - "*ref-portfolio-doctrine* (not published)"
+  - "ref-portfolio-doctrine"
   - "[[ref-monitoring-rules]]"
-  - "*nvda-analysis* (not published)"
-  - "*amd-analysis* (not published)"
-  - "*mu-analysis* (not published)"
-  - "*dtcr-analysis* (not published)"
-  - "*msft-analysis* (not published)"
-  - "*amzn-analysis* (not published)"
-  - "*AVGO* (not published)"
-  - "*VRT* (not published)"
-  - "*ANET* (not published)"
-  - "*MRVL* (not published)"
-  - "*CSCO* (not published)"
-  - "*ETN* (not published)"
-  - "*ABB* (not published)"
-  - "*KLAC* (not published)"
-  - "*ASML* (not published)"
-  - "*TSM* (not published)"
-  - "*DLR* (not published)"
-  - "*EQIX* (not published)"
-  - "*GEV* (not published)"
+  - "nvda-analysis"
+  - "amd-analysis"
+  - "mu-analysis"
+  - "dtcr-analysis"
+  - "msft-analysis"
+  - "amzn-analysis"
+  - "AVGO"
+  - "VRT"
+  - "ANET"
+  - "MRVL"
+  - "CSCO"
+  - "ETN"
+  - "ABB"
+  - "KLAC"
+  - "ASML"
+  - "TSM"
+  - "DLR"
+  - "EQIX"
+  - "GEV"
   - "[[ref-theme-alpha-ingest-2026-04-22]]"
-  - "*ref-ai-supply-chain-deep-dive* (not published)"
-  - "*ref-memory-storage-cycle-deep-dive* (not published)"
+  - "ref-ai-supply-chain-deep-dive"
+  - "ref-memory-storage-cycle-deep-dive"
   - "[[ref-ai-power-grid-deep-dive]]"
-  - "*CXMT* (not published)"
-  - "*YMTC* (not published)"
+  - "CXMT"
+  - "YMTC"
   - "[[ref-theme-alpha-ingest-2026-07-16]]"
 ---
 
@@ -84,7 +84,7 @@ related:
 
 **Grading convention for Sections 1-5, stated once.** Grade A attaches ONLY to a literal string quoted from a primary retrieved this pass. A figure read from a table in a filed primary, or from XBRL company facts, is **Grade B-filed**: filed data, but a table read is not a quotation. Arithmetic on quoted primaries is "[Grade A components; derived]"; on table reads, "[Grade B-filed; derived]". An analyst estimate (IDC, Omdia, TrendForce) is **Grade B even when quoted verbatim and even when reproduced inside a filing** -- verbatim-ness and primacy are different axes. The rule is symmetric across jurisdictions: IDC-inside-an-F-1/A and Omdia-inside-a-prospectus both grade B.
 
-Ten discrete economic layers, each with distinct revenue drivers, margin structures, and cycle sensitivity. Treating them as a single trade is the 2025-era mistake; treating them as a correlated-but-separable rotation is the 2026-era edge. [Grade C -- framework judgment preserved from the 2026-04-22 taxonomy, not a sourced claim.] Rows are deliberately unnumbered: an ordinal column would create a sixth document-wide numbered series with no owner and no external citer. Cite layers by NAME. Companies are enumerated in *ref-ai-supply-chain-deep-dive* (not published); power is owned by [[ref-ai-power-grid-deep-dive]].
+Ten discrete economic layers, each with distinct revenue drivers, margin structures, and cycle sensitivity. Treating them as a single trade is the 2025-era mistake; treating them as a correlated-but-separable rotation is the 2026-era edge. [Grade C -- framework judgment preserved from the 2026-04-22 taxonomy, not a sourced claim.] Rows are deliberately unnumbered: an ordinal column would create a sixth document-wide numbered series with no owner and no external citer. Cite layers by NAME. Companies are enumerated in ref-ai-supply-chain-deep-dive; power is owned by [[ref-ai-power-grid-deep-dive]].
 
 | Layer | Revenue driver | Margin structure | Cycle sensitivity |
 |---|---|---|---|
@@ -130,7 +130,7 @@ The closed-oligopoly critique attaches HERE, to the DRAM revenue layer, not to H
 
 **Two vault claims resolved against source.** The ">4:1 HBM wafer-per-bit trade ratio" is REFUTED; drop it. HBM wafer input runs "approximately 18%, 22%, and 30% of total DRAM wafer input by the end of 2025, 2026, and 2027" against bit supply of "approximately 8%, 9%, and 13%" [Grade B -- verbatim; analyst estimate] (Source: TrendForce, 2026-06-02). Against non-HBM output, (w/b) x ((1-b)/(1-w)) = ~2.5x / 2.85x / 2.9x [Grade B; derived] -- nothing reaches 4:1. MU's 10-Q confirms direction, not magnitude: HBM "requires a higher number of wafers... to produce the same number of bits as conventional DRAM in the same technology node" [Grade A -- quoted verbatim] (Source: MU 10-Q Item 1A, accession 0000723125-26-000015, filed 2026-06-25). Second, "equipment spend +29% to $52B bought only +2.4% wpm" is a CONFLATION; cut it. SEMI puts memory 300mm equipment at +29% to $52B in 2026 and capacity at 4.1M wpm (2026) -> 4.2M wpm (2027) = +2.4% (Source: SEMI 300mm Fab Outlook 2Q26, 2026-06-29) [Grade B]. The spend is a 2026 figure, the +2.4% a 2026->2027 delta; they do not divide. SEMI's qualitative point survives: dollars buy node complexity, not wafer starts.
 
-China memory is owned by Section 7; the consequence here is narrow. A DDR5 entrant with zero HBM presence pressures the CONVENTIONAL-DRAM layer -- which just out-earned HBM per wafer -- not the HBM layer. Cycle mechanics: *ref-memory-storage-cycle-deep-dive* (not published).
+China memory is owned by Section 7; the consequence here is narrow. A DDR5 entrant with zero HBM presence pressures the CONVENTIONAL-DRAM layer -- which just out-earned HBM per wafer -- not the HBM layer. Cycle mechanics: ref-memory-storage-cycle-deep-dive.
 
 ### MU -- Micron Technology
 
@@ -531,7 +531,7 @@ This section is CITED BY ORDINAL from outside this document. **It carries THREE 
 
 | Series | Ordinals | Canonical label to use in every citation | Known external citers |
 |---|---|---|---|
-| **A** | 1-5 | **"structural exit criterion N"** | four sites in *ref-portfolio-doctrine* (not published); a ratified decision record; a live challenge document |
+| **A** | 1-5 | **"structural exit criterion N"** | four sites in ref-portfolio-doctrine; a ratified decision record; a live challenge document |
 | **B** | 1-4 | **"rotation signal N"** | the doctrine's signal-vocabulary repair targets rotation signal 4, NOT structural exit criterion 4 |
 | **C** | 1-2 | **"rotation sequence step N"** | cited as "the Section 8 sequence" by `ref-portfolio-doctrine.md:169` and `decision-theme-alpha-concentration-doctrine-2026-06-08.md:34`, which have no other referent |
 
@@ -539,7 +539,7 @@ This section is CITED BY ORDINAL from outside this document. **It carries THREE 
 
 **Full document-wide ordinal inventory** (three more series share these ordinal ranges and none is a Section 8 series): Section 4's **panel rows** (1-4); Section 6's **cycle-peak signals** (1-6); and Section 1's **layer column** (1-10), which is unlabelled and is the sixth series -- external citers reference the layers by name, not by number (`ref-portfolio-doctrine.md:147`), so its collision risk is latent rather than live; either label it or strip the `#` column at the next structural pass. "Signal 4" resolves to a different object in each of four series.
 
-**Exposure is read at run time, never from this document.** A book running this doctrine uses a dual basis -- an EFFECTIVE reading (hyperscalers half-weighted, thematic infrastructure funds excluded) and a STRICT reading (all constituents full-weight) -- and the two can straddle the same doctrine line. Pull both from the broker at regular-market close before any threshold math. The bands live in *ref-portfolio-doctrine* (not published): theme-alpha tiered 60% amber / 70% red with an interim 50% amber phase-in, single-name 30/35 on combined value. This document supplies the rotation logic; the doctrine supplies the thresholds.
+**Exposure is read at run time, never from this document.** A book running this doctrine uses a dual basis -- an EFFECTIVE reading (hyperscalers half-weighted, thematic infrastructure funds excluded) and a STRICT reading (all constituents full-weight) -- and the two can straddle the same doctrine line. Pull both from the broker at regular-market close before any threshold math. The bands live in ref-portfolio-doctrine: theme-alpha tiered 60% amber / 70% red with an interim 50% amber phase-in, single-name 30/35 on combined value. This document supplies the rotation logic; the doctrine supplies the thresholds.
 
 **The doctrine-compliant answer to elevated theme-alpha exposure is not a mechanical cut.** It is to reclassify exposure by layer correlation and rotate into layers that decorrelate under stress. Hyperscaler positions in a theme-alpha book overlap the thesis but decorrelate partially -- ad, retail and enterprise revenue diversifies cashflow regardless of the AI outcome [Grade C, structural inference].
 
@@ -553,7 +553,7 @@ This section is CITED BY ORDINAL from outside this document. **It carries THREE 
 
 Per-layer target weights are set in the doctrine and read at run time.
 
-**Construction-target status:** these per-layer sizes are **CONSTRUCTION TARGETS for building a diversified theme-alpha allocation -- NOT risk-flag escalation triggers.** The only hard doctrine flags are the single-name 30/35 ceiling and the theme-alpha 60/70 cap with its interim-50 phase-in, per *ref-portfolio-doctrine* (not published). The superseded target's attached memory-layer P/B condition is long breached and is dead as a trigger; the P/B read now sits an order of magnitude outside the 5-year range, which makes it a cycle-position observation, not a sizing rule.
+**Construction-target status:** these per-layer sizes are **CONSTRUCTION TARGETS for building a diversified theme-alpha allocation -- NOT risk-flag escalation triggers.** The only hard doctrine flags are the single-name 30/35 ceiling and the theme-alpha 60/70 cap with its interim-50 phase-in, per ref-portfolio-doctrine. The superseded target's attached memory-layer P/B condition is long breached and is dead as a trigger; the P/B read now sits an order of magnitude outside the 5-year range, which makes it a cycle-position observation, not a sizing rule.
 
 > **PERISHABLE -- series: MU P/B (ratio, price-to-book). Reading 11.02 vs 5-year range 1.26-2.53, as of 2026-07-15. REFETCH BEFORE USE; DO NOT INHERIT.** (Grade C -- system-internal computation, not a filed figure.)
 
@@ -586,7 +586,7 @@ Live dates: **GOOGL 7/22**, **MSFT + META 7/29**, **AMZN 7/30 (tentative)**. Gra
 
 **Why structural exit criterion 1 is measured on actuals.** Reported actuals lag guidance by roughly 1-2 quarters. That lag is the point, not a defect: this is deliberately the harder bar, because a guidance-based rung compels only a review, while this criterion triggers **automatic rotation**. A trigger with automatic consequences must sit on the least-revisable evidence available.
 
-**Exit-ladder linkage:** structural exit criterion 1 (four consecutive quarters of hyperscaler aggregate capex cuts measured on REPORTED ACTUAL SPEND, not forward guidance) is the DEFENSIVE auto-revert trigger in the *ref-portfolio-doctrine* (not published) Exit Ladder -- revert theme-alpha toward the doctrine band via managed rotation into a diversified index ETF. Earlier capex-cut signals map to that ladder's AMBER escalations (3 of 4 hyperscalers cutting guidance in a single quarter; or 2 consecutive quarters of cuts -> arm + /decide review). The OFFENSIVE harvest legs reuse the rotation signals (series B) + the rotation sequence (series C) above. **The two systems are ONE escalation, not parallel; capex DECELERATION (positive, slowing) is the offensive harvest signal, capex CUTS (negative) are the defensive health signal.**
+**Exit-ladder linkage:** structural exit criterion 1 (four consecutive quarters of hyperscaler aggregate capex cuts measured on REPORTED ACTUAL SPEND, not forward guidance) is the DEFENSIVE auto-revert trigger in the ref-portfolio-doctrine Exit Ladder -- revert theme-alpha toward the doctrine band via managed rotation into a diversified index ETF. Earlier capex-cut signals map to that ladder's AMBER escalations (3 of 4 hyperscalers cutting guidance in a single quarter; or 2 consecutive quarters of cuts -> arm + /decide review). The OFFENSIVE harvest legs reuse the rotation signals (series B) + the rotation sequence (series C) above. **The two systems are ONE escalation, not parallel; capex DECELERATION (positive, slowing) is the offensive harvest signal, capex CUTS (negative) are the defensive health signal.**
 
 ### Hedging and pair-trade candidates
 
@@ -596,7 +596,7 @@ Short-side pure-play theme-alpha expression is thin; pair trades express rotatio
 
 ## Related
 
-*investing-moc* (not published) | *thesis-theme-alpha* (not published) | [[ref-macro-landscape]] | *ref-sector-benchmarks* (not published) | [[ref-scoring-models]] | *ref-portfolio-doctrine* (not published) | [[ref-monitoring-rules]] | *nvda-analysis* (not published) | *amd-analysis* (not published) | *mu-analysis* (not published) | *dtcr-analysis* (not published) | *msft-analysis* (not published) | *amzn-analysis* (not published) | *AVGO* (not published) | *VRT* (not published) | *ANET* (not published) | *MRVL* (not published) | *CSCO* (not published) | *ETN* (not published) | *ABB* (not published) | *KLAC* (not published) | *ASML* (not published) | *TSM* (not published) | *DLR* (not published) | *EQIX* (not published) | *GEV* (not published) | [[ref-theme-alpha-ingest-2026-04-22]] | *ref-ai-supply-chain-deep-dive* (not published) | *ref-memory-storage-cycle-deep-dive* (not published) | [[ref-ai-power-grid-deep-dive]]
+investing-moc | thesis-theme-alpha | [[ref-macro-landscape]] | ref-sector-benchmarks | [[ref-scoring-models]] | ref-portfolio-doctrine | [[ref-monitoring-rules]] | nvda-analysis | amd-analysis | mu-analysis | dtcr-analysis | msft-analysis | amzn-analysis | AVGO | VRT | ANET | MRVL | CSCO | ETN | ABB | KLAC | ASML | TSM | DLR | EQIX | GEV | [[ref-theme-alpha-ingest-2026-04-22]] | ref-ai-supply-chain-deep-dive | ref-memory-storage-cycle-deep-dive | [[ref-ai-power-grid-deep-dive]]
 
 ## Sources
 

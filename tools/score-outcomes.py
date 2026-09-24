@@ -47,7 +47,7 @@ VAULT_ROOT = Path(__file__).resolve().parent.parent
 MONITOR_PATH = VAULT_ROOT / "wiki" / "investing" / "calibration-monitor.md"
 
 # ---------------------------------------------------------------------------
-# RATING_PROB_MAP -- pre-registered priors (<owner>-RATIFIABLE; ratified 2026-06-09)
+# RATING_PROB_MAP -- pre-registered priors (owner-RATIFIABLE; ratified 2026-06-09)
 #
 # Semantics: probability assigned to the event "3mo realized return > 0".
 #

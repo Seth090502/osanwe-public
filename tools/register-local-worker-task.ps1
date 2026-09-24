@@ -1,4 +1,4 @@
-# register-local-worker-task.ps1 -- STAGED FOR <owner>; an agent must NEVER run this.
+# register-local-worker-task.ps1 -- STAGED FOR THE OWNER; an agent must NEVER run this.
 #
 # WHY STAGED: agent self-registration of scheduled tasks was classifier-DENIED
 # on 2026-07-04 (X70a) and the deny is correct -- a scheduled task is standing

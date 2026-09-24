@@ -6,7 +6,7 @@ created: 2026-07-10
 updated: 2026-07-10
 tags: [topic/consolidation, topic/playbook]
 related:
-  - "*hot* (not published)"
+  - "hot"
 ---
 
 # (unknown) subagent failure rate Playbook
@@ -36,7 +36,7 @@ Suppress at source; do not act on this bucket. (1) Minimal: in the skill_failure
 A skill_failure_rate pattern (or scaffolded playbook) names agent_type "(unknown)" or any label-less bucket: treat it as the D-T1 session_stop artifact. 30s check: grep the cited subagent-telemetry-*.jsonl line -- tool_use_id == session_id with agent_type == "" means a main-session Stop event; do not author, escalate, or inspect transcripts. A NAMED agent_type at a high unpaired rate is a real signal and this exemption does NOT apply.
 
 ## Related
-- *hot* (not published) -- session cache; this playbook is surfaced in the consolidation digest
+- hot -- session cache; this playbook is surfaced in the consolidation digest
 - [[bash-exit-code-1-playbook]]
 - [[bash-exit-code-2-playbook]]
 - [[read-unclassified-playbook]]

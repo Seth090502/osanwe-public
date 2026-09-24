@@ -4,34 +4,47 @@ categories: [meta]
 type: reference
 status: active
 created: 2026-08-10
-updated: 2026-09-22
+updated: 2026-09-24
 tags: []
-related: ["[[BOOTSTRAP]]", "[[Osanwe Vault Codex]]", "*STATE* (not published)"]
+related: ["[[BOOTSTRAP]]", "[[osanwe-vault-codex|Osanwe Vault Codex]]", "STATE"]
 ---
 
 # Runtime compatibility
 
 ## Current contract
 
-Root AGENTS.md is the whole universal contract and the only copy of it. Root
-CLAUDE.md is a one-line stub, `@AGENTS.md`, that imports it and holds nothing
-else; nothing copies the contract. Edit AGENTS.md, then run
+Root AGENTS.md is the whole universal contract and the only copy of it; no
+CLAUDE.md is tracked and nothing copies the contract. Claude Code 2.1.277 and
+later, Codex and OpenCode read it natively. Edit AGENTS.md, then run
 `python .agents/scripts/gen-bootstrap.py`. Router-check and checkall fail, and the
-Git pre-commit carrier refuses a commit, if CLAUDE.md is anything but the stub or
-a .claude/CLAUDE.md appears, in the index or the worktree, so a single harness
-cannot quietly reinstate a second contract. BOOTSTRAP is generated from the
-complete contract, not an independently maintained rule set.
+Git pre-commit carrier refuses a commit, if a CLAUDE.md appears at the root, in
+.claude/ or in .claude/skills/, or if a root CLAUDE.local.md does not begin with
+`@AGENTS.md`; the pre-commit carrier and `precommit.py --tree` also refuse a
+CLAUDE.md at any depth in the index. A single harness therefore cannot quietly
+reinstate a second contract. BOOTSTRAP is generated from the complete
+contract, not an independently maintained rule set.
 
-### Why CLAUDE.md is a stub, not absent
+### Why a per-machine CLAUDE.local.md imports the contract
 
-Claude Code can read AGENTS.md natively (a built-in plugin, `agents-md@builtin`,
+Claude Code reads AGENTS.md natively (a built-in plugin, `agents-md@builtin`,
 from 2.1.277), but only when the project root carries **none** of `CLAUDE.md`,
-`.claude/CLAUDE.md` or `CLAUDE.local.md`. This machine keeps a per-machine
-`CLAUDE.local.md` at the root, so with CLAUDE.md absent the private file would
-load and the contract would not. Measured on 2026-09-22, Claude Code 2.1.280, in
+`.claude/CLAUDE.md` or `CLAUDE.local.md`. A machine that keeps a per-machine
+`CLAUDE.local.md` at the root would therefore load the private file and not the
+contract, so that file's first line is `@AGENTS.md`. From 2026-09-22 to
+2026-09-24 a tracked one-line CLAUDE.md stub did this job; the import now lives
+in the local file, so the tracked tree holds AGENTS.md alone.
+
+Two consequences. Without a CLAUDE.local.md the contract depends on native reading,
+so it needs Claude Code 2.1.277 or later; nothing checks the version automatically.
+And with a CLAUDE.local.md present, native reading is off for nested AGENTS.md files
+too, so `.claude/skills/AGENTS.md` (a pointer to the canonical skill rulebook in
+`.agents/skills/AGENTS.md`) no longer loads on its own in Claude Code on such a
+machine; the root contract's map still names the rulebook.
+
+Measured on 2026-09-22, Claude Code 2.1.280, in
 throwaway repositories holding only synthetic files, with every tool disabled, no
 MCP server and hooks off, each asked to list the canary phrases in its
-instructions (audit evidence E41):
+instructions:
 
 | Root files | Contract loaded | Local file loaded |
 |---|---|---|
@@ -41,7 +54,13 @@ instructions (audit evidence E41):
 | AGENTS.md + CLAUDE.md stub | yes | -- |
 | none | none reported | -- |
 
-An `@`-import is a core CLAUDE.md feature, so the stub needs no version floor.
+Re-measured on 2026-09-24, Claude Code 2.1.281, in a worktree with no CLAUDE.md,
+with every tool disabled: a canary sentence placed in AGENTS.md was quoted both
+with a synthetic CLAUDE.local.md whose first line is `@AGENTS.md` and with no
+CLAUDE.local.md at all.
+
+An `@`-import is a core CLAUDE.md-family feature and works in CLAUDE.local.md on
+any version that honours imports.
 The plugin's option (`/config` row **Project instructions**,
 `pluginConfigs["agents-md@builtin"].options.instructionFiles`, read from user,
 `--settings` or managed settings only) may take any value except `managed-only`,
@@ -49,14 +68,17 @@ which leaves out the project CLAUDE.md and every AGENTS.md; Claude Code skips an
 AGENTS.md it has already loaded, so an imported one is never read twice. The
 `project` settings source must stay enabled: under `--setting-sources user` or an
 empty list project memory is off and neither file loads. The session integrity
-hook alerts when CLAUDE.md is not exactly the stub or a .claude/CLAUDE.md exists.
+hook alerts when a CLAUDE.md exists at the root, in .claude/ or in .claude/skills/,
+or when a root
+CLAUDE.local.md does not begin with `@AGENTS.md`.
 
-**Start sessions at the vault root.** From a subdirectory the stub's import
-resolves outside the working directory, which Claude Code treats as an external
+**Start sessions at the vault root.** Measured with the former CLAUDE.md stub,
+whose import behaved as the CLAUDE.local.md import now does: from a subdirectory
+the root import resolves outside the working directory, which Claude Code treats as an external
 import: an interactive session asks once for approval, and a headless session
-loads the stub's literal line and no contract (measured 2026-09-22, 2.1.280, from
+loads the import's literal line and no contract (measured 2026-09-22, 2.1.280, from
 `tools/` and `wiki/research/` of a worktree; the same probe from the root loaded
-the contract). The mirror this replaces did load from subdirectories. Per the
+the contract). The byte-identical mirror used before 2026-09-22 did load from subdirectories. Per the
 settings documentation as read in the 2026-09-22 design review, project settings
 load from the working directory's `.claude/` with no parent fallback, so such a
 session also misses this project's hooks and deny list -- it was already outside
@@ -67,7 +89,7 @@ sessions on this machine started at the root.
 
 | Capability | Shared behavior | Adapter and honest fallback |
 |---|---|---|
-| Instructions | Complete universal contract | AGENTS.md, loaded through the one-line CLAUDE.md stub `@AGENTS.md` (works beside a CLAUDE.local.md and on any version with @-imports); no mirror |
+| Instructions | Complete universal contract | AGENTS.md, read natively (Claude Code 2.1.277 and later, Codex, OpenCode) or, where a root CLAUDE.local.md exists, imported by that file's first line `@AGENTS.md`; no mirror |
 | Skills | .agents/skills is canonical | .claude/skills generated by sync.py; read the procedure directly if discovery unavailable |
 | Delegation | Bounded tasks with ownership; same analytical standard | Use available agent/workflow tools, otherwise the documented sequential spine |
 | Startup | Digest, vault score, current state and Git | Consume current injected context; otherwise run the root commands |
@@ -79,8 +101,10 @@ sessions on this machine started at the root.
 Claude-specific mechanisms remain in .claude/settings.json and the hook manifest:
 SessionStart injection, UserPromptSubmit context, PreToolUse guards, PostToolUse
 validation, Stop audit/commit support. Their presence is not proof of current
-runtime delivery. The root no longer imports CLAUDE.local.md; native user/local
-configuration may still affect a harness outside the repository's portable contract.
+runtime delivery. On a machine that keeps a root CLAUDE.local.md, that file is
+what loads the contract in Claude Code, through its first line `@AGENTS.md`; the
+rest of it, like other native user/local configuration, sits outside the
+repository's portable contract.
 Never copy private settings into a common contract or smoke-test fixture.
 
 Generated role wrappers remain in .claude/agents; their canonical role content is
@@ -93,7 +117,7 @@ configuration.
 
 ## Verification levels
 
-The September 13 host matrix is *HOST-CAPABILITIES-2026-09-13* (not published). It separates
+The September 13 host matrix is HOST-CAPABILITIES-2026-09-13. It separates
 source access, account authorization, Python, library, rendering and persistence
 for each host. Public-company source-to-render verification does not establish
 the personal Finances workflow. The portable context is version 1.3.1 with the

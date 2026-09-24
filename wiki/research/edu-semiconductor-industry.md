@@ -753,21 +753,21 @@ Vault references implementing this framework on the live watchlist:
 
 - [[ref-semiconductor-value-chain]] -- Section 2's value chain rendered as
   a generated reference with per-name exposure mapping.
-- *ref-supply-chain-dependency* (not published) -- chokepoints and margin transfer;
+- ref-supply-chain-dependency -- chokepoints and margin transfer;
   who earns the system-level margin Sections 2 and 3 describe.
 - [[ref-ai-supply-chain-complete]] -- the Tier 0-7 dependency graph that
   extends Section 2's value chain across the full AI buildout stack.
 - [[ref-financial-statements]] -- capacity tables, customer concentration,
   and geographic mix pulled from filings for Section 9's metrics playbook.
-- *ref-earnings-analysis-framework* (not published) -- post-print rerun workflow over
+- ref-earnings-analysis-framework -- post-print rerun workflow over
   the covered semis; Section 10's step sequence in production.
 - [[ref-memory-storage-cycle-deep-dive-ingest-2026-05-06]] -- Section 4's
   memory-cycle theory archived against HBM/DRAM/NAND evidence.
 - [[ref-ai-supply-chain-deep-dive-ingest-2026-05-06]] -- AI demand chain
   archive feeding Section 1.4's demand engines.
-- *ref-defense-aerospace-space-economy-deep-dive-ingest-2026-05-06* (not published) --
+- ref-defense-aerospace-space-economy-deep-dive-ingest-2026-05-06 --
   export-control and defense-electronics context for Section 8.
-- *ref-cross-analysis-synthesis* (not published) -- all wave-S and semi refresh verdicts
+- ref-cross-analysis-synthesis -- all wave-S and semi refresh verdicts
   synthesized; consensus vs contrarian read.
 - Companion frameworks: [[edu-macro-analysis]] (ISM, capex cycle, policy)
   and [[edu-energy-power-markets]] (power constraints on fab buildouts).

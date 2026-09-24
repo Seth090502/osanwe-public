@@ -5,7 +5,7 @@
  * Install: copy into <project>/.opencode/plugin/guard-paths.js
  * Enforcement: throws in tool.execute.before => the write tool call is vetoed.
  * Covers the tool layer only; shell writes bypass (X30 residual, same as Claude).
- * verification: UNRUN until a conformance record exists (COMPATIBILITY.md).
+ * verification: UNRUN until a conformance record exists (docs/compatibility.md).
  */
 import * as fs from "fs";
 import * as path from "path";

@@ -31,7 +31,6 @@ class Contracts(unittest.TestCase):
         self.root = Path(self.tmp.name)
         self.contract = b"# Complete contract\n\nEvery binding rule.\n"
         (self.root / "AGENTS.md").write_bytes(self.contract)
-        (self.root / "CLAUDE.md").write_bytes(b"@AGENTS.md\n")
         target = self.root / ".agents/scripts/gen-bootstrap.py"
         target.parent.mkdir(parents=True)
         shutil.copy2(ROOT / ".agents/scripts/gen-bootstrap.py", target)
@@ -47,7 +46,7 @@ class Contracts(unittest.TestCase):
         return subprocess.run([sys.executable, "-B", str(path), *args], env=env,
                               capture_output=True, text=True, timeout=15)
 
-    def test_contract_with_stub_passes(self):
+    def test_contract_alone_passes(self):
         self.assertEqual([], self.router.contract_findings(self.root))
         self.assertEqual([], self.router.bootstrap_findings(self.root))
         r = self.invoke(ROOT / "tools/router-check.py")
@@ -60,27 +59,34 @@ class Contracts(unittest.TestCase):
         r = self.invoke(ROOT / "tools/router-check.py", "--quick")
         self.assertEqual(1, r.returncode, r.stdout + r.stderr)
 
-    def test_missing_stub_is_rejected(self):
-        # Without the stub a root CLAUDE.local.md stops Claude Code reading AGENTS.md.
-        (self.root / "CLAUDE.md").unlink()
+    def test_import_stub_is_rejected(self):
+        # The former one-line stub is still a CLAUDE.md; the import belongs in the local file.
+        (self.root / "CLAUDE.md").write_bytes(b"@AGENTS.md\n")
+        self.assertTrue(self.router.contract_findings(self.root))
+
+    def test_local_file_importing_the_contract_passes(self):
+        # Same line-ending rule as the pre-commit cage; the rest of the file is not read.
+        (self.root / "CLAUDE.local.md").write_bytes(b"@AGENTS.md\r\n\nprivate notes\n")
+        self.assertEqual([], self.router.contract_findings(self.root))
+
+    def test_local_file_without_the_import_is_rejected(self):
+        # A root CLAUDE.local.md suppresses Claude Code's native AGENTS.md read.
+        (self.root / "CLAUDE.local.md").write_bytes(b"# private notes\n@AGENTS.md\n")
         self.assertTrue(self.router.contract_findings(self.root))
         r = self.invoke(ROOT / "tools/router-check.py", "--quick")
         self.assertEqual(1, r.returncode, r.stdout + r.stderr)
 
-    def test_stub_with_extra_rule_is_rejected(self):
-        (self.root / "CLAUDE.md").write_bytes(b"@AGENTS.md\nOne more rule.\n")
+    def test_empty_local_file_is_rejected(self):
+        (self.root / "CLAUDE.local.md").write_bytes(b"")
         self.assertTrue(self.router.contract_findings(self.root))
-
-    def test_crlf_stub_passes(self):
-        # Same line-ending rule as the pre-commit cage.
-        (self.root / "CLAUDE.md").write_bytes(b"@AGENTS.md\r\n")
-        self.assertEqual([], self.router.contract_findings(self.root))
 
     def test_nested_claude_md_is_rejected(self):
-        nested = self.root / ".claude"
-        nested.mkdir(exist_ok=True)
-        (nested / "CLAUDE.md").write_bytes(self.contract)
-        self.assertTrue(self.router.contract_findings(self.root))
+        for rel in (".claude", ".claude/skills"):
+            nested = self.root / rel
+            nested.mkdir(parents=True, exist_ok=True)
+            (nested / "CLAUDE.md").write_bytes(b"@AGENTS.md\n")
+            self.assertTrue(self.router.contract_findings(self.root), rel)
+            (nested / "CLAUDE.md").unlink()
 
     def test_no_sync_mode_remains(self):
         # Nothing is mirrored any more, so nothing may copy the contract.

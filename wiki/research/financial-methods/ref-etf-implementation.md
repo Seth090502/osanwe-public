@@ -6,7 +6,7 @@ tags: [topic/investing]
 status: active
 created: 2026-09-13
 updated: 2026-09-13
-related: ["*ref-etf-evaluation* (not published)", "[[ref-performance-attribution]]", "[[ref-fixed-income-liabilities]]"]
+related: ["ref-etf-evaluation", "[[ref-performance-attribution]]", "[[ref-fixed-income-liabilities]]"]
 ---
 
 # ETF implementation: economic exposure, total costs and reset risk

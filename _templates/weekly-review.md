@@ -17,11 +17,11 @@ tags: []
 
 | Thesis | Status | Key Development |
 |--------|--------|-----------------|
-| *theme-alpha* (not published) | | |
-| *theme-beta* (not published) | | |
-| *theme-gamma* (not published) | | |
-| *theme-delta* (not published) | | |
-| *theme-epsilon* (not published) | | |
+| theme-alpha | | |
+| theme-beta | | |
+| theme-gamma | | |
+| theme-delta | | |
+| theme-epsilon | | |
 
 ## Knowledge Base Health
 
@@ -37,9 +37,9 @@ tags: []
 |------|--------|----------|-----------|---------|
 
 ## Insights
-> Cross-domain connections observed this week. Extract to *insight-stream* (not published) if durable.
+> Cross-domain connections observed this week. Extract to insight-stream if durable.
 
 ## Next Week Focus
-- [ ] 
-- [ ] 
-- [ ] 
+- [ ]
+- [ ]
+- [ ]
