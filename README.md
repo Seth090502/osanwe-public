@@ -90,9 +90,9 @@ and a replay, then admit the one order that satisfies all four.
 The gate was then red-teamed by independent agents whose only goal was to place an order through it. Three
 rounds found ways past stair one; the most instructive was text the model had merely read re-entering the
 session as an approval through its own compaction summary. When successive patches kept failing review, the
-work stopped rather than ship another; as of 2026-09-24 stair one is being redesigned from stated properties: the person
-types the order itself, and only exactly that order can execute. Until the redesign survives a full attack,
-the deny list keeps every order tool closed. The four open defects are tabled in
+work stopped rather than ship another; as of 2026-09-24 stair one is being redesigned from stated
+properties: the person types the order itself, and only exactly that order can execute. Until the redesign
+survives a full attack, the deny list keeps every order tool closed. The four open defects are tabled in
 [docs/threat-model.md](docs/threat-model.md#open-defects-in-stair-1); how the stop was decided is in
 [docs/orchestration.md](docs/orchestration.md#the-worked-case-four-patches-and-the-decision-not-to-write-a-fifth).
 
@@ -102,9 +102,9 @@ the deny list keeps every order tool closed. The four open defects are tabled in
 regime gates, options, calibration and rating gates. When checked, 166 passed and 21 mismatched. A formula
 counts as checked only where its expected value was derived independently from its definition, never from the
 implementation's own output, and each mismatch is published with what the code or the specification gets
-wrong. The remaining 6 cannot be checked and say why. The verdicts record the check, not today's code: the five
-computational defects its first pass found have since been fixed, and the index says so. Code carries most of the sizing math (26 of 40 formulas) and nearly
-all of the calibration (22 of 23); valuation and forensic scoring are specified in prose that the model
+wrong. The remaining 6 cannot be checked and say why. The verdicts record the check, not today's code: the
+five computational defects its first pass found have since been fixed, and the index says so. Code carries
+most of the sizing math (26 of 40 formulas) and nearly all of the calibration (22 of 23); valuation and forensic scoring are specified in prose that the model
 applies. A point-in-time layer records when each fact was published and when it was retrieved, so a later
 reader can tell what was knowable when, and evidence grading caps the confidence an analysis may state by the
 grades and freshness of the claims it cites
@@ -184,7 +184,7 @@ What "prompt-only" means, and what sits underneath the formulas, is in
 | Directory | What it holds |
 |---|---|
 | `.agents/` | The canonical, harness-neutral layer: skills (`skills/<name>/SKILL.md`), subagent roles, hook specifications, the MCP server registry and the generators. Edit here. |
-| `.claude/`, `.codex/` | Thin adapters for Claude Code and Codex: settings, hook scripts and workflows, plus copies generated from `.agents/`. |
+| `.claude/`, `.codex/` | Thin adapters for Claude Code and Codex: settings, hook scripts and workflows. The copies generated from `.agents/` are not published; `.claude/skills/` and `.claude/agents/` hold a README naming the generator. |
 | `.github/`, `.githooks/` | The CI workflow and its suite list; the pre-commit hook, which delegates to `tools/precommit.py`. |
 | `Atlas/` | Durable reference notes: methods, doctrine and maps of content. |
 | `wiki/` | Research outputs: analyses, research notes, playbooks and maintenance reports. |

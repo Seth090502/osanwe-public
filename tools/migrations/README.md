@@ -471,7 +471,7 @@ git repo before production (Phase 0 inline).
 **Scripts:**
 - `group-30-verification.py` -- read-only invariant scanner (I1-I6)
 - `group-30-1-interstitial.py` -- add missing `categories:` to one file
-- `group-30-2-interstitial.py` -- a private file canonicalization (3 transforms)
+- `group-30-2-interstitial.py` -- private-note canonicalization (3 transforms)
 - `group-30-3-interstitial.py` -- sessions-log wikilink remove-brackets
 
 **Verification invariants (I1-I6):**
@@ -496,13 +496,13 @@ git repo before production (Phase 0 inline).
 
 30.1 @ `553600b` `rebuild(frontmatter): Group 30.1 -- close Group 29 R2 scope-boundary`
 - Pre-declared deferral from Group 29 b1 R2 ruling
-- Add `categories: [efforts]` to a private file
+- Add `categories: [efforts]` to a private note
 
-30.2 @ `bee0103` `rebuild(frontmatter): Group 30.2 -- a private file canonicalization`
+30.2 @ `bee0103` `rebuild(frontmatter): Group 30.2 -- private-note canonicalization`
 - Post-malformed Group 25/26 transforms (file escaped both groups while MALFORMED per FF18 history)
 - Add `categories: [efforts]`; strip the forbidden top-level `domain:` field and `domain/*` + `type/*` tags
 
-30.3 @ `cc6d514` `rebuild(links): Group 30.3 -- sessions-log a private file remove-brackets`
+30.3 @ `cc6d514` `rebuild(links): Group 30.3 -- sessions-log private-note remove-brackets`
 - Group 28 Step 1b ruling propagated to a post-atomic session-log retrospective span
 
 **Closure commit @ `dac5852` `rebuild(verify): Group 30 -- rebuild complete`** confirms all 6 invariants PASS unconditionally post-interstitials.

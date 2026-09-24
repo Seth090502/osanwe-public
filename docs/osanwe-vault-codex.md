@@ -77,8 +77,8 @@ Osanwe-specific terms a cold model trips on. Definitions are 1-2 sentences; path
 - Milo / kepano / Okhlopkov / AgriciDaniel / Evgeny / Piotr1215 -- the named source patterns the vault fuses: ACE runtime, file formats, reader/writer stance, LLM-wiki structure, PR-write discipline, and MCP practice respectively.
 - Atlas / wiki (tiers) -- Atlas is human-write-only knowledge; wiki is the agent-maintained LLM-wiki; the routing test decides which.
 - hot.md -- `wiki/hot.md`, the session-cache continuity file (schema `hot-md-v2`); generated from session nodes and the resolution-aware action ledger; current authority is STATE.md.
-- distillate -- `OSANWE-a private per-machine file`, a pointer-mode structural map emitted at SessionStart (gitignored, local-only).
-- master-doc -- `a private per-machine file`, the ~2.8 MB Parts A-X master context document the distillate points at.
+- distillate -- a pointer-mode structural map of the master document, emitted at SessionStart (gitignored, local-only).
+- master-doc -- the ~2.8 MB Parts A-X master context document the distillate points at.
 - SENTINEL-1 / SENTINEL-2 -- distillate freshness checks (doc-baseline drift; master-doc sha).
 - ARC TENFOLD -- the 14-mission arc (T0..T13) run 2026-07-03..2026-07-05, all closed (tag `tenfold-arc-complete`).
 - T0..T13 / tenfold-`<id>`-close -- the individual missions and their git close-tags.

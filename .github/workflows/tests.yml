@@ -43,7 +43,7 @@ jobs:
 
   commit-messages:
     name: Commit messages carry no tool footers
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -51,16 +51,27 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Check every commit on the pull-request branch
+      - name: Check every new commit
         env:
+          EVENT: ${{ github.event_name }}
           BASE_REF: ${{ github.base_ref }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
         run: |
-          bad=$(git log --format='%h %s%n%b' "origin/${BASE_REF}..${HEAD_SHA}" \
+          if [ "$EVENT" = "pull_request" ]; then
+            range="origin/${BASE_REF}..${HEAD_SHA}"
+          elif [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ] \
+               || ! git cat-file -e "${BEFORE}^{commit}" 2>/dev/null; then
+            range="${AFTER}"
+          else
+            range="${BEFORE}..${AFTER}"
+          fi
+          bad=$(git log --format='%h %s%n%b' "$range" \
             | grep -iE '^co-authored-by:.*claude|^claude-session:|generated with \[?claude code' || true)
           if [ -n "$bad" ]; then
             echo "These commit-message lines are tool footers; remove them:"
             echo "$bad"
             exit 1
           fi
-          echo "No tool footers in $(git rev-list --count "origin/${BASE_REF}..${HEAD_SHA}") commit(s)."
+          echo "No tool footers in $(git rev-list --count "$range") commit(s)."

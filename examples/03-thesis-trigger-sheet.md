@@ -1,6 +1,6 @@
 # Example 3 -- a thesis trigger sheet
 
-> As of 2026-09-20. Published as an example of the system's output.
+> Published on 2026-09-20 as an example of the system's output; the run's own date is in its metadata below.
 > Not investment advice, not a recommendation, and not a statement of anyone's positions.
 
 How a thesis change is decided: the trigger, the evidence required, and the verdict, recorded so a later reader can tell what would have changed the answer.

@@ -1,6 +1,6 @@
 # Example 2 -- a factor backtest that was rejected
 
-> As of 2026-09-20. Published as an example of the system's output.
+> Published on 2026-09-20 as an example of the system's output; the run's own date is in its metadata below.
 > Not investment advice, not a recommendation, and not a statement of anyone's positions.
 
 READ THIS FIRST: this report and its own code disagree. The Method section says missing components enter the composite at z = 0 (neutral) rather than excluding the name; the code at `tools/research/quality-factor.py:289-290` skips those names instead. The report's conclusion (REJECT) is unaffected in direction, but any number in it that depends on universe size is computed on a smaller universe than the text describes. It is published as an example of a rejected experiment, and of a documentation-versus-code defect found by audit.

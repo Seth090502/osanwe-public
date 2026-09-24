@@ -45,4 +45,3 @@ Before writing or ratifying any new discipline mechanism (rule, MANDATORY marker
 - hot -- session cache; this playbook is surfaced in the consolidation digest
 - [[meta-skill-infrastructure-decisions-playbook]]
 - investing-decisions-playbook
-- a private file

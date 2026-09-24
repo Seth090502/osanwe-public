@@ -28,5 +28,5 @@ First public release.
 
 ## Before 1.0.0
 
-Earlier copies were published privately while the audit that produced this one was in progress. None is
-continuous with this repository's history.
+Earlier copies lived in private repositories while the audit that produced this one was in progress. None
+is continuous with this repository's history.
