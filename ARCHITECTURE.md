@@ -6,10 +6,10 @@ be rebuilt from the typed notes it came from.
 
 ## The four layers
 
-**1. Contract.** `AGENTS.md` and the byte-identical `CLAUDE.md` state what any agent operating the system may
-and may not do: where it may write, what evidence a numeric claim needs, which actions require explicit
-authorisation, and which ledgers are append-only. A router check verifies the two files match and that the
-bootstrap document embeds the right source hash.
+**1. Contract.** `AGENTS.md` states what any agent operating the system may and may not do: where it may
+write, what evidence a numeric claim needs, which actions require explicit authorisation, and which ledgers
+are append-only. `CLAUDE.md` is a one-line stub, `@AGENTS.md`, that imports it, so every harness reads the one
+file. A router check verifies the stub and that the bootstrap document embeds the right source hash.
 
 **2. Skills.** Each skill is a directory under `.agents/skills/<name>/` with a `SKILL.md` and its reference
 documents. A skill is a procedure, not a prompt fragment: it names its phases, its inputs, the tools it may
@@ -57,7 +57,8 @@ labels in the hook's own docstring:
 | 3 | the pass inside its 15-minute life, and claimed atomically once | A5 stale, A5 replay, and the race |
 | 4 | the order about to execute hashing identically to the order that passed | A7 substitution, and the gap between check and use |
 
-Option orders and every state-changing tool are refused outright at the same hook, whatever else holds.
+Option orders, and any tool the hook does not recognise, are refused outright at the same hook, whatever else
+holds.
 Any error, missing field or unrecognised shape blocks. Exit 0 is the only way through, and nothing defaults
 to it.
 
@@ -86,12 +87,12 @@ sequenceDiagram
     end
 ```
 
-**The tradeoff accepted.** Placing an order is deliberately tedious: stage it, evaluate it, type an
-order-bound phrase, and do it inside fifteen minutes or start again. The system cannot act on a good idea
+**The tradeoff accepted.** Placing an order is deliberately tedious: stage it, evaluate it, type the
+authorising phrase, and do it inside fifteen minutes or start again. The system cannot act on a good idea
 at speed. That is the point, and it is the wrong design for anything that needs to trade quickly.
 
-**Stair 1 does not currently hold, and this is the honest state of it.** Stairs 2, 3 and 4 are sound and
-are demonstrated end to end by `demo/run_staircase_demo.py`. Stair 1 was attacked in three rounds of
+**Stair 1 does not currently hold, and this is the honest state of it.** Stairs 2, 3 and 4 held in every case
+tested and are demonstrated end to end by `demo/run_staircase_demo.py`. Stair 1 was attacked in three rounds of
 independent adversarial review and failed each time; four patches were written and the third review showed
 the fourth was a regression on the third, so the work was stopped rather than patched again. Four defects
 remain open in this tree:

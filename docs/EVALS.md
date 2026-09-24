@@ -68,8 +68,8 @@ executed and what was only read, and this is in the second group for its end-to-
 
 Every `/invest` run records its rating, the confidence it stated, and the reasoning behind both. Later runs
 on the same company grade the earlier ones and list, row by row, where new evidence changed a prior claim.
-You can read one in `examples/01-equity-analysis-end-to-end.md`, which grades the two runs published beside
-it as examples 5 and 6.
+You can read one in `examples/01-equity-analysis-end-to-end.md`, which grades the two earlier runs on the
+same company. Those two runs are withheld (see `WITHHELD.md`).
 
 That per-analysis discipline is real and it is visible. **What it does not yet support is a calibration
 claim**, and this section exists to say so with the numbers rather than to imply otherwise.
@@ -104,4 +104,4 @@ that must be cleared before any position is opened at all.
 No claim here bears on returns, alpha, or whether the analysis is any good as analysis. What is evaluated is
 whether the machinery does what it says: whether a gate blocks what it claims to block, whether a formula
 computes what its definition says, whether a component runs. `docs/quant-formula-index.md` records 21
-formulas that do not, and they are published rather than quietly corrected.
+formulas that did not when checked, and which of them have been fixed since.
