@@ -657,7 +657,7 @@ created: YYYY-MM-DD
 updated: YYYY-MM-DD
 status: complete
 tags: [topic/market-brief]
-related: [[hot]], [[<materially-discussed-entities-3-7>]], [[<thesis-slugs-invoked>]]
+related: hot, <materially-discussed-entities-3-7>, <thesis-slugs-invoked>
 ---
 ```
 

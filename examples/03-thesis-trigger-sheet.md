@@ -25,8 +25,8 @@ status: complete
 created: 2026-07-06
 updated: 2026-07-06
 related:
-  - "[[gates-registry]]"
-  - "[[thesis-theme-alpha]]"
+  - "gates-registry"
+  - "thesis-theme-alpha"
 gate:
   schema_version: 1
   mode: t

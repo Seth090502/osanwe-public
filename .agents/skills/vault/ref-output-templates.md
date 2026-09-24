@@ -45,9 +45,9 @@ tags:
   - topic/integrity
   - topic/audit
 related:
-  - "[[hot]]"
+  - "hot"
   - "[[knowledge-moc]]"
-  - "[[<prior-audit-stem-if-exists>]]"
+  - "<prior-audit-stem-if-exists>"
 ---
 ```
 
@@ -244,8 +244,8 @@ updated: YYYY-MM-DD
 status: active
 tags: [topic/vault-maintenance, topic/repair]
 related:
-  - "[[hot]]"
-  - "[[<audit-source-stem>]]"
+  - "hot"
+  - "<audit-source-stem>"
 ---
 ```
 
@@ -265,7 +265,7 @@ updated: YYYY-MM-DD
 status: active
 tags: [topic/vault-maintenance, topic/refresh]
 related:
-  - "[[hot]]"
+  - "hot"
   - "[[knowledge-moc]]"
 ---
 ```

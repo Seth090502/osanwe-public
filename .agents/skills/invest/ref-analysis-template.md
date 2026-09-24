@@ -364,7 +364,7 @@ topology: dw
 orchestrator_model: "<active model string; passive log, never branched on>"
 thesis: theme-alpha
 thesis_refs:
-  - "[[thesis-theme-alpha]]"
+  - "thesis-theme-alpha"
   - "[[ref-theme-alpha]]"
 variant_view: "Consensus expects FY27 DC revenue +28%; base case +42% on CoWoS step-up"
 mispricing: "Market discounting 2H26 China export-control downside at 60% probability; base case 35%"
@@ -376,9 +376,9 @@ tags:
   - ticker/NVDA
   - thesis/theme-alpha
 related:
-  - "[[TSM]]"
-  - "[[MU]]"
-  - "[[ASML]]"
+  - "TSM"
+  - "MU"
+  - "ASML"
 ---
 ```
 

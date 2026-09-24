@@ -39,7 +39,7 @@ tags: [topic/judgment-gates]
 status: complete
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
-related: ["[[gates-registry]]", "[[<entity-or-thesis-stem>]]"]
+related: ["gates-registry", "<entity-or-thesis-stem>"]
 gate:
   schema_version: 1
   mode: f            # f | t | b

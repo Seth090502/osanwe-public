@@ -24,8 +24,8 @@ status: complete
 created: 2026-07-06
 updated: 2026-07-06
 related:
-  - "[[gates-registry]]"
-  - "[[execute-or-decline]]"
+  - "gates-registry"
+  - "execute-or-decline"
 gate:
   schema_version: 1
   mode: b

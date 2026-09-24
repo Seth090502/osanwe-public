@@ -82,7 +82,7 @@ tags:
   - topic/semiconductors
   - thesis/theme-alpha
 related:
-  - "[[investing-moc]]"
+  - "investing-moc"
 status: active
 confidence: medium
 created: 2026-04-22
@@ -487,16 +487,16 @@ The `related:` field is organized into four ordered groups, separated by YAML co
 ```yaml
 related:
   # MOCs
-  - "[[investing-moc]]"
-  - "[[semiconductors-moc]]"
+  - "investing-moc"
+  - "semiconductors-moc"
   # theses
-  - "[[thesis-theme-alpha]]"
-  - "[[thesis-memory-cycle-recovery]]"
+  - "thesis-theme-alpha"
+  - "thesis-memory-cycle-recovery"
   # refs
-  - "[[ref-metric-ontology]]"
+  - "ref-metric-ontology"
   # analyses and sources
-  - "[[nvda-analysis-2026-04-22]]"
-  - "[[nvda-10k-fy25]]"
+  - "nvda-analysis-2026-04-22"
+  - "nvda-10k-fy25"
 ```
 
 Within each group, entries are sorted alphabetically by stem. Insertion of a new entry places it at its sorted position within the correct group; group membership is inferred by stem prefix (`*-moc` -> MOC group; `thesis-*` -> thesis group; `ref-*` -> refs group; else analyses-and-sources group) [17].

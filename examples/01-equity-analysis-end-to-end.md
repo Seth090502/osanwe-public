@@ -71,17 +71,17 @@ tags:
 aliases:
   - MRVL analysis 2026-07-16
 related:
-  - "[[MRVL]]"
-  - "[[mrvl-analysis-2026-07-13]]"
-  - "[[mrvl-analysis-2026-06-18]]"
-  - "[[AVGO]]"
-  - "[[watchlist]]"
-  - "[[investing-research-log]]"
-  - "[[investing-moc]]"
-  - "[[thesis-theme-alpha]]"
-  - "[[ref-portfolio-doctrine]]"
+  - "MRVL"
+  - "mrvl-analysis-2026-07-13"
+  - "mrvl-analysis-2026-06-18"
+  - "AVGO"
+  - "watchlist"
+  - "investing-research-log"
+  - "investing-moc"
+  - "thesis-theme-alpha"
+  - "ref-portfolio-doctrine"
   - "[[ref-theme-alpha]]"
-  - "[[calibration-monitor]]"
+  - "calibration-monitor"
 ```
 
 </details>
