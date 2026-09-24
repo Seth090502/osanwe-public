@@ -1,30 +1,28 @@
 # Osanwe
 
-[![tests](https://github.com/Seth090502/osanwe-public/actions/workflows/tests.yml/badge.svg)](https://github.com/Seth090502/osanwe-public/actions/workflows/tests.yml)
-
 A Markdown vault for financial analysis, run by AI agents, in which every analysis is written back as typed,
 linked notes that the next analysis reads first. Research compounds instead of evaporating.
 
 *Designed and directed by Seth Young, as architect, orchestrator and evaluator of the agents that built it.*
 
-In the working system, of which this repository is a partial copy: 17 skills, 14 subagents, 27 hook
-registrations across 10 lifecycle events, 193 formulas across nine domains, 662 research outputs, and 3,062
-commits from April to 21 September 2026, 2,564 of them made by AI agents under the agent-commit prefix.
-Here, 49 test suites pass on GitHub's runners on every push.
+In the working system (this repository is a partial copy): 17 skills, 14 subagents, 27 hook registrations on
+10 lifecycle events, 193 formulas in nine domains, 662 research outputs, and 3,062 commits from April to
+21 September 2026, 2,564 of them by AI agents. Here, 49 test suites pass in CI on every push:
+[![tests](https://github.com/Seth090502/osanwe-public/actions/workflows/tests.yml/badge.svg)](https://github.com/Seth090502/osanwe-public/actions/workflows/tests.yml)
 
 ## What this demonstrates, and where to check it
 
 | Capability | Evidence |
 |---|---|
-| Guarding irreversible agent actions: fail-closed stairs, prompt-injection transcript cases run in CI, red-teaming of the author's own controls | [Staircase demo](demo/README.md); [THREAT-MODEL.md, A2](THREAT-MODEL.md#a2-fetched-content-that-carries-instructions); [the injection cases](tools/test-pretrade-transcript-provenance.py) |
-| Multi-agent orchestration: specialist subagents in parallel waves, an adversarial critic before the analysis is written | [Example 1, subagent audit](examples/01-equity-analysis-end-to-end.md#subagent-audit); [invest skill, Phase K.5](.agents/skills/invest/SKILL.md#phase-k5-variant-view----thesis-critic-adversarial-cross-check-delegated-phase-c-wiring-2026-05-02) |
-| Evals: a call record reported with its denominator, the old rating logic kept as a shadow with a pre-committed rollback trigger | [docs/EVALS.md, section 4](docs/EVALS.md#4-the-prior-calls-record-which-is-too-small-to-calibrate); [invest skill, Phase R](.agents/skills/invest/SKILL.md#phase-r-calibration-continuity-monitor-verdict-redesign-2026-06-06-conditional-ratify-rolling-check) |
-| Context engineering: typed notes as memory, progressive disclosure in the agent contract, re-injection after compaction | [ARCHITECTURE.md, decisions 4 and 5](ARCHITECTURE.md#4-one-contract-disclosed-progressively) |
-| Deterministic control around a probabilistic model: a pre-write schema hook, recorded gate verdicts, append-only ledgers | [ARCHITECTURE.md, control points](ARCHITECTURE.md#control-points); [the write validator](tools/pre-write-validator.py) |
-| Tool integration over MCP: filings, macro series and a brokerage, with published and retrieved times recorded | [MCP registry](.agents/mcp/servers.json); [point-in-time records](tools/pit/financial_documents.py) |
-| Quantitative finance: 193 formulas across nine domains, each with a checked verdict | [docs/quant-formula-index.md, check results](docs/quant-formula-index.md#check-results) |
-| Governing long-running agent work: written briefs, approval gates, a verbatim decision log, worktree isolation | [docs/ORCHESTRATION.md](docs/ORCHESTRATION.md#the-parts) (the method; the briefs and logs are withheld) |
-| Reproducibility and portability: 49 suites in CI, a one-command demo, one agent contract loaded by Claude Code and Codex | [CI workflow](.github/workflows/tests.yml); [COMPATIBILITY.md, runtime receipts](COMPATIBILITY.md#september-recovery-runtime-receipts) |
+| Guarding irreversible actions: fail-closed gates, injection cases in CI, red-teaming | [demo](demo/README.md); [threat model A2](THREAT-MODEL.md#a2-fetched-content-that-carries-instructions) |
+| Multi-agent orchestration: parallel specialist subagents, an adversarial critic | [example 1](examples/01-equity-analysis-end-to-end.md#subagent-audit); [Phase K.5](.agents/skills/invest/SKILL.md#phase-k5-variant-view----thesis-critic-adversarial-cross-check-delegated-phase-c-wiring-2026-05-02) |
+| Evals: a call record with its denominator, a shadow of the old logic, a rollback trigger | [evals 4](docs/EVALS.md#4-the-prior-calls-record-which-is-too-small-to-calibrate); [Phase R](.agents/skills/invest/SKILL.md#phase-r-calibration-continuity-monitor-verdict-redesign-2026-06-06-conditional-ratify-rolling-check) |
+| Context engineering: typed notes as memory, progressive disclosure, re-injection after compaction | [architecture 4-5](ARCHITECTURE.md#4-one-contract-disclosed-progressively) |
+| Deterministic control: a pre-write schema hook, recorded gate verdicts, append-only ledgers | [control points](ARCHITECTURE.md#control-points); [validator](tools/pre-write-validator.py) |
+| Tool integration over MCP: filings, macro series, a brokerage, point-in-time records | [registry](.agents/mcp/servers.json); [PIT records](tools/pit/financial_documents.py) |
+| Quantitative finance: 193 formulas in nine domains, each with a checked verdict | [formula index](docs/quant-formula-index.md#check-results) |
+| Governing long-running agent work: briefs, approval gates, a verbatim log, worktrees | [orchestration](docs/ORCHESTRATION.md#the-parts) (method only) |
+| Reproducibility: 49 suites in CI, a one-command demo, one contract for Claude Code and Codex | [CI](.github/workflows/tests.yml); [receipts](COMPATIBILITY.md#september-recovery-runtime-receipts) |
 
 ## The idea
 
