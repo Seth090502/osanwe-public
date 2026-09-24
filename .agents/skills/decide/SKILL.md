@@ -385,7 +385,7 @@ Decision file tags: `topic/<domain>` (e.g., `topic/investing`, `topic/career`), 
 `/decide Should I deploy $<amount> retirement-account cash now?` ->
 - Phase D loads current-session broker read evidence, macro-outlook.md, watchlist.md, portfolio-doctrine.md
 - Phase E.3 pre-mortem 5 failure modes (macro-shock delay, thesis concentration drift, valuation compression, etc.) with %, detectability, cascade
-- Phase E.5 recommendation: e.g., HOLD the cash and stage limit orders at pre-set levels (illustrative synthetic book)
+- Phase E.5 recommendation: e.g., HOLD the cash and stage limit orders at pre-set levels
 - Phases G-J atomic 4-file write
 - Sessions-log entry composed for /retro
 

@@ -520,13 +520,13 @@ Largest US gas-turbine OEM + Prolec GE transformer integration post-Q1-26.
 #### Financial signals
 - GEV: Gas backlog + slot reservations 83 → 100 GW Q1-26; expects 110 GW YE-26 (per GEV Q1-26 2026-04-22)
 - GEV: 21 GW new gas equipment contracts Q1-26 (19 GW slot, 2 GW orders); 6 GW conversions
-- GEV: $2.4B theme-gamma data-center equipment orders Q1 alone -- more than all of 2025 (per Q1-26)
+- GEV: $2.4B grid-segment data-center equipment orders Q1 alone -- more than all of 2025 (per Q1-26)
 - GEV: Total backlog $163.3B (vs $123.4B YoY)
 - GEV: Q1-26 revenue $9.3B (+16% / +7% organic); Adj EBITDA $0.9B (margin 9.6%, +390 bps)
 - GEV: Net income $4.7B incl. $4.5B Prolec GE M&A gains
-- GEV: theme-gamma orders $7.1B total (~2x YoY); North America/Asia ~3x
+- GEV: grid-segment orders $7.1B total (~2x YoY); North America/Asia ~3x
 - GEV: NRG-Kiewit JV 5.4 GW gas through 2032
-- GEV: Total theme-gamma + gas data-center backlog visibility through 2030
+- GEV: Total grid-segment + gas data-center backlog visibility through 2030
 #### Thesis Fit
 Highest-leverage AI gas + grid equipment play. Prolec consolidation = transformer pricing power. 20% of 100 GW gas backlog explicit data-center support. Cross-ref: ref-ai-supply-chain-deep-dive §11.
 
