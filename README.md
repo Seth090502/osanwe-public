@@ -140,9 +140,9 @@ Every formula in the system, by domain, with how it is implemented and how it ch
 | **Total** | **193** | **81** | **112** | **166** | **21** | **6** |
 
 "Prompt-only" means the formula is specified in a document the model reads and applied by the model, with no
-code implementing it. That is most of the valuation and forensic work and none of the calibration, and it is
-the single most important thing to understand about what this system is: the rating engine is largely
-written prose, not a program.
+code implementing it. That is all of the valuation and forensic work and one of the 23 calibration formulas,
+and it is the single most important thing to understand about what this system is: the rating engine is
+largely written prose, not a program.
 
 Three things sit underneath all of it. A **point-in-time layer** records when a fact was published and when
 it was retrieved, separately, so a later reader can tell what was knowable when. **Evidence grading** puts a
