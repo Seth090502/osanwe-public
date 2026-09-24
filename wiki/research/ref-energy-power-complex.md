@@ -102,7 +102,7 @@ primary source lands.
 
 - GEV: total backlog $163.3B (vs $123.4B YoY) (HIGH); gas backlog + slot
   reservations 83 -> 100 GW in Q1-26, expecting 110 GW YE-26 (HIGH);
-  theme-gamma orders $7.1B Q1-26 ~2x YoY, NA/Asia ~3x; $2.4B data-center
+  grid-segment orders $7.1B Q1-26 ~2x YoY, NA/Asia ~3x; $2.4B data-center
   equipment orders Q1-26 alone -- more than all of 2025 (HIGH); Prolec GE
   consolidation added ~$5B backlog (HIGH) (all ENT[GEV]).
 - ETN: total backlog $22.8B, ~68% deliverable within 12 months (HIGH);

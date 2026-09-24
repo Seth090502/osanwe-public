@@ -90,7 +90,7 @@ and a replay, then admit the one order that satisfies all four.
 The gate was then red-teamed by independent agents whose only goal was to place an order through it. Three
 rounds found ways past stair one; the most instructive was text the model had merely read re-entering the
 session as an approval through its own compaction summary. When successive patches kept failing review, the
-work stopped rather than ship another, and stair one is being redesigned from stated properties: the person
+work stopped rather than ship another; as of 2026-09-24 stair one is being redesigned from stated properties: the person
 types the order itself, and only exactly that order can execute. Until the redesign survives a full attack,
 the deny list keeps every order tool closed. The four open defects are tabled in
 [docs/threat-model.md](docs/threat-model.md#open-defects-in-stair-1); how the stop was decided is in
@@ -227,7 +227,7 @@ process and judge it accordingly.
 1. **A mirror, not a deployment:** it has never been run end to end from a clean clone; paths are placeholders, secrets are absent, data directories are empty. [docs/threat-model.md, open risks](docs/threat-model.md#open-risks)
 2. **Most `/invest` rating rules are prompt text, not code:** 38 of the 65 formulas on its scoring path, and 112 of 193 overall, have no implementation. [docs/quant-formula-index.md, coverage](docs/quant-formula-index.md#coverage)
 3. **Retrieval is keyword search over a small admitted set, not a vector index.** [docs/capabilities.md, known weak points](docs/capabilities.md#known-weak-points)
-4. **50 of the 72 published test files pass from a clean copy,** one of them only with a local model running; the other 22 are named with their causes, not loosened. [docs/audit.md](docs/audit.md#what-was-executed-and-what-was-not)
+4. **49 of the 72 published Python test files pass from a clean copy,** a 50th only with a local model running; the other 22 are named with their causes, not loosened, and the JavaScript and shell suites are not run. [docs/audit.md](docs/audit.md#what-was-executed-and-what-was-not)
 5. **Execution evidence comes from the originals;** the published copies were checked for equivalence instead. [docs/audit.md](docs/audit.md#execution-evidence-and-what-replaced-it-here)
 6. **The `/invest` skeptic wave never runs:** its entry point fails closed on every call. [docs/capabilities.md, known weak points](docs/capabilities.md#known-weak-points)
 7. **The vault root is hardcoded:** in the working system, 132 of 500 tracked code files carry an absolute path; here it is a placeholder. [docs/capabilities.md, known weak points](docs/capabilities.md#known-weak-points)

@@ -736,7 +736,7 @@ Q.3 -- ETF overlap interaction:
 
 Q.4 -- Newly-discovered concentration risks:
 - Cross-reference focal ticker's sector + industry + thesis against existing portfolio
-- Surface any newly-discovered concentrations not previously flagged: "a sector-fund analysis reveals 30% holdings overlap with individual single-name positions (illustrative synthetic book); combined effective theme-alpha concentration is 65%, exceeding the 60% amber but under the 70% red -- arm the exit ladder, do not force a mechanical trim"
+- Surface any newly-discovered concentrations not previously flagged, for example (invented figures): "a sector-fund analysis reveals 30% holdings overlap with individual single-name positions; combined effective theme-alpha concentration is 65%, exceeding the 60% amber but under the 70% red -- arm the exit ladder, do not force a mechanical trim"
 
 Q.5 -- Output: Cross-Position Coherence section appended to Phase P audit report (before user emit). Includes:
 - Current thesis-level exposure %

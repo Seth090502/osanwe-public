@@ -174,7 +174,7 @@ related:
 
 ### ABB (new entity, 3 claims, thesis: theme-gamma + theme-alpha)
 - NVIDIA-ABB partnership March 2026 (physical AI positioning)
-- theme-gamma segment AI-leveraged
+- grid segment AI-leveraged
 - Fwd P/E ~22x
 
 ### KLAC (new entity, 3 claims, thesis: theme-alpha)

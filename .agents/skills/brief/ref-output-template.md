@@ -56,7 +56,7 @@ created: YYYY-MM-DD
 updated: YYYY-MM-DD
 status: complete
 tags: [topic/market-brief]
-related: ["[[hot]]", "[[<entity-stem-1>]]", "[[<entity-stem-2>]]", "[[<thesis-slug-1>]]"]
+related: ["hot", "<entity-stem-1>", "<entity-stem-2>", "<thesis-slug-1>"]
 ---
 ```
 

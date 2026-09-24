@@ -22,21 +22,22 @@ for *equivalence* to the originals instead:
 
 - **Python**: both sides parsed to syntax trees; every string constant normalised to a single token, so string
   literals, docstrings and comments may differ freely. The remaining trees were compared exactly, and
-  identifier sets compared separately. 272 files equivalent; seven differ, all named in the table below.
+  identifier sets compared separately. 269 files equivalent; seven differ, all named in the table below.
 - **JSON and JSONL**: key structure and container type at every key path compared. Values may differ; shape
-  may not. 61 files equivalent; one fixture differs in a value's type, named below.
+  may not. 60 files equivalent; one fixture differs in a value's type, named below.
 - **TOML**: key structure compared. 13 files equivalent.
 - **PowerShell**: parsed with the PowerShell parser, string and comment tokens dropped, the remaining token
-  stream compared in order. 10 files equivalent.
+  stream compared in order. 8 files equivalent.
 - **Shell and JavaScript**: syntax checked on both sides, since neither has a portable structural form here.
   44 files parse on both sides.
-- **Unchecked**: 288 files -- 232 Markdown, 18 `.txt`, 11 without a suffix, and a handful of model files,
+- **Unchecked**: 275 files -- 227 Markdown, 17 `.txt`, 7 without a suffix, and a handful of model files,
   `.cmd`, `.yaml`, `.sha256`, `.sql`, `.base`, `.html` and `.ini`. Prose was reviewed by reading, not by parsing.
-- **No original to compare against**: 26 files. 21 are files this audit wrote (this file, the readme, the
-  architecture, capabilities, threat-model, withheld and changelog documents, the evals and orchestration
-  documents, the formula index, the demo and its readme, the four worked examples, the two licences, the
-  continuous-integration workflow, and two short readmes standing in for generated directories). The other 5 are working-system files published under a masked name,
-  listed in the next table.
+- **No original to compare against**: 34 files. 24 are files this audit wrote (this file, the readme, the
+  architecture, security, capabilities, threat-model, withheld and changelog documents, the evals and
+  orchestration documents, the formula index, the demo and its readme, the four worked examples, the two
+  licences, the continuous-integration workflow, its suite list and local runner, and two short readmes
+  standing in for generated directories). 5 are working-system documents published under a new path in
+  `docs/`, and 5 are working-system files published under a masked name, listed in the next table.
 
 | Difference | File | Explanation |
 |---|---|---|
@@ -82,8 +83,8 @@ Those are removed in this copy, and the scanner that missed them now has a rule 
 The author's name is published deliberately, in the licence copyright line and one line near the top of
 the readme; the account handle also appears in this repository's own URLs, because it lives under that
 account. The broker is identifiable from the connector's tool names, which the code needs; that is
-disclosed deliberately rather than masked in some places and not others. Identity was never the thing being protected here -- what is
-protected is everything attached to it.
+disclosed deliberately rather than masked in some places and not others. Identity was never the thing
+being protected here -- what is protected is everything attached to it.
 
 An earlier report in this audit said the denylist had zero unaccepted hits. That was true of the denylist, and
 it was not a statement about privacy: at that moment the tree still contained exact token counts, a cash
@@ -99,15 +100,15 @@ Three different statements, which are easy to blur and are kept apart here.
 2. **The published files were not executed to produce that evidence.** They were checked for equivalence to
    the originals instead: every Python file's syntax tree compared with its original so that only string
    literals, comments and docstrings differ, every JSON file's key structure, and a parser or linter for the
-   other languages where one exists. Of 434 files checked, 356 came back equivalent, 44 parsed correctly in
-   both copies, eight have an explained difference, 26 had no original to compare against, and none was
+   other languages where one exists. Of 436 files checked, 350 came back equivalent, 44 parsed correctly in
+   both copies, eight have an explained difference, 34 had no original to compare against, and none was
    broken by sanitizing in a way the comparison can see. The comparison normalises string literals away, so
    a redaction that broke a literal the code parses is invisible to it; the test run below found one.
 3. **The published test files WERE executed, from a fresh copy of this repository, and they do not all pass.**
-   50 of 72 exit 0; 22 do not. 49 of the 50 are also run by continuous integration on a clean Linux runner --
-   `.github/workflows/tests.yml`, read-only token, no secrets, five packages installed -- so the figure can
-   be checked by anyone rather than believed. The 50th, `tools/test-delegate.py`, grades a local language
-   model and passed here only because one was running; CI has none. The 22 that fail are named in the table
+   49 of 72 exit 0; a 50th, `tools/test-delegate.py`, grades a local language model and exits 0 only where
+   one is running; 22 do not. The 49 are the list continuous integration runs on a clean Linux runner --
+   `.github/workflows/tests.yml`, read-only token, no secrets, the pinned `requirements.txt` installed -- so
+   the figure can be checked by anyone rather than believed. The 22 that fail are named in the table
    below with the reason each gave. They were recorded, not repaired, with two exceptions that were the
    publication's own doing. Three hash pins had been made stale by sanitizing: a pin that no longer matches
    the bytes it covers is a false integrity claim, so the build now recomputes every pin over the published
@@ -122,7 +123,7 @@ Three different statements, which are easy to blur and are kept apart here.
 | `tools/fis/test_fis_e2e.py`, `test_fixture_bridge.py`, `test_institutional_benchmark.py`, `test_obs.py`, `test_research_evidence.py`, `test_shadow_mutation.py`, `test_shadow_provenance.py`, `test_twin_identity.py` | Read the working data under `Efforts/`: synthetic household fixtures, the factor and price stores, the shadow-prediction log, the planning documents |
 | `tools/pit/test_dual_price_store.py` | Reads the point-in-time price store |
 | `tools/fis/test_architecture_fitness.py` | One check reads withheld working data; three order-gate checks run the published hook, which imports its library from a hard-coded vault root that publishing replaced with a placeholder |
-| `tools/test-gate-eval.py`, `tools/test-retrieval-adapters.py` | Hard-coded paths to the author's machine, replaced by placeholders (`fix/parameterize-paths`, unmerged, removes them) |
+| `tools/test-gate-eval.py`, `tools/test-retrieval-adapters.py` | Hard-coded paths to the author's machine, replaced by placeholders (a fix that is not in this repository removes them) |
 | `.agents/scripts/gates/test-gates.py` | Its two allow-controls run against the live vault: one through a hard-coded path, one over the sizing doctrine, which is withheld |
 | `tools/test-append-only.py` | Copies the session and decision ledgers, which are withheld |
 | `tools/test-retrieval-admission-e2e.py` | Runs the retrieval runtime, which lives outside the repository at a path publishing replaced with a placeholder |
